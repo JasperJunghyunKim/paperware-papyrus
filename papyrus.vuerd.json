@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 5000,
     "height": 8000,
-    "scrollTop": -1927,
-    "scrollLeft": -520,
-    "zoomLevel": 0.8,
+    "scrollTop": -403,
+    "scrollLeft": -1609.453125,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -212,7 +212,7 @@
           "active": false,
           "left": 2805.3257,
           "top": 855.4029,
-          "zIndex": 697,
+          "zIndex": 44,
           "widthName": 67.05078125,
           "widthComment": 60
         },
@@ -389,7 +389,7 @@
           "active": false,
           "left": 2805.2993,
           "top": 628.799,
-          "zIndex": 695,
+          "zIndex": 43,
           "widthName": 75.72802734375,
           "widthComment": 60
         },
@@ -635,7 +635,7 @@
           "active": false,
           "left": 1916.1842,
           "top": 394.394,
-          "zIndex": 788,
+          "zIndex": 186,
           "widthName": 60,
           "widthComment": 60
         },
@@ -812,7 +812,7 @@
           "active": false,
           "left": 2804.7168,
           "top": 403.9529,
-          "zIndex": 693,
+          "zIndex": 42,
           "widthName": 85.1162109375,
           "widthComment": 60
         },
@@ -989,7 +989,7 @@
           "active": false,
           "left": 2802.8719,
           "top": 1080.2794,
-          "zIndex": 699,
+          "zIndex": 45,
           "widthName": 78.5908203125,
           "widthComment": 60
         },
@@ -1488,7 +1488,7 @@
           "active": false,
           "left": 2317.5135,
           "top": 2256.536,
-          "zIndex": 746,
+          "zIndex": 57,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1872,7 +1872,7 @@
           "active": false,
           "left": 2254.8587,
           "top": 3452.1914,
-          "zIndex": 290,
+          "zIndex": 37,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2069,10 +2069,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 1302.5903,
           "top": 2150.9665,
-          "zIndex": 881,
+          "zIndex": 79,
           "widthName": 60.525390625,
           "widthComment": 60
         },
@@ -2226,7 +2226,7 @@
           "active": false,
           "left": 1663.4155,
           "top": 1901.5577,
-          "zIndex": 879,
+          "zIndex": 65,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2426,7 +2426,7 @@
           "active": false,
           "left": 946.7649,
           "top": 1783.7325,
-          "zIndex": 873,
+          "zIndex": 64,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3017,7 +3017,7 @@
           "active": false,
           "left": 703.3214,
           "top": 2797.8564,
-          "zIndex": 732,
+          "zIndex": 54,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3079,7 +3079,7 @@
           "active": false,
           "left": 1449.646,
           "top": 2787.3987,
-          "zIndex": 104,
+          "zIndex": 7,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3164,7 +3164,7 @@
           "active": false,
           "left": 1167.8588,
           "top": 3458.0325,
-          "zIndex": 105,
+          "zIndex": 8,
           "widthName": 90.88623046875,
           "widthComment": 60
         },
@@ -3893,7 +3893,7 @@
           "active": false,
           "left": 4494.8416,
           "top": 3413.3192,
-          "zIndex": 414,
+          "zIndex": 39,
           "widthName": 74.25537109375,
           "widthComment": 60
         },
@@ -3975,7 +3975,7 @@
           },
           {
             "name": "stock_type",
-            "comment": "재고유형ID",
+            "comment": "재고유형enum",
             "dataType": "ENUM",
             "default": "",
             "option": {
@@ -3990,7 +3990,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 64.1435546875,
-              "widthComment": 60,
+              "widthComment": 79.4990234375,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -4576,7 +4576,7 @@
           "active": false,
           "left": 682.8526,
           "top": 3630.725,
-          "zIndex": 432,
+          "zIndex": 91,
           "widthName": 109.68798828125,
           "widthComment": 61.8367919921875
         },
@@ -4707,7 +4707,7 @@
           "active": false,
           "left": 685.7258,
           "top": 4376.4957,
-          "zIndex": 136,
+          "zIndex": 10,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4722,7 +4722,7 @@
           "active": false,
           "left": 1228.6559,
           "top": 4389.0179,
-          "zIndex": 141,
+          "zIndex": 12,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4737,7 +4737,7 @@
           "active": false,
           "left": 1229.627,
           "top": 4309.5365,
-          "zIndex": 138,
+          "zIndex": 11,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4752,7 +4752,7 @@
           "active": false,
           "left": 1227.8302,
           "top": 4472.3806,
-          "zIndex": 142,
+          "zIndex": 13,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4789,7 +4789,7 @@
           {
             "name": "stock_info_id",
             "comment": "재고정보ID",
-            "dataType": "",
+            "dataType": "INT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4810,9 +4810,9 @@
             "id": "c292fd1a-06bb-4f9d-8bb1-0293ecc41822"
           },
           {
-            "name": "",
+            "name": "workplace_id",
             "comment": "창고ID",
-            "dataType": "",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4823,14 +4823,14 @@
             "ui": {
               "active": false,
               "pk": false,
-              "fk": false,
+              "fk": true,
               "pfk": false,
-              "widthName": 60,
+              "widthName": 77.87353515625,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "91bd1eae-3c85-46b1-9f22-a2a798cca753"
+            "id": "0396a241-83e3-4efb-89d2-c69ce047f027"
           },
           {
             "name": "stock_type",
@@ -4858,7 +4858,7 @@
           {
             "name": "paper_domain_id",
             "comment": "제품유형",
-            "dataType": "",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4873,15 +4873,38 @@
               "pfk": false,
               "widthName": 102.46435546875,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "9f92c7ed-7aa6-4eaf-af19-428e1bed0abf"
           },
           {
+            "name": "paper_domain_nm",
+            "comment": "제품유형명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 110.4052734375,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "6ac393c4-2ee1-4aa5-8a45-3aef28c1dca6"
+          },
+          {
             "name": "paper_group_id",
             "comment": "지군",
-            "dataType": "",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4896,15 +4919,38 @@
               "pfk": false,
               "widthName": 93.076171875,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "fc9d23d3-9dfe-4a79-97a8-6ebcd76302c1"
           },
           {
+            "name": "paper_group_nm",
+            "comment": "지군명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 101.01708984375,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "7ea1e7ba-d6f1-4c85-b7b9-9558d887b1a7"
+          },
+          {
             "name": "paper_type_id",
             "comment": "지종",
-            "dataType": "",
+            "dataType": "INT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4925,9 +4971,9 @@
             "id": "38beef18-b9ca-41b0-8cd5-98271805716d"
           },
           {
-            "name": "manufacurer_id",
-            "comment": "제지사",
-            "dataType": "",
+            "name": "paper_type_nm",
+            "comment": "지종명",
+            "dataType": "VARCHAR(30)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -4940,12 +4986,58 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 92.3271484375,
+              "widthName": 92.33984375,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "1a75ffa9-0316-4295-97e8-22f7f4da69fd"
+          },
+          {
+            "name": "manufacturer_id",
+            "comment": "제지사",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.93896484375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "5a71ddf9-bc06-41a2-a93f-da5b7925d588"
+          },
+          {
+            "name": "manufacturer_nm",
+            "comment": "제지사명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 103.8798828125,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "d71fb6b4-9b75-4d01-9119-61ad590a7897"
           },
           {
             "name": "gsm",
@@ -5019,7 +5111,7 @@
           {
             "name": "paper_color_group_id",
             "comment": "색군",
-            "dataType": "",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5034,15 +5126,38 @@
               "pfk": false,
               "widthName": 128.4833984375,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "e1f35915-ad4a-4d40-9ca9-9c47e2893f03"
           },
           {
+            "name": "paper_color_group_nm",
+            "comment": "색군명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 136.42431640625,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "7b2af0b8-b8d2-48a4-a44c-57d606926e49"
+          },
+          {
             "name": "paper_color_id",
             "comment": "색상",
-            "dataType": "",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5057,15 +5172,38 @@
               "pfk": false,
               "widthName": 88.00439453125,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "f1ef2df0-1e06-49b8-9dd0-97a3ffa137d0"
           },
           {
+            "name": "paper_color_nm",
+            "comment": "색상명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.9453125,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "b5bb4642-23c0-49ac-845b-af5273342baa"
+          },
+          {
             "name": "paper_pattern_id",
             "comment": "무늬",
-            "dataType": "",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5080,15 +5218,38 @@
               "pfk": false,
               "widthName": 100.2998046875,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 65.57177734375,
               "widthDefault": 60
             },
             "id": "74d8894b-d880-4e62-b3fd-39a460e3351e"
           },
           {
+            "name": "paper_pattern_nm",
+            "comment": "무늬명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 108.24072265625,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "21cdd455-a4c4-473e-92fc-2ba2aa7b75e6"
+          },
+          {
             "name": "paper_cert_id",
             "comment": "인증",
-            "dataType": "",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5109,9 +5270,32 @@
             "id": "112f2997-148e-4043-9364-219869ef8da3"
           },
           {
+            "name": "paper_cert_nm",
+            "comment": "인증명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 89.43896484375,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "044ae050-1b33-4fbb-88ed-4e78fbec2156"
+          },
+          {
             "name": "diameter_id",
             "comment": "지관",
-            "dataType": "",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5130,6 +5314,52 @@
               "widthDefault": 60
             },
             "id": "0b26f908-c2b5-4506-8cf1-6402a9ebc861"
+          },
+          {
+            "name": "diameter_value",
+            "comment": "지관값",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 90.88623046875,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "79f725c5-4d0f-4315-906e-22c1f503485d"
+          },
+          {
+            "name": "diameter_unit",
+            "comment": "지관단위",
+            "dataType": "ENUM",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 80.76806640625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6b7f8571-e124-41e2-ac87-bebd51d4d915"
           },
           {
             "name": "package_id",
@@ -5155,6 +5385,52 @@
             "id": "dc001c0b-8884-448c-ba29-2ff778a28823"
           },
           {
+            "name": "package_value1",
+            "comment": "매/포",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 96.68798828125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "07edc634-e820-4a37-bd9d-c301115147e0"
+          },
+          {
+            "name": "package_value2",
+            "comment": "포/BOX",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 96.68798828125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c8116063-5584-44ae-b750-61de812e8810"
+          },
+          {
             "name": "bundle_id",
             "comment": "매속",
             "dataType": "",
@@ -5176,13 +5452,36 @@
               "widthDefault": 60
             },
             "id": "1c45989d-2b28-4517-9e5d-669954795c09"
+          },
+          {
+            "name": "bundle_value",
+            "comment": "매속값",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 79.34619140625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "12e3c0dd-b5bc-4ca7-be91-87a71a784650"
           }
         ],
         "ui": {
           "active": false,
-          "left": 722.9174,
-          "top": 2224.0468,
-          "zIndex": 831,
+          "left": 730.9174,
+          "top": 2046.0468,
+          "zIndex": 181,
           "widthName": 101.0107421875,
           "widthComment": 69.469970703125
         },
@@ -5219,7 +5518,7 @@
           {
             "name": "stock_info_",
             "comment": "재고스펙ID",
-            "dataType": "",
+            "dataType": "INT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -5359,7 +5658,7 @@
           "active": false,
           "left": 127.4999,
           "top": 2339.4395,
-          "zIndex": 832,
+          "zIndex": 62,
           "widthName": 72.82080078125,
           "widthComment": 60
         },
@@ -5490,7 +5789,7 @@
           "active": false,
           "left": 2264.4382,
           "top": 4034.1917,
-          "zIndex": 165,
+          "zIndex": 25,
           "widthName": 72.8271484375,
           "widthComment": 60
         },
@@ -5552,7 +5851,7 @@
           "active": false,
           "left": 1985.6687,
           "top": 4366.387,
-          "zIndex": 152,
+          "zIndex": 18,
           "widthName": 60,
           "widthComment": 60
         },
@@ -5683,7 +5982,7 @@
           "active": false,
           "left": 3363.2002,
           "top": 4739.5018,
-          "zIndex": 130,
+          "zIndex": 9,
           "widthName": 60,
           "widthComment": 60
         },
@@ -5837,7 +6136,7 @@
           "active": false,
           "left": 123.3339,
           "top": 4750.9997,
-          "zIndex": 146,
+          "zIndex": 15,
           "widthName": 63.41357421875,
           "widthComment": 60
         },
@@ -5876,7 +6175,7 @@
           "active": false,
           "left": 1789.3448,
           "top": 5633.281,
-          "zIndex": 163,
+          "zIndex": 23,
           "widthName": 60,
           "widthComment": 60
         },
@@ -5961,7 +6260,7 @@
           "active": false,
           "left": 3216.5824,
           "top": 5608.9018,
-          "zIndex": 162,
+          "zIndex": 22,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6046,7 +6345,7 @@
           "active": false,
           "left": 3236.2703,
           "top": 5137.1877,
-          "zIndex": 143,
+          "zIndex": 14,
           "widthName": 73.5380859375,
           "widthComment": 60
         },
@@ -6131,7 +6430,7 @@
           "active": false,
           "left": 2905.8334,
           "top": 4323.2724,
-          "zIndex": 150,
+          "zIndex": 16,
           "widthName": 63.419921875,
           "widthComment": 60
         },
@@ -6193,7 +6492,7 @@
           "active": false,
           "left": 2446.819,
           "top": 5619.5927,
-          "zIndex": 161,
+          "zIndex": 21,
           "widthName": 98.12255859375,
           "widthComment": 60
         },
@@ -6324,7 +6623,7 @@
           "active": false,
           "left": 4459.8358,
           "top": 6106.5965,
-          "zIndex": 266,
+          "zIndex": 31,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6339,7 +6638,7 @@
           "active": false,
           "left": 4366.1475,
           "top": 5862.6063,
-          "zIndex": 267,
+          "zIndex": 32,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6516,7 +6815,7 @@
           "active": false,
           "left": 3755.1115,
           "top": 5574.726,
-          "zIndex": 164,
+          "zIndex": 24,
           "widthName": 61.2490234375,
           "widthComment": 60
         },
@@ -6601,7 +6900,7 @@
           "active": false,
           "left": 2886.7714,
           "top": 4512.8907,
-          "zIndex": 151,
+          "zIndex": 17,
           "widthName": 85.09716796875,
           "widthComment": 69.469970703125
         },
@@ -6686,7 +6985,7 @@
           "active": false,
           "left": 4448.9647,
           "top": 6904.1862,
-          "zIndex": 264,
+          "zIndex": 29,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6701,7 +7000,7 @@
           "active": false,
           "left": 4363.5912,
           "top": 6297.8118,
-          "zIndex": 265,
+          "zIndex": 30,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6901,7 +7200,7 @@
           "active": false,
           "left": 2191.7446,
           "top": 1396.3453,
-          "zIndex": 713,
+          "zIndex": 50,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7078,7 +7377,7 @@
           "active": false,
           "left": 2191.2598,
           "top": 1881.1738,
-          "zIndex": 724,
+          "zIndex": 52,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7255,7 +7554,7 @@
           "active": false,
           "left": 2799.7043,
           "top": 1744.8729,
-          "zIndex": 707,
+          "zIndex": 48,
           "widthName": 82.95166015625,
           "widthComment": 60
         },
@@ -7478,7 +7777,7 @@
           "active": false,
           "left": 2800.9284,
           "top": 1967.5675,
-          "zIndex": 709,
+          "zIndex": 49,
           "widthName": 64.14990234375,
           "widthComment": 60
         },
@@ -7655,7 +7954,7 @@
           "active": false,
           "left": 2800.2926,
           "top": 1524.208,
-          "zIndex": 705,
+          "zIndex": 47,
           "widthName": 70.65625,
           "widthComment": 60
         },
@@ -7832,7 +8131,7 @@
           "active": false,
           "left": 2801.0803,
           "top": 1304.3314,
-          "zIndex": 701,
+          "zIndex": 46,
           "widthName": 111.13525390625,
           "widthComment": 60
         },
@@ -8032,7 +8331,7 @@
           "active": false,
           "left": 2191.8724,
           "top": 1637.8064,
-          "zIndex": 719,
+          "zIndex": 51,
           "widthName": 60,
           "widthComment": 60
         },
@@ -8324,7 +8623,7 @@
           "active": false,
           "left": 4196.9942,
           "top": 2548.7601,
-          "zIndex": 197,
+          "zIndex": 26,
           "widthName": 82.95166015625,
           "widthComment": 60
         },
@@ -8593,7 +8892,7 @@
           "active": false,
           "left": 4196.4766,
           "top": 2871.9371,
-          "zIndex": 199,
+          "zIndex": 27,
           "widthName": 60,
           "widthComment": 60
         },
@@ -8931,7 +9230,7 @@
           "active": false,
           "left": 4399.029,
           "top": 4129.8423,
-          "zIndex": 275,
+          "zIndex": 36,
           "widthName": 62.708984375,
           "widthComment": 60
         },
@@ -9154,7 +9453,7 @@
           "active": false,
           "left": 4197.0105,
           "top": 2285.6526,
-          "zIndex": 21,
+          "zIndex": 5,
           "widthName": 60,
           "widthComment": 60
         },
@@ -9354,7 +9653,7 @@
           "active": false,
           "left": 4196.7428,
           "top": 3174.0223,
-          "zIndex": 29,
+          "zIndex": 6,
           "widthName": 60,
           "widthComment": 60
         },
@@ -9669,7 +9968,7 @@
           "active": false,
           "left": 4400.6104736328125,
           "top": 4495.4107,
-          "zIndex": 270,
+          "zIndex": 33,
           "widthName": 85.10986328125,
           "widthComment": 118.061767578125
         },
@@ -9684,7 +9983,7 @@
           "active": false,
           "left": 125.6819,
           "top": 5031.1769,
-          "zIndex": 154,
+          "zIndex": 19,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10022,7 +10321,7 @@
           "active": false,
           "left": 4343.629,
           "top": 349.6001,
-          "zIndex": 783,
+          "zIndex": 58,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10475,7 +10774,7 @@
           "active": false,
           "left": 4113.2828,
           "top": 1513.884,
-          "zIndex": 728,
+          "zIndex": 53,
           "widthName": 94.9931640625,
           "widthComment": 87.9449462890625
         },
@@ -10537,7 +10836,7 @@
           "active": false,
           "left": 4140.2838,
           "top": 2162.8829,
-          "zIndex": 743,
+          "zIndex": 56,
           "widthName": 113.287109375,
           "widthComment": 99.18994140625
         },
@@ -10579,7 +10878,7 @@
           "active": false,
           "left": 241.2873263888915,
           "top": 2801.527777777776,
-          "zIndex": 157,
+          "zIndex": 20,
           "width": 426,
           "height": 101
         },
@@ -10591,7 +10890,7 @@
           "active": false,
           "left": 4760.171875,
           "top": 2555.1640625,
-          "zIndex": 14,
+          "zIndex": 3,
           "width": 207,
           "height": 100
         },
@@ -10603,7 +10902,7 @@
           "active": false,
           "left": 4648.171875,
           "top": 2872.1640625,
-          "zIndex": 15,
+          "zIndex": 4,
           "width": 127,
           "height": 100
         },
@@ -10615,7 +10914,7 @@
           "active": false,
           "left": 1914.8663194444443,
           "top": 676.6614583333336,
-          "zIndex": 790,
+          "zIndex": 60,
           "width": 275,
           "height": 100
         },
@@ -10627,7 +10926,7 @@
           "active": false,
           "left": 4296.727430555555,
           "top": 3422.550347222219,
-          "zIndex": 258,
+          "zIndex": 28,
           "width": 164,
           "height": 100
         },
@@ -10639,7 +10938,7 @@
           "active": false,
           "left": 4398.449652777784,
           "top": 4843.828124999999,
-          "zIndex": 273,
+          "zIndex": 34,
           "width": 425,
           "height": 100
         },
@@ -10651,7 +10950,7 @@
           "active": false,
           "left": 1674.0885416666672,
           "top": 2616.1614583333335,
-          "zIndex": 670,
+          "zIndex": 41,
           "width": 127,
           "height": 100
         },
@@ -10663,7 +10962,7 @@
           "active": false,
           "left": 2715,
           "top": 2860.328125,
-          "zIndex": 274,
+          "zIndex": 35,
           "width": 299,
           "height": 100
         },
@@ -10675,7 +10974,7 @@
           "active": false,
           "left": 2810,
           "top": 3651.328125,
-          "zIndex": 294,
+          "zIndex": 38,
           "width": 304,
           "height": 148
         },
@@ -10687,7 +10986,7 @@
           "active": false,
           "left": 793.5,
           "top": 1870.328125,
-          "zIndex": 865,
+          "zIndex": 63,
           "width": 127,
           "height": 100
         },
@@ -10699,11 +10998,35 @@
           "active": false,
           "left": 2315,
           "top": 2101.328125,
-          "zIndex": 741,
+          "zIndex": 55,
           "width": 127,
           "height": 100
         },
         "id": "0f0d2af2-012d-49ec-9520-edae48543147"
+      },
+      {
+        "value": "paper_stock_info : v1.0 의 부모재고\npaper_stock : v1.0 의 자식재고",
+        "ui": {
+          "active": false,
+          "left": 125.5,
+          "top": 2182.75,
+          "zIndex": 74,
+          "width": 254,
+          "height": 100
+        },
+        "id": "3bb74cf1-12b3-4ca3-98db-c63ef42406a4"
+      },
+      {
+        "value": "재고유형, 규격 DB 저장?",
+        "ui": {
+          "active": false,
+          "left": 2447.453125,
+          "top": 199,
+          "zIndex": 185,
+          "width": 145,
+          "height": 100
+        },
+        "id": "3e2ec8be-6c21-4284-9445-5cfd081e64b6"
       }
     ]
   },
@@ -11006,7 +11329,7 @@
           "columnIds": [
             "946395dd-b2f9-4723-89fd-5f5b36168e8e"
           ],
-          "x": 939.3457030273438,
+          "x": 941.67681875,
           "y": 4294.225,
           "direction": "bottom"
         },
@@ -11043,7 +11366,7 @@
             "884c0431-9bca-4b77-b766-7fd42375d494",
             "c4c55030-51c0-4ee0-80b3-86e94ae5624d"
           ],
-          "x": 1195.8388060546877,
+          "x": 1200.5010375000002,
           "y": 3962.475,
           "direction": "right"
         },
@@ -11069,8 +11392,8 @@
           "columnIds": [
             "4d67343c-7def-4418-bfad-4451fb0115eb"
           ],
-          "x": 1190.97257578125,
-          "y": 2443.0468,
+          "x": 1229.0668140625,
+          "y": 2574.4218,
           "direction": "right"
         },
         "constraintName": "fk_company_to_",
@@ -11086,8 +11409,8 @@
           "columnIds": [
             "c292fd1a-06bb-4f9d-8bb1-0293ecc41822"
           ],
-          "x": 722.9174,
-          "y": 2443.0468,
+          "x": 730.9174,
+          "y": 2398.2968,
           "direction": "left"
         },
         "end": {
@@ -12002,6 +12325,34 @@
         "constraintName": "fk_paperware_staff_to_company_manager",
         "visible": true,
         "id": "129efd7e-1140-4430-8d33-34aedf572b91"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "1a74b10b-0e1e-4969-9918-5b67022ac780",
+          "columnIds": [
+            "e9d446b7-deab-4322-b8dc-62cf296d139b",
+            "627eb6a4-5dbf-4bf9-be47-118c5ca6a5a1"
+          ],
+          "x": 1302.5903,
+          "y": 2267.4665,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "53df4922-6ea7-445d-8c31-6fd7929c105a",
+          "columnIds": [
+            "0396a241-83e3-4efb-89d2-c69ce047f027",
+            "5bf3d928-018c-404e-9b19-8ba960a861cb"
+          ],
+          "x": 1229.0668140625,
+          "y": 2222.1718,
+          "direction": "right"
+        },
+        "constraintName": "fk_workplace_to_paper_stock_info",
+        "visible": true,
+        "id": "58e05ec7-7aa2-4f67-8818-bef6d0ecde9d"
       }
     ]
   }
