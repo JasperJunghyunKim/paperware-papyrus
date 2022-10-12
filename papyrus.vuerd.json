@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 8000,
-    "scrollTop": -2826.3333333333335,
-    "scrollLeft": -5389,
+    "scrollTop": -2873.3333333333335,
+    "scrollLeft": -5491,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -95,7 +95,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -212,7 +212,7 @@
           "active": false,
           "left": 3321.9925,
           "top": 872.07,
-          "zIndex": 61,
+          "zIndex": 158,
           "widthName": 62.07292175292969,
           "widthComment": 60
         },
@@ -295,7 +295,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -389,7 +389,7 @@
           "active": false,
           "left": 3321.9658,
           "top": 642.1325,
-          "zIndex": 83,
+          "zIndex": 154,
           "widthName": 69.66490173339844,
           "widthComment": 60
         },
@@ -518,7 +518,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -635,7 +635,7 @@
           "active": false,
           "left": 1742.0189,
           "top": 497.7266,
-          "zIndex": 63,
+          "zIndex": 144,
           "widthName": 60,
           "widthComment": 60
         },
@@ -695,7 +695,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -812,7 +812,7 @@
           "active": false,
           "left": 3320.3828,
           "top": 412.953,
-          "zIndex": 73,
+          "zIndex": 148,
           "widthName": 78.19288635253906,
           "widthComment": 60
         },
@@ -872,7 +872,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -989,7 +989,7 @@
           "active": false,
           "left": 3323.7058,
           "top": 1098.6124,
-          "zIndex": 60,
+          "zIndex": 192,
           "widthName": 75.47589111328125,
           "widthComment": 60
         },
@@ -7137,7 +7137,7 @@
           {
             "name": "diameter_unit",
             "comment": "지관단위",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -7160,7 +7160,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -7275,9 +7275,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 3917.6602,
-          "top": 2280.5957,
-          "zIndex": 70,
+          "left": 3897.6602,
+          "top": 2275.5957,
+          "zIndex": 194,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7514,7 +7514,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -7631,7 +7631,7 @@
           "active": false,
           "left": 3324.9548,
           "top": 1780.9563,
-          "zIndex": 76,
+          "zIndex": 182,
           "widthName": 77.82887268066406,
           "widthComment": 60
         },
@@ -7737,7 +7737,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -7854,7 +7854,7 @@
           "active": false,
           "left": 3326.5955,
           "top": 2009.9008,
-          "zIndex": 77,
+          "zIndex": 178,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7914,7 +7914,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -8031,7 +8031,7 @@
           "active": false,
           "left": 3325.6258,
           "top": 1554.2079,
-          "zIndex": 75,
+          "zIndex": 185,
           "widthName": 64.85488891601562,
           "widthComment": 60
         },
@@ -8091,7 +8091,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -8208,7 +8208,7 @@
           "active": false,
           "left": 3325.0799,
           "top": 1327.6649,
-          "zIndex": 84,
+          "zIndex": 189,
           "widthName": 101.21583557128906,
           "widthComment": 60
         },
@@ -10213,7 +10213,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -10330,7 +10330,7 @@
           "active": false,
           "left": 5066.9622,
           "top": 126.2661,
-          "zIndex": 4,
+          "zIndex": 162,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10482,7 +10482,7 @@
           {
             "name": "gender",
             "comment": "성별",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -10528,7 +10528,7 @@
           {
             "name": "position",
             "comment": "직위",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -10551,7 +10551,7 @@
           {
             "name": "duty",
             "comment": "직책",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -10806,7 +10806,7 @@
           "active": true,
           "left": 6014.9489,
           "top": 2720.55,
-          "zIndex": 131,
+          "zIndex": 208,
           "widthName": 88.68385314941406,
           "widthComment": 85.08296203613281
         },
@@ -11652,7 +11652,7 @@
           {
             "name": "metadata_status",
             "comment": "메타데이터 상태",
-            "dataType": "ENUM",
+            "dataType": "SMALLINT",
             "default": "1",
             "option": {
               "autoIncrement": false,
@@ -11769,7 +11769,7 @@
           "active": false,
           "left": 3326.9996,
           "top": 2279.3331,
-          "zIndex": 78,
+          "zIndex": 166,
           "widthName": 60,
           "widthComment": 60
         },
