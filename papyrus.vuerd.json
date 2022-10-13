@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 8000,
-    "scrollTop": -3678.471354166666,
-    "scrollLeft": -4527.171875,
-    "zoomLevel": 1,
+    "scrollTop": -595,
+    "scrollLeft": -1882.171875,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -212,7 +212,7 @@
           "active": false,
           "left": 3321.9925,
           "top": 872.07,
-          "zIndex": 66,
+          "zIndex": 42,
           "widthName": 67.05078125,
           "widthComment": 60
         },
@@ -389,7 +389,7 @@
           "active": false,
           "left": 3321.9658,
           "top": 642.1325,
-          "zIndex": 65,
+          "zIndex": 41,
           "widthName": 75.72802734375,
           "widthComment": 60
         },
@@ -633,9 +633,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1742.0189,
-          "top": 497.7266,
-          "zIndex": 122,
+          "left": 1716.0189,
+          "top": 430.7266,
+          "zIndex": 137,
           "widthName": 60,
           "widthComment": 60
         },
@@ -812,7 +812,7 @@
           "active": false,
           "left": 3320.3828,
           "top": 412.953,
-          "zIndex": 64,
+          "zIndex": 40,
           "widthName": 85.1162109375,
           "widthComment": 60
         },
@@ -989,7 +989,7 @@
           "active": false,
           "left": 3323.7058,
           "top": 1098.6124,
-          "zIndex": 67,
+          "zIndex": 43,
           "widthName": 78.5908203125,
           "widthComment": 60
         },
@@ -1419,7 +1419,7 @@
           "active": false,
           "left": 3505.8461,
           "top": 3707.647,
-          "zIndex": 57,
+          "zIndex": 37,
           "widthName": 60,
           "widthComment": 60
         },
@@ -1826,7 +1826,7 @@
           "active": false,
           "left": 3547.3595,
           "top": 5725.691,
-          "zIndex": 58,
+          "zIndex": 38,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2026,7 +2026,7 @@
           "active": false,
           "left": 1975.0903,
           "top": 4433.4665,
-          "zIndex": 59,
+          "zIndex": 39,
           "widthName": 60.525390625,
           "widthComment": 60
         },
@@ -2180,7 +2180,7 @@
           "active": false,
           "left": 1975.0821,
           "top": 4679.0577,
-          "zIndex": 10,
+          "zIndex": 5,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2380,7 +2380,7 @@
           "active": false,
           "left": 1161.7649,
           "top": 4063.7325,
-          "zIndex": 7,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2971,7 +2971,7 @@
           "active": false,
           "left": 4865.9883,
           "top": 6287.6896,
-          "zIndex": 40,
+          "zIndex": 26,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3033,7 +3033,7 @@
           "active": false,
           "left": 4997.6458,
           "top": 7021.3987,
-          "zIndex": 41,
+          "zIndex": 27,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3118,7 +3118,7 @@
           "active": false,
           "left": 4323.8591,
           "top": 6273.5321,
-          "zIndex": 38,
+          "zIndex": 24,
           "widthName": 90.88623046875,
           "widthComment": 60
         },
@@ -3985,7 +3985,7 @@
           "active": false,
           "left": 6667.7694,
           "top": 4189.2639,
-          "zIndex": 339,
+          "zIndex": 88,
           "widthName": 74.25537109375,
           "widthComment": 60
         },
@@ -4852,7 +4852,7 @@
           "active": false,
           "left": 4213.6865,
           "top": 5286.7233,
-          "zIndex": 39,
+          "zIndex": 25,
           "widthName": 109.68798828125,
           "widthComment": 61.8367919921875
         },
@@ -5581,7 +5581,7 @@
           "active": false,
           "left": 1952.5841,
           "top": 3555.7135,
-          "zIndex": 31,
+          "zIndex": 17,
           "widthName": 101.0107421875,
           "widthComment": 69.469970703125
         },
@@ -5758,7 +5758,7 @@
           "active": false,
           "left": 64.9999,
           "top": 3786.9395,
-          "zIndex": 8,
+          "zIndex": 3,
           "widthName": 72.82080078125,
           "widthComment": 60
         },
@@ -5889,7 +5889,7 @@
           "active": false,
           "left": 2672.6038,
           "top": 6785.8587,
-          "zIndex": 78,
+          "zIndex": 53,
           "widthName": 72.8271484375,
           "widthComment": 60
         },
@@ -5951,7 +5951,7 @@
           "active": false,
           "left": 2095.0023,
           "top": 6123.0534,
-          "zIndex": 79,
+          "zIndex": 54,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6082,7 +6082,7 @@
           "active": false,
           "left": 3020.1176,
           "top": 5509.1684,
-          "zIndex": 84,
+          "zIndex": 59,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6236,7 +6236,7 @@
           "active": false,
           "left": 385.0005,
           "top": 5573.7495,
-          "zIndex": 83,
+          "zIndex": 58,
           "widthName": 63.41357421875,
           "widthComment": 60
         },
@@ -6275,7 +6275,7 @@
           "active": false,
           "left": 1542.5114,
           "top": 4944.1976,
-          "zIndex": 81,
+          "zIndex": 56,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6360,7 +6360,7 @@
           "active": false,
           "left": 811.4149,
           "top": 5399.4013,
-          "zIndex": 82,
+          "zIndex": 57,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6445,7 +6445,7 @@
           "active": false,
           "left": 1399.1032,
           "top": 5406.438,
-          "zIndex": 80,
+          "zIndex": 55,
           "widthName": 73.5380859375,
           "widthComment": 60
         },
@@ -6530,7 +6530,7 @@
           "active": false,
           "left": 2612.6929,
           "top": 5900.2167,
-          "zIndex": 77,
+          "zIndex": 52,
           "widthName": 63.419921875,
           "widthComment": 60
         },
@@ -6592,7 +6592,7 @@
           "active": false,
           "left": 929.4023,
           "top": 4934.5917,
-          "zIndex": 49,
+          "zIndex": 35,
           "widthName": 98.12255859375,
           "widthComment": 60
         },
@@ -6677,7 +6677,7 @@
           "active": false,
           "left": 3034.78,
           "top": 7384.3736,
-          "zIndex": 43,
+          "zIndex": 29,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6762,7 +6762,7 @@
           "active": false,
           "left": 3034.4528,
           "top": 7207.8305,
-          "zIndex": 45,
+          "zIndex": 31,
           "widthName": 60,
           "widthComment": 60
         },
@@ -6939,7 +6939,7 @@
           "active": false,
           "left": 2245.1944,
           "top": 5294.0591,
-          "zIndex": 42,
+          "zIndex": 28,
           "widthName": 61.2490234375,
           "widthComment": 60
         },
@@ -7024,7 +7024,7 @@
           "active": false,
           "left": 2873.0215,
           "top": 6137.1402,
-          "zIndex": 76,
+          "zIndex": 51,
           "widthName": 85.09716796875,
           "widthComment": 69.469970703125
         },
@@ -7109,7 +7109,7 @@
           "active": false,
           "left": 3036.8694,
           "top": 7549.8085,
-          "zIndex": 44,
+          "zIndex": 30,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7309,7 +7309,7 @@
           "active": false,
           "left": 3938.6602,
           "top": 2278.5957,
-          "zIndex": 91,
+          "zIndex": 61,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7486,7 +7486,7 @@
           "active": false,
           "left": 5143.7592,
           "top": 2278.5345,
-          "zIndex": 74,
+          "zIndex": 50,
           "widthName": 60,
           "widthComment": 60
         },
@@ -7663,7 +7663,7 @@
           "active": false,
           "left": 3324.9548,
           "top": 1780.9563,
-          "zIndex": 70,
+          "zIndex": 144,
           "widthName": 82.95166015625,
           "widthComment": 60
         },
@@ -7886,7 +7886,7 @@
           "active": false,
           "left": 3326.5955,
           "top": 2009.9008,
-          "zIndex": 71,
+          "zIndex": 146,
           "widthName": 64.14990234375,
           "widthComment": 60
         },
@@ -8063,7 +8063,7 @@
           "active": false,
           "left": 3325.6258,
           "top": 1554.2079,
-          "zIndex": 69,
+          "zIndex": 142,
           "widthName": 70.65625,
           "widthComment": 60
         },
@@ -8240,7 +8240,7 @@
           "active": false,
           "left": 3325.0799,
           "top": 1327.6649,
-          "zIndex": 68,
+          "zIndex": 140,
           "widthName": 111.13525390625,
           "widthComment": 60
         },
@@ -8440,7 +8440,7 @@
           "active": false,
           "left": 4539.4836,
           "top": 2278.9734,
-          "zIndex": 73,
+          "zIndex": 49,
           "widthName": 60,
           "widthComment": 60
         },
@@ -8732,7 +8732,7 @@
           "active": false,
           "left": 6670.1047,
           "top": 5295.8721,
-          "zIndex": 313,
+          "zIndex": 85,
           "widthName": 82.95166015625,
           "widthComment": 60
         },
@@ -9001,7 +9001,7 @@
           "active": false,
           "left": 6671.9193,
           "top": 5832.2712,
-          "zIndex": 297,
+          "zIndex": 81,
           "widthName": 60,
           "widthComment": 60
         },
@@ -9385,7 +9385,7 @@
           "active": false,
           "left": 6673.1586,
           "top": 6143.3983,
-          "zIndex": 290,
+          "zIndex": 80,
           "widthName": 62.708984375,
           "widthComment": 60
         },
@@ -9608,7 +9608,7 @@
           "active": false,
           "left": 6668.0083,
           "top": 5031.5409,
-          "zIndex": 194,
+          "zIndex": 75,
           "widthName": 60,
           "widthComment": 60
         },
@@ -9762,7 +9762,7 @@
           "active": false,
           "left": 6671.5207,
           "top": 5626.3559,
-          "zIndex": 306,
+          "zIndex": 84,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10031,7 +10031,7 @@
           "active": false,
           "left": 6673.2775,
           "top": 6568.4111,
-          "zIndex": 248,
+          "zIndex": 77,
           "widthName": 159.548828125,
           "widthComment": 120
         },
@@ -10070,7 +10070,7 @@
           "active": false,
           "left": 2582.1819,
           "top": 3328.1769,
-          "zIndex": 9,
+          "zIndex": 4,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10408,7 +10408,7 @@
           "active": false,
           "left": 5066.9622,
           "top": 126.2661,
-          "zIndex": 149,
+          "zIndex": 67,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10861,7 +10861,7 @@
           "active": false,
           "left": 6014.9489,
           "top": 2720.55,
-          "zIndex": 34,
+          "zIndex": 20,
           "widthName": 94.9931640625,
           "widthComment": 87.9449462890625
         },
@@ -10923,7 +10923,7 @@
           "active": false,
           "left": 5498.2823,
           "top": 3287.5489,
-          "zIndex": 6,
+          "zIndex": 1,
           "widthName": 113.287109375,
           "widthComment": 99.18994140625
         },
@@ -11077,7 +11077,7 @@
           "active": false,
           "left": 708.4721,
           "top": 1194.9173,
-          "zIndex": 109,
+          "zIndex": 63,
           "widthName": 64.88623046875,
           "widthComment": 60
         },
@@ -11185,7 +11185,7 @@
           "active": false,
           "left": 708.2221,
           "top": 1031.2499,
-          "zIndex": 55,
+          "zIndex": 36,
           "widthName": 60,
           "widthComment": 60
         },
@@ -11316,7 +11316,7 @@
           "active": false,
           "left": 2857.3612,
           "top": 2582.6395,
-          "zIndex": 168,
+          "zIndex": 71,
           "widthName": 109.67529296875,
           "widthComment": 110.4349365234375
         },
@@ -11493,7 +11493,7 @@
           "active": false,
           "left": 2860.334,
           "top": 2779.5551,
-          "zIndex": 23,
+          "zIndex": 10,
           "widthName": 66.32080078125,
           "widthComment": 60
         },
@@ -11624,7 +11624,7 @@
           "active": false,
           "left": 1757.5546,
           "top": 1800.3328,
-          "zIndex": 24,
+          "zIndex": 11,
           "widthName": 127.75341796875,
           "widthComment": 106.8167724609375
         },
@@ -11847,7 +11847,7 @@
           "active": false,
           "left": 3326.9996,
           "top": 2279.3331,
-          "zIndex": 72,
+          "zIndex": 48,
           "widthName": 65.59716796875,
           "widthComment": 60
         },
@@ -11955,7 +11955,7 @@
           "active": false,
           "left": 6673.1725,
           "top": 6872,
-          "zIndex": 245,
+          "zIndex": 76,
           "widthName": 155.94970703125,
           "widthComment": 99.18359375
         },
@@ -12155,7 +12155,7 @@
           "active": false,
           "left": 6685.172,
           "top": 7135.5313,
-          "zIndex": 250,
+          "zIndex": 78,
           "widthName": 123.41796875,
           "widthComment": 110.4285888671875
         },
@@ -12447,7 +12447,7 @@
           "active": false,
           "left": 4789.3365,
           "top": 7347.0018,
-          "zIndex": 47,
+          "zIndex": 33,
           "widthName": 84.8623046875,
           "widthComment": 69.469970703125
         },
@@ -12509,7 +12509,7 @@
           "active": false,
           "left": 2859.001,
           "top": 3021.8338,
-          "zIndex": 25,
+          "zIndex": 12,
           "widthName": 114.0234375,
           "widthComment": 60
         },
@@ -12571,7 +12571,7 @@
           "active": false,
           "left": 2223,
           "top": 3020.9999,
-          "zIndex": 26,
+          "zIndex": 13,
           "widthName": 108.95166015625,
           "widthComment": 60
         },
@@ -13254,7 +13254,7 @@
           "active": false,
           "left": 6668.8362,
           "top": 3512.1628,
-          "zIndex": 190,
+          "zIndex": 74,
           "widthName": 61.9853515625,
           "widthComment": 60
         },
@@ -13269,7 +13269,7 @@
           "active": false,
           "left": 3733,
           "top": 7464.3333,
-          "zIndex": 46,
+          "zIndex": 32,
           "widthName": 60,
           "widthComment": 60
         },
@@ -13331,12 +13331,304 @@
           "active": false,
           "left": 2785.3333,
           "top": 5226.6667,
-          "zIndex": 85,
+          "zIndex": 60,
           "widthName": 60,
           "widthComment": 60
         },
         "visible": true,
         "id": "71a9b952-7e53-4229-88ae-0adbcca3f2ed"
+      },
+      {
+        "name": "product",
+        "comment": "제품",
+        "columns": [
+          {
+            "name": "product_id",
+            "comment": "제품ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 62.708984375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7fdce62f-9bf3-4eb9-b27b-4658e82386b6"
+          },
+          {
+            "name": "prototype_id",
+            "comment": "프로토타입ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 73.55078125,
+              "widthComment": 71.2249755859375,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5133ba30-e338-4091-81de-6f3eec35668f"
+          },
+          {
+            "name": "gsm",
+            "comment": "평량",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "f201e712-f478-4759-b419-d55612c36fe2"
+          },
+          {
+            "name": "paper_color_group_id",
+            "comment": "색군ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 128.4833984375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "2203eaa4-9adb-4ba3-b902-8ef48e3162fe"
+          },
+          {
+            "name": "paper_color_id",
+            "comment": "색상ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 88.00439453125,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "7b4c2bb2-2dd1-4922-82fb-9bb869729569"
+          },
+          {
+            "name": "paper_pattern_id",
+            "comment": "무늬ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 100.2998046875,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "c1f1f93b-8f9f-4adf-aebf-f4234a79558f"
+          },
+          {
+            "name": "paper_cert_id",
+            "comment": "인증ID",
+            "dataType": "TINYINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 81.498046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6fbb7154-631e-43aa-a74b-0d3fcff56c63"
+          },
+          {
+            "name": "metadata_status",
+            "comment": "메타데이터상태ENUM",
+            "dataType": "SMALLINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 98.1162109375,
+              "widthComment": 118.9913330078125,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "60d3001f-c5a8-473f-8d02-5ea2ccbe113d"
+          },
+          {
+            "name": "creator_uid",
+            "comment": "등록자UID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0380859375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "18a975b8-ac6a-4759-9d1c-a8f16bff4d14"
+          },
+          {
+            "name": "created_at",
+            "comment": "등록일시",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_TIMESTAMP",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.876953125,
+              "widthDefault": 147.65966796875
+            },
+            "id": "d78677de-4e7c-4a93-9646-05c3d71fdda9"
+          },
+          {
+            "name": "updater_uid",
+            "comment": "수정자UID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 70.6689453125,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "00e835d4-bcfd-460c-a6d2-97a656b3a12f"
+          },
+          {
+            "name": "updated_at",
+            "comment": "수정일시",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0634765625,
+              "widthComment": 60,
+              "widthDataType": 76.876953125,
+              "widthDefault": 60
+            },
+            "id": "b7ea3f27-7247-4dfe-bb3c-851b04ae6921"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 2433.1719,
+          "top": 1159,
+          "zIndex": 162,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "fe65d430-faef-49d5-8ef0-edb4b4423ee5"
       }
     ],
     "indexes": []
@@ -13349,7 +13641,7 @@
           "active": false,
           "left": 31,
           "top": 7,
-          "zIndex": 32,
+          "zIndex": 18,
           "width": 162,
           "height": 592
         },
@@ -13361,7 +13653,7 @@
           "active": false,
           "left": 221,
           "top": 7.5,
-          "zIndex": 33,
+          "zIndex": 19,
           "width": 127,
           "height": 583
         },
@@ -13373,7 +13665,7 @@
           "active": false,
           "left": 2640.9539930555575,
           "top": 4887.527777777773,
-          "zIndex": 12,
+          "zIndex": 7,
           "width": 426,
           "height": 101
         },
@@ -13385,7 +13677,7 @@
           "active": false,
           "left": 7255.616319444447,
           "top": 5295.719618055552,
-          "zIndex": 322,
+          "zIndex": 86,
           "width": 438,
           "height": 100
         },
@@ -13397,7 +13689,7 @@
           "active": false,
           "left": 7242.838541666662,
           "top": 5832.164062500003,
-          "zIndex": 300,
+          "zIndex": 82,
           "width": 199,
           "height": 100
         },
@@ -13407,9 +13699,9 @@
         "value": "* 프로토타입의 수정은 metadata_status 만 수정 가능\n* 화면에 표시되는 프로토타입 상태는 두 가지가 있음 (두 개의 칼럼)\n  (1) metadata_status 에 따른 상태\n  (2) 상위 속성에 따른 상태 - 제품유형, 지군, 지종, 제지사\n\n* UNIQUE KEY : paper_domain_id + paper_group_id + paper_type_id + manufacturer_id",
         "ui": {
           "active": false,
-          "left": 1742.7552083333346,
-          "top": 338.8836805555561,
-          "zIndex": 127,
+          "left": 1716.7552083333346,
+          "top": 260.8836805555561,
+          "zIndex": 161,
           "width": 548,
           "height": 100
         },
@@ -13421,7 +13713,7 @@
           "active": false,
           "left": 7299.2829861111095,
           "top": 4187.883680555549,
-          "zIndex": 341,
+          "zIndex": 89,
           "width": 347,
           "height": 100
         },
@@ -13433,7 +13725,7 @@
           "active": false,
           "left": 7296,
           "top": 6567.939236111108,
-          "zIndex": 262,
+          "zIndex": 79,
           "width": 463,
           "height": 247
         },
@@ -13445,7 +13737,7 @@
           "active": false,
           "left": 1110.088541666667,
           "top": 5120.161458333335,
-          "zIndex": 13,
+          "zIndex": 8,
           "width": 127,
           "height": 100
         },
@@ -13457,7 +13749,7 @@
           "active": false,
           "left": 2788.8333333333353,
           "top": 4774.494791666656,
-          "zIndex": 35,
+          "zIndex": 21,
           "width": 435,
           "height": 100
         },
@@ -13469,7 +13761,7 @@
           "active": false,
           "left": 3543.999999999997,
           "top": 5483.050347222222,
-          "zIndex": 37,
+          "zIndex": 23,
           "width": 473,
           "height": 184
         },
@@ -13481,7 +13773,7 @@
           "active": false,
           "left": 1003.7777777777777,
           "top": 4061.717013888893,
-          "zIndex": 14,
+          "zIndex": 9,
           "width": 127,
           "height": 100
         },
@@ -13493,7 +13785,7 @@
           "active": false,
           "left": 2840.0000000000005,
           "top": 4457.050347222222,
-          "zIndex": 36,
+          "zIndex": 22,
           "width": 195,
           "height": 100
         },
@@ -13505,7 +13797,7 @@
           "active": false,
           "left": 1948.8333333333321,
           "top": 3397.75,
-          "zIndex": 11,
+          "zIndex": 6,
           "width": 254,
           "height": 100
         },
@@ -13517,7 +13809,7 @@
           "active": false,
           "left": 3318.453125000002,
           "top": 216.66666666666674,
-          "zIndex": 28,
+          "zIndex": 15,
           "width": 503,
           "height": 133
         },
@@ -13529,7 +13821,7 @@
           "active": false,
           "left": 1340.666666666667,
           "top": 1195.9722222222222,
-          "zIndex": 114,
+          "zIndex": 64,
           "width": 200,
           "height": 143
         },
@@ -13541,7 +13833,7 @@
           "active": false,
           "left": 6618.333333333332,
           "top": 2720.0833333333353,
-          "zIndex": 30,
+          "zIndex": 16,
           "width": 222,
           "height": 100
         },
@@ -13553,7 +13845,7 @@
           "active": false,
           "left": 7234.282986111116,
           "top": 5030.999999999997,
-          "zIndex": 327,
+          "zIndex": 87,
           "width": 326,
           "height": 100
         },
@@ -13565,7 +13857,7 @@
           "active": false,
           "left": 7115.949652777775,
           "top": 5627.111111111112,
-          "zIndex": 304,
+          "zIndex": 83,
           "width": 318,
           "height": 100
         },
@@ -13577,7 +13869,7 @@
           "active": false,
           "left": 3756.2222222222194,
           "top": 2543.8888888888873,
-          "zIndex": 161,
+          "zIndex": 69,
           "width": 156,
           "height": 100
         },
@@ -13589,7 +13881,7 @@
           "active": false,
           "left": 2219.3333333333326,
           "top": 2861.4973958333317,
-          "zIndex": 27,
+          "zIndex": 14,
           "width": 151,
           "height": 100
         },
@@ -13601,7 +13893,7 @@
           "active": false,
           "left": 3958,
           "top": 7130.333333333334,
-          "zIndex": 48,
+          "zIndex": 34,
           "width": 127,
           "height": 100
         },
@@ -13613,7 +13905,7 @@
           "active": false,
           "left": 4135.111111111112,
           "top": 2004.5555555555543,
-          "zIndex": 98,
+          "zIndex": 62,
           "width": 277,
           "height": 203
         },
@@ -13625,7 +13917,7 @@
           "active": false,
           "left": 5706,
           "top": 125,
-          "zIndex": 152,
+          "zIndex": 68,
           "width": 357,
           "height": 100
         },
@@ -13637,7 +13929,7 @@
           "active": false,
           "left": 2852.5,
           "top": 2418.5,
-          "zIndex": 166,
+          "zIndex": 70,
           "width": 388,
           "height": 100
         },
@@ -13649,7 +13941,7 @@
           "active": false,
           "left": 2562,
           "top": 2781,
-          "zIndex": 181,
+          "zIndex": 72,
           "width": 226,
           "height": 100
         },
@@ -13661,7 +13953,7 @@
           "active": false,
           "left": 1758,
           "top": 1987,
-          "zIndex": 189,
+          "zIndex": 73,
           "width": 338,
           "height": 100
         },
@@ -13689,8 +13981,8 @@
           "columnIds": [
             "ee520118-63d6-45ab-b470-b1801f253527"
           ],
-          "x": 2342.0112095703125,
-          "y": 668.9766,
+          "x": 2316.0112095703125,
+          "y": 622.5265999999999,
           "direction": "right"
         },
         "constraintName": "fk_papertype_to_prototype",
@@ -13715,8 +14007,8 @@
           "columnIds": [
             "5008869a-7385-4103-be0c-d8702e033dda"
           ],
-          "x": 2342.0112095703125,
-          "y": 600.4766,
+          "x": 2316.0112095703125,
+          "y": 567.7266,
           "direction": "right"
         },
         "constraintName": "fk_paper_group_to_prototype",
@@ -14437,8 +14729,8 @@
           "columnIds": [
             "98e7244c-e351-4732-a38b-7c64961e228c"
           ],
-          "x": 2342.0112095703125,
-          "y": 531.9766,
+          "x": 2316.0112095703125,
+          "y": 512.9266,
           "direction": "right"
         },
         "constraintName": "fk_paper_domain_to_prototype",
@@ -14463,8 +14755,8 @@
           "columnIds": [
             "b7bb1724-9b71-4199-8beb-050fbd96674c"
           ],
-          "x": 2342.0112095703125,
-          "y": 737.4766,
+          "x": 2316.0112095703125,
+          "y": 677.3265999999999,
           "direction": "right"
         },
         "constraintName": "fk_manufacturer_to_prototype",
@@ -14980,8 +15272,8 @@
             "ee520118-63d6-45ab-b470-b1801f253527",
             "b7bb1724-9b71-4199-8beb-050fbd96674c"
           ],
-          "x": 2192.0131321777344,
-          "y": 771.7266,
+          "x": 2166.0131321777344,
+          "y": 704.7266,
           "direction": "bottom"
         },
         "end": {
@@ -15066,8 +15358,8 @@
             "ee520118-63d6-45ab-b470-b1801f253527",
             "b7bb1724-9b71-4199-8beb-050fbd96674c"
           ],
-          "x": 1892.0169773925782,
-          "y": 771.7266,
+          "x": 1866.0169773925782,
+          "y": 704.7266,
           "direction": "bottom"
         },
         "end": {
@@ -15436,6 +15728,144 @@
         "constraintName": "fk_task_to_",
         "visible": true,
         "id": "aef575fb-9fab-4e1a-9e00-c3db0fb067d5"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "9bcd2485-8e29-43a3-af87-9ece62812efe",
+          "columnIds": [
+            "fb948447-b57a-4820-a80f-3876bbcd6e61",
+            "98e7244c-e351-4732-a38b-7c64961e228c",
+            "5008869a-7385-4103-be0c-d8702e033dda",
+            "ee520118-63d6-45ab-b470-b1801f253527",
+            "b7bb1724-9b71-4199-8beb-050fbd96674c"
+          ],
+          "x": 2316.0112095703125,
+          "y": 458.12660000000005,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "fe65d430-faef-49d5-8ef0-edb4b4423ee5",
+          "columnIds": [
+            "5133ba30-e338-4091-81de-6f3eec35668f",
+            "f50a9a74-0ae1-4460-a3ae-fef3d6bfd364",
+            "6bb06ea2-7a22-40cb-ae2d-bf2a66e27e76",
+            "046ceb40-5dc3-4f56-8ba2-bd9cef0133f4",
+            "510bb3dd-34b1-4683-b1cd-b314c2277622"
+          ],
+          "x": 2746.177576269531,
+          "y": 1159,
+          "direction": "top"
+        },
+        "constraintName": "fk_prototype_to_product",
+        "visible": true,
+        "id": "39f37605-f989-4aca-a9c7-5d3192a8dcbc"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "cd3ae753-b047-413c-9cdc-4ff4721c6b57",
+          "columnIds": [
+            "5e22baaa-f203-410f-a9b5-29768aded6a6"
+          ],
+          "x": 3325.0799,
+          "y": 1433.9149,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "fe65d430-faef-49d5-8ef0-edb4b4423ee5",
+          "columnIds": [
+            "2203eaa4-9adb-4ba3-b902-8ef48e3162fe"
+          ],
+          "x": 3059.1832525390623,
+          "y": 1198.375,
+          "direction": "right"
+        },
+        "constraintName": "fk_paper_color_group_to_product",
+        "visible": true,
+        "id": "5784e0f8-11fd-4702-8d46-6188d09c8e77"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "9ebcc4ea-a2bb-488b-b238-e740377d23c8",
+          "columnIds": [
+            "a7facedb-a1f0-47e9-af4c-8589633f922e"
+          ],
+          "x": 3325.6258,
+          "y": 1660.4579,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "fe65d430-faef-49d5-8ef0-edb4b4423ee5",
+          "columnIds": [
+            "7b4c2bb2-2dd1-4922-82fb-9bb869729569"
+          ],
+          "x": 3059.1832525390623,
+          "y": 1277.125,
+          "direction": "right"
+        },
+        "constraintName": "fk_paper_color_to_product",
+        "visible": true,
+        "id": "ef9dcf3c-7d18-4301-8c7f-b6a219e21b11"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "3e842fe9-2c22-48ac-ac23-0fcd6fac5c42",
+          "columnIds": [
+            "65d2f95e-0acc-4125-b7b8-79309fd86c53"
+          ],
+          "x": 3324.9548,
+          "y": 1887.2063,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "fe65d430-faef-49d5-8ef0-edb4b4423ee5",
+          "columnIds": [
+            "c1f1f93b-8f9f-4adf-aebf-f4234a79558f"
+          ],
+          "x": 3059.1832525390623,
+          "y": 1355.875,
+          "direction": "right"
+        },
+        "constraintName": "fk_paper_pattern_to_product",
+        "visible": true,
+        "id": "f4ad4308-2ed8-4e3a-8310-37e70be12614"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "821a2204-fc01-463a-a463-535f1e0c0d79",
+          "columnIds": [
+            "0ab49a95-68ad-4b76-a859-9447d5e4e8bc"
+          ],
+          "x": 3326.5955,
+          "y": 2136.6508,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "fe65d430-faef-49d5-8ef0-edb4b4423ee5",
+          "columnIds": [
+            "6fbb7154-631e-43aa-a74b-0d3fcff56c63"
+          ],
+          "x": 3059.1832525390623,
+          "y": 1434.625,
+          "direction": "right"
+        },
+        "constraintName": "fk_paper_cert_to_product",
+        "visible": true,
+        "id": "ed9e66b2-72d5-4104-8f6f-0526f2d4f5ea"
       }
     ]
   }
