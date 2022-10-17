@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -3931.166666666667,
-    "scrollLeft": -674.8333333333335,
-    "zoomLevel": 0.8,
+    "scrollTop": -5892.166666666667,
+    "scrollLeft": -4699,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -1026,7 +1026,7 @@
           {
             "name": "company_type",
             "comment": "기업구분",
-            "dataType": "ENUM",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -1419,7 +1419,7 @@
           "active": false,
           "left": 3505.8461,
           "top": 3707.647,
-          "zIndex": 261,
+          "zIndex": 384,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2509,7 +2509,7 @@
           {
             "name": "gender",
             "comment": "성별",
-            "dataType": "ENUM",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -2555,7 +2555,7 @@
           {
             "name": "position",
             "comment": "직위",
-            "dataType": "ENUM",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -2578,7 +2578,7 @@
           {
             "name": "duty",
             "comment": "직책",
-            "dataType": "ENUM",
+            "dataType": "TINYINT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -2925,7 +2925,7 @@
           "active": false,
           "left": 4865.9883,
           "top": 6287.6896,
-          "zIndex": 188,
+          "zIndex": 393,
           "widthName": 60,
           "widthComment": 60
         },
