@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -3736.5,
-    "scrollLeft": -3373.166666666667,
+    "scrollTop": -2368.833333333334,
+    "scrollLeft": -3016.166666666667,
     "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
@@ -635,7 +635,7 @@
           "active": false,
           "left": 1867.7138,
           "top": 233.8889,
-          "zIndex": 116,
+          "zIndex": 160,
           "widthName": 60,
           "widthComment": 60
         },
@@ -812,7 +812,7 @@
           "active": false,
           "left": 3663.2404,
           "top": 592.2702,
-          "zIndex": 43,
+          "zIndex": 166,
           "widthName": 78.19288635253906,
           "widthComment": 60
         },
@@ -2740,12 +2740,12 @@
             "name": "memo",
             "comment": "비고",
             "dataType": "VARCHAR(100)",
-            "default": "",
+            "default": "''",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -2971,7 +2971,7 @@
           "active": false,
           "left": 4865.9883,
           "top": 6287.6896,
-          "zIndex": 153,
+          "zIndex": 188,
           "widthName": 60,
           "widthComment": 60
         },
@@ -10874,12 +10874,12 @@
             "name": "memo",
             "comment": "비고",
             "dataType": "VARCHAR(100)",
-            "default": "",
+            "default": "''",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -10990,7 +10990,7 @@
           "active": false,
           "left": 6014.9489,
           "top": 2720.55,
-          "zIndex": 131,
+          "zIndex": 182,
           "widthName": 88.68385314941406,
           "widthComment": 85.08296203613281
         },
@@ -11976,7 +11976,7 @@
           "active": false,
           "left": 4822.3962,
           "top": 1235.6825,
-          "zIndex": 53,
+          "zIndex": 175,
           "widthName": 60,
           "widthComment": 60
         },
@@ -15586,11 +15586,11 @@
         "value": "메타데이터 테이블 중 UQ 두 개 이상인 테이블\n\n인증\npaper_cert_nm + cert_org\n\n원지규격\npaper_width + paper_length\n\n지관\ndiameter_value + diameter_unit\n\n매포\npackage_value1 + package_value2",
         "ui": {
           "active": false,
-          "left": 4823.047619047616,
-          "top": 972.3333333333339,
-          "zIndex": 57,
-          "width": 277,
-          "height": 203
+          "left": 4821.797619047616,
+          "top": 962.3333333333339,
+          "zIndex": 174,
+          "width": 283,
+          "height": 214
         },
         "id": "ac285894-7d2f-48a6-997c-80d9f8096395"
       },
