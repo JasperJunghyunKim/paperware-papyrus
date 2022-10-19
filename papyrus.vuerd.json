@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -6420.666666666667,
-    "scrollLeft": -5129.333333333334,
-    "zoomLevel": 0.9,
+    "scrollTop": -3618.666666666667,
+    "scrollLeft": -3421.333333333334,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -2222,29 +2222,6 @@
         "comment": "직원",
         "columns": [
           {
-            "name": "company_id",
-            "comment": "기업ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": true,
-              "widthName": 66.08990478515625,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "2578e913-24fe-45e1-a895-df5e05ccc845"
-          },
-          {
             "name": "staff_uid",
             "comment": "직원ID",
             "dataType": "INT",
@@ -2266,6 +2243,29 @@
               "widthDefault": 60
             },
             "id": "28de3117-37e7-4d2e-9f93-087d24cb363f"
+          },
+          {
+            "name": "company_id",
+            "comment": "기업ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 66.08990478515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2578e913-24fe-45e1-a895-df5e05ccc845"
           },
           {
             "name": "id",
@@ -2778,7 +2778,7 @@
           "active": false,
           "left": 4859.3217,
           "top": 6581.0228,
-          "zIndex": 103,
+          "zIndex": 183,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2840,7 +2840,7 @@
           "active": false,
           "left": 4997.6458,
           "top": 7218.0651,
-          "zIndex": 88,
+          "zIndex": 179,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2925,7 +2925,7 @@
           "active": false,
           "left": 4255.5252,
           "top": 6611.8652,
-          "zIndex": 89,
+          "zIndex": 178,
           "widthName": 83.32786560058594,
           "widthComment": 60
         },
@@ -15930,29 +15930,6 @@
         "comment": "사용자 설정",
         "columns": [
           {
-            "name": "company_id",
-            "comment": "기업ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": true,
-              "widthName": 66.08990478515625,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "6a671129-4ac1-4fc8-8210-982858c301e5"
-          },
-          {
             "name": "staff_uid",
             "comment": "직원ID",
             "dataType": "INT",
@@ -16023,10 +16000,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 5617.5,
           "top": 6904.7223,
-          "zIndex": 160,
+          "zIndex": 177,
           "widthName": 63.13890075683594,
           "widthComment": 61.64396667480469
         },
@@ -17026,7 +17003,7 @@
           "active": false,
           "left": 4299.999999999996,
           "top": 5427.050347222222,
-          "zIndex": 87,
+          "zIndex": 184,
           "width": 473,
           "height": 184
         },
@@ -18167,7 +18144,7 @@
         "id": "8e8384f8-be8d-483c-9b49-f294bafc2211"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -19309,7 +19286,6 @@
         "start": {
           "tableId": "c7930ad2-0406-48b1-85ff-153d0b649172",
           "columnIds": [
-            "2578e913-24fe-45e1-a895-df5e05ccc845",
             "28de3117-37e7-4d2e-9f93-087d24cb363f"
           ],
           "x": 5435.4362172119145,
@@ -19319,11 +19295,10 @@
         "end": {
           "tableId": "67baa1bb-7c91-457d-8a62-ee58fb7158c3",
           "columnIds": [
-            "6a671129-4ac1-4fc8-8210-982858c301e5",
             "7f234496-1256-452f-8b80-a9583540abef"
           ],
           "x": 5617.5,
-          "y": 6980.2223,
+          "y": 6969.9723,
           "direction": "left"
         },
         "constraintName": "fk_staff_to_",
