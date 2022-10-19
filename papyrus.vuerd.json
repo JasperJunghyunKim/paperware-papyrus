@@ -16001,7 +16001,7 @@
           {
             "name": "json",
             "comment": "json",
-            "dataType": "VARCHAR",
+            "dataType": "NVARCHAR",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -16016,17 +16016,17 @@
               "pfk": false,
               "widthName": 60,
               "widthComment": 60,
-              "widthDataType": 60,
+              "widthDataType": 64.62092590332031,
               "widthDefault": 60
             },
             "id": "7345cfed-fc3a-46d1-a23e-33968b23620f"
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 5617.5,
           "top": 6904.7223,
-          "zIndex": 155,
+          "zIndex": 160,
           "widthName": 63.13890075683594,
           "widthComment": 61.64396667480469
         },
