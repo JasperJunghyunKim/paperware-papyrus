@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -6239.166666666667,
-    "scrollLeft": -2725.3333333333335,
-    "zoomLevel": 0.9,
+    "scrollTop": -6502.166666666667,
+    "scrollLeft": -2869.3333333333335,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -16488,7 +16488,7 @@
           "active": false,
           "left": 2870.6652,
           "top": 6526.108,
-          "zIndex": 132,
+          "zIndex": 211,
           "widthName": 114.60580444335938,
           "widthComment": 60
         },
@@ -16711,7 +16711,7 @@
           "active": false,
           "left": 3231.6494,
           "top": 6077.5365,
-          "zIndex": 136,
+          "zIndex": 170,
           "widthName": 91.73881530761719,
           "widthComment": 60
         },
@@ -16865,12 +16865,74 @@
           "active": false,
           "left": 2582.7135,
           "top": 6822.8698,
-          "zIndex": 125,
+          "zIndex": 150,
           "widthName": 131.90875244140625,
           "widthComment": 77.89395141601562
         },
         "visible": true,
         "id": "f4a20a44-c9ce-48ff-96c3-fa7d6a6dde3d"
+      },
+      {
+        "name": "notification_receive_count",
+        "comment": "알림 수신 카운트",
+        "columns": [
+          {
+            "name": "company_id",
+            "comment": "기업ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 66.08990478515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "f1af51f6-4534-4881-9639-7528595bcd9f"
+          },
+          {
+            "name": "count",
+            "comment": "카운트",
+            "dataType": "INT",
+            "default": "0",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "dfe200ab-89b0-4317-8e4c-a3f7606d3aa9"
+          }
+        ],
+        "ui": {
+          "active": true,
+          "left": 3122.3333,
+          "top": 6778.1667,
+          "zIndex": 256,
+          "widthName": 143.08876037597656,
+          "widthComment": 87.55294799804688
+        },
+        "visible": true,
+        "id": "ae9d914d-f9cd-4d29-a66c-7fd71bfefcde"
       }
     ],
     "indexes": []
