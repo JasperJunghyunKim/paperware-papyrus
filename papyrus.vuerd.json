@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -3102.640625,
-    "scrollLeft": 0,
-    "zoomLevel": 0.9,
+    "scrollTop": -3156.640625,
+    "scrollLeft": -1291,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -3405,7 +3405,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": false,
+              "unique": true,
               "notNull": true
             },
             "ui": {
@@ -3428,7 +3428,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": false,
+              "unique": true,
               "notNull": true
             },
             "ui": {
@@ -3451,7 +3451,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": false,
+              "unique": true,
               "notNull": true
             },
             "ui": {
@@ -3563,7 +3563,7 @@
           "active": false,
           "left": 1628.8055,
           "top": 3676.2174,
-          "zIndex": 389,
+          "zIndex": 455,
           "widthName": 72.82080078125,
           "widthComment": 100.6181640625,
           "color": "#4CAF50"
@@ -14199,9 +14199,10 @@
           "active": false,
           "left": 106.8613,
           "top": 3761.1111,
-          "zIndex": 426,
+          "zIndex": 441,
           "widthName": 118.33984375,
-          "widthComment": 60
+          "widthComment": 60,
+          "color": "#4CAF50"
         },
         "visible": true,
         "id": "730d4711-cb7a-42de-9359-0e30edd13eb4"
@@ -16101,13 +16102,13 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 937.6667,
           "top": 3243.8073,
-          "zIndex": 438,
+          "zIndex": 439,
           "widthName": 101.0107421875,
           "widthComment": 69.469970703125,
-          "color": "#FFEB3B"
+          "color": "#4CAF50"
         },
         "visible": true,
         "id": "b860c9e2-1ca2-4879-9885-b716bb60ff9b"
@@ -16142,12 +16143,12 @@
         "id": "fd8ea2c3-11b4-4c79-9e52-9289fee6b2dc"
       },
       {
-        "value": "staff / 직원\n- 직원ID(staff_uid)는 전역으로 사용\n- 기업 최초 계정의 등록자ID는 자신\n- 직원 삭제API 없음 / 대신 탈퇴일 값이 있을 경우 직원 목록에서 노출되지 않음\n- 기본매출일 ~ 기본매입납기일 0 과 null 은 다름 / 0 은 등록하는 오늘날짜를 자동선택 / null 은 자동선택 없음",
+        "value": "staff / 직원\n- 기업 최초 계정의 등록자ID는 자신\n- 직원 삭제API 없음 / 대신 탈퇴일 값이 있을 경우 직원 목록에서 노출되지 않음\n- 기본매출일 ~ 기본매입납기일 0 과 null 은 다름 / 0 은 등록하는 오늘날짜를 자동선택 / null 은 자동선택 없음",
         "ui": {
           "active": false,
           "left": 5101.953993055556,
           "top": 6929.527777777772,
-          "zIndex": 42,
+          "zIndex": 444,
           "width": 426,
           "height": 101
         },
