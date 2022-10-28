@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -7534.973958333334,
-    "scrollLeft": -112,
-    "zoomLevel": 1,
+    "scrollTop": -3732.307291666667,
+    "scrollLeft": -4590.09375,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -212,7 +212,7 @@
           "active": false,
           "left": 3661.2189,
           "top": 1038.5778,
-          "zIndex": 35,
+          "zIndex": 34,
           "widthName": 67.05078125,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -637,7 +637,7 @@
           "active": false,
           "left": 1867.7138,
           "top": 233.8889,
-          "zIndex": 43,
+          "zIndex": 206,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -993,7 +993,7 @@
           "active": false,
           "left": 3662.7857,
           "top": 1263.374,
-          "zIndex": 37,
+          "zIndex": 35,
           "widthName": 78.5908203125,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -1017,7 +1017,7 @@
               "notNull": true
             },
             "ui": {
-              "active": false,
+              "active": true,
               "pk": true,
               "fk": false,
               "pfk": false,
@@ -1424,7 +1424,7 @@
           "active": false,
           "left": 3505.8461,
           "top": 3707.647,
-          "zIndex": 233,
+          "zIndex": 249,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -1832,7 +1832,7 @@
           "active": false,
           "left": 3515.1095,
           "top": 7066.691,
-          "zIndex": 387,
+          "zIndex": 111,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2216,7 +2216,7 @@
           "active": false,
           "left": 1616.84,
           "top": 4190.4665,
-          "zIndex": 96,
+          "zIndex": 262,
           "widthName": 60,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -2847,7 +2847,7 @@
           "active": false,
           "left": 5555.9787,
           "top": 7546.5657,
-          "zIndex": 48,
+          "zIndex": 44,
           "widthName": 60,
           "widthComment": 60
         },
@@ -2993,7 +2993,7 @@
             "name": "paper_domain_id",
             "comment": "제품유형ID",
             "dataType": "TINYINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3016,7 +3016,7 @@
             "name": "paper_group_id",
             "comment": "지군ID",
             "dataType": "SMALLINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3039,7 +3039,7 @@
             "name": "paper_type_id",
             "comment": "지종ID",
             "dataType": "INT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3059,10 +3059,33 @@
             "id": "8a41dd00-2998-4c52-ba47-ae1807e55a50"
           },
           {
+            "name": "manufacturer_id",
+            "comment": "제지사ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.93896484375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "f994e45d-e665-4943-929a-4589d7b5b98d"
+          },
+          {
             "name": "gsm",
             "comment": "평량",
             "dataType": "SMALLINT",
-            "default": "0",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3085,7 +3108,7 @@
             "name": "paper_width",
             "comment": "지폭",
             "dataType": "SMALLINT",
-            "default": "0",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3108,7 +3131,7 @@
             "name": "paper_length",
             "comment": "지장",
             "dataType": "SMALLINT",
-            "default": "0",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3131,7 +3154,7 @@
             "name": "paper_color_group_id",
             "comment": "색군ID",
             "dataType": "SMALLINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3154,7 +3177,7 @@
             "name": "paper_color_id",
             "comment": "색상ID",
             "dataType": "SMALLINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3177,7 +3200,7 @@
             "name": "paper_pattern_id",
             "comment": "무늬ID",
             "dataType": "SMALLINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3200,7 +3223,7 @@
             "name": "paper_cert_id",
             "comment": "인증ID",
             "dataType": "TINYINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3223,7 +3246,7 @@
             "name": "diameter_id",
             "comment": "지관ID",
             "dataType": "TINYINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3246,7 +3269,7 @@
             "name": "package_id",
             "comment": "매포ID",
             "dataType": "TINYINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3269,7 +3292,7 @@
             "name": "bundle_id",
             "comment": "매속ID",
             "dataType": "TINYINT",
-            "default": "1",
+            "default": "",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -3337,446 +3360,15 @@
         ],
         "ui": {
           "active": false,
-          "left": 304.7422,
-          "top": 7985.5288,
-          "zIndex": 431,
+          "left": 306.9644,
+          "top": 7986.6399,
+          "zIndex": 363,
           "widthName": 109.68798828125,
           "widthComment": 61.8367919921875,
           "color": "#FFEB3B"
         },
         "visible": true,
         "id": "88e18fbb-04f9-4e2c-bacc-98819bffd14e"
-      },
-      {
-        "name": "paper_stock_info",
-        "comment": "종이재고정보(부모재고)",
-        "columns": [
-          {
-            "name": "paper_stock_info_id",
-            "comment": "재고정보ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": true,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 118.35888671875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "c292fd1a-06bb-4f9d-8bb1-0293ecc41822"
-          },
-          {
-            "name": "company_id",
-            "comment": "기업ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": true,
-              "widthName": 72.09716796875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "4d67343c-7def-4418-bfad-4451fb0115eb"
-          },
-          {
-            "name": "workplace_id",
-            "comment": "창고ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": true,
-              "widthName": 77.87353515625,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "0396a241-83e3-4efb-89d2-c69ce047f027"
-          },
-          {
-            "name": "stock_type",
-            "comment": "재고유형ENUM",
-            "dataType": "TINYINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 64.1435546875,
-              "widthComment": 85.25634765625,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "ec69aa8b-2c84-45a5-8c66-218d3d2b81e3"
-          },
-          {
-            "name": "paper_domain_id",
-            "comment": "제품유형ID",
-            "dataType": "TINYINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 102.46435546875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "9f92c7ed-7aa6-4eaf-af19-428e1bed0abf"
-          },
-          {
-            "name": "paper_group_id",
-            "comment": "지군ID",
-            "dataType": "SMALLINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 93.076171875,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "fc9d23d3-9dfe-4a79-97a8-6ebcd76302c1"
-          },
-          {
-            "name": "paper_type_id",
-            "comment": "지종ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 84.39892578125,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "38beef18-b9ca-41b0-8cd5-98271805716d"
-          },
-          {
-            "name": "manufacturer_id",
-            "comment": "제지사ID",
-            "dataType": "SMALLINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 95.93896484375,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "5a71ddf9-bc06-41a2-a93f-da5b7925d588"
-          },
-          {
-            "name": "gsm",
-            "comment": "평량",
-            "dataType": "SMALLINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "2232c454-25ad-4c77-82aa-e582d9864292"
-          },
-          {
-            "name": "paper_width",
-            "comment": "지폭",
-            "dataType": "SMALLINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 72.8271484375,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "e43f86a4-5553-4d52-8ef8-e7b81459319f"
-          },
-          {
-            "name": "paper_length",
-            "comment": "지장",
-            "dataType": "SMALLINT",
-            "default": "0",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 77.89892578125,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "2ff6403c-9ab7-45d7-810f-2c6e44fa19d6"
-          },
-          {
-            "name": "paper_color_group_id",
-            "comment": "색군ID",
-            "dataType": "SMALLINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 128.4833984375,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "e1f35915-ad4a-4d40-9ca9-9c47e2893f03"
-          },
-          {
-            "name": "paper_color_id",
-            "comment": "색상ID",
-            "dataType": "SMALLINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 88.00439453125,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "f1ef2df0-1e06-49b8-9dd0-97a3ffa137d0"
-          },
-          {
-            "name": "paper_pattern_id",
-            "comment": "무늬ID",
-            "dataType": "SMALLINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 100.2998046875,
-              "widthComment": 60,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "74d8894b-d880-4e62-b3fd-39a460e3351e"
-          },
-          {
-            "name": "paper_cert_id",
-            "comment": "인증ID",
-            "dataType": "TINYINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 81.498046875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "112f2997-148e-4043-9364-219869ef8da3"
-          },
-          {
-            "name": "diameter_id",
-            "comment": "지관ID",
-            "dataType": "TINYINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 69.92626953125,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "0b26f908-c2b5-4506-8cf1-6402a9ebc861"
-          },
-          {
-            "name": "package_id",
-            "comment": "매포ID",
-            "dataType": "TINYINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 68.498046875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "dc001c0b-8884-448c-ba29-2ff778a28823"
-          },
-          {
-            "name": "bundle_id",
-            "comment": "매속ID",
-            "dataType": "TINYINT",
-            "default": "1",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": true,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "1c45989d-2b28-4517-9e5d-669954795c09"
-          }
-        ],
-        "ui": {
-          "active": false,
-          "left": 1669.8325,
-          "top": 3565.7952,
-          "zIndex": 90,
-          "widthName": 101.0107421875,
-          "widthComment": 120,
-          "color": "#4CAF50"
-        },
-        "visible": true,
-        "id": "53df4922-6ea7-445d-8c31-6fd7929c105a"
       },
       {
         "name": "paper_stock",
@@ -3807,7 +3399,7 @@
           },
           {
             "name": "paper_stock_info_id",
-            "comment": "재고정보ID",
+            "comment": "종이재고정보ID",
             "dataType": "INT",
             "default": "",
             "option": {
@@ -3822,11 +3414,57 @@
               "fk": false,
               "pfk": true,
               "widthName": 118.35888671875,
+              "widthComment": 82.469970703125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ab98bb9b-2eb5-4598-92ed-acb8f29aae5a"
+          },
+          {
+            "name": "company_id",
+            "comment": "기업ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 72.09716796875,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "cc542579-919f-47b9-929b-9e75ead86887"
+            "id": "db72e077-73a7-4387-b504-2e5667db29d4"
+          },
+          {
+            "name": "warehouse_id",
+            "comment": "창고ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 82.9453125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "419b023e-2807-4d88-b6a7-2f35bc7ff264"
           },
           {
             "name": "stock_grade",
@@ -3873,13 +3511,59 @@
               "widthDefault": 60
             },
             "id": "f8ee2ebc-1efb-4664-9f00-9a8f8c13cc62"
+          },
+          {
+            "name": "is_unspecified",
+            "comment": "불특정 수량",
+            "dataType": "TINYINT(1)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 84.38623046875,
+              "widthComment": 61.8367919921875,
+              "widthDataType": 68.44091796875,
+              "widthDefault": 60
+            },
+            "id": "3c703708-c578-4e8b-bfad-a699de8a80ae"
+          },
+          {
+            "name": "created_at",
+            "comment": "등록일시",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_TIMESTAMP",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.876953125,
+              "widthDefault": 147.65966796875
+            },
+            "id": "2d1f18d9-c251-4c5f-b3fb-d6528461fae9"
           }
         ],
         "ui": {
           "active": false,
-          "left": 138.5555,
-          "top": 3715.4674,
-          "zIndex": 93,
+          "left": 1628.8055,
+          "top": 3676.2174,
+          "zIndex": 306,
           "widthName": 72.82080078125,
           "widthComment": 100.6181640625,
           "color": "#4CAF50"
@@ -4149,7 +3833,7 @@
           "active": false,
           "left": 1193.2149,
           "top": 7259.9698,
-          "zIndex": 30,
+          "zIndex": 29,
           "widthName": 72.8271484375,
           "widthComment": 60
         },
@@ -4694,7 +4378,7 @@
           "active": false,
           "left": 1211.5023,
           "top": 5812.0534,
-          "zIndex": 105,
+          "zIndex": 95,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4825,7 +4509,7 @@
           "active": false,
           "left": 2742.6176,
           "top": 5487.9184,
-          "zIndex": 34,
+          "zIndex": 33,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4956,7 +4640,7 @@
           "active": false,
           "left": 136.25,
           "top": 5537.0266,
-          "zIndex": 94,
+          "zIndex": 85,
           "widthName": 63.41357421875,
           "widthComment": 60
         },
@@ -5142,7 +4826,7 @@
           "active": false,
           "left": 1516.6032,
           "top": 5398.188,
-          "zIndex": 31,
+          "zIndex": 30,
           "widthName": 73.5380859375,
           "widthComment": 60
         },
@@ -5227,7 +4911,7 @@
           "active": false,
           "left": 2415.6929,
           "top": 6144.4667,
-          "zIndex": 32,
+          "zIndex": 31,
           "widthName": 63.419921875,
           "widthComment": 60
         },
@@ -5650,7 +5334,7 @@
           "active": false,
           "left": 4955.1356,
           "top": 7796.4334,
-          "zIndex": 57,
+          "zIndex": 52,
           "widthName": 61.99169921875,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -6150,7 +5834,7 @@
           "active": false,
           "left": 2099.6397,
           "top": 4896.3372,
-          "zIndex": 101,
+          "zIndex": 92,
           "widthName": 61.2490234375,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -6236,7 +5920,7 @@
           "active": false,
           "left": 2385.8783,
           "top": 5907.9259,
-          "zIndex": 33,
+          "zIndex": 32,
           "widthName": 85.09716796875,
           "widthComment": 69.469970703125
         },
@@ -6792,7 +6476,7 @@
           "active": false,
           "left": 3890.2723,
           "top": 2163.4324,
-          "zIndex": 41,
+          "zIndex": 38,
           "widthName": 82.95166015625,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -6993,7 +6677,7 @@
           "active": false,
           "left": 3892.3733,
           "top": 2382.7571,
-          "zIndex": 42,
+          "zIndex": 39,
           "widthName": 64.14990234375,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -7171,7 +6855,7 @@
           "active": false,
           "left": 3888.356,
           "top": 1941.3977,
-          "zIndex": 39,
+          "zIndex": 36,
           "widthName": 70.65625,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -7866,7 +7550,7 @@
           "active": false,
           "left": 6677.1047,
           "top": 5072.8721,
-          "zIndex": 75,
+          "zIndex": 67,
           "widthName": 82.95166015625,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -8159,7 +7843,7 @@
           "active": false,
           "left": 6677.9193,
           "top": 5643.2712,
-          "zIndex": 79,
+          "zIndex": 71,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -8567,7 +8251,7 @@
           "active": false,
           "left": 6679.1586,
           "top": 5976.3983,
-          "zIndex": 81,
+          "zIndex": 73,
           "widthName": 62.708984375,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -8860,7 +8544,7 @@
           "active": false,
           "left": 6678.0083,
           "top": 4741.7909,
-          "zIndex": 73,
+          "zIndex": 65,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -9038,7 +8722,7 @@
           "active": false,
           "left": 6677.7707,
           "top": 5419.1059,
-          "zIndex": 77,
+          "zIndex": 69,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -9331,7 +9015,7 @@
           "active": false,
           "left": 6678.2775,
           "top": 6414.4111,
-          "zIndex": 83,
+          "zIndex": 75,
           "widthName": 159.548828125,
           "widthComment": 120,
           "color": "#4CAF50"
@@ -9344,21 +9028,44 @@
         "comment": "파렛트",
         "columns": [
           {
-            "name": "company_id",
-            "comment": "기업ID",
+            "name": "palette_id",
+            "comment": "",
             "dataType": "INT",
             "default": "",
             "option": {
-              "autoIncrement": false,
+              "autoIncrement": true,
               "primaryKey": true,
               "unique": false,
               "notNull": true
             },
             "ui": {
               "active": false,
-              "pk": false,
+              "pk": true,
               "fk": false,
-              "pfk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "228306c0-b86b-42c7-bf66-36727b143e2d"
+          },
+          {
+            "name": "company_id",
+            "comment": "기업ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
               "widthName": 72.09716796875,
               "widthComment": 60,
               "widthDataType": 60,
@@ -9373,15 +9080,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": true,
+              "primaryKey": false,
               "unique": false,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": false,
-              "pfk": true,
+              "fk": true,
+              "pfk": false,
               "widthName": 60,
               "widthComment": 60,
               "widthDataType": 60,
@@ -9394,7 +9101,7 @@
           "active": false,
           "left": 1714.5159,
           "top": 4705.7323,
-          "zIndex": 97,
+          "zIndex": 128,
           "widthName": 60,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -9848,7 +9555,7 @@
           "active": false,
           "left": 6011.9489,
           "top": 2720.55,
-          "zIndex": 87,
+          "zIndex": 79,
           "widthName": 94.9931640625,
           "widthComment": 87.9449462890625,
           "color": "#4CAF50"
@@ -9934,7 +9641,7 @@
           "active": false,
           "left": 6084.2823,
           "top": 3672.5489,
-          "zIndex": 89,
+          "zIndex": 80,
           "widthName": 113.287109375,
           "widthComment": 99.18994140625,
           "color": "#4CAF50"
@@ -10399,7 +10106,7 @@
           "active": false,
           "left": 2678.7501,
           "top": 2532.3063,
-          "zIndex": 117,
+          "zIndex": 101,
           "widthName": 109.67529296875,
           "widthComment": 110.4349365234375,
           "color": "#4CAF50"
@@ -10600,7 +10307,7 @@
           "active": false,
           "left": 2679.334,
           "top": 2776.5551,
-          "zIndex": 67,
+          "zIndex": 62,
           "widthName": 66.32080078125,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -10732,7 +10439,7 @@
           "active": false,
           "left": 1763.8046,
           "top": 1801.5828,
-          "zIndex": 69,
+          "zIndex": 63,
           "widthName": 127.75341796875,
           "widthComment": 106.8167724609375,
           "color": "#4CAF50"
@@ -11111,7 +10818,7 @@
           "active": false,
           "left": 6677.6725,
           "top": 6744.25,
-          "zIndex": 84,
+          "zIndex": 76,
           "widthName": 155.94970703125,
           "widthComment": 99.18359375,
           "color": "#4CAF50"
@@ -11358,7 +11065,7 @@
           "active": false,
           "left": 6673.172,
           "top": 7106.5313,
-          "zIndex": 85,
+          "zIndex": 77,
           "widthName": 123.41796875,
           "widthComment": 110.4285888671875,
           "color": "#4CAF50"
@@ -11628,7 +11335,7 @@
           "active": false,
           "left": 1234.5028,
           "top": 7652.168,
-          "zIndex": 414,
+          "zIndex": 112,
           "widthName": 84.8623046875,
           "widthComment": 69.469970703125
         },
@@ -11759,7 +11466,7 @@
           "active": false,
           "left": 2678.501,
           "top": 3019.0838,
-          "zIndex": 61,
+          "zIndex": 56,
           "widthName": 114.0234375,
           "widthComment": 60,
           "color": "#9E9E9E"
@@ -11868,7 +11575,7 @@
           "active": false,
           "left": 1511.3334,
           "top": 3032.3332,
-          "zIndex": 63,
+          "zIndex": 58,
           "widthName": 108.95166015625,
           "widthComment": 60,
           "color": "#9E9E9E"
@@ -12207,7 +11914,7 @@
           "active": false,
           "left": 7387.3362,
           "top": 3771.4128,
-          "zIndex": 313,
+          "zIndex": 105,
           "widthName": 121.25341796875,
           "widthComment": 69.469970703125,
           "color": "#FFEB3B"
@@ -12500,7 +12207,7 @@
           "active": false,
           "left": 2914.804,
           "top": 1737.0146,
-          "zIndex": 40,
+          "zIndex": 37,
           "widthName": 60,
           "widthComment": 60,
           "color": "#4CAF50"
@@ -12632,7 +12339,7 @@
           "active": false,
           "left": 5927.7558,
           "top": 8501.3165,
-          "zIndex": 60,
+          "zIndex": 55,
           "widthName": 60,
           "widthComment": 107.8544921875,
           "color": "#FFEB3B"
@@ -12833,7 +12540,7 @@
           "active": false,
           "left": 5924.1833,
           "top": 8035.305,
-          "zIndex": 58,
+          "zIndex": 53,
           "widthName": 99.55078125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -12942,7 +12649,7 @@
           "active": false,
           "left": 5925.4777,
           "top": 7873.788,
-          "zIndex": 51,
+          "zIndex": 47,
           "widthName": 119.79345703125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -13396,7 +13103,7 @@
           "active": false,
           "left": 6668.0279,
           "top": 7416.472,
-          "zIndex": 59,
+          "zIndex": 54,
           "widthName": 80.0634765625,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -13482,7 +13189,7 @@
           "active": false,
           "left": 5541.5,
           "top": 7108.7223,
-          "zIndex": 47,
+          "zIndex": 43,
           "widthName": 69.208984375,
           "widthComment": 61.8367919921875
         },
@@ -13659,7 +13366,7 @@
           "active": false,
           "left": 5924.5284,
           "top": 8277.7783,
-          "zIndex": 52,
+          "zIndex": 48,
           "widthName": 105.33984375,
           "widthComment": 76.699951171875,
           "color": "#FFEB3B"
@@ -14384,7 +14091,7 @@
           "active": false,
           "left": 7411.0938,
           "top": 7947.9089,
-          "zIndex": 53,
+          "zIndex": 49,
           "widthName": 69.21533203125,
           "widthComment": 78.128173828125
         },
@@ -14489,7 +14196,7 @@
           },
           {
             "name": "stock_kind",
-            "comment": "구분자(실물, 가상, 취소)ENUM",
+            "comment": "실물, 가상, 취소ENUM",
             "dataType": "TINYINT",
             "default": "",
             "option": {
@@ -14513,9 +14220,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 113.6667,
-          "top": 4327.9166,
-          "zIndex": 100,
+          "left": 122.4167,
+          "top": 3766.6666,
+          "zIndex": 326,
           "widthName": 118.33984375,
           "widthComment": 60
         },
@@ -14623,7 +14330,7 @@
           "active": false,
           "left": 2748.9169,
           "top": 4949.8616,
-          "zIndex": 102,
+          "zIndex": 93,
           "widthName": 60,
           "widthComment": 60
         },
@@ -14754,7 +14461,7 @@
           "active": false,
           "left": 1148,
           "top": 2387.9089,
-          "zIndex": 65,
+          "zIndex": 60,
           "widthName": 152.3125,
           "widthComment": 80.7149658203125,
           "color": "#9E9E9E"
@@ -14886,7 +14593,7 @@
           "active": false,
           "left": 1158,
           "top": 2763.9089,
-          "zIndex": 64,
+          "zIndex": 59,
           "widthName": 109.681640625,
           "widthComment": 73.081787109375,
           "color": "#9E9E9E"
@@ -15294,7 +15001,7 @@
           "active": false,
           "left": 7388.0905,
           "top": 4145.3073,
-          "zIndex": 374,
+          "zIndex": 183,
           "widthName": 133.5234375,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -15318,7 +15025,7 @@
               "notNull": true
             },
             "ui": {
-              "active": false,
+              "active": true,
               "pk": false,
               "fk": false,
               "pfk": true,
@@ -15541,7 +15248,7 @@
           "active": false,
           "left": 6683.0938,
           "top": 4145.3073,
-          "zIndex": 373,
+          "zIndex": 185,
           "widthName": 134.234375,
           "widthComment": 80.7149658203125,
           "color": "#FFEB3B"
@@ -15742,7 +15449,7 @@
           "active": false,
           "left": 6679.0938,
           "top": 3894.3073,
-          "zIndex": 304,
+          "zIndex": 133,
           "widthName": 121.96435546875,
           "widthComment": 91.9599609375,
           "color": "#FFEB3B"
@@ -15761,15 +15468,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": false,
+              "primaryKey": true,
               "unique": true,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": true,
-              "pfk": false,
+              "fk": false,
+              "pfk": true,
               "widthName": 105.3271484375,
               "widthComment": 60,
               "widthDataType": 60,
@@ -15784,15 +15491,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": false,
+              "primaryKey": true,
               "unique": true,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": true,
-              "pfk": false,
+              "fk": false,
+              "pfk": true,
               "widthName": 90.1689453125,
               "widthComment": 60,
               "widthDataType": 60,
@@ -16035,13 +15742,421 @@
           "active": false,
           "left": 1047,
           "top": 7981.974,
-          "zIndex": 437,
+          "zIndex": 137,
           "widthName": 128.470703125,
           "widthComment": 91.9599609375,
           "color": "#FFEB3B"
         },
         "visible": true,
         "id": "20a7d2d7-3948-4ede-9d3d-f46e3ca8a292"
+      },
+      {
+        "name": "paper_stock_info",
+        "comment": "종이재고정보",
+        "columns": [
+          {
+            "name": "paper_stock_info_id",
+            "comment": "종이재고정보ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 118.35888671875,
+              "widthComment": 82.469970703125,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b94e0cd7-161a-4db3-865c-94d38a9471a1"
+          },
+          {
+            "name": "stock_type",
+            "comment": "재고유형ENUM",
+            "dataType": "TINYINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.1435546875,
+              "widthComment": 85.25634765625,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a7f75e52-efe0-4b25-b3e9-e22802397d6b"
+          },
+          {
+            "name": "paper_domain_id",
+            "comment": "제품유형ID",
+            "dataType": "TINYINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 102.46435546875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "74b1ade1-43ec-4d9b-b8af-a23a82e66d0e"
+          },
+          {
+            "name": "paper_group_id",
+            "comment": "지군ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 93.076171875,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "25343c0c-07ad-437d-a896-ae631c361e63"
+          },
+          {
+            "name": "paper_type_id",
+            "comment": "지종ID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 84.39892578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "3c10f913-3b79-4e97-a731-1536084460fa"
+          },
+          {
+            "name": "manufacturer_id",
+            "comment": "제지사ID",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.93896484375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "9db157c1-30e7-405a-8fa2-84bf83c1b85c"
+          },
+          {
+            "name": "gsm",
+            "comment": "평량",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "b3450a0f-8a58-4a76-b9c0-6e8c89dc87c7"
+          },
+          {
+            "name": "paper_width",
+            "comment": "지폭",
+            "dataType": "SMALLINT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.8271484375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "bd945169-4482-4e14-af16-a66fe4b1e0c2"
+          },
+          {
+            "name": "paper_length",
+            "comment": "지장",
+            "dataType": "SMALLINT",
+            "default": "0",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.89892578125,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "0a555557-5e1e-48f3-a63e-ccbd2e27a1dd"
+          },
+          {
+            "name": "paper_color_group_id",
+            "comment": "색군ID",
+            "dataType": "SMALLINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 128.4833984375,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "d47dda8e-f801-4a16-ace2-07f65c9c0529"
+          },
+          {
+            "name": "paper_color_id",
+            "comment": "색상ID",
+            "dataType": "SMALLINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 88.00439453125,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "07726cab-6b8c-435b-9cf2-73bfa8cb9523"
+          },
+          {
+            "name": "paper_pattern_id",
+            "comment": "무늬ID",
+            "dataType": "SMALLINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 100.2998046875,
+              "widthComment": 60,
+              "widthDataType": 65.57177734375,
+              "widthDefault": 60
+            },
+            "id": "b4303bb1-639b-4c05-b1ba-e97bf823e4f6"
+          },
+          {
+            "name": "paper_cert_id",
+            "comment": "인증ID",
+            "dataType": "TINYINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 81.498046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a73b2015-1673-4095-88bb-6afd96404ba0"
+          },
+          {
+            "name": "package_id",
+            "comment": "매포ID",
+            "dataType": "TINYINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 68.498046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2764f5da-be0b-4de3-8c02-aebbc08adccd"
+          },
+          {
+            "name": "bundle_id",
+            "comment": "매속ID",
+            "dataType": "TINYINT",
+            "default": "1",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "4540eadc-2626-4aba-82a0-1b59696311cc"
+          },
+          {
+            "name": "creator_uid",
+            "comment": "등록자UID",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.0380859375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a594ac05-f23a-4869-9d00-0b3d6a966a16"
+          },
+          {
+            "name": "created_at",
+            "comment": "등록일시",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_TIMESTAMP",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.876953125,
+              "widthDefault": 147.65966796875
+            },
+            "id": "c6c04552-7706-45a8-b966-44155f417f68"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 941,
+          "top": 3243.8073,
+          "zIndex": 292,
+          "widthName": 101.0107421875,
+          "widthComment": 69.469970703125,
+          "color": "#FFEB3B"
+        },
+        "visible": true,
+        "id": "b860c9e2-1ca2-4879-9885-b716bb60ff9b"
       }
     ],
     "indexes": []
@@ -16078,7 +16193,7 @@
           "active": false,
           "left": 5101.953993055556,
           "top": 6929.527777777772,
-          "zIndex": 46,
+          "zIndex": 42,
           "width": 426,
           "height": 101
         },
@@ -16090,7 +16205,7 @@
           "active": false,
           "left": 7265.616319444447,
           "top": 5070.719618055552,
-          "zIndex": 74,
+          "zIndex": 66,
           "width": 438,
           "height": 100
         },
@@ -16102,7 +16217,7 @@
           "active": false,
           "left": 7248.838541666662,
           "top": 5642.164062500003,
-          "zIndex": 78,
+          "zIndex": 70,
           "width": 370,
           "height": 100
         },
@@ -16114,7 +16229,7 @@
           "active": false,
           "left": 1867.5052083333346,
           "top": 80.63368055555611,
-          "zIndex": 44,
+          "zIndex": 41,
           "width": 548,
           "height": 100
         },
@@ -16126,7 +16241,7 @@
           "active": false,
           "left": 7320,
           "top": 7414.939236111108,
-          "zIndex": 54,
+          "zIndex": 50,
           "width": 463,
           "height": 101
         },
@@ -16174,7 +16289,7 @@
           "active": false,
           "left": 1312.2222222222224,
           "top": 4189.494791666667,
-          "zIndex": 98,
+          "zIndex": 89,
           "width": 273,
           "height": 100
         },
@@ -16186,7 +16301,7 @@
           "active": false,
           "left": 4088.9999999999973,
           "top": 3148.383680555555,
-          "zIndex": 112,
+          "zIndex": 97,
           "width": 195,
           "height": 331
         },
@@ -16196,9 +16311,9 @@
         "value": "paper_stock_info : v1.0 의 부모재고\npaper_stock : v1.0 의 자식재고",
         "ui": {
           "active": false,
-          "left": 1667.111111111109,
-          "top": 3404.444444444445,
-          "zIndex": 92,
+          "left": 1623.361111111109,
+          "top": 3357.444444444445,
+          "zIndex": 320,
           "width": 211,
           "height": 101
         },
@@ -16210,7 +16325,7 @@
           "active": false,
           "left": 3662.564236111112,
           "top": 337.1111111111113,
-          "zIndex": 115,
+          "zIndex": 99,
           "width": 547,
           "height": 198
         },
@@ -16234,7 +16349,7 @@
           "active": false,
           "left": 6013.333333333332,
           "top": 2561.0833333333353,
-          "zIndex": 86,
+          "zIndex": 78,
           "width": 446,
           "height": 100
         },
@@ -16246,7 +16361,7 @@
           "active": false,
           "left": 7250.282986111116,
           "top": 4740.999999999997,
-          "zIndex": 72,
+          "zIndex": 64,
           "width": 326,
           "height": 100
         },
@@ -16258,7 +16373,7 @@
           "active": false,
           "left": 7240.949652777775,
           "top": 5419.111111111112,
-          "zIndex": 76,
+          "zIndex": 68,
           "width": 370,
           "height": 100
         },
@@ -16270,7 +16385,7 @@
           "active": false,
           "left": 1147.3333333333326,
           "top": 2227.4973958333317,
-          "zIndex": 66,
+          "zIndex": 61,
           "width": 466,
           "height": 101
         },
@@ -16282,7 +16397,7 @@
           "active": false,
           "left": 4737.5,
           "top": 7798.833333333334,
-          "zIndex": 50,
+          "zIndex": 46,
           "width": 162,
           "height": 317
         },
@@ -16294,7 +16409,7 @@
           "active": false,
           "left": 4821.797619047616,
           "top": 962.3333333333339,
-          "zIndex": 116,
+          "zIndex": 100,
           "width": 283,
           "height": 214
         },
@@ -16306,7 +16421,7 @@
           "active": false,
           "left": 2199.1666666666674,
           "top": 2532.722222222223,
-          "zIndex": 111,
+          "zIndex": 96,
           "width": 448,
           "height": 100
         },
@@ -16318,7 +16433,7 @@
           "active": false,
           "left": 2409.6666666666674,
           "top": 2779,
-          "zIndex": 62,
+          "zIndex": 57,
           "width": 240,
           "height": 100
         },
@@ -16330,7 +16445,7 @@
           "active": false,
           "left": 1762.7142857142853,
           "top": 1980.3333333333337,
-          "zIndex": 119,
+          "zIndex": 102,
           "width": 511,
           "height": 100
         },
@@ -16342,7 +16457,7 @@
           "active": false,
           "left": 2914,
           "top": 2060,
-          "zIndex": 113,
+          "zIndex": 98,
           "width": 504,
           "height": 100
         },
@@ -16354,7 +16469,7 @@
           "active": false,
           "left": 1908.3828125,
           "top": 5205.882812500002,
-          "zIndex": 99,
+          "zIndex": 90,
           "width": 127,
           "height": 100
         },
@@ -16402,7 +16517,7 @@
           "active": false,
           "left": 5539.333333333333,
           "top": 7247.555555555557,
-          "zIndex": 49,
+          "zIndex": 45,
           "width": 183,
           "height": 100
         },
@@ -16414,7 +16529,7 @@
           "active": false,
           "left": 134.44444444444446,
           "top": 5718.131076388885,
-          "zIndex": 95,
+          "zIndex": 86,
           "width": 278,
           "height": 100
         },
@@ -16426,7 +16541,7 @@
           "active": false,
           "left": 4572,
           "top": 7798.908854166664,
-          "zIndex": 56,
+          "zIndex": 51,
           "width": 135,
           "height": 144
         },
@@ -16438,24 +16553,11 @@
           "active": false,
           "left": 6582,
           "top": 7974.908854166664,
-          "zIndex": 29,
+          "zIndex": 28,
           "width": 185,
           "height": 100
         },
         "id": "a2e82ab9-bf23-438a-9177-4cfe5330725c"
-      },
-      {
-        "value": "paper_stock_id 0 번 고정\n- 부모 재고 기준으로 사용 예정량을 입력했을 때, paper_stock_history 를 생성하기 위함\n",
-        "ui": {
-          "active": false,
-          "left": 138.4444444444444,
-          "top": 3555.5000000000005,
-          "zIndex": 91,
-          "width": 467,
-          "height": 100,
-          "color": "#000000"
-        },
-        "id": "e21bc673-4365-4e94-9bed-64fc59e809dd"
       },
       {
         "value": "roll_length_condition 테이블\n\n* 권취미터의 조건(제품유형 ~ 지관)은 중복될 수 없으므로 UQ\n   (NULL 인 칼럼 UQ 적용가능한지 확인 필요)\n* 제품유형 ~ 평량은 필수 입력값\n* 지폭 ~ 지관은 선택 입력값\n* 삭제 없음",
@@ -16463,7 +16565,7 @@
           "active": false,
           "left": 7385.09375,
           "top": 3602.908854166667,
-          "zIndex": 321,
+          "zIndex": 106,
           "width": 398,
           "height": 113
         },
@@ -16475,7 +16577,7 @@
           "active": false,
           "left": 7274.09375,
           "top": 5973.908854166667,
-          "zIndex": 80,
+          "zIndex": 72,
           "width": 424,
           "height": 100
         },
@@ -16487,7 +16589,7 @@
           "active": false,
           "left": 7325.09375,
           "top": 6415.908854166667,
-          "zIndex": 82,
+          "zIndex": 74,
           "width": 578,
           "height": 448
         },
@@ -16497,9 +16599,9 @@
         "value": "paper_stock_history\n- 자식 재고의 변화량을 등록\n\nqty 칼럼\n- 생성된 또는 생성될 예정인 재고는 양수\n- 사용된 또는 사용될 예정인 재고는 음수\n\n",
         "ui": {
           "active": false,
-          "left": 654,
-          "top": 4327.307291666667,
-          "zIndex": 103,
+          "left": 124,
+          "top": 3528.307291666667,
+          "zIndex": 328,
           "width": 324,
           "height": 176
         },
@@ -16511,7 +16613,7 @@
           "active": false,
           "left": 6678.09375,
           "top": 3713.307291666667,
-          "zIndex": 346,
+          "zIndex": 107,
           "width": 590,
           "height": 124
         },
@@ -16523,11 +16625,23 @@
           "active": false,
           "left": 6680.09375,
           "top": 4440.640625,
-          "zIndex": 383,
+          "zIndex": 110,
           "width": 606,
           "height": 241
         },
         "id": "5de6e7b7-0169-42d4-9fd3-745535a04598"
+      },
+      {
+        "value": "is_unspecified\n* 사용자가 부모재고 기준으로 사용 예정량을 입력했을 때, 특정 자식재고를 지정할 수 없으므로 1 로 설정\n* 매입도착예정재고는 실제로 도착한 재고도 아니며, 자식재고로 어떻게 나뉠지 모르기 때문에 1 로 설정",
+        "ui": {
+          "active": false,
+          "left": 1624,
+          "top": 3514.807291666667,
+          "zIndex": 318,
+          "width": 567,
+          "height": 100
+        },
+        "id": "27168632-3b77-4bb5-b2a5-5c10e3370ea8"
       }
     ]
   },
@@ -16742,58 +16856,6 @@
         "constraintName": "fk__to_",
         "visible": true,
         "id": "17cb1f53-3e8f-432f-9020-0b06cc07a334"
-      },
-      {
-        "identification": true,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "484cd8d1-dc5d-4fa0-bdf7-045f44be54f2",
-          "columnIds": [
-            "7fc4c1c3-357d-4042-8cf3-348119638ce7"
-          ],
-          "x": 3505.8461,
-          "y": 3780.647,
-          "direction": "left"
-        },
-        "end": {
-          "tableId": "53df4922-6ea7-445d-8c31-6fd7929c105a",
-          "columnIds": [
-            "4d67343c-7def-4418-bfad-4451fb0115eb"
-          ],
-          "x": 2163.1440234375,
-          "y": 3784.7952,
-          "direction": "right"
-        },
-        "constraintName": "fk_company_to_",
-        "visible": true,
-        "id": "61e7e062-0da3-48e4-8bd7-7ff9fcc0f1d9"
-      },
-      {
-        "identification": true,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "53df4922-6ea7-445d-8c31-6fd7929c105a",
-          "columnIds": [
-            "c292fd1a-06bb-4f9d-8bb1-0293ecc41822"
-          ],
-          "x": 1669.8325,
-          "y": 3784.7952,
-          "direction": "left"
-        },
-        "end": {
-          "tableId": "0b696185-7249-43fa-a2a3-38c748eb8c0d",
-          "columnIds": [
-            "cc542579-919f-47b9-929b-9e75ead86887"
-          ],
-          "x": 624.6116523437499,
-          "y": 3790.9674,
-          "direction": "right"
-        },
-        "constraintName": "fk__to_",
-        "visible": true,
-        "id": "6f2d8eff-16e9-4235-9e4a-191597dacfea"
       },
       {
         "identification": false,
@@ -17440,34 +17502,6 @@
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "1a74b10b-0e1e-4969-9918-5b67022ac780",
-          "columnIds": [
-            "e9d446b7-deab-4322-b8dc-62cf296d139b",
-            "627eb6a4-5dbf-4bf9-be47-118c5ca6a5a1"
-          ],
-          "x": 1917.9342993164062,
-          "y": 4190.4665,
-          "direction": "top"
-        },
-        "end": {
-          "tableId": "53df4922-6ea7-445d-8c31-6fd7929c105a",
-          "columnIds": [
-            "0396a241-83e3-4efb-89d2-c69ce047f027",
-            "5bf3d928-018c-404e-9b19-8ba960a861cb"
-          ],
-          "x": 1916.48826171875,
-          "y": 4003.7952,
-          "direction": "bottom"
-        },
-        "constraintName": "fk_workplace_to_paper_stock_info",
-        "visible": true,
-        "id": "58e05ec7-7aa2-4f67-8818-bef6d0ecde9d"
-      },
-      {
-        "identification": true,
-        "relationshipType": "OneN",
-        "startRelationshipType": "Dash",
-        "start": {
           "tableId": "9bcd2485-8e29-43a3-af87-9ece62812efe",
           "columnIds": [
             "fb948447-b57a-4820-a80f-3876bbcd6e61",
@@ -17742,7 +17776,7 @@
         "id": "0956f6fa-8981-4d4b-add3-fc3298d8eee0"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -17760,7 +17794,7 @@
             "c5cf7e47-249d-43f3-832f-c9950b2227c4"
           ],
           "x": 2120.6130679687503,
-          "y": 4760.7323,
+          "y": 4770.9823,
           "direction": "right"
         },
         "constraintName": "fk_company_to_palette",
@@ -17960,7 +17994,7 @@
         "id": "ed9e66b2-72d5-4104-8f6f-0526f2d4f5ea"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -18288,22 +18322,20 @@
         "start": {
           "tableId": "0b696185-7249-43fa-a2a3-38c748eb8c0d",
           "columnIds": [
-            "cc542579-919f-47b9-929b-9e75ead86887",
             "ea4ef4c7-e190-46a5-8ad8-abd1da7e204a"
           ],
-          "x": 381.583576171875,
-          "y": 3866.4674,
-          "direction": "bottom"
+          "x": 1628.8055,
+          "y": 3850.9674,
+          "direction": "left"
         },
         "end": {
           "tableId": "730d4711-cb7a-42de-9359-0e30edd13eb4",
           "columnIds": [
-            "b8e85c9b-7ad7-43dd-a3ff-02b35c370e94",
             "21cc5af4-0aff-43da-87b6-6e18c3a37700"
           ],
-          "x": 378.510694140625,
-          "y": 4327.9166,
-          "direction": "top"
+          "x": 652.10468828125,
+          "y": 3852.4166,
+          "direction": "right"
         },
         "constraintName": "fk_paper_stock_to_",
         "visible": true,
@@ -18318,8 +18350,8 @@
           "columnIds": [
             "694771e4-1b23-4d22-a262-058acdf0ef8f"
           ],
-          "x": 378.510694140625,
-          "y": 4499.4166,
+          "x": 387.260694140625,
+          "y": 3938.1666,
           "direction": "bottom"
         },
         "end": {
@@ -18548,7 +18580,7 @@
         "id": "1f2a1a03-e55c-41d5-bb39-2c61c2648e81"
       },
       {
-        "identification": false,
+        "identification": true,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -18584,8 +18616,8 @@
           "columnIds": [
             "946395dd-b2f9-4723-89fd-5f5b36168e8e"
           ],
-          "x": 897.0185671875,
-          "y": 8194.2788,
+          "x": 899.2407671875001,
+          "y": 8205.6399,
           "direction": "right"
         },
         "end": {
@@ -18600,6 +18632,84 @@
         "constraintName": "fk_discount_condition_to_discount_to_company",
         "visible": true,
         "id": "d471b949-8c38-4894-b934-6e68c3d6e399"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "1a74b10b-0e1e-4969-9918-5b67022ac780",
+          "columnIds": [
+            "e9d446b7-deab-4322-b8dc-62cf296d139b"
+          ],
+          "x": 1917.9342993164062,
+          "y": 4190.4665,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "0b696185-7249-43fa-a2a3-38c748eb8c0d",
+          "columnIds": [
+            "419b023e-2807-4d88-b6a7-2f35bc7ff264"
+          ],
+          "x": 1919.881427734375,
+          "y": 3909.2174,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_place_to_paper_stock",
+        "visible": true,
+        "id": "674a2a11-00f0-4513-9201-dde8b164360f"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "484cd8d1-dc5d-4fa0-bdf7-045f44be54f2",
+          "columnIds": [
+            "7fc4c1c3-357d-4042-8cf3-348119638ce7"
+          ],
+          "x": 3505.8461,
+          "y": 3780.647,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "0b696185-7249-43fa-a2a3-38c748eb8c0d",
+          "columnIds": [
+            "db72e077-73a7-4387-b504-2e5667db29d4"
+          ],
+          "x": 2210.95735546875,
+          "y": 3792.7174,
+          "direction": "right"
+        },
+        "constraintName": "fk_company_to_paper_stock",
+        "visible": true,
+        "id": "dce93f83-8280-4c94-bfcf-b0cee62708af"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "b860c9e2-1ca2-4879-9885-b716bb60ff9b",
+          "columnIds": [
+            "b94e0cd7-161a-4db3-865c-94d38a9471a1"
+          ],
+          "x": 1533.2763671875,
+          "y": 3452.5573,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "0b696185-7249-43fa-a2a3-38c748eb8c0d",
+          "columnIds": [
+            "ab98bb9b-2eb5-4598-92ed-acb8f29aae5a"
+          ],
+          "x": 1628.8055,
+          "y": 3734.4674,
+          "direction": "left"
+        },
+        "constraintName": "fk_paper_stock_info_to_paper_stock",
+        "visible": true,
+        "id": "2556c93c-5f95-4c01-b007-b058bfb08e06"
       }
     ]
   }
