@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -3156.640625,
-    "scrollLeft": -1291,
-    "zoomLevel": 0.8,
+    "scrollTop": -7361.640625,
+    "scrollLeft": -4208.046875,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -3405,7 +3405,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": true,
+              "unique": false,
               "notNull": true
             },
             "ui": {
@@ -3428,7 +3428,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": true,
+              "unique": false,
               "notNull": true
             },
             "ui": {
@@ -3451,7 +3451,7 @@
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
-              "unique": true,
+              "unique": false,
               "notNull": true
             },
             "ui": {
@@ -3563,7 +3563,7 @@
           "active": false,
           "left": 1628.8055,
           "top": 3676.2174,
-          "zIndex": 455,
+          "zIndex": 457,
           "widthName": 72.82080078125,
           "widthComment": 100.6181640625,
           "color": "#4CAF50"
@@ -5078,7 +5078,7 @@
           },
           {
             "name": "accounted_date",
-            "comment": "회계처리일",
+            "comment": "회계등록일",
             "dataType": "DATE",
             "default": "",
             "option": {
@@ -5101,7 +5101,7 @@
           },
           {
             "name": "\baccounted_total",
-            "comment": "회계처리합계",
+            "comment": "회계등록합계",
             "dataType": "BIGINT",
             "default": "",
             "option": {
@@ -5311,7 +5311,7 @@
           "active": false,
           "left": 4955.1356,
           "top": 7796.4334,
-          "zIndex": 52,
+          "zIndex": 466,
           "widthName": 61.99169921875,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -12314,9 +12314,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 5927.7558,
-          "top": 8501.3165,
-          "zIndex": 55,
+          "left": 5925.7558,
+          "top": 8530.3165,
+          "zIndex": 473,
           "widthName": 60,
           "widthComment": 107.8544921875,
           "color": "#FFEB3B"
@@ -12511,13 +12511,36 @@
               "widthDefault": 60
             },
             "id": "db87610c-af5e-4a66-b8b8-76bffdf0da7d"
+          },
+          {
+            "name": "account_nm",
+            "comment": "계정명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.82080078125,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "528b89b8-b36b-47ec-b666-c527d2879094"
           }
         ],
         "ui": {
           "active": false,
           "left": 5924.1833,
           "top": 8035.305,
-          "zIndex": 53,
+          "zIndex": 469,
           "widthName": 99.55078125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -12620,13 +12643,36 @@
               "widthDefault": 60
             },
             "id": "a21bcd33-416b-4fed-a03d-428c68fd755f"
+          },
+          {
+            "name": "account_nm",
+            "comment": "계정명",
+            "dataType": "VARCHAR(30)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.82080078125,
+              "widthComment": 60,
+              "widthDataType": 87.72509765625,
+              "widthDefault": 60
+            },
+            "id": "49d781cb-baed-4bc1-b9b9-97e842581ea5"
           }
         ],
         "ui": {
           "active": false,
           "left": 5925.4777,
-          "top": 7873.788,
-          "zIndex": 47,
+          "top": 7834.788,
+          "zIndex": 468,
           "widthName": 119.79345703125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -13341,9 +13387,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 5924.5284,
-          "top": 8277.7783,
-          "zIndex": 48,
+          "left": 5925.5284,
+          "top": 8299.7783,
+          "zIndex": 471,
           "widthName": 105.33984375,
           "widthComment": 76.699951171875,
           "color": "#FFEB3B"
@@ -18007,7 +18053,7 @@
             "68823915-410d-4d39-bc5b-b498de2fd07d"
           ],
           "x": 5925.4777,
-          "y": 7949.288,
+          "y": 7920.538,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_transfer",
@@ -18032,8 +18078,8 @@
           "columnIds": [
             "0c3a85fd-439f-4628-b3fb-51179ff95282"
           ],
-          "x": 5927.7558,
-          "y": 8587.0665,
+          "x": 5925.7558,
+          "y": 8616.0665,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_note",
@@ -18059,7 +18105,7 @@
             "80f7769d-a595-4fe1-8c07-e50f207881ad"
           ],
           "x": 5924.1833,
-          "y": 8151.805,
+          "y": 8162.055,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_card",
@@ -18246,8 +18292,8 @@
           "columnIds": [
             "5acb0a65-054c-46e2-bfcf-44e644fe8292"
           ],
-          "x": 5924.5284,
-          "y": 8384.0283,
+          "x": 5925.5284,
+          "y": 8406.0283,
           "direction": "left"
         },
         "constraintName": "fk_collected_paid_to_paid_card",
@@ -18434,8 +18480,8 @@
             "a3107707-144d-4c2a-84e3-8924d126f523",
             "10fb1153-b81d-4610-a843-0ca0749ae923"
           ],
-          "x": 6445.550721875,
-          "y": 8587.0665,
+          "x": 6443.550721875,
+          "y": 8616.0665,
           "direction": "right"
         },
         "constraintName": "fk_account_note_to_by_note",
