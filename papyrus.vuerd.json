@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -6288.666666666667,
-    "scrollLeft": -2738.0000000000005,
+    "scrollTop": -6289.666666666667,
+    "scrollLeft": -2848.0000000000005,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -13448,30 +13448,7 @@
             "id": "a21adb7f-2168-447e-85b5-af78de6a32ff"
           },
           {
-            "name": "from_company_id",
-            "comment": "발신기업ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 96.53585815429688,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "03adb197-50bf-453b-8a5f-d27e2b9e988a"
-          },
-          {
-            "name": "to_company_id",
+            "name": "company_id",
             "comment": "수신기업ID",
             "dataType": "INT",
             "default": "",
@@ -13486,7 +13463,7 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 81.94987487792969,
+              "widthName": 66.08990478515625,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -13613,7 +13590,7 @@
           "active": false,
           "left": 3141.9152,
           "top": 6739.858,
-          "zIndex": 145,
+          "zIndex": 159,
           "widthName": 114.60580444335938,
           "widthComment": 60
         },
@@ -13834,9 +13811,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2947.8994,
-          "top": 6325.0365,
-          "zIndex": 122,
+          "left": 2911.8994,
+          "top": 6328.0365,
+          "zIndex": 160,
           "widthName": 91.73881530761719,
           "widthComment": 60
         },
@@ -18133,8 +18110,8 @@
           "columnIds": [
             "3968ad9e-f29f-4892-8413-51ea3e16f2e5"
           ],
-          "x": 3238.270638708496,
-          "y": 6325.0365,
+          "x": 3202.270638708496,
+          "y": 6328.0365,
           "direction": "top"
         },
         "constraintName": "fk_company_to_notification_sent",
@@ -18148,17 +18125,15 @@
         "start": {
           "tableId": "ea7e0b4e-cc90-4f87-a1df-37719a8f0f1b",
           "columnIds": [
-            "3968ad9e-f29f-4892-8413-51ea3e16f2e5",
             "f5eb96be-2033-486a-abd0-2e16653dc556"
           ],
-          "x": 3238.270638708496,
-          "y": 6578.5365,
+          "x": 3202.270638708496,
+          "y": 6581.5365,
           "direction": "bottom"
         },
         "end": {
           "tableId": "a8e2dc36-7e1b-4ee4-a1e8-62e4edebc2ed",
           "columnIds": [
-            "03adb197-50bf-453b-8a5f-d27e2b9e988a",
             "a21adb7f-2168-447e-85b5-af78de6a32ff"
           ],
           "x": 3263.0738837768554,
@@ -18681,7 +18656,7 @@
             "a0ecce85-c91c-485d-9633-7976a8a17cd2"
           ],
           "x": 3141.9152,
-          "y": 6866.608,
+          "y": 6856.358,
           "direction": "left"
         },
         "end": {
