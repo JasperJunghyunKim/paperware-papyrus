@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -3732.307291666667,
-    "scrollLeft": -4590.09375,
+    "scrollTop": -4955.640625,
+    "scrollLeft": -1777,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -1017,7 +1017,7 @@
               "notNull": true
             },
             "ui": {
-              "active": true,
+              "active": false,
               "pk": true,
               "fk": false,
               "pfk": false,
@@ -3404,15 +3404,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": true,
+              "primaryKey": false,
               "unique": false,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": false,
-              "pfk": true,
+              "fk": true,
+              "pfk": false,
               "widthName": 118.35888671875,
               "widthComment": 82.469970703125,
               "widthDataType": 60,
@@ -3427,15 +3427,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": true,
+              "primaryKey": false,
               "unique": false,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": false,
-              "pfk": true,
+              "fk": true,
+              "pfk": false,
               "widthName": 72.09716796875,
               "widthComment": 60,
               "widthDataType": 60,
@@ -3450,15 +3450,15 @@
             "default": "",
             "option": {
               "autoIncrement": false,
-              "primaryKey": true,
+              "primaryKey": false,
               "unique": false,
               "notNull": true
             },
             "ui": {
               "active": false,
               "pk": false,
-              "fk": false,
-              "pfk": true,
+              "fk": true,
+              "pfk": false,
               "widthName": 82.9453125,
               "widthComment": 60,
               "widthDataType": 60,
@@ -3514,7 +3514,7 @@
           },
           {
             "name": "is_unspecified",
-            "comment": "불특정 수량",
+            "comment": "불특정 재고",
             "dataType": "TINYINT(1)",
             "default": "",
             "option": {
@@ -3563,7 +3563,7 @@
           "active": false,
           "left": 1628.8055,
           "top": 3676.2174,
-          "zIndex": 306,
+          "zIndex": 389,
           "widthName": 72.82080078125,
           "widthComment": 100.6181640625,
           "color": "#4CAF50"
@@ -4509,7 +4509,7 @@
           "active": false,
           "left": 2742.6176,
           "top": 5487.9184,
-          "zIndex": 33,
+          "zIndex": 410,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4590,29 +4590,6 @@
             "id": "b48755c2-16bf-48fc-8b6c-d382a9f22041"
           },
           {
-            "name": "task_stock_no",
-            "comment": "작업재고 번호",
-            "dataType": "SMALLINT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": true,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": true,
-              "fk": false,
-              "pfk": false,
-              "widthName": 85.103515625,
-              "widthComment": 73.081787109375,
-              "widthDataType": 65.57177734375,
-              "widthDefault": 60
-            },
-            "id": "c967004c-9323-4553-a77e-f795efe877e1"
-          },
-          {
             "name": "is_input",
             "comment": "입출력(I/O)",
             "dataType": "TINYINT",
@@ -4638,9 +4615,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 136.25,
-          "top": 5537.0266,
-          "zIndex": 85,
+          "left": 131.8056,
+          "top": 5551.4709,
+          "zIndex": 412,
           "widthName": 63.41357421875,
           "widthComment": 60
         },
@@ -4740,8 +4717,8 @@
         "ui": {
           "active": false,
           "left": 811.4149,
-          "top": 5415.4014,
-          "zIndex": 8,
+          "top": 5407.6237,
+          "zIndex": 375,
           "widthName": 60,
           "widthComment": 60
         },
@@ -5918,9 +5895,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2385.8783,
-          "top": 5907.9259,
-          "zIndex": 32,
+          "left": 2372.5451,
+          "top": 5896.8149,
+          "zIndex": 427,
           "widthName": 85.09716796875,
           "widthComment": 69.469970703125
         },
@@ -14104,7 +14081,7 @@
         "columns": [
           {
             "name": "paper_stock_history_id",
-            "comment": "이력ID",
+            "comment": "재고이력ID",
             "dataType": "INT",
             "default": "",
             "option": {
@@ -14124,29 +14101,6 @@
               "widthDefault": 60
             },
             "id": "694771e4-1b23-4d22-a262-058acdf0ef8f"
-          },
-          {
-            "name": "paper_stock_info_id",
-            "comment": "재고정보ID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 118.35888671875,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "b8e85c9b-7ad7-43dd-a3ff-02b35c370e94"
           },
           {
             "name": "paper_stock_id",
@@ -14172,8 +14126,8 @@
             "id": "21cc5af4-0aff-43da-87b6-6e18c3a37700"
           },
           {
-            "name": "qty",
-            "comment": "수량",
+            "name": "delta_qty",
+            "comment": "변화량",
             "dataType": "INT",
             "default": "",
             "option": {
@@ -14203,7 +14157,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -14216,13 +14170,36 @@
               "widthDefault": 60
             },
             "id": "922c79ee-ba62-477d-beb0-5ad16ac7b15b"
+          },
+          {
+            "name": "created_at",
+            "comment": "등록일시",
+            "dataType": "TIMESTAMP",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 63.4326171875,
+              "widthComment": 60,
+              "widthDataType": 76.876953125,
+              "widthDefault": 60
+            },
+            "id": "bbc9b88c-38b6-4681-9ccb-ca81519d2ab9"
           }
         ],
         "ui": {
           "active": false,
-          "left": 122.4167,
-          "top": 3766.6666,
-          "zIndex": 326,
+          "left": 106.8613,
+          "top": 3761.1111,
+          "zIndex": 426,
           "widthName": 118.33984375,
           "widthComment": 60
         },
@@ -14330,7 +14307,7 @@
           "active": false,
           "left": 2748.9169,
           "top": 4949.8616,
-          "zIndex": 93,
+          "zIndex": 401,
           "widthName": 60,
           "widthComment": 60
         },
@@ -15025,7 +15002,7 @@
               "notNull": true
             },
             "ui": {
-              "active": true,
+              "active": false,
               "pk": false,
               "fk": false,
               "pfk": true,
@@ -16148,9 +16125,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 941,
+          "left": 937.6667,
           "top": 3243.8073,
-          "zIndex": 292,
+          "zIndex": 369,
           "widthName": 101.0107421875,
           "widthComment": 69.469970703125,
           "color": "#FFEB3B"
@@ -16260,12 +16237,12 @@
         "id": "ee1ebc4b-a9a2-4905-99c4-8807e81932f2"
       },
       {
-        "value": "company / 기업\n- 진위여부 y : 페이퍼웨어가 등록한 '고객사'\n- 진위여부 n : 고객사가 등록한 '거래처' 정보\n- 따라서 진위여부 n 일 경우엔, 페이퍼웨어 사용여부가 y 일 수가 없음",
+        "value": "company 테이블\n* 진위여부 y : 페이퍼웨어가 등록한 '고객사'\n* 진위여부 n : 고객사가 등록한 '거래처' 정보\n* 따라서 진위여부 n 일 경우엔, 페이퍼웨어 사용여부가 y 일 수가 없음 ",
         "ui": {
           "active": false,
           "left": 4090.5000000000045,
           "top": 3537.8281249999886,
-          "zIndex": 6,
+          "zIndex": 415,
           "width": 435,
           "height": 100
         },
@@ -16524,12 +16501,12 @@
         "id": "e0e23bca-76cd-4f8e-bd87-8ea421f0f08e"
       },
       {
-        "value": "재고가 작업에 사용되는 경우 : INPUT (1)\n재고가 작업을 통해 생성되는 경우 :  OUTPUT (0)",
+        "value": "재고가 작업에 사용되는 경우 : INPUT (1)\n재고가 작업을 통해 생성되는 경우 :  OUTPUT (0)\n\n*** 작업재고번호 칼럼의 목적(?)...PK?",
         "ui": {
           "active": false,
           "left": 134.44444444444446,
           "top": 5718.131076388885,
-          "zIndex": 86,
+          "zIndex": 377,
           "width": 278,
           "height": 100
         },
@@ -16596,14 +16573,14 @@
         "id": "8545127f-065f-4ded-ae8c-308f69e6328e"
       },
       {
-        "value": "paper_stock_history\n- 자식 재고의 변화량을 등록\n\nqty 칼럼\n- 생성된 또는 생성될 예정인 재고는 양수\n- 사용된 또는 사용될 예정인 재고는 음수\n\n",
+        "value": "paper_stock_history\n- 자식 재고의 변화량을 등록\n\nqty 칼럼\n- 생성된 또는 생성될 예정인 재고는 양수\n- 사용된 또는 사용될 예정인 재고는 음수",
         "ui": {
           "active": false,
-          "left": 124,
-          "top": 3528.307291666667,
-          "zIndex": 328,
+          "left": 106.2222222222222,
+          "top": 3579.4184027777783,
+          "zIndex": 421,
           "width": 324,
-          "height": 176
+          "height": 118
         },
         "id": "97fefb3f-966f-4f1c-94dd-5a05c4f6c0cf"
       },
@@ -16642,6 +16619,18 @@
           "height": 100
         },
         "id": "27168632-3b77-4bb5-b2a5-5c10e3370ea8"
+      },
+      {
+        "value": "to_company 의 사용여부가 바뀌면 id 가 변경되기 때문에 값을 복사함",
+        "ui": {
+          "active": false,
+          "left": 1047.4444444444448,
+          "top": 8306.862847222224,
+          "zIndex": 432,
+          "width": 364,
+          "height": 100
+        },
+        "id": "8026020a-0ca2-439a-a0bd-c125cb68cb85"
       }
     ]
   },
@@ -16931,8 +16920,8 @@
             "36b376ae-5890-461d-9357-ba7c9cf0b974",
             "df54a58d-165e-4efb-9ba0-d19e884abad1"
           ],
-          "x": 624.591552734375,
-          "y": 5622.7766,
+          "x": 608.7940033203125,
+          "y": 5626.9709,
           "direction": "right"
         },
         "constraintName": "fk__to_",
@@ -17059,7 +17048,7 @@
             "453bcc79-e2ae-4636-9427-7a2d4fdd3146"
           ],
           "x": 1226.17661875,
-          "y": 5470.4014,
+          "y": 5462.6237,
           "direction": "right"
         },
         "end": {
@@ -17085,7 +17074,7 @@
             "453bcc79-e2ae-4636-9427-7a2d4fdd3146"
           ],
           "x": 1018.795759375,
-          "y": 5415.4014,
+          "y": 5407.6237,
           "direction": "top"
         },
         "end": {
@@ -17175,8 +17164,8 @@
             "24e0ad7d-cb8b-432f-a8e7-acbf045167d8",
             "128c7e72-0b2a-4beb-9d2b-8d8fb835bcdc"
           ],
-          "x": 2385.8783,
-          "y": 5973.1759,
+          "x": 2372.5451,
+          "y": 5962.0649,
           "direction": "left"
         },
         "constraintName": "fk__to_",
@@ -17203,8 +17192,8 @@
             "527233b0-42e2-492e-8299-c285ae1529a9",
             "91b1dcaf-f893-4686-9c7a-f4710ec3b6c4"
           ],
-          "x": 2810.05359296875,
-          "y": 5973.1759,
+          "x": 2796.72039296875,
+          "y": 5962.0649,
           "direction": "right"
         },
         "constraintName": "fk__to_",
@@ -18333,8 +18322,8 @@
           "columnIds": [
             "21cc5af4-0aff-43da-87b6-6e18c3a37700"
           ],
-          "x": 652.10468828125,
-          "y": 3852.4166,
+          "x": 653.42624140625,
+          "y": 3846.8611,
           "direction": "right"
         },
         "constraintName": "fk_paper_stock_to_",
@@ -18350,8 +18339,8 @@
           "columnIds": [
             "694771e4-1b23-4d22-a262-058acdf0ef8f"
           ],
-          "x": 387.260694140625,
-          "y": 3938.1666,
+          "x": 380.143770703125,
+          "y": 3932.6111,
           "direction": "bottom"
         },
         "end": {
@@ -18359,8 +18348,8 @@
           "columnIds": [
             "b48755c2-16bf-48fc-8b6c-d382a9f22041"
           ],
-          "x": 380.4207763671875,
-          "y": 5537.0266,
+          "x": 370.2998016601563,
+          "y": 5551.4709,
           "direction": "top"
         },
         "constraintName": "fk_paper_stock_history_to_task_stock",
@@ -18634,7 +18623,7 @@
         "id": "d471b949-8c38-4894-b934-6e68c3d6e399"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -18660,7 +18649,7 @@
         "id": "674a2a11-00f0-4513-9201-dde8b164360f"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -18686,7 +18675,7 @@
         "id": "dce93f83-8280-4c94-bfcf-b0cee62708af"
       },
       {
-        "identification": true,
+        "identification": false,
         "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
@@ -18694,7 +18683,7 @@
           "columnIds": [
             "b94e0cd7-161a-4db3-865c-94d38a9471a1"
           ],
-          "x": 1533.2763671875,
+          "x": 1529.9430671875,
           "y": 3452.5573,
           "direction": "right"
         },
