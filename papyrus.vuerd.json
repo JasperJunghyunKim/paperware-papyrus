@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 8000,
     "height": 10000,
-    "scrollTop": -7161.640625,
-    "scrollLeft": -6.71354166666697,
+    "scrollTop": -3102.640625,
+    "scrollLeft": 0,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -3359,7 +3359,7 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 306.9644,
           "top": 7986.6399,
           "zIndex": 436,
@@ -16077,29 +16077,6 @@
             "id": "4540eadc-2626-4aba-82a0-1b59696311cc"
           },
           {
-            "name": "creator_uid",
-            "comment": "등록자UID",
-            "dataType": "INT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 67.0380859375,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "a594ac05-f23a-4869-9d00-0b3d6a966a16"
-          },
-          {
             "name": "created_at",
             "comment": "등록일시",
             "dataType": "TIMESTAMP",
@@ -16124,10 +16101,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 937.6667,
           "top": 3243.8073,
-          "zIndex": 369,
+          "zIndex": 438,
           "widthName": 101.0107421875,
           "widthComment": 69.469970703125,
           "color": "#FFEB3B"
@@ -18684,7 +18661,7 @@
             "b94e0cd7-161a-4db3-865c-94d38a9471a1"
           ],
           "x": 1529.9430671875,
-          "y": 3452.5573,
+          "y": 3442.3073,
           "direction": "right"
         },
         "end": {
