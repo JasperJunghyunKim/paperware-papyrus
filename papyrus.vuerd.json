@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 10000,
     "height": 12000,
-    "scrollTop": -3246.0989583333335,
-    "scrollLeft": -2069.296875,
-    "zoomLevel": 0.6,
+    "scrollTop": -6605.432291666667,
+    "scrollLeft": -1015,
+    "zoomLevel": 1,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -4415,9 +4415,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1503.4881,
-          "top": 6318.6851,
-          "zIndex": 1259,
+          "left": 1556.8204,
+          "top": 6360.3515,
+          "zIndex": 1507,
           "widthName": 63.41357421875,
           "widthComment": 60
         },
@@ -5128,7 +5128,7 @@
           "active": false,
           "left": 1341.4461,
           "top": 6774.4339,
-          "zIndex": 1257,
+          "zIndex": 1509,
           "widthName": 85.09716796875,
           "widthComment": 69.469970703125
         },
@@ -11637,9 +11637,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 7294.2558,
-          "top": 10409.8165,
-          "zIndex": 137,
+          "left": 7307.2558,
+          "top": 10471.8165,
+          "zIndex": 1449,
           "widthName": 60,
           "widthComment": 107.8544921875,
           "color": "#FFEB3B"
@@ -11815,9 +11815,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 7305.6833,
-          "top": 10834.3051,
-          "zIndex": 139,
+          "left": 7310.6833,
+          "top": 10798.3051,
+          "zIndex": 1451,
           "widthName": 99.55078125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -11901,9 +11901,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 7298.5886,
-          "top": 10635.0103,
-          "zIndex": 138,
+          "left": 7308.5886,
+          "top": 10656.0103,
+          "zIndex": 1450,
           "widthName": 119.79345703125,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -12498,7 +12498,7 @@
       },
       {
         "name": "by_card_payment",
-        "comment": "지급_카드결제",
+        "comment": "카드결제",
         "columns": [
           {
             "name": "\baccounted_id",
@@ -12641,11 +12641,11 @@
         ],
         "ui": {
           "active": false,
-          "left": 7315.8615,
-          "top": 11093.445,
-          "zIndex": 140,
+          "left": 7312.8615,
+          "top": 11024.445,
+          "zIndex": 1462,
           "widthName": 105.33984375,
-          "widthComment": 76.699951171875,
+          "widthComment": 60,
           "color": "#FFEB3B"
         },
         "visible": true,
@@ -15673,11 +15673,12 @@
         ],
         "ui": {
           "active": false,
-          "left": 7316.4998,
-          "top": 11301.4998,
-          "zIndex": 141,
+          "left": 7314.4998,
+          "top": 11228.4998,
+          "zIndex": 1454,
           "widthName": 60,
-          "widthComment": 60
+          "widthComment": 60,
+          "color": "#FFEB3B"
         },
         "visible": true,
         "id": "2089fcfe-afdb-4c53-9afc-c4f9566448c3"
@@ -15758,11 +15759,12 @@
         ],
         "ui": {
           "active": false,
-          "left": 7394.3335,
-          "top": 11468.6667,
-          "zIndex": 142,
+          "left": 7313.3335,
+          "top": 11368.6667,
+          "zIndex": 1456,
           "widthName": 60,
-          "widthComment": 60
+          "widthComment": 60,
+          "color": "#FFEB3B"
         },
         "visible": true,
         "id": "a48cf0a7-9aab-4e54-b0e8-72ef575b470c"
@@ -15866,9 +15868,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 5291.7606,
-          "top": 9853.3333,
-          "zIndex": 136,
+          "left": 5472.7606,
+          "top": 10034.3333,
+          "zIndex": 1447,
           "widthName": 60,
           "widthComment": 60
         },
@@ -16921,9 +16923,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 3089.4444,
-          "top": 6413.9881,
-          "zIndex": 1241,
+          "left": 1639.9999,
+          "top": 5087.8764,
+          "zIndex": 1505,
           "widthName": 67.0380859375,
           "widthComment": 60
         },
@@ -17259,9 +17261,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 2036.9635,
-          "top": 5794.7656,
-          "zIndex": 1250,
+          "left": 2320.8525,
+          "top": 5087.5437,
+          "zIndex": 1504,
           "widthName": 67.7490234375,
           "widthComment": 60
         },
@@ -17301,9 +17303,9 @@
         "value": "staff / 직원\n- 기업 최초 계정의 등록자ID는 자신\n- 직원 삭제API 없음 / 대신 탈퇴일 값이 있을 경우 직원 목록에서 노출되지 않음\n- 기본매출일 ~ 기본매입납기일 0 과 null 은 다름 / 0 은 등록하는 오늘날짜를 자동선택 / null 은 자동선택 없음",
         "ui": {
           "active": false,
-          "left": 5145.953993055556,
-          "top": 7589.527777777772,
-          "zIndex": 86,
+          "left": 5913.953993055556,
+          "top": 8181.527777777772,
+          "zIndex": 1467,
           "width": 426,
           "height": 101
         },
@@ -17361,9 +17363,9 @@
         "value": "role / 역할\n- 대표자\n- 대표관리자\n- 관리자\n- 일반사용자",
         "ui": {
           "active": false,
-          "left": 1110.088541666667,
-          "top": 5120.161458333335,
-          "zIndex": 6,
+          "left": 6775.088541666667,
+          "top": 9755.16145833334,
+          "zIndex": 1492,
           "width": 127,
           "height": 100
         },
@@ -17505,9 +17507,9 @@
         "value": "회계구분ENUM\n1. 수금 2. 지급\n\n회계수단ENUM (수금)\n1. 계좌이체 2. 어음(수표) 3. 카드입금 4. 현금 5. 상계 6. 기타\n\n회계수단ENUM (지급)\n1. 계좌이체 2. 어음(수표) 3. 카드결제 4. 현금 5. 상계 6. 기타\n\n계정과목\n수금계정과목ENUM 과 지급계정과목ENUM 구분\n",
         "ui": {
           "active": false,
-          "left": 5453.416666666668,
-          "top": 7759.027777777779,
-          "zIndex": 87,
+          "left": 6355.416666666668,
+          "top": 10150.02777777778,
+          "zIndex": 1470,
           "width": 571,
           "height": 201
         },
@@ -17577,9 +17579,9 @@
         "value": "작업금액구분ENUM\n1. 매출 금액\n2. 매입 금액\n3. 재고 금액(trade_date, cutting_price, supply_price, vat, book_closed_yn 미사용)\n\n",
         "ui": {
           "active": false,
-          "left": 2038.6050347222194,
-          "top": 5631.99392361111,
-          "zIndex": 1159,
+          "left": 1450.8272569444416,
+          "top": 5621.993923611111,
+          "zIndex": 1501,
           "width": 499,
           "height": 100
         },
@@ -17589,9 +17591,9 @@
         "value": "* 주문을 등록하는 기업과 관계없이, 매출하는 기업이면 from_company_id / 매입하는 기업이면 to_company_id",
         "ui": {
           "active": false,
-          "left": 4150.327256944444,
-          "top": 8325.355034722226,
-          "zIndex": 155,
+          "left": 530.3272569444414,
+          "top": 9968.688368055555,
+          "zIndex": 1475,
           "width": 316,
           "height": 372
         },
@@ -17603,7 +17605,7 @@
           "active": false,
           "left": 530.1944444444443,
           "top": 7151.438368055552,
-          "zIndex": 1367,
+          "zIndex": 1486,
           "width": 127,
           "height": 113
         },
@@ -17613,23 +17615,23 @@
         "value": "1. 특정 수신자를 지정해서 발신하는 경우\n2. 여러 수신자에게 발신하는 경우\n\n수주담당자(전화로발주했을때의알림을받을역할)\n서브수주담당자 구분 > \n",
         "ui": {
           "active": false,
-          "left": 2786.7048611111113,
-          "top": 7461.980902777779,
-          "zIndex": 809,
+          "left": 2743.37152777778,
+          "top": 7740.3142361111095,
+          "zIndex": 1476,
           "width": 258,
           "height": 100
         },
         "id": "2cc28a95-f77e-4c9b-80e2-a4061571f7c1"
       },
       {
-        "value": "user_config table\n\n사용자마다 동일한 메뉴 화면을 커스텀\n1. 검색박스의 검색범주 순서, 숨김\n2. 조회된 목록의 칼럼 순서, 숨김\n3. SHEET 재고 인풋 타입 선택",
+        "value": "user_config table\n\n사용자마다 동일한 메뉴 화면을 커스텀\n1. 검색박스 검색범주의 순서 & 숨김여부\n2. 조회된 목록 칼럼의 순서 & 숨김여부\n3. SHEET 재고 인풋 타입 선택(1~4)\n4. 매입, 매출 등록의 주문 정보의 일부 인풋을 접기, 펴기",
         "ui": {
           "active": false,
-          "left": 5943.333333333333,
-          "top": 7151.555555555557,
-          "zIndex": 94,
+          "left": 6371.66666666667,
+          "top": 9441.55555555556,
+          "zIndex": 1485,
           "width": 410,
-          "height": 100
+          "height": 154
         },
         "id": "e0e23bca-76cd-4f8e-bd87-8ea421f0f08e"
       },
@@ -17637,9 +17639,9 @@
         "value": "재고가 작업에 사용되는 경우 : INPUT (1)\n재고가 작업을 통해 생성되는 경우 :  OUTPUT (0)\n\n*** 작업재고번호 칼럼의 목적(?)...PK?",
         "ui": {
           "active": false,
-          "left": 629.9444444444445,
-          "top": 3538.131076388885,
-          "zIndex": 1376,
+          "left": 1727.7222222222215,
+          "top": 5794.797743055552,
+          "zIndex": 1497,
           "width": 278,
           "height": 100
         },
@@ -17649,9 +17651,9 @@
         "value": "수수료 포함(1)\n* 합계 = 카드입금금액 + 수수료(수수료 자사 부담)\n\n수수료 미포함(2)\n합계 = 카드입금금액(수수료 거래처 부담)",
         "ui": {
           "active": false,
-          "left": 7558.000000000001,
-          "top": 8370.575520833336,
-          "zIndex": 88,
+          "left": 7892.000000000001,
+          "top": 10794.575520833336,
+          "zIndex": 1463,
           "width": 264,
           "height": 100
         },
@@ -17757,9 +17759,9 @@
         "value": "수수료 포함(1)\n* 지급합계 = 카드 결제 금액(수수료 거래처 부담)\n수수료 미포함(2)\n* 직급합계 = 카드 결제 금액 - 수수료(수수료 자사 부담)",
         "ui": {
           "active": false,
-          "left": 7553.093749999999,
-          "top": 8643.333333333334,
-          "zIndex": 84,
+          "left": 7879.093749999999,
+          "top": 11022.333333333334,
+          "zIndex": 1466,
           "width": 290,
           "height": 100
         },
@@ -17788,6 +17790,18 @@
           "height": 100
         },
         "id": "0ca835bd-137c-4e69-98f2-d0a8606699a8"
+      },
+      {
+        "value": "조회 조인 횟수를 단축하기 위함",
+        "ui": {
+          "active": false,
+          "left": 1336,
+          "top": 6606.432291666667,
+          "zIndex": 1512,
+          "width": 127,
+          "height": 100
+        },
+        "id": "a0f26f51-54de-41d6-a18d-90ce6ac7d3e5"
       }
     ]
   },
@@ -18989,8 +19003,8 @@
           "columnIds": [
             "68823915-410d-4d39-bc5b-b498de2fd07d"
           ],
-          "x": 7298.5886,
-          "y": 10700.2603,
+          "x": 7308.5886,
+          "y": 10721.2603,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_transfer",
@@ -19015,8 +19029,8 @@
           "columnIds": [
             "0c3a85fd-439f-4628-b3fb-51179ff95282"
           ],
-          "x": 7294.2558,
-          "y": 10495.5665,
+          "x": 7307.2558,
+          "y": 10557.5665,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_note",
@@ -19041,8 +19055,8 @@
           "columnIds": [
             "80f7769d-a595-4fe1-8c07-e50f207881ad"
           ],
-          "x": 7305.6833,
-          "y": 10940.5551,
+          "x": 7310.6833,
+          "y": 10904.5551,
           "direction": "left"
         },
         "constraintName": "fk_collected_to_collected_card",
@@ -19197,8 +19211,8 @@
           "columnIds": [
             "5acb0a65-054c-46e2-bfcf-44e644fe8292"
           ],
-          "x": 7315.8615,
-          "y": 11189.445,
+          "x": 7312.8615,
+          "y": 11120.445,
           "direction": "left"
         },
         "constraintName": "fk_collected_paid_to_paid_card",
@@ -19275,8 +19289,8 @@
           "columnIds": [
             "b48755c2-16bf-48fc-8b6c-d382a9f22041"
           ],
-          "x": 1503.4881,
-          "y": 6394.1851,
+          "x": 1556.8204,
+          "y": 6435.8515,
           "direction": "left"
         },
         "constraintName": "fk_paper_stock_history_to_task_stock",
@@ -19353,8 +19367,8 @@
           "columnIds": [
             "10fb1153-b81d-4610-a843-0ca0749ae923"
           ],
-          "x": 7545.523256054687,
-          "y": 10409.8165,
+          "x": 7558.523256054687,
+          "y": 10471.8165,
           "direction": "top"
         },
         "constraintName": "fk_account_note_to_by_note",
@@ -19641,8 +19655,8 @@
           "columnIds": [
             "c70c6b09-9e39-4742-a2c4-5dd3dcb9b796"
           ],
-          "x": 7316.4998,
-          "y": 11366.7498,
+          "x": 7314.4998,
+          "y": 11293.7498,
           "direction": "left"
         },
         "constraintName": "fk_accounted_to_by_cahsh",
@@ -19667,8 +19681,8 @@
           "columnIds": [
             "874de0f0-f491-4f48-9851-8aaa51959b63"
           ],
-          "x": 7394.3335,
-          "y": 11533.9167,
+          "x": 7313.3335,
+          "y": 11433.9167,
           "direction": "left"
         },
         "constraintName": "fk_accounted_to_by_etc",
@@ -19693,8 +19707,8 @@
           "columnIds": [
             "7949075e-caaf-470e-aff8-ba9118906c0e"
           ],
-          "x": 5403.156840234375,
-          "y": 10004.3333,
+          "x": 5584.156840234375,
+          "y": 10185.3333,
           "direction": "bottom"
         },
         "constraintName": "fk_accounted_to_by_offset",
@@ -19719,8 +19733,8 @@
           "columnIds": [
             "e5f03492-2e75-46dc-84d8-f9b26992f2b7"
           ],
-          "x": 5625.949320703125,
-          "y": 10004.3333,
+          "x": 5806.949320703125,
+          "y": 10185.3333,
           "direction": "bottom"
         },
         "constraintName": "fk_accounted_to_by_offset",
@@ -19892,18 +19906,18 @@
           "columnIds": [
             "3f8c3ce0-a32f-469c-bf13-9d0a658048fe"
           ],
-          "x": 2466.2318,
-          "y": 6807.7645,
-          "direction": "right"
+          "x": 2230.32555,
+          "y": 6759.7645,
+          "direction": "top"
         },
         "end": {
           "tableId": "e8ef1817-3de0-4f77-b88f-be86b46a2b6e",
           "columnIds": [
             "bbbf1456-eb18-4cea-bc5b-b5730b607a69"
           ],
-          "x": 3089.4444,
-          "y": 6653.4881,
-          "direction": "left"
+          "x": 1973.866843359375,
+          "y": 5566.8764,
+          "direction": "bottom"
         },
         "constraintName": "fk_task_to_task_price",
         "visible": true,
@@ -19980,7 +19994,7 @@
             "ef34e4bb-5d2a-4b9c-8ad6-ee785dfa8321"
           ],
           "x": 2466.2318,
-          "y": 6903.7645,
+          "y": 6855.7645,
           "direction": "right"
         },
         "constraintName": "fk_company_to_task",
@@ -20074,7 +20088,7 @@
           "columnIds": [
             "3f8c3ce0-a32f-469c-bf13-9d0a658048fe"
           ],
-          "x": 2112.372425,
+          "x": 2073.0547166666665,
           "y": 6759.7645,
           "direction": "top"
         },
@@ -20083,8 +20097,8 @@
           "columnIds": [
             "4abaa84f-e0ad-4ec8-bd39-7a3853c2cbed"
           ],
-          "x": 1974.9047259765625,
-          "y": 6394.1851,
+          "x": 2028.2370259765626,
+          "y": 6435.8515,
           "direction": "right"
         },
         "constraintName": "fk_task_to_task_stock",
@@ -20126,7 +20140,7 @@
           "columnIds": [
             "3f8c3ce0-a32f-469c-bf13-9d0a658048fe"
           ],
-          "x": 2348.278675,
+          "x": 2387.5963833333335,
           "y": 6759.7645,
           "direction": "top"
         },
@@ -20135,8 +20149,8 @@
           "columnIds": [
             "8e77a948-ba7a-4309-9ec8-e330a83da397"
           ],
-          "x": 2370.830443359375,
-          "y": 6150.7656,
+          "x": 2654.719443359375,
+          "y": 5443.5437,
           "direction": "bottom"
         },
         "constraintName": "fk_task_to_stock_price",
