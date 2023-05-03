@@ -1,4 +1,4 @@
-import { AppError } from "src/shared";
+import { AppError } from "src/@shared";
 
 export const USER_ERROR = 'UserError';
 

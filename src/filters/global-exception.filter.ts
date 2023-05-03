@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { Response } from 'express';
-import { AppError, toStringify } from 'src/shared';
+import { AppError, toStringify } from 'src/@shared';
 
 /**
  * 글로벌 에러 필터이다.
