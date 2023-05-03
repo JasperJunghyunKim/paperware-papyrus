@@ -1,5 +1,5 @@
 import { ConflictException } from '@nestjs/common';
-import { AppError } from 'src/shared';
+import { AppError } from 'src/@shared';
 
 /**
  * 사용자 데이터 중복(`CONFLICT: 409`) 에러이다.
