@@ -22,7 +22,7 @@
     "deploy": "npm run start:prod"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed/index.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
