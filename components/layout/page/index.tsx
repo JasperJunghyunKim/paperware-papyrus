@@ -1,8 +1,14 @@
 import { Api, Util } from "@/common";
-import { Button, Logo } from "@/components";
-import { AutoComplete, ConfigProvider, Input } from "antd";
+import { Button, Icon, Logo } from "@/components";
+import { AutoComplete, ConfigProvider, Input, Tooltip } from "antd";
 import { useRouter } from "next/router";
-import { PropsWithChildren, useCallback, useEffect, useMemo } from "react";
+import {
+  PropsWithChildren,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import {
   TbBuildingWarehouse,
   TbChartDots,
@@ -26,6 +32,7 @@ import {
 } from "react-icons/tb";
 import { useStickyBox } from "react-sticky-box";
 import Menu, { Menu as MenuDef } from "./Menu";
+import classNames from "classnames";
 
 export interface Props {
   title: string;
@@ -52,11 +59,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         icon: <TbServerBolt />,
         path: "/arrival-stock",
       },
-      {
-        label: "보관 재고 관리",
-        icon: <TbServer />,
-        path: "/stored-stock",
-      },
       { label: "창고 관리", icon: <TbBuildingWarehouse />, path: "/warehouse" },
       { path: null },
       {
@@ -79,12 +81,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "매출 수주 목록",
         icon: <TbSubtask />,
         path: "/sales-order",
-      },
-      {
-        label: "견적 요청 목록",
-        icon: <TbClipboardData />,
-        path: "/estimate",
-        wip: true,
       },
       {
         label: "매출처 관리",
@@ -112,7 +108,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         path: "/official-price",
         wip: true,
       },
-      { label: "직원 설정", icon: <TbUsers />, path: "/staff", wip: true },
     ],
     []
   );
@@ -145,23 +140,46 @@ export default function Component(props: PropsWithChildren<Props>) {
         </div>
         <div className="flex-1 w-0 bg-slate-100 flex flex-col">
           <header className="flex flex-initial px-4 h-16 bg-white border-solid border-0 border-b border-gray-200 select-none fixed top-0 right-0 left-60 z-10">
-            <div className="flex flex-row items-center  w-full h-full">
+            <div className="flex-1 flex flex-row items-center h-full">
               <ConfigProvider theme={{ token: { borderRadius: 100 } }}>
                 <AutoComplete dropdownMatchSelectWidth={500} className="w-64">
                   <Input placeholder="검색" addonAfter={<TbSearch />} />
                 </AutoComplete>
               </ConfigProvider>
             </div>
-            <div className="flex-initial flex gap-x-4">
-              <div className="flex-initial flex flex-col justify-center font-bold">
-                {user.data?.username}
+            <div className="flex-initial flex gap-x-4 w-full justify-end">
+              <div className="flex-initial basis-10 flex-shrink-0 flex flex-col justify-center">
+                <div className="basis-10 rounded-full bg-gray-200 text-center flex flex-col justify-center text-xl">
+                  {user.data?.username.substring(0, 1)}
+                </div>
               </div>
-              <div className="flex-initial flex flex-col justify-center">
-                <Button.Default
-                  icon={<TbPower />}
-                  label="로그아웃"
-                  onClick={logout}
-                />
+              <div className="flex-initial flex flex-col justify-center whitespace-nowrap text-sm">
+                <span className="font-bold text-black">
+                  {user.data?.username}
+                </span>
+                <span className="text-gray-500 text-sm">
+                  {user.data?.username}
+                </span>
+              </div>
+              <div className="flex-initial flex-shrink-0 basis-1 flex flex-col justify-center">
+                <div className="flex-initial basis-6 bg-cyan-600" />
+              </div>
+              <Shortcut
+                icon={<Icon.Trade type="PURCHASE" />}
+                tooltip="매입 등록"
+              />
+              <Shortcut
+                icon={<Icon.Trade type="SALES" />}
+                tooltip="매출 등록"
+              />
+              <div className="flex-initial flex">
+                <div className="flex-initial flex flex-col justify-center">
+                  <Button.Default
+                    icon={<TbPower />}
+                    label="로그아웃"
+                    onClick={logout}
+                  />
+                </div>
               </div>
             </div>
           </header>
@@ -174,5 +192,25 @@ export default function Component(props: PropsWithChildren<Props>) {
         </div>
       </div>
     </>
+  );
+}
+
+interface ShortcutProps {
+  icon: ReactNode;
+  tooltip: string;
+}
+function Shortcut(props: ShortcutProps) {
+  return (
+    <div className="flex-initial basis-6 flex">
+      <Tooltip title={props.tooltip}>
+        <div
+          className={classNames(
+            "flex-initial flex flex-col items-center justify-center text-2xl cursor-pointer text-black hover:text-cyan-800"
+          )}
+        >
+          {props.icon}
+        </div>
+      </Tooltip>
+    </div>
   );
 }
