@@ -27,7 +27,7 @@ export class InternalController {
     private internalService: InternalService,
     private staticService: StaticService,
     private prisma: PrismaService,
-  ) {}
+  ) { }
 
   // #region Warehouse
   @UseGuards(AuthGuard)
@@ -342,10 +342,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -397,7 +394,7 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    return data;
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -430,10 +427,10 @@ export class InternalController {
         },
         warehouse: body.warehouseId
           ? {
-              connect: {
-                id: body.warehouseId,
-              },
-            }
+            connect: {
+              id: body.warehouseId,
+            },
+          }
           : undefined,
         product: {
           connect: {
@@ -450,29 +447,28 @@ export class InternalController {
         sizeY: body.sizeY ?? 0,
         paperColorGroup: body.paperColorGroupId
           ? {
-              connect: {
-                id: body.paperColorGroupId,
-              },
-            }
+            connect: {
+              id: body.paperColorGroupId,
+            },
+          }
           : undefined,
         paperColor: body.paperColorId
           ? {
-              connect: {
-                id: body.paperColorId,
-              },
-            }
+            connect: {
+              id: body.paperColorId,
+            },
+          }
           : undefined,
         paperPattern: body.paperPatternId
           ? {
-              connect: {
-                id: body.paperPatternId,
-              },
-            }
+            connect: {
+              id: body.paperPatternId,
+            },
+          }
           : undefined,
         paperCert: {
-          connect: body.paperCertIds?.map((id) => ({ id })) ?? [],
+          // connect: body.paperCertIds?.map((id) => ({ id })) ?? [],
         },
-        stockPrice: body.price,
       },
       body.quantity,
     );
@@ -541,10 +537,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -623,10 +616,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   // #endregion
@@ -981,15 +971,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items: items.map((item) => {
-        return {
-          ...item,
-          createdAt: Util.dateToIso8601(item.createdAt),
-        };
-      }),
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1011,10 +993,7 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    return {
-      ...data,
-      createdAt: Util.dateToIso8601(data.createdAt),
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1148,10 +1127,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1163,7 +1139,7 @@ export class InternalController {
       },
       select: {
         company: true,
-        status: true,
+        // status: true,
       },
     });
 
@@ -1171,19 +1147,19 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    const nextStep: Record.PlanStatus =
-      plan.status === 'PREPARING'
-        ? 'PROGRESSING'
-        : plan.status === 'PROGRESSING'
-        ? 'PROGRESSED'
-        : 'RELEASED';
+    // const nextStep: Record.PlanStatus =
+    //   plan. === 'PREPARING'
+    //     ? 'PROGRESSING'
+    //     : plan.status === 'PROGRESSING'
+    //       ? 'PROGRESSED'
+    //       : 'RELEASED';
 
     await this.prisma.plan.update({
       where: {
         id: Util.parseNumber(param.id),
       },
       data: {
-        status: nextStep,
+        // status: nextStep,
       },
     });
   }
@@ -1246,22 +1222,22 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    await this.prisma.$transaction(async (tx) => {
-      await tx.task.create({
-        data: {
-          planId: plan.id,
-          type: 'CONVERTING',
-          taskNo: ulid(),
-          taskConverting: {
-            create: {
-              sizeX: body.sizeX,
-              sizeY: body.sizeY,
-              memo: body.memo ?? '',
-            },
-          },
-        },
-      });
-    });
+    // await this.prisma.$transaction(async (tx) => {
+    //   await tx.task.create({
+    //     data: {
+    //       planId: plan.id,
+    //       type: 'CONVERTING',
+    //       taskNo: ulid(),
+    //       taskConverting: {
+    //         create: {
+    //           sizeX: body.sizeX,
+    //           sizeY: body.sizeY,
+    //           memo: body.memo ?? '',
+    //         },
+    //       },
+    //     },
+    //   });
+    // });
   }
 
   @UseGuards(AuthGuard)
@@ -1330,22 +1306,22 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    await this.prisma.$transaction(async (tx) => {
-      await tx.task.create({
-        data: {
-          planId: plan.id,
-          type: 'GUILLOTINE',
-          taskNo: ulid(),
-          taskGuillotine: {
-            create: {
-              sizeX: body.sizeX,
-              sizeY: body.sizeY,
-              memo: body.memo ?? '',
-            },
-          },
-        },
-      });
-    });
+    // await this.prisma.$transaction(async (tx) => {
+    //   await tx.task.create({
+    //     data: {
+    //       planId: plan.id,
+    //       type: 'GUILLOTINE',
+    //       taskNo: ulid(),
+    //       taskGuillotine: {
+    //         create: {
+    //           sizeX: body.sizeX,
+    //           sizeY: body.sizeY,
+    //           memo: body.memo ?? '',
+    //         },
+    //       },
+    //     },
+    //   });
+    // });
   }
 
   @UseGuards(AuthGuard)
@@ -1437,10 +1413,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1462,13 +1435,7 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    return {
-      ...data,
-      plan: {
-        ...data.plan,
-        createdAt: Util.dateToIso8601(data.plan.createdAt),
-      },
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1513,10 +1480,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1576,29 +1540,29 @@ export class InternalController {
           sizeY: body.sizeY ?? 0,
           paperColorGroup: body.paperColorGroupId
             ? {
-                connect: {
-                  id: body.paperColorGroupId,
-                },
-              }
+              connect: {
+                id: body.paperColorGroupId,
+              },
+            }
             : undefined,
           paperColor: body.paperColorId
             ? {
-                connect: {
-                  id: body.paperColorId,
-                },
-              }
+              connect: {
+                id: body.paperColorId,
+              },
+            }
             : undefined,
           paperPattern: body.paperPatternId
             ? {
-                connect: {
-                  id: body.paperPatternId,
-                },
-              }
+              connect: {
+                id: body.paperPatternId,
+              },
+            }
             : undefined,
           paperCert: {
-            connect: body.paperCertIds?.map((id) => ({ id })) ?? [],
+            // connect: body.paperCertIds?.map((id) => ({ id })) ?? [],
           },
-          stockPrice: body.price,
+          // stockPrice: body.price,
         },
       });
 
@@ -1745,10 +1709,7 @@ export class InternalController {
       where,
     });
 
-    return {
-      items,
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1770,7 +1731,7 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    return data;
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -1798,21 +1759,21 @@ export class InternalController {
       throw new UnauthorizedException('Unauthorized');
     }
 
-    await this.prisma.invoice.create({
-      data: {
-        invoiceNo: `${ulid()}`,
-        shipping: {
-          connect: {
-            id: body.shippingId,
-          },
-        },
-        stockEvent: {
-          connect: {
-            id: body.stockEventId,
-          },
-        },
-      },
-    });
+    // await this.prisma.invoice.create({
+    //   data: {
+    //     invoiceNo: `${ulid()}`,
+    //     shipping: {
+    //       connect: {
+    //         id: body.shippingId,
+    //       },
+    //     },
+    //     stockEvent: {
+    //       connect: {
+    //         id: body.stockEventId,
+    //       },
+    //     },
+    //   },
+    // });
   }
 
   @UseGuards(AuthGuard)

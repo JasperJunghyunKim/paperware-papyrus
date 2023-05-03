@@ -26,7 +26,7 @@ export class ExternalController {
     private externalService: ExternalService,
     private internalService: InternalService,
     private prisma: PrismaService,
-  ) {}
+  ) { }
 
   // #region BusinessRelationshipRequest
 
@@ -291,7 +291,7 @@ export class ExternalController {
     const preparingCount = await this.externalService.getOrderCount({
       where: {
         srcCompanyId: req.user.companyId,
-        status: 'PREPARING',
+        // status: 'PREPARING',
       },
     });
 
@@ -332,10 +332,7 @@ export class ExternalController {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
 
-    return {
-      ...order,
-      wantedDate: Util.dateToIso8601(order.wantedDate),
-    };
+    return null;
   }
   @UseGuards(AuthGuard)
   @Post('order')
@@ -360,7 +357,7 @@ export class ExternalController {
           id: body.dstCompanyId,
         },
       },
-      status: 'PREPARING',
+      // status: 'PREPARING',
       memo: body.memo ?? '',
       wantedDate: body.wantedDate ?? null,
     });
@@ -393,7 +390,7 @@ export class ExternalController {
           id: body.srcCompanyId,
         },
       },
-      status: 'PREPARING',
+      // status: 'PREPARING',
       memo: body.memo ?? '',
       wantedDate: body.wantedDate ?? null,
       isEntrusted: true,
@@ -467,7 +464,7 @@ export class ExternalController {
           id: Util.parseNumber(param.id),
         },
         data: {
-          status: 'REQUESTED',
+          // status: 'REQUESTED',
         },
       });
     }
@@ -502,7 +499,7 @@ export class ExternalController {
         id: Util.parseNumber(param.id),
       },
       data: {
-        status: 'PREPARING',
+        // status: 'PREPARING',
       },
     });
   }
@@ -536,7 +533,7 @@ export class ExternalController {
         id: Util.parseNumber(param.id),
       },
       data: {
-        status: 'CANCELLED',
+        // status: 'CANCELLED',
       },
     });
   }
@@ -597,7 +594,7 @@ export class ExternalController {
         id: Util.parseNumber(param.id),
       },
       data: {
-        status: 'REJECTED',
+        // status: 'REJECTED',
       },
     });
   }
@@ -648,22 +645,7 @@ export class ExternalController {
       },
     });
 
-    return {
-      items: items.map((item) => ({
-        ...item,
-        order: {
-          ...item.order,
-          wantedDate: Util.dateToIso8601(item.order.wantedDate),
-        },
-        plan: item.plan
-          ? {
-              ...item.plan,
-              createdAt: Util.dateToIso8601(item.plan.createdAt),
-            }
-          : null,
-      })),
-      count,
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -691,17 +673,7 @@ export class ExternalController {
       );
     }
 
-    return {
-      ...data,
-      order: {
-        ...data.order,
-        wantedDate: Util.dateToIso8601(data.order.wantedDate),
-      },
-      plan: {
-        ...data.plan,
-        createdAt: Util.dateToIso8601(data.plan.createdAt),
-      },
-    };
+    return null;
   }
 
   @UseGuards(AuthGuard)
@@ -747,69 +719,16 @@ export class ExternalController {
           id: body.orderId,
         },
       },
-      product: {
-        connect: {
-          id: body.productId,
-        },
-      },
-      packaging: {
-        connect: {
-          id: body.packagingId,
-        },
-      },
-      grammage: body.grammage,
-      sizeX: body.sizeX,
-      sizeY: body.sizeY ?? 0,
-      paperColorGroup: body.paperColorGroupId
-        ? {
-            connect: {
-              id: body.paperColorGroupId,
-            },
-          }
-        : undefined,
-      paperColor: body.paperColorId
-        ? {
-            connect: {
-              id: body.paperColorId,
-            },
-          }
-        : undefined,
-      paperPattern: body.paperPatternId
-        ? {
-            connect: {
-              id: body.paperPatternId,
-            },
-          }
-        : undefined,
-      paperCert: body.paperCertId
-        ? {
-            connect: body.paperCertId.map((id) => ({ id })),
-          }
-        : undefined,
-      quantity: body.quantity,
-      memo: body.memo ?? '',
       dstLocation: body.dstLocationId
         ? {
-            connect: {
-              id: body.dstLocationId,
-            },
-          }
+          connect: {
+            id: body.dstLocationId,
+          },
+        }
         : undefined,
     });
 
-    return {
-      ...data,
-      order: {
-        ...data.order,
-        wantedDate: Util.dateToIso8601(data.order.wantedDate),
-      },
-      plan: data.plan
-        ? {
-            ...data.plan,
-            createdAt: Util.dateToIso8601(data.plan.createdAt),
-          }
-        : null,
-    };
+    return null;
   }
 
   // #endregion
@@ -833,7 +752,7 @@ export class ExternalController {
         {
           dstCompanyId: req.user.companyId,
           status: {
-            in: ['REQUESTED', 'ACCEPTED', 'REJECTED'],
+            // in: ['REQUESTED', 'ACCEPTED', 'REJECTED'],
           },
         },
         {

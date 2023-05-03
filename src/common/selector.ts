@@ -104,12 +104,12 @@ export const PAPER_CERT = {
 } satisfies Prisma.PaperCertSelect;
 
 export const ORDER_STOCK_TRADE_PRICE = {
-  orderStockId: true,
+  // orderId: true,
   companyId: true,
   officialPriceType: true,
   officialPrice: true,
   discountType: true,
-  stockPrice: true,
+  // s: true,
 } satisfies Prisma.OrderStockTradePriceSelect;
 
 export const STOCK = {
@@ -154,10 +154,10 @@ export const STOCK = {
   paperCert: {
     select: PAPER_CERT,
   },
-  officialPriceType: true,
-  officialPrice: true,
-  discountType: true,
-  stockPrice: true,
+  // officialPriceType: true,
+  // officialPrice: true,
+  // discountType: true,
+  // stockPrice: true,
   cachedQuantity: true,
   cachedQuantityAvailable: true,
 } satisfies Prisma.StockSelect;
@@ -205,10 +205,10 @@ export const VENDOR_STOCK = {
   paperCert: {
     select: PAPER_CERT,
   },
-  officialPriceType: true,
-  officialPrice: true,
-  discountType: true,
-  stockPrice: true,
+  // officialPriceType: true,
+  // officialPrice: true,
+  // discountType: true,
+  // stockPrice: true,
   cachedQuantity: true,
   cachedQuantityAvailable: true,
 } satisfies Prisma.StockSelect;
@@ -266,7 +266,7 @@ export const PLAN = {
   },
   stockEventIn: { select: STOCK_EVENT },
   createdAt: true,
-  status: true,
+  // status: true,
 } satisfies Prisma.PlanSelect;
 
 export const ORDER_STOCK = {
@@ -274,34 +274,8 @@ export const ORDER_STOCK = {
   order: {
     select: ORDER,
   },
-  product: {
-    select: PRODUCT,
-  },
-  packaging: {
-    select: PACKAGING,
-  },
-  grammage: true,
-  sizeX: true,
-  sizeY: true,
-  paperColorGroup: {
-    select: PAPER_COLOR_GROUP,
-  },
-  paperColor: {
-    select: PAPER_COLOR,
-  },
-  paperPattern: {
-    select: PAPER_PATTERN,
-  },
-  paperCert: {
-    select: PAPER_CERT,
-  },
-  quantity: true,
-  memo: true,
   dstLocation: {
     select: LOCATION,
-  },
-  tradePrice: {
-    select: ORDER_STOCK_TRADE_PRICE,
   },
   plan: {
     select: PLAN,
@@ -322,7 +296,7 @@ export const INVOICE = {
     select: SHIPPING,
   },
   invoiceNo: true,
-  stockEvent: {
-    select: STOCK_EVENT,
-  },
+  // stockEvent: {
+  //   select: STOCK_EVENT,
+  // },
 } satisfies Prisma.InvoiceSelect;

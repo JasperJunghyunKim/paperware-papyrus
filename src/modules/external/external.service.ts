@@ -6,7 +6,7 @@ import { ulid } from 'ulid';
 
 @Injectable()
 export class ExternalService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   // #region Company
   async findCompanyWithCompanyRegistrationNumber(
@@ -137,7 +137,7 @@ export class ExternalService {
       select: Selector.VENDOR_STOCK,
     });
 
-    return data;
+    return null;
   }
 
   async getVendorStockCount(params: {
@@ -182,7 +182,7 @@ export class ExternalService {
       select: Selector.VENDOR_STOCK,
     });
 
-    return data;
+    return null;
   }
 
   async getStoredStockCount(params: {
@@ -219,12 +219,7 @@ export class ExternalService {
       select: Selector.ORDER,
     });
 
-    return data.map<Record.Order>((item) => {
-      return {
-        ...item,
-        wantedDate: Util.dateToIso8601(item.wantedDate),
-      };
-    });
+    return null;
   }
 
   async getOrderCount(params: {
@@ -242,10 +237,7 @@ export class ExternalService {
       select: Selector.ORDER,
     });
 
-    return {
-      ...data,
-      wantedDate: Util.dateToIso8601(data.wantedDate),
-    };
+    return null;
   }
 
   async createOrder(data: Prisma.OrderCreateInput): Promise<Record.Order> {
@@ -254,10 +246,7 @@ export class ExternalService {
       select: Selector.ORDER,
     });
 
-    return {
-      ...inserted,
-      wantedDate: Util.dateToIso8601(inserted.wantedDate),
-    };
+    return null;
   }
 
   async updateOrder(params: {
@@ -270,114 +259,13 @@ export class ExternalService {
       select: Selector.ORDER,
     });
 
-    return {
-      ...updated,
-      wantedDate: Util.dateToIso8601(updated.wantedDate),
-    };
+    return null;
   }
 
   async acceptOrder(orderId: number): Promise<void> {
-    this.prisma.$transaction(async (tx) => {
-      const order = await tx.order.update({
-        where: {
-          id: orderId,
-        },
-        data: {
-          status: 'ACCEPTED',
-        },
-      });
 
-      const orderStocks = await tx.orderStock.findMany({
-        where: {
-          orderId,
-        },
-        include: {
-          paperCert: true,
-        },
-      });
 
-      await Promise.all(
-        orderStocks.map(async (orderStock) => {
-          const plan = await tx.plan.create({
-            data: {
-              planNo: ulid(),
-              companyId: order.dstCompanyId,
-              orderStock: {
-                connect: {
-                  id: orderStock.id,
-                },
-              },
-            },
-          });
 
-          // 구매처의 도착 예정 목록에 추가
-          await tx.stock.create({
-            data: {
-              serial: ulid(),
-              companyId: order.srcCompanyId,
-              productId: orderStock.productId,
-              packagingId: orderStock.packagingId,
-              grammage: orderStock.grammage,
-              sizeX: orderStock.sizeX,
-              sizeY: orderStock.sizeY,
-              paperColorGroupId: orderStock.paperColorGroupId,
-              paperColorId: orderStock.paperColorId,
-              paperPatternId: orderStock.paperPatternId,
-              paperCert: {
-                connect: orderStock.paperCert.map((p) => ({
-                  id: p.id,
-                })),
-              },
-              cachedQuantityAvailable: orderStock.quantity,
-              stockEvent: {
-                create: {
-                  change: orderStock.quantity,
-                  status: 'PENDING',
-                  orderStock: {
-                    connect: {
-                      id: orderStock.id,
-                    },
-                  },
-                },
-              },
-            },
-          });
-
-          // 판매자의 출고 예정 목록에 추가
-          await tx.stock.create({
-            data: {
-              serial: ulid(),
-              companyId: order.dstCompanyId,
-              productId: orderStock.productId,
-              packagingId: orderStock.packagingId,
-              grammage: orderStock.grammage,
-              sizeX: orderStock.sizeX,
-              sizeY: orderStock.sizeY,
-              paperColorGroupId: orderStock.paperColorGroupId,
-              paperColorId: orderStock.paperColorId,
-              paperPatternId: orderStock.paperPatternId,
-              paperCert: {
-                connect: orderStock.paperCert.map((p) => ({
-                  id: p.id,
-                })),
-              },
-              cachedQuantityAvailable: orderStock.quantity,
-              stockEvent: {
-                create: {
-                  change: orderStock.quantity,
-                  status: 'PENDING',
-                  planOut: {
-                    connect: {
-                      id: plan.id,
-                    },
-                  },
-                },
-              },
-            },
-          });
-        }),
-      );
-    });
   }
 
   // #endregion
