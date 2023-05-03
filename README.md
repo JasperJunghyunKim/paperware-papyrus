@@ -9,3 +9,6 @@
 
 ## submodule update 
 1. git submodule update --recursive 
+
+# 주의사항
+루트경로에서 받으면 해당 submodule pull이 안받아지기 때문에 submoudle 경로 가서 git submodule update --recursive 별도로 pull 요청 해줘야한다.!
