@@ -150,13 +150,11 @@ export default function Component(props: PropsWithChildren<Props>) {
             <div className="flex-initial flex gap-x-4 w-full justify-end">
               <div className="flex-initial basis-10 flex-shrink-0 flex flex-col justify-center">
                 <div className="basis-10 rounded-full bg-gray-200 text-center flex flex-col justify-center text-xl">
-                  {user.data?.username.substring(0, 1)}
+                  {user.data?.name.substring(0, 1)}
                 </div>
               </div>
               <div className="flex-initial flex flex-col justify-center whitespace-nowrap text-sm">
-                <span className="font-bold text-black">
-                  {user.data?.username}
-                </span>
+                <span className="font-bold text-black">{user.data?.name}</span>
                 <span className="text-gray-500 text-sm">
                   {user.data?.username}
                 </span>
