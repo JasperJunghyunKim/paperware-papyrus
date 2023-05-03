@@ -1,0 +1,52 @@
+@tailwind base;
+
+@font-face {
+  font-family: "D2Coding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Noto Sans KR";
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.font-fixed {
+  font-family: "D2Coding";
+}
+
+.font-logo {
+  font-family: "Montserrat";
+  font-weight: 800;
+}
+
+.ant-form-item-label {
+  user-select: none;
+  font-weight: bold;
+}
+
+.custom-modal .ant-modal-content {
+  padding: 0px !important;
+}
+
+.custom-popover .ant-popover-inner {
+  padding: 0px !important;
+}
+
+.custom-addon .ant-input-group-addon {
+  padding: 0px !important;
+}
+
+@tailwind components;
+@tailwind utilities;
