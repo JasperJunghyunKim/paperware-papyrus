@@ -1,4 +1,4 @@
-import { Company } from '.';
+import { Company } from ".";
 
 export default interface Warehouse {
   id: number;
@@ -6,4 +6,5 @@ export default interface Warehouse {
   code: string;
   isPublic: boolean;
   company: Company;
+  address: string;
 }
