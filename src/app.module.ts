@@ -11,14 +11,17 @@ const configModule = (): DynamicModule => {
   return ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: `.env`,
-    validate
-  })
+    validate,
+  });
 };
-
 
 @Module({
   imports: [
-    configModule(), HealthModule, RouteScanModule, BusinessModule, DatabaseModule
+    configModule(),
+    HealthModule,
+    RouteScanModule,
+    BusinessModule,
+    DatabaseModule,
   ],
   providers: [
     {
@@ -31,4 +34,4 @@ const configModule = (): DynamicModule => {
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}
