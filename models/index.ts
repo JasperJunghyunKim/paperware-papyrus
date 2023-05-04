@@ -1,19 +1,28 @@
-export * as Enum from './enum';
+import BusinessRelationship from './business-relationship';
+import BusinessRelationshipRequest from './business-relationship-request';
+import BusinessRelationshipRequestStat from './business-relationship-request-stat';
+import BusinessRelationshipStat from './business-relationship-stat';
 import Company from './company';
 import Location from './location';
-import Warehouse from './warehouse';
-import PaperDomain from './paper-domain';
 import Manufacturer from './manufacturer';
+import Packaging from './packaging';
+import PaperCert from './paper-cert';
+import PaperColor from './paper-color';
+import PaperColorGroup from './paper-color-group';
+import PaperDomain from './paper-domain';
 import PaperGroup from './paper-group';
+import PaperPattern from './paper-pattern';
 import PaperType from './paper-type';
 import Product from './product';
-import PaperColorGroup from './paper-color-group';
-import PaperColor from './paper-color';
-import PaperPattern from './paper-pattern';
-import PaperCert from './paper-cert';
-import Packaging from './packaging';
+import User from './user';
+import Warehouse from './warehouse';
 
+export * as Enum from './enum';
 export type {
+  BusinessRelationship,
+  BusinessRelationshipStat,
+  BusinessRelationshipRequest,
+  BusinessRelationshipRequestStat,
   Company,
   Location,
   Warehouse,
@@ -27,4 +36,5 @@ export type {
   PaperPattern,
   PaperCert,
   Packaging,
+  User,
 };
