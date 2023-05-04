@@ -22,7 +22,7 @@ import {
 import { BusinessRelationshipListResponse } from 'src/@shared/api';
 import { CompanyRetriveService } from '../service/company-retrive.service';
 
-@Controller('inhouse/business-relation')
+@Controller('inhouse/business-relationship')
 export class BusinessRelationshipController {
   constructor(
     private readonly retriveService: BusinessRelationshipRetriveService,

@@ -16,6 +16,7 @@ export class LocationRetriveService {
       select: Selector.LOCATION,
       where: {
         companyId: params.companyId,
+        isDeleted: false,
       },
       skip: params.skip,
       take: params.take,

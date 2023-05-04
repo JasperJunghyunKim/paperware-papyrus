@@ -11,23 +11,31 @@ import { VirtualCompanyChangeService } from './service/virtual-company-change.se
 import { VirtualCompanyRetriveService } from './service/virtual-company-retrive.service';
 import { BusinessRelationshipChangeService } from './service/business-relationship-change.service';
 import { CompanyRetriveService } from './service/company-retrive.service';
+import { BusinessRelationshipRequestRequestController } from './api/business-relationship-request.controller';
+import { VirtualCompanyController } from './api/virtual-company.controller';
+import { BusinessRelationshipRequestRetriveService } from './service/business-relationship-request-retrive.service';
+import { BusinessRelationshipRequestChangeService } from './service/business-relationship-request-change.service';
 
 @Module({
   providers: [
-    WarehouseChangeService,
-    WarehouseRetriveService,
-    LocationChangeService,
-    LocationRetriveService,
     BusinessRelationshipRetriveService,
     BusinessRelationshipChangeService,
+    BusinessRelationshipRequestRetriveService,
+    BusinessRelationshipRequestChangeService,
+    CompanyRetriveService,
+    LocationChangeService,
+    LocationRetriveService,
     VirtualCompanyChangeService,
     VirtualCompanyRetriveService,
-    CompanyRetriveService,
+    WarehouseChangeService,
+    WarehouseRetriveService,
   ],
   controllers: [
-    WarehouseController,
-    LocationController,
     BusinessRelationshipController,
+    BusinessRelationshipRequestRequestController,
+    LocationController,
+    VirtualCompanyController,
+    WarehouseController,
   ],
 })
 export class InhouseModule {}

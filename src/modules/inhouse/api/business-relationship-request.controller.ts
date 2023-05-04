@@ -24,7 +24,7 @@ import {
   BusinessRelationshipRequestRejectRequestDto,
 } from './dto/business-relationship-request.request';
 
-@Controller('inhouse/business-relation-request')
+@Controller('inhouse/business-relationship-request')
 export class BusinessRelationshipRequestRequestController {
   constructor(
     private readonly retriveService: BusinessRelationshipRequestRetriveService,

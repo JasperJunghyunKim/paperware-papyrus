@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   ForbiddenException,
   Get,
   HttpCode,
@@ -13,16 +12,16 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { VirtualCompanyListResponse } from 'src/@shared/api';
 import { VirtualCompanyCreateRequest } from 'src/@shared/api/inhouse/virtual-company.request';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
+import { AuthType } from 'src/modules/auth/auth.type';
 import { VirtualCompanyChangeService } from 'src/modules/inhouse/service/virtual-company-change.service';
 import { VirtualCompanyRetriveService } from 'src/modules/inhouse/service/virtual-company-retrive.service';
 import {
   VirtualCompanyListQueryDto,
   VirtualCompanyUpdateRequestDto,
 } from './dto/virtual-company.request';
-import { AuthType } from 'src/modules/auth/auth.type';
-import { AuthGuard } from 'src/modules/auth/auth.guard';
-import { VirtualCompanyListResponse } from 'src/@shared/api';
 
 @Controller('inhouse/virtual-company')
 export class VirtualCompanyController {
