@@ -4,6 +4,10 @@ import { PrismaService } from "src/core";
 
 interface StockGroupFromDB {
     warehouseId: number;
+    warehouseName: string;
+    warehouseCode: string;
+    warehouseIsPublic: boolean;
+    warehouseAddress: string;
 
     packagingId: number;
     packagingName: string;
@@ -45,12 +49,57 @@ export class StockRetriveService {
         private readonly prisma: PrismaService,
     ) { }
 
+    async getStockList(data: Prisma.StockWhereInput) {
+        const stocks = await this.prisma.stock.findMany({
+            include: {
+                warehouse: true,
+                product: {
+                    include: {
+                        paperDomain: true,
+                        manufacturer: true,
+                        paperGroup: true,
+                        paperType: true,
+                    }
+                },
+                packaging: true,
+                paperColorGroup: true,
+                paperColor: true,
+                paperCert: true,
+            },
+            where: {
+                ...data,
+                isDeleted: false,
+            },
+        });
+
+        for (const stock of stocks) {
+            delete stock.warehouseId;
+            delete stock.productId;
+            delete stock.packagingId;
+            delete stock.paperColorGroupId;
+            delete stock.paperColorId;
+            delete stock.paperPatternId;
+            delete stock.paperCertId;
+            delete stock.product.paperDomainId;
+            delete stock.product.manufacturerId;
+            delete stock.product.paperGroupId;
+            delete stock.product.paperTypeId;
+        }
+
+        return stocks;
+    }
+
     async getStockGroupList(companyId: number, skip: number, take: number) {
         const limit = take ? Prisma.sql`LIMIT ${skip}, ${take}` : Prisma.empty;
 
         const stockGroups: StockGroupFromDB[] = await this.prisma.$queryRaw`
             SELECT  
                     s.warehouseId AS warehouseId
+                    , w.name AS warehouseName
+                    , w.code AS warehouseCode
+                    , w.isPublic AS warehouseIsPublic
+                    , w.address AS warehouseAddress
+
                     , product.id AS productId
                     , paperDomain.id AS paperDomainId
                     , paperDomain.name AS paperDomainName
@@ -73,6 +122,9 @@ export class StockRetriveService {
                     , paperPattern.name AS paperPatternName
                     , paperCert.id AS paperCertId
                     , paperCert.name AS paperCertName
+                    , s.grammage AS grammage
+                    , s.sizeX AS sizeX
+                    , s.sizeY AS sizeY
 
                     , IFNULL(SUM(s.cachedQuantity), 0) / IF(packaging.type = ${PackagingType.ROLL}, 1000000, 1) AS totalQuantity
                     , IFNULL(SUM(s.cachedQuantityAvailable), 0) / IF(packaging.type = ${PackagingType.ROLL}, 1000000, 1) AS availableQuantity
@@ -80,6 +132,7 @@ export class StockRetriveService {
 
               FROM Stock            AS s
               JOIN StockEvent       AS se               ON se.stockId = s.id
+         LEFT JOIN Warehouse        AS w                ON w.id = s.warehouseId
               
             # 메타데이터
               JOIN Product          AS product          ON product.id = s.productId
@@ -92,7 +145,6 @@ export class StockRetriveService {
          LEFT JOIN PaperColor       AS paperColor       ON paperColor.id = s.paperColorId
          LEFT JOIN PaperPattern     AS paperPattern     ON paperPattern.id = s.paperPatternId
          LEFT JOIN PaperCert        AS paperCert        ON paperCert.id = s.paperCertId
-
 
              WHERE s.companyId = ${companyId}
                AND se.status IN (${StockEventStatus.NORMAL}, ${StockEventStatus.PENDING})
