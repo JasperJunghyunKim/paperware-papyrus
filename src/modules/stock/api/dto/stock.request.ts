@@ -1,6 +1,22 @@
-import { IsInt, IsNumber, IsOptional, IsPositive } from 'class-validator';
-import { StockCreateRequest } from 'src/@shared/api/stock/stock.request';
+import { Type } from 'class-transformer';
+import { IsInt, IsNumber, IsOptional, IsPositive, Max, Min } from 'class-validator';
+import { StockCreateRequest, StockGroupListQuery } from 'src/@shared/api/stock/stock.request';
 
+/** 재고그룹 목록 조회 */
+export class StockGroupListRequestDto implements StockGroupListQuery {
+    @IsOptional()
+    @IsInt()
+    @Type(() => Number)
+    @Min(0)
+    skip: number = 0;
+
+    @IsOptional()
+    @IsInt()
+    @Type(() => Number)
+    @Min(10)
+    @Max(100)
+    take: number = undefined;
+}
 
 /** 재고생성 (신규등록) */
 export class StockCreateRequestDto implements StockCreateRequest {
