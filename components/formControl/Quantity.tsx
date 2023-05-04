@@ -1,12 +1,12 @@
+import { Model } from "@/@shared";
 import { Util } from "@/common";
-import { Record } from "@/common/protocol";
 import { InputNumber } from "antd";
 import { useMemo } from "react";
 
 interface Props {
   value?: number | null;
   onChange?: (value: number | null) => void;
-  packaging: Record.Packaging;
+  packaging: Model.Packaging;
 }
 
 export default function Component(props: Props) {

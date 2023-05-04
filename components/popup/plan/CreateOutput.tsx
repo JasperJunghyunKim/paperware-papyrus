@@ -12,10 +12,10 @@ export interface Props {
 
 export default function Component(props: Props) {
   const [form] = useForm<Api.Internal.Plan.CreateOutput>();
-  const staticData = Api.Static.Paper.useGetAll();
+  const staticData = Api.Static.PaperMetadata.useGetAll();
   const packagingId = useWatch(["packagingId"], form);
 
-  const selectedPackaging = staticData.data?.packaging.find(
+  const selectedPackaging = staticData.data?.packagings.find(
     (p) => p.id === packagingId
   );
 

@@ -14,12 +14,12 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = Api.Static.Paper.useGetAll();
+  const staticData = Api.Static.PaperMetadata.useGetAll();
   const packagingId = useWatch(["packagingId"], props.form);
 
   const [showLocation, setShowLocation] = useState<ShippingType>("DELIVERY");
 
-  const selectedPackaging = staticData.data?.packaging.find(
+  const selectedPackaging = staticData.data?.packagings.find(
     (p) => p.id === packagingId
   );
 

@@ -9,10 +9,10 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = Api.Static.Paper.useGetAll();
+  const staticData = Api.Static.PaperMetadata.useGetAll();
 
   const options = useMemo(() => {
-    return staticData.data?.paperCert.map((x) => ({
+    return staticData.data?.paperCerts.map((x) => ({
       label: <Item item={x} />,
       text: `${x.name})`,
       value: x.id,

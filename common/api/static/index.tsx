@@ -1,2 +1,2 @@
-export * as Paper from "./all";
+export * as PaperMetadata from "./paperMetadata";
 export * as Company from "./company";

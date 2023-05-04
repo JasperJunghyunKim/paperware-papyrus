@@ -3,6 +3,7 @@ import { Record } from "./protocol";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/ko";
 import { Protocol } from ".";
+import { Model } from "@/@shared";
 
 export type PromiseOrFn = (() => Promise<void>) | (() => any);
 export async function call(p?: PromiseOrFn) {
@@ -130,7 +131,7 @@ export function formatAddress(address: string | Address | null | undefined) {
   }`;
 }
 
-export function formatPackaging(packaging: Record.Packaging) {
+export function formatPackaging(packaging: Model.Packaging) {
   switch (packaging.type) {
     case "SKID":
       return ``;
@@ -143,7 +144,7 @@ export function formatPackaging(packaging: Record.Packaging) {
   }
 }
 
-export function stockUnit(packagingType: Record.PackagingType): string {
+export function stockUnit(packagingType: Model.Enum.PackagingType): string {
   switch (packagingType) {
     case "ROLL":
       return "t";
@@ -155,7 +156,7 @@ export function stockUnit(packagingType: Record.PackagingType): string {
   }
 }
 
-export function priceUnit(packagingType: Record.PackagingType): PriceUnit {
+export function priceUnit(packagingType: Model.Enum.PackagingType): PriceUnit {
   switch (packagingType) {
     case "ROLL":
       return "wpt";
@@ -167,7 +168,7 @@ export function priceUnit(packagingType: Record.PackagingType): PriceUnit {
   }
 }
 
-export function formatPriceUnit(packagingType: Record.PackagingType) {
+export function formatPriceUnit(packagingType: Model.Enum.PackagingType) {
   switch (packagingType) {
     case "SKID":
       return "원/R";
@@ -191,7 +192,7 @@ export const toWeightPrice = (
     grammage: number;
     sizeX: number;
     sizeY: number;
-    packaging: Record.Packaging;
+    packaging: Model.Packaging;
   }
 ) => {
   const spb = specs.packaging.packA * specs.packaging.packB;

@@ -9,13 +9,13 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = Api.Static.Paper.useGetAll();
+  const staticData = Api.Static.PaperMetadata.useGetAll();
   const packagingId = useWatch(["packagingId"], props.form);
   const grammage = useWatch(["grammage"], props.form);
   const sizeX = useWatch(["sizeX"], props.form);
   const sizeY = useWatch(["sizeY"], props.form);
 
-  const selectedPackaging = staticData.data?.packaging.find(
+  const selectedPackaging = staticData.data?.packagings.find(
     (p) => p.id === packagingId
   );
 

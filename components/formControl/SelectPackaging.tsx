@@ -3,6 +3,7 @@ import { Record } from "@/common/protocol";
 import { Select } from "antd";
 import { useMemo } from "react";
 import { Icon } from "..";
+import { Model } from "@/@shared";
 
 interface Props {
   value?: number;
@@ -10,12 +11,12 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = Api.Static.Paper.useGetAll();
+  const staticData = Api.Static.PaperMetadata.useGetAll();
 
   const options = useMemo(() => {
-    const options = staticData.data?.packaging.map((x) => ({
+    const options = staticData.data?.packagings.map((x) => ({
       label: <Item item={x} />,
-      text: `${x.name})`,
+      text: `${Util.formatPackaging(x)})`,
       value: x.id,
     }));
     options?.sort((a, b) => a.text.localeCompare(b.text));
@@ -43,7 +44,7 @@ export default function Component(props: Props) {
 }
 
 interface ItemProps {
-  item: Record.Packaging;
+  item: Model.Packaging;
 }
 
 function Item(props: ItemProps) {
