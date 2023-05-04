@@ -4,8 +4,12 @@ import PaperColor from "./paper-color";
 import PaperColorGroup from "./paper-color-group";
 import PaperPattern from "./paper-pattern";
 import Product from "./product";
+import Warehouse from "./warehouse";
+
+interface WarehouseWithoutCompany extends Omit<Warehouse, 'company'> { }
 
 export default interface StockGroup {
+    warehouse: WarehouseWithoutCompany;
     product: Product;
     packaging: Packaging;
     grammage: number;
