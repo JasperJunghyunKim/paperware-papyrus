@@ -19,10 +19,6 @@ async function bootstrap() {
       logger: winstonConfig(process.env['NODE_ENV']),
     });
 
-    app.enableCors({
-      origin: 'http://localhost:3001',
-    });
-
     // 환경변수 서비스
     const configService = app.get(ConfigService);
 
