@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Query, Request, UseGuards } from "@nestjs/
 import { AuthGuard } from "src/modules/auth/auth.guard";
 import { AuthType } from "src/modules/auth/auth.type";
 import { StockChangeService } from "../service/stock-change.service";
-import { StockCreateRequestDto, StockGroupListRequestDto } from "./dto/stock.request";
+import { StockCreateRequestDto, StockGroupListRequestDto, StockListRequestDto } from "./dto/stock.request";
 import { ulid } from 'ulid';
 import { StockRetriveService } from "../service/stock-retrive.service";
 import { StockGroupListResponse } from "src/@shared/api/stock/stock.response";
@@ -13,6 +13,26 @@ export class StockController {
         private readonly stockChangeService: StockChangeService,
         private readonly stockRetriveService: StockRetriveService,
     ) { }
+
+    @Get()
+    @UseGuards(AuthGuard)
+    async getStockList(@Request() req: AuthType, @Query() dto: StockListRequestDto): Promise<any> {
+        const stocks = await this.stockRetriveService.getStockList({
+            companyId: req.user.companyId,
+            warehouseId: dto.warehouseId,
+            productId: dto.productId,
+            packagingId: dto.packagingId,
+            grammage: dto.grammage,
+            sizeX: dto.sizeX,
+            sizeY: dto.sizeY,
+            paperColorGroupId: dto.paperColorGroupId,
+            paperColorId: dto.paperColorId,
+            paperPatternId: dto.paperPatternId,
+            paperCertId: dto.paperCertId,
+        });
+
+        return stocks;
+    }
 
     @Get('/group')
     @UseGuards(AuthGuard)
@@ -25,6 +45,13 @@ export class StockController {
 
         return {
             items: stockGroups.map(sg => ({
+                warehouse: sg.warehouseId ? {
+                    id: sg.warehouseId,
+                    name: sg.warehouseName,
+                    code: sg.warehouseCode,
+                    isPublic: sg.warehouseIsPublic,
+                    address: sg.warehouseAddress,
+                } : null,
                 product: {
                     id: sg.productId,
                     paperDomain: {
