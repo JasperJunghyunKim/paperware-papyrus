@@ -27,5 +27,7 @@ export class BusinessRelationshipCreateRequestDto
   implements BusinessRelationshipCreateRequest
 {
   @IsInt()
+  srcCompanyId: number;
+  @IsInt()
   dstCompanyId: number;
 }

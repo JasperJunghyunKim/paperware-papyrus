@@ -20,12 +20,14 @@ import {
   BusinessRelationshipListQueryDto,
 } from './dto/business-relationship.request';
 import { BusinessRelationshipListResponse } from 'src/@shared/api';
+import { CompanyRetriveService } from '../service/company-retrive.service';
 
 @Controller('inhouse/business-relation')
 export class BusinessRelationshipController {
   constructor(
     private readonly retriveService: BusinessRelationshipRetriveService,
     private readonly changeService: BusinessRelationshipChangeService,
+    private readonly companyRetriveService: CompanyRetriveService,
   ) {}
 
   @Get()
@@ -90,6 +92,15 @@ export class BusinessRelationshipController {
     @Request() req: AuthType,
     @Body() body: BusinessRelationshipCreateRequestDto,
   ) {
+    const company = await this.companyRetriveService.getItem(body.srcCompanyId);
+
+    if (
+      company.managedById !== req.user.companyId &&
+      body.srcCompanyId !== req.user.companyId
+    ) {
+      throw new ForbiddenException();
+    }
+
     await this.changeService.create({
       srcCompanyId: req.user.companyId,
       dstCompanyId: body.dstCompanyId,
