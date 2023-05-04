@@ -1,4 +1,4 @@
-import { Api, Util } from "@/common";
+import { ApiHook, Util } from "@/common";
 import { Button, Icon, Logo } from "@/components";
 import { AutoComplete, ConfigProvider, Input, Tooltip } from "antd";
 import { useRouter } from "next/router";
@@ -42,77 +42,93 @@ export default function Component(props: PropsWithChildren<Props>) {
   const router = useRouter();
   const stickyRef = useStickyBox({ offsetTop: 0, offsetBottom: 0 });
 
-  const requestStats =
-    Api.External.BusinessRelationship.useGetBusinessRelationshipRequestStats();
-
   const menus = useMemo<MenuDef[]>(
     () => [
-      { label: "대시보드", icon: <TbChartDots />, path: "/", noti: 0 },
+      {
+        label: "대시보드",
+        icon: <TbChartDots />,
+        path: "/",
+        noti: 0,
+        type: "wip",
+      },
       { path: null },
       {
         label: "자사 재고 관리",
         icon: <TbServer2 />,
         path: "/stock",
+        type: "wip",
       },
       {
         label: "도착 예정 목록",
         icon: <TbServerBolt />,
         path: "/arrival-stock",
+        type: "wip",
       },
-      { label: "창고 관리", icon: <TbBuildingWarehouse />, path: "/warehouse" },
+      {
+        label: "창고 관리",
+        icon: <TbBuildingWarehouse />,
+        path: "/warehouse",
+        type: "progress",
+      },
       { path: null },
       {
         label: "매입처 재고 조회",
         icon: <TbInputSearch />,
         path: "/purchase-stock",
+        type: "wip",
       },
       {
         label: "매입 주문 목록",
         icon: <TbClipboardList />,
         path: "/purchase-order",
+        type: "wip",
       },
       {
         label: "매입처 관리",
         icon: <TbHome2 />,
         path: "/business-relationship-purchase",
+        type: "progress",
       },
       { path: null },
       {
         label: "매출 수주 목록",
         icon: <TbSubtask />,
         path: "/sales-order",
+        type: "wip",
       },
       {
         label: "매출처 관리",
         icon: <TbHomeMove />,
         path: "/business-relationship-sales",
-        noti: requestStats.data?.pendingCount,
+        type: "progress",
       },
       { path: null },
       {
         label: "작업 계획 목록",
         icon: <TbTournament />,
         path: "/plan",
+        type: "wip",
       },
-      { label: "공정 목록", icon: <TbFunction />, path: "/task", wip: true },
-      { label: "배송 목록", icon: <TbTruck />, path: "/shipping" },
+      { label: "공정 목록", icon: <TbFunction />, path: "/task", type: "wip" },
+      { label: "배송 목록", icon: <TbTruck />, path: "/shipping", type: "wip" },
       { path: null },
       {
         label: "도착지 관리",
         icon: <TbMapPin />,
         path: "/location",
+        type: "progress",
       },
       {
         label: "고시가 설정",
         icon: <TbColorSwatch />,
         path: "/official-price",
-        wip: true,
+        type: "wip",
       },
     ],
     []
   );
 
-  const user = Api.Auth.useGetMe();
+  const user = ApiHook.Auth.useGetMe();
 
   useEffect(() => {
     if (user.isError) {

@@ -1,4 +1,4 @@
-import { Api, Util } from "@/common";
+import { ApiHook, Util } from "@/common";
 import { Record } from "@/common/protocol";
 import { Select } from "antd";
 import { useMemo } from "react";
@@ -9,8 +9,8 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const [list, _page, _setPage] = Api.Internal.Warehouse.useGetWarehouseList({
-    take: undefined,
+  const list = ApiHook.Inhouse.Warehouse.useGetList({
+    query: {},
   });
 
   const options = useMemo(() => {

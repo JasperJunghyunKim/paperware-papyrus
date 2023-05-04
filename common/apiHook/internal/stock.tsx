@@ -4,10 +4,8 @@ import { useQueryPagination } from "../common";
 import {
   GetPaginationQuery,
   useCreate,
-  useDelete,
   useQueryData,
   useQueryItem,
-  useUpdate,
 } from "../common/prelude";
 
 export function useGetStock(id: number | false) {

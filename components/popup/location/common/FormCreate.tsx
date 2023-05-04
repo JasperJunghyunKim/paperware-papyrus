@@ -1,10 +1,10 @@
-import { Api } from "@/common";
+import { Api } from "@/@shared";
 import { Button, FormControl } from "@/components";
 import { Form, FormInstance, Input, Switch } from "antd";
 
 interface Props {
-  form: FormInstance<Api.Internal.Location.CreateLocation>;
-  onFinish: (values: Api.Internal.Location.CreateLocation) => void;
+  form: FormInstance<Api.LocationCreateRequest>;
+  onFinish: (values: Api.LocationCreateRequest) => void;
 }
 
 export default function Component(props: Props) {

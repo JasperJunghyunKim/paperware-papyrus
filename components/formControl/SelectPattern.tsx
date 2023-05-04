@@ -1,4 +1,4 @@
-import { Api } from "@/common";
+import { ApiHook } from "@/common";
 import { Record } from "@/common/protocol";
 import { Select } from "antd";
 import { useMemo } from "react";
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = Api.Static.PaperMetadata.useGetAll();
+  const staticData = ApiHook.Static.PaperMetadata.useGetAll();
 
   const options = useMemo(() => {
     return staticData.data?.paperPatterns.map((x) => ({

@@ -1,10 +1,10 @@
-import { Api } from "@/common";
+import { Api } from "@/@shared";
 import { Button, FormControl } from "@/components";
 import { Form, FormInstance, Input, Switch } from "antd";
 
 interface Props {
-  form: FormInstance<Api.Internal.Location.UpdateLocation>;
-  onFinish: (values: Api.Internal.Location.UpdateLocation) => void;
+  form: FormInstance<Api.LocationUpdateRequest>;
+  onFinish: (values: Api.LocationUpdateRequest) => void;
   edit: boolean;
   onEditChange: (edit: boolean) => void;
 }
