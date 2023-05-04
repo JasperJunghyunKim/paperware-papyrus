@@ -6,5 +6,6 @@ export interface BusinessRelationshipListQuery extends PaginationQuery {
 }
 
 export interface BusinessRelationshipCreateRequest {
+  srcCompanyId: number;
   dstCompanyId: number;
 }
