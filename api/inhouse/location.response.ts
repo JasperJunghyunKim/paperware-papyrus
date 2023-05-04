@@ -1,4 +1,4 @@
-import { Location } from 'src/@shared/models';
-import { PaginationResponse } from 'src/@shared/models/pagination';
+import { Location } from "../../models";
+import { PaginationResponse } from "../../models/pagination";
 
 export interface LocationListResponse extends PaginationResponse<Location> {}
