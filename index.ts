@@ -1,2 +1,2 @@
-export * as Helper from './helper/util';
+export * as Helper from './helper';
 export * as Model from './models';
