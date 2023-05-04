@@ -24,7 +24,7 @@ import { AuthType } from 'src/modules/auth/auth.type';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
 
 @Controller('inhouse/warehouse')
-export class UserController {
+export class WarehouseController {
   constructor(
     private readonly warehouseRetriveService: WarehouseRetriveService,
     private readonly warehouseChangeService: WarehouseChangeService,

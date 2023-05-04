@@ -6,6 +6,7 @@ import { DatabaseModule, HealthModule, RouteScanModule } from './core';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { GlobalExceptionFilter } from './filters';
 import { HttpLoggingInterceptor } from './interceptors';
+import { InhouseModule } from './modules/inhouse/inhouse.module';
 
 const configModule = (): DynamicModule => {
   return ConfigModule.forRoot({
@@ -22,6 +23,7 @@ const configModule = (): DynamicModule => {
     RouteScanModule,
     BusinessModule,
     DatabaseModule,
+    InhouseModule,
   ],
   providers: [
     {
