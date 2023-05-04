@@ -3,7 +3,7 @@ import {
   WarehouseCreateRequest,
   WarehouseListQuery,
   WarehouseUpdateRequest,
-} from 'src/@shared/api/warehouse/warehouse.request';
+} from 'src/@shared/api/inhouse/warehouse.request';
 
 export class WarehouseListQueryDto implements WarehouseListQuery {
   @IsNumber()

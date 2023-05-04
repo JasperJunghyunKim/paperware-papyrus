@@ -13,7 +13,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { WarehouseCreateRequest } from 'src/@shared/api/warehouse/warehouse.request';
+import { WarehouseCreateRequest } from 'src/@shared/api/inhouse/warehouse.request';
 import { WarehouseChangeService } from 'src/modules/inhouse/service/warehouse-change.service';
 import { WarehouseRetriveService } from 'src/modules/inhouse/service/warehouse-retrive.service';
 import {
@@ -28,7 +28,7 @@ export class UserController {
   constructor(
     private readonly warehouseRetriveService: WarehouseRetriveService,
     private readonly warehouseChangeService: WarehouseChangeService,
-  ) {}
+  ) { }
 
   @Get()
   @HttpCode(HttpStatus.OK)

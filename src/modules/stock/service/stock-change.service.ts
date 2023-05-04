@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Prisma, StockEventStatus } from "@prisma/client";
+import { PackagingType, Prisma, StockEventStatus } from "@prisma/client";
 import { PrismaService } from "src/core";
 import { StockValidator } from "./stock.validator";
 import { ulid } from 'ulid';
@@ -59,7 +59,6 @@ export class StockChangeService {
 
             this.stockValidator.validateQuantity(packaging, quantity);
 
-            console.log(111, data);
             const stock = await tx.stock.create({
                 data,
                 select: {
@@ -73,7 +72,7 @@ export class StockChangeService {
                             id: stock.id
                         }
                     },
-                    change: quantity,
+                    change: packaging.type === PackagingType.ROLL ? quantity * 1000000 : quantity, // TODO... 계산 함수 만들기
                     status: StockEventStatus.NORMAL,
                 },
                 select: {
