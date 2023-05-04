@@ -7,9 +7,9 @@ import {
 
 export class WarehouseListQueryDto implements WarehouseListQuery {
   @IsNumber()
-  skip: string;
+  skip: number;
   @IsNumber()
-  take: string;
+  take: number;
 }
 
 export class WarehouseCreateRequestDto implements WarehouseCreateRequest {
