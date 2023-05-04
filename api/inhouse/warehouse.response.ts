@@ -1,4 +1,5 @@
-import { Warehouse } from 'src/@shared/models';
-import { PaginationResponse } from 'src/@shared/models/pagination';
+import { Warehouse } from "../../models";
+import { PaginationResponse } from "../../models/pagination";
 
 export interface WarehouseListResponse extends PaginationResponse<Warehouse> {}
+export interface WarehouseItemResponse extends Warehouse {}
