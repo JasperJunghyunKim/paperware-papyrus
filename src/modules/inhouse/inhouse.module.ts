@@ -10,6 +10,7 @@ import { WarehouseRetriveService } from './service/warehouse-retrive.service';
 import { VirtualCompanyChangeService } from './service/virtual-company-change.service';
 import { VirtualCompanyRetriveService } from './service/virtual-company-retrive.service';
 import { BusinessRelationshipChangeService } from './service/business-relationship-change.service';
+import { CompanyRetriveService } from './service/company-retrive.service';
 
 @Module({
   providers: [
@@ -21,6 +22,7 @@ import { BusinessRelationshipChangeService } from './service/business-relationsh
     BusinessRelationshipChangeService,
     VirtualCompanyChangeService,
     VirtualCompanyRetriveService,
+    CompanyRetriveService,
   ],
   controllers: [
     WarehouseController,
@@ -28,4 +30,4 @@ import { BusinessRelationshipChangeService } from './service/business-relationsh
     BusinessRelationshipController,
   ],
 })
-export class InhouseModule { }
+export class InhouseModule {}
