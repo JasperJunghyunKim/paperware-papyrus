@@ -1,7 +1,5 @@
 import BusinessRelationship from './business-relationship';
 import BusinessRelationshipRequest from './business-relationship-request';
-import BusinessRelationshipRequestStat from './business-relationship-request-stat';
-import BusinessRelationshipStat from './business-relationship-stat';
 import Company from './company';
 import Location from './location';
 import Manufacturer from './manufacturer';
@@ -20,9 +18,7 @@ import Warehouse from './warehouse';
 export * as Enum from './enum';
 export type {
   BusinessRelationship,
-  BusinessRelationshipStat,
   BusinessRelationshipRequest,
-  BusinessRelationshipRequestStat,
   Company,
   Location,
   Warehouse,
