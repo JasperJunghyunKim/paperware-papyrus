@@ -16,6 +16,11 @@ export class StockController {
     async create(@Request() req: AuthType, @Body() dto: StockCreateRequestDto): Promise<any> {
         await this.stockChangeService.create({
             serial: ulid(),
+            warehouse: dto.warehouseId ? {
+                connect: {
+                    id: dto.warehouseId
+                }
+            } : undefined,
             company: {
                 connect: {
                     id: req.user.companyId,
