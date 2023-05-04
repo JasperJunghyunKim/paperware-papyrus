@@ -16,7 +16,7 @@ export interface PaperMetadataResponse {
   manufacturers: Manufacturer[];
   paperGroups: PaperGroup[];
   paperTypes: PaperType[];
-  products: Product;
+  products: Product[];
   paperColorGroups: PaperColorGroup[];
   paperColors: PaperColor[];
   paperPatterns: PaperPattern[];
