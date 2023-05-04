@@ -1,4 +1,5 @@
-import { IsBoolean, IsNumber, IsString, MaxLength } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsInt, IsString, MaxLength } from 'class-validator';
 import {
   LocationCreateRequest,
   LocationListQuery,
@@ -6,10 +7,12 @@ import {
 } from 'src/@shared/api/inhouse/location.request';
 
 export class LocationListQueryDto implements LocationListQuery {
-  @IsNumber()
-  skip: string;
-  @IsNumber()
-  take: string;
+  @IsInt()
+  @Type(() => Number)
+  skip: number;
+  @IsInt()
+  @Type(() => Number)
+  take: number;
 }
 
 export class LocationCreateRequestDto implements LocationCreateRequest {

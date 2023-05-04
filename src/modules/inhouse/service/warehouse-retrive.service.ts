@@ -6,11 +6,22 @@ import { PrismaService } from 'src/core';
 export class WarehouseRetriveService {
   constructor(private prisma: PrismaService) {}
 
-  async getList(skip: number, take: number) {
+  async getList(params: { skip: number; take: number; companyId: number }) {
     return await this.prisma.warehouse.findMany({
       select: Selector.WAREHOUSE,
-      skip,
-      take,
+      where: {
+        companyId: params.companyId,
+      },
+      skip: params.skip,
+      take: params.take,
+    });
+  }
+
+  async getCount(params: { companyId: number }) {
+    return await this.prisma.warehouse.count({
+      where: {
+        companyId: params.companyId,
+      },
     });
   }
 

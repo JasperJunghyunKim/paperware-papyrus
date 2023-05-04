@@ -22,27 +22,49 @@ import {
 } from './dto/warehouse.request';
 import { AuthType } from 'src/modules/auth/auth.type';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
+import { WarehouseListResponse } from 'src/@shared/api';
 
 @Controller('inhouse/warehouse')
 export class WarehouseController {
   constructor(
     private readonly warehouseRetriveService: WarehouseRetriveService,
     private readonly warehouseChangeService: WarehouseChangeService,
-  ) { }
+  ) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async getList(@Query() query: WarehouseListQueryDto): Promise<Array<any>> {
-    return await this.warehouseRetriveService.getList(
-      Number(query.skip),
-      Number(query.take),
-    );
+  @UseGuards(AuthGuard)
+  async getList(
+    @Request() req: AuthType,
+    @Query() query: WarehouseListQueryDto,
+  ): Promise<WarehouseListResponse> {
+    const items = await this.warehouseRetriveService.getList({
+      skip: query.skip,
+      take: query.take,
+      companyId: req.user.companyId,
+    });
+
+    const total = await this.warehouseRetriveService.getCount({
+      companyId: req.user.companyId,
+    });
+
+    return {
+      items,
+      total,
+    };
   }
 
   @Get(':id')
-  @HttpCode(HttpStatus.CREATED)
-  async get(@Param('id') id: number) {
-    return await this.warehouseRetriveService.getItem(id);
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AuthGuard)
+  async get(@Request() req: AuthType, @Param('id') id: number) {
+    const warehouse = await this.warehouseRetriveService.getItem(id);
+
+    if (warehouse.company.id !== req.user.companyId) {
+      throw new ForbiddenException();
+    }
+
+    return warehouse;
   }
 
   @Post()
@@ -72,7 +94,7 @@ export class WarehouseController {
   ) {
     const warehouse = await this.warehouseRetriveService.getItem(id);
 
-    if (warehouse.companyId !== req.user.companyId) {
+    if (warehouse.company.id !== req.user.companyId) {
       throw new ForbiddenException();
     }
 
@@ -90,7 +112,7 @@ export class WarehouseController {
   async delete(@Request() req: AuthType, @Param('id') id: number) {
     const warehouse = await this.warehouseRetriveService.getItem(id);
 
-    if (warehouse.companyId !== req.user.companyId) {
+    if (warehouse.company.id !== req.user.companyId) {
       throw new ForbiddenException();
     }
 

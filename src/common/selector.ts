@@ -18,6 +18,15 @@ export const COMPANY = {
   managedById: true,
 } satisfies Prisma.CompanySelect;
 
+export const BUSINESS_RELATIONSHIP = {
+  srcCompany: {
+    select: COMPANY,
+  },
+  dstCompany: {
+    select: COMPANY,
+  },
+} satisfies Prisma.BusinessRelationshipSelect;
+
 export const BUSINESS_RELATIONSHIP_REQUEST = {
   srcCompany: {
     select: COMPANY,
@@ -34,7 +43,9 @@ export const WAREHOUSE = {
   name: true,
   code: true,
   isPublic: true,
-  companyId: true,
+  company: {
+    select: COMPANY,
+  },
   address: true,
 } satisfies Prisma.WarehouseSelect;
 
@@ -43,7 +54,9 @@ export const LOCATION = {
   name: true,
   code: true,
   isPublic: true,
-  companyId: true,
+  company: {
+    select: COMPANY,
+  },
   address: true,
 } satisfies Prisma.LocationSelect;
 

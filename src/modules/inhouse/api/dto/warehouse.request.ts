@@ -1,4 +1,5 @@
-import { IsBoolean, IsNumber, IsString, MaxLength } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsInt, IsString, MaxLength } from 'class-validator';
 import {
   WarehouseCreateRequest,
   WarehouseListQuery,
@@ -6,10 +7,12 @@ import {
 } from 'src/@shared/api/inhouse/warehouse.request';
 
 export class WarehouseListQueryDto implements WarehouseListQuery {
-  @IsNumber()
-  skip: string;
-  @IsNumber()
-  take: string;
+  @IsInt()
+  @Type(() => Number)
+  skip: number;
+  @IsInt()
+  @Type(() => Number)
+  take: number;
 }
 
 export class WarehouseCreateRequestDto implements WarehouseCreateRequest {

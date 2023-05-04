@@ -4,19 +4,15 @@ import { Selector } from 'src/common';
 import { PrismaService } from 'src/core';
 
 @Injectable()
-export class LocationRetriveService {
+export class VirtualCompanyRetriveService {
   constructor(private prisma: PrismaService) {}
 
   async getList(params: {
     skip: number;
     take: number;
-    companyId: number;
-  }): Promise<Array<Model.Location>> {
-    return await this.prisma.location.findMany({
-      select: Selector.LOCATION,
-      where: {
-        companyId: params.companyId,
-      },
+  }): Promise<Array<Model.Company>> {
+    return await this.prisma.company.findMany({
+      select: Selector.COMPANY,
       skip: params.skip,
       take: params.take,
     });
@@ -30,9 +26,9 @@ export class LocationRetriveService {
     });
   }
 
-  async getItem(id: number): Promise<Model.Location> {
-    return await this.prisma.location.findUnique({
-      select: Selector.LOCATION,
+  async getItem(id: number): Promise<Model.Company> {
+    return await this.prisma.company.findUnique({
+      select: Selector.COMPANY,
       where: { id },
     });
   }

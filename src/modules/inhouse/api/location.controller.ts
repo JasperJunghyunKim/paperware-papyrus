@@ -22,6 +22,7 @@ import {
 } from './dto/location.request';
 import { AuthType } from 'src/modules/auth/auth.type';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
+import { LocationListResponse } from 'src/@shared/api';
 
 @Controller('inhouse/location')
 export class LocationController {
@@ -32,17 +33,38 @@ export class LocationController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async getList(@Query() query: LocationListQueryDto): Promise<Array<any>> {
-    return await this.locationRetriveService.getList(
-      Number(query.skip),
-      Number(query.take),
-    );
+  @UseGuards(AuthGuard)
+  async getList(
+    @Request() req: AuthType,
+    @Query() query: LocationListQueryDto,
+  ): Promise<LocationListResponse> {
+    const items = await this.locationRetriveService.getList({
+      skip: query.skip,
+      take: query.take,
+      companyId: req.user.companyId,
+    });
+
+    const total = await this.locationRetriveService.getCount({
+      companyId: req.user.companyId,
+    });
+
+    return {
+      items,
+      total,
+    };
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.CREATED)
-  async get(@Param('id') id: number) {
-    return await this.locationRetriveService.getItem(id);
+  @UseGuards(AuthGuard)
+  async get(@Request() req: AuthType, @Param('id') id: number) {
+    const location = await this.locationRetriveService.getItem(id);
+
+    if (location.company.id !== req.user.companyId) {
+      throw new ForbiddenException();
+    }
+
+    return location;
   }
 
   @Post()
@@ -72,7 +94,7 @@ export class LocationController {
   ) {
     const location = await this.locationRetriveService.getItem(id);
 
-    if (location.companyId !== req.user.companyId) {
+    if (location.company.id !== req.user.companyId) {
       throw new ForbiddenException();
     }
 
@@ -90,7 +112,7 @@ export class LocationController {
   async delete(@Request() req: AuthType, @Param('id') id: number) {
     const location = await this.locationRetriveService.getItem(id);
 
-    if (location.companyId !== req.user.companyId) {
+    if (location.company.id !== req.user.companyId) {
       throw new ForbiddenException();
     }
 
