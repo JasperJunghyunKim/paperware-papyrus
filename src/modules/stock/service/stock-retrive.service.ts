@@ -51,11 +51,40 @@ export class StockRetriveService {
 
     async getStockList(data: Prisma.StockWhereInput) {
         const stocks = await this.prisma.stock.findMany({
-            select: {
-                id: true,
+            include: {
+                warehouse: true,
+                product: {
+                    include: {
+                        paperDomain: true,
+                        manufacturer: true,
+                        paperGroup: true,
+                        paperType: true,
+                    }
+                },
+                packaging: true,
+                paperColorGroup: true,
+                paperColor: true,
+                paperCert: true,
             },
-            where: data,
+            where: {
+                ...data,
+                isDeleted: false,
+            },
         });
+
+        for (const stock of stocks) {
+            delete stock.warehouseId;
+            delete stock.productId;
+            delete stock.packagingId;
+            delete stock.paperColorGroupId;
+            delete stock.paperColorId;
+            delete stock.paperPatternId;
+            delete stock.paperCertId;
+            delete stock.product.paperDomainId;
+            delete stock.product.manufacturerId;
+            delete stock.product.paperGroupId;
+            delete stock.product.paperTypeId;
+        }
 
         return stocks;
     }
