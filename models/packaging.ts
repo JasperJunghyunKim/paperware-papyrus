@@ -1,6 +1,6 @@
-import { PackagingType } from './enum';
+import { PackagingType } from "./enum";
 
-export default interface PaperType {
+export default interface Packaging {
   id: number;
   type: PackagingType;
   packA: number;
