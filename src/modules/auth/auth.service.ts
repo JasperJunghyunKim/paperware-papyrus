@@ -20,15 +20,14 @@ export class AuthService {
       },
     });
 
-
-    if (!user || user.password !== password) {
-      throw new BadRequestException('Invalid username or password');
-    }
-
     // const payload = { username: user.username, sub: user.name };
     // return {
     //   access_token: this.jwtService.sign(payload),
     // };
+
+    if (!user || user.password !== password) {
+      throw new BadRequestException('Invalid username or password');
+    }
 
     return await this.jwtService.signAsync({
       id: user.id,

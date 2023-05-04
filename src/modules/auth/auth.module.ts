@@ -22,7 +22,7 @@ import { AuthService } from './auth.service';
     // }),
     JwtModule.register({
       global: true,
-      secret: 'secert',
+      secret: 'secret',
       signOptions: { expiresIn: '30d' },
     }),
   ],
