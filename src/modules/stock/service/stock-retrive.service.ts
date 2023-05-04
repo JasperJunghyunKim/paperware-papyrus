@@ -59,7 +59,7 @@ export class StockRetriveService {
                         manufacturer: true,
                         paperGroup: true,
                         paperType: true,
-                    }
+                    },
                 },
                 packaging: true,
                 paperColorGroup: true,
@@ -74,6 +74,7 @@ export class StockRetriveService {
 
         for (const stock of stocks) {
             delete stock.warehouseId;
+            delete stock.isDeleted;
             delete stock.productId;
             delete stock.packagingId;
             delete stock.paperColorGroupId;
