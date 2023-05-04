@@ -1,4 +1,4 @@
-import { PaginationQuery } from 'src/@shared/models/pagination';
+import { PaginationQuery } from "../../models/pagination";
 
 export interface LocationListQuery extends PaginationQuery {}
 
