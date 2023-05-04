@@ -28,7 +28,7 @@ export class WarehouseController {
   constructor(
     private readonly warehouseRetriveService: WarehouseRetriveService,
     private readonly warehouseChangeService: WarehouseChangeService,
-  ) {}
+  ) { }
 
   @Get()
   @HttpCode(HttpStatus.OK)
