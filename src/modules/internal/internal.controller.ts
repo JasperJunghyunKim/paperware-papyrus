@@ -18,7 +18,7 @@ import { AuthType } from '../auth/auth.type';
 import { InternalService } from './internal.service';
 import { Prisma } from '@prisma/client';
 import { ulid } from 'ulid';
-import { StaticService } from '../static/static.service';
+import { StaticService } from '../static/service/static.retrive.service';
 import { PrismaService } from 'src/core/database/prisma.service';
 
 @Controller('internal')
@@ -27,7 +27,7 @@ export class InternalController {
     private internalService: InternalService,
     private staticService: StaticService,
     private prisma: PrismaService,
-  ) { }
+  ) {}
 
   // #region Warehouse
   @UseGuards(AuthGuard)
@@ -427,10 +427,10 @@ export class InternalController {
         },
         warehouse: body.warehouseId
           ? {
-            connect: {
-              id: body.warehouseId,
-            },
-          }
+              connect: {
+                id: body.warehouseId,
+              },
+            }
           : undefined,
         product: {
           connect: {
@@ -447,24 +447,24 @@ export class InternalController {
         sizeY: body.sizeY ?? 0,
         paperColorGroup: body.paperColorGroupId
           ? {
-            connect: {
-              id: body.paperColorGroupId,
-            },
-          }
+              connect: {
+                id: body.paperColorGroupId,
+              },
+            }
           : undefined,
         paperColor: body.paperColorId
           ? {
-            connect: {
-              id: body.paperColorId,
-            },
-          }
+              connect: {
+                id: body.paperColorId,
+              },
+            }
           : undefined,
         paperPattern: body.paperPatternId
           ? {
-            connect: {
-              id: body.paperPatternId,
-            },
-          }
+              connect: {
+                id: body.paperPatternId,
+              },
+            }
           : undefined,
         paperCert: {
           // connect: body.paperCertIds?.map((id) => ({ id })) ?? [],
@@ -1540,24 +1540,24 @@ export class InternalController {
           sizeY: body.sizeY ?? 0,
           paperColorGroup: body.paperColorGroupId
             ? {
-              connect: {
-                id: body.paperColorGroupId,
-              },
-            }
+                connect: {
+                  id: body.paperColorGroupId,
+                },
+              }
             : undefined,
           paperColor: body.paperColorId
             ? {
-              connect: {
-                id: body.paperColorId,
-              },
-            }
+                connect: {
+                  id: body.paperColorId,
+                },
+              }
             : undefined,
           paperPattern: body.paperPatternId
             ? {
-              connect: {
-                id: body.paperPatternId,
-              },
-            }
+                connect: {
+                  id: body.paperPatternId,
+                },
+              }
             : undefined,
           paperCert: {
             // connect: body.paperCertIds?.map((id) => ({ id })) ?? [],

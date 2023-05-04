@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Selector } from 'src/common';
 import { PrismaService } from 'src/core';
-import { WAREHOUSE } from '../constants/selector';
 
 @Injectable()
 export class WarehouseRetriveService {
@@ -8,7 +8,7 @@ export class WarehouseRetriveService {
 
   async getList(skip: number, take: number) {
     return await this.prisma.warehouse.findMany({
-      select: WAREHOUSE,
+      select: Selector.WAREHOUSE,
       skip,
       take,
     });
@@ -16,7 +16,7 @@ export class WarehouseRetriveService {
 
   async getItem(id: number) {
     return await this.prisma.warehouse.findUnique({
-      select: WAREHOUSE,
+      select: Selector.WAREHOUSE,
       where: { id },
     });
   }

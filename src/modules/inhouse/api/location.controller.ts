@@ -13,7 +13,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { LocationCreateRequest } from 'src/@shared/api/location/location.request';
+import { LocationCreateRequest } from 'src/@shared/api/inhouse/location.request';
 import { LocationChangeService } from 'src/modules/inhouse/service/location-change.service';
 import { LocationRetriveService } from 'src/modules/inhouse/service/location-retrive.service';
 import {

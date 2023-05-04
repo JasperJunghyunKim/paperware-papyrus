@@ -3,7 +3,7 @@ import {
   LocationCreateRequest,
   LocationListQuery,
   LocationUpdateRequest,
-} from 'src/@shared/api/location/location.request';
+} from 'src/@shared/api/inhouse/location.request';
 
 export class LocationListQueryDto implements LocationListQuery {
   @IsNumber()
