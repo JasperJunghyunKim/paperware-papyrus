@@ -14,6 +14,7 @@ import PaperType from './paper-type';
 import Product from './product';
 import User from './user';
 import Warehouse from './warehouse';
+import StockGroup from './stock-group';
 
 export * as Enum from './enum';
 export type {
@@ -33,4 +34,5 @@ export type {
   PaperCert,
   Packaging,
   User,
+  StockGroup
 };
