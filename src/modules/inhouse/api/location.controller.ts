@@ -19,7 +19,7 @@ import { LocationRetriveService } from 'src/modules/inhouse/service/location-ret
 import {
   LocationListQueryDto,
   LocationUpdateRequestDto,
-} from '../dto/location.request';
+} from './dto/location.request';
 import { AuthType } from 'src/modules/auth/auth.type';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
 

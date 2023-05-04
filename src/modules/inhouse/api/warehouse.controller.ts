@@ -19,7 +19,7 @@ import { WarehouseRetriveService } from 'src/modules/inhouse/service/warehouse-r
 import {
   WarehouseListQueryDto,
   WarehouseUpdateRequestDto,
-} from '../dto/warehouse.request';
+} from './dto/warehouse.request';
 import { AuthType } from 'src/modules/auth/auth.type';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
 
