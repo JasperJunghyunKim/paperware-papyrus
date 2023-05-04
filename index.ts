@@ -1,3 +1,2 @@
-export * from './helper/util';
-export * from './models/error';
-
+export * as Helper from './helper/util';
+export * as Model from './models';
