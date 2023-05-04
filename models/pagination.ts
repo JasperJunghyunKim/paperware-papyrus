@@ -4,6 +4,6 @@ export interface PaginationResponse<T> {
 }
 
 export interface PaginationQuery {
-  skip: string;
-  take: string;
+  skip: number;
+  take: number;
 }
