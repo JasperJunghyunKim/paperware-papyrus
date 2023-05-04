@@ -6,3 +6,7 @@ export interface BusinessRelationshipRequestListResponse
 
 export interface BusinessRelationshipRequestItemResponse
   extends BusinessRelationshipRequest {}
+
+export interface BusinessRelationshipRequestPendingCountResponse {
+  value: number;
+}
