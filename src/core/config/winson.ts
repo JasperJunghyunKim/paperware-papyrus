@@ -21,7 +21,7 @@ export const winstonConfig = (env: string): any => {
       timestamp({ format: 'YYYY년 MM월 DD일  HH시mm분ss초' }),
       prettyPrint(),
       json(),
-      nestWinstonModuleUtilities.format.nestLike(`nestjs-template - ${env}`, {
+      nestWinstonModuleUtilities.format.nestLike(`paperware-client - ${env}`, {
         prettyPrint: true,
         colors: true,
       }),
