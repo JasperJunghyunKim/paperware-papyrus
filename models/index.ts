@@ -1,3 +1,4 @@
+export * as Enum from './enum';
 import Company from './company';
 import Location from './location';
 import Warehouse from './warehouse';
@@ -10,6 +11,7 @@ import PaperColorGroup from './paper-color-group';
 import PaperColor from './paper-color';
 import PaperPattern from './paper-pattern';
 import PaperCert from './paper-cert';
+import Packaging from './packaging';
 
 export type {
   Company,
@@ -24,4 +26,5 @@ export type {
   PaperColor,
   PaperPattern,
   PaperCert,
+  Packaging,
 };
