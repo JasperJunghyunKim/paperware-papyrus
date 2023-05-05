@@ -15,6 +15,7 @@ import { BusinessRelationshipRequestRequestController } from './api/business-rel
 import { VirtualCompanyController } from './api/virtual-company.controller';
 import { BusinessRelationshipRequestRetriveService } from './service/business-relationship-request-retrive.service';
 import { BusinessRelationshipRequestChangeService } from './service/business-relationship-request-change.service';
+import { CompanyController } from './api/company.controller';
 
 @Module({
   providers: [
@@ -33,6 +34,7 @@ import { BusinessRelationshipRequestChangeService } from './service/business-rel
   controllers: [
     BusinessRelationshipController,
     BusinessRelationshipRequestRequestController,
+    CompanyController,
     LocationController,
     VirtualCompanyController,
     WarehouseController,

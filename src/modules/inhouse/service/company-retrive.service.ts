@@ -15,13 +15,16 @@ export class CompanyRetriveService {
       select: Selector.COMPANY,
       skip: params.skip,
       take: params.take,
+      where: {
+        managedById: null,
+      },
     });
   }
 
-  async getCount(params: { companyId: number }): Promise<number> {
-    return await this.prisma.location.count({
+  async getCount(): Promise<number> {
+    return await this.prisma.company.count({
       where: {
-        companyId: params.companyId,
+        managedById: null,
       },
     });
   }

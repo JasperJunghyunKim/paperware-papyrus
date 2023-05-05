@@ -95,14 +95,15 @@ export class BusinessRelationshipController {
     const company = await this.companyRetriveService.getItem(body.srcCompanyId);
 
     if (
-      company.managedById !== req.user.companyId &&
-      body.srcCompanyId !== req.user.companyId
+      (company.managedById !== req.user.companyId &&
+        body.srcCompanyId !== req.user.companyId) ||
+      body.dstCompanyId === body.srcCompanyId
     ) {
       throw new ForbiddenException();
     }
 
     await this.changeService.create({
-      srcCompanyId: req.user.companyId,
+      srcCompanyId: body.srcCompanyId,
       dstCompanyId: body.dstCompanyId,
     });
   }

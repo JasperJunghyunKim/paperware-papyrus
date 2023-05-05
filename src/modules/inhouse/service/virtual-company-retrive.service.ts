@@ -8,6 +8,7 @@ export class VirtualCompanyRetriveService {
   constructor(private prisma: PrismaService) {}
 
   async getList(params: {
+    managedById: number;
     skip: number;
     take: number;
   }): Promise<Array<Model.Company>> {
@@ -15,13 +16,16 @@ export class VirtualCompanyRetriveService {
       select: Selector.COMPANY,
       skip: params.skip,
       take: params.take,
+      where: {
+        managedById: params.managedById,
+      },
     });
   }
 
-  async getCount(params: { companyId: number }): Promise<number> {
-    return await this.prisma.location.count({
+  async getCount(params: { managedById: number }): Promise<number> {
+    return await this.prisma.company.count({
       where: {
-        companyId: params.companyId,
+        managedById: params.managedById,
       },
     });
   }

@@ -38,12 +38,13 @@ export class VirtualCompanyController {
     @Query() query: VirtualCompanyListQueryDto,
   ): Promise<VirtualCompanyListResponse> {
     const items = await this.virtualCompanyRetriveService.getList({
+      managedById: req.user.companyId,
       skip: query.skip,
       take: query.take,
     });
 
     const total = await this.virtualCompanyRetriveService.getCount({
-      companyId: req.user.companyId,
+      managedById: req.user.companyId,
     });
 
     return {
