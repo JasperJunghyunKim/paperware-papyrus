@@ -88,7 +88,7 @@ export function useReject() {
   return useMutation(
     async (params: { data: Api.BusinessRelationshipRequestRejectRequest }) => {
       const resp = await axios.post(
-        `/inhouse/business-relationship-request/reject`,
+        `${API_HOST}/inhouse/business-relationship-request/reject`,
         params.data
       );
       return resp.data;

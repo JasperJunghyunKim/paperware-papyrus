@@ -328,3 +328,11 @@ export function planStatusToString(value: Protocol.Record.PlanStatus) {
       return "출고 완료";
   }
 }
+
+export function formatPhoneNo(phoneNo: string | null | undefined) {
+  if (phoneNo === null || phoneNo === undefined) {
+    return "";
+  }
+
+  return phoneNo.replace(/(\d{3})(\d{3,4})(\d{4})/, "$1-$2-$3");
+}

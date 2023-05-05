@@ -48,9 +48,7 @@ export default function Component() {
         {pendingCount.data && pendingCount.data.value !== 0 && (
           <Toolbar.Button
             icon={<TbMail />}
-            label={`매출처 등록 요청 목록 (${
-              pendingCount.data?.valueOf ?? 0
-            }건)`}
+            label={`매출처 등록 요청 목록 (${pendingCount.data?.value ?? 0}건)`}
             type="orange"
             onClick={() => setOpenReceive(true)}
           />
@@ -80,12 +78,27 @@ export default function Component() {
             dataIndex: ["dstCompany", "businessName"],
           },
           {
+            title: "사업자등록번호",
+            dataIndex: ["dstCompany", "companyRegistrationNumber"],
+          },
+          {
+            title: "대표자",
+            dataIndex: ["dstCompany", "representative"],
+          },
+          {
+            title: "주소",
+            dataIndex: ["dstCompany", "address"],
+            render: (value) => Util.formatAddress(value),
+          },
+          {
             title: "대표 전화",
             dataIndex: ["dstCompany", "phoneNo"],
+            render: (value) => Util.formatPhoneNo(value),
           },
           {
             title: "팩스",
             dataIndex: ["dstCompany", "faxNo"],
+            render: (value) => Util.formatPhoneNo(value),
           },
           {
             title: "이메일",

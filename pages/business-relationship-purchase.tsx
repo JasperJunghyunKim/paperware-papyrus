@@ -60,12 +60,27 @@ export default function Component() {
             dataIndex: ["srcCompany", "businessName"],
           },
           {
+            title: "사업자등록번호",
+            dataIndex: ["srcCompany", "companyRegistrationNumber"],
+          },
+          {
+            title: "대표자",
+            dataIndex: ["srcCompany", "representative"],
+          },
+          {
+            title: "주소",
+            dataIndex: ["srcCompany", "address"],
+            render: (value) => Util.formatAddress(value),
+          },
+          {
             title: "대표 전화",
             dataIndex: ["srcCompany", "phoneNo"],
+            render: (value) => Util.formatPhoneNo(value),
           },
           {
             title: "팩스",
             dataIndex: ["srcCompany", "faxNo"],
+            render: (value) => Util.formatPhoneNo(value),
           },
           {
             title: "이메일",

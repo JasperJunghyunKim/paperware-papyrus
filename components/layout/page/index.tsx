@@ -1,6 +1,7 @@
 import { ApiHook, Util } from "@/common";
 import { Button, Icon, Logo } from "@/components";
 import { AutoComplete, ConfigProvider, Input, Tooltip } from "antd";
+import classNames from "classnames";
 import { useRouter } from "next/router";
 import {
   PropsWithChildren,
@@ -12,7 +13,6 @@ import {
 import {
   TbBuildingWarehouse,
   TbChartDots,
-  TbClipboardData,
   TbClipboardList,
   TbColorSwatch,
   TbFunction,
@@ -22,17 +22,14 @@ import {
   TbMapPin,
   TbPower,
   TbSearch,
-  TbServer,
   TbServer2,
   TbServerBolt,
   TbSubtask,
   TbTournament,
   TbTruck,
-  TbUsers,
 } from "react-icons/tb";
 import { useStickyBox } from "react-sticky-box";
 import Menu, { Menu as MenuDef } from "./Menu";
-import classNames from "classnames";
 
 export interface Props {
   title: string;
@@ -41,6 +38,9 @@ export interface Props {
 export default function Component(props: PropsWithChildren<Props>) {
   const router = useRouter();
   const stickyRef = useStickyBox({ offsetTop: 0, offsetBottom: 0 });
+
+  const businessRelationshipRequestCount =
+    ApiHook.Inhouse.BusinessRelationshipRequest.useGetPendingCount();
 
   const menus = useMemo<MenuDef[]>(
     () => [
@@ -68,7 +68,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "창고 관리",
         icon: <TbBuildingWarehouse />,
         path: "/warehouse",
-        type: "progress",
       },
       { path: null },
       {
@@ -87,7 +86,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "매입처 관리",
         icon: <TbHome2 />,
         path: "/business-relationship-purchase",
-        type: "progress",
       },
       { path: null },
       {
@@ -100,7 +98,7 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "매출처 관리",
         icon: <TbHomeMove />,
         path: "/business-relationship-sales",
-        type: "progress",
+        noti: businessRelationshipRequestCount.data?.value,
       },
       { path: null },
       {
@@ -116,7 +114,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "도착지 관리",
         icon: <TbMapPin />,
         path: "/location",
-        type: "progress",
       },
       {
         label: "고시가 설정",

@@ -46,7 +46,7 @@ export default function Component(props: MenuProps) {
                 {menu.noti && menu.noti > 0 ? (
                   <div
                     className={classnames(
-                      "flex-initial flex items-center justify-center px-1 py-0.5 rounded-full bg-red-500 text-xs font-bold",
+                      "flex-initial basis-6 flex items-center justify-center px-1 py-0.5 rounded-full bg-red-500 text-xs font-bold",
                       {
                         "bg-yellow-400 text-cyan-700": isActive(menu.path),
                         "text-white": !isActive(menu.path),
