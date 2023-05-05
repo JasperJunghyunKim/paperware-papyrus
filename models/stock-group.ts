@@ -1,24 +1,24 @@
-import Packaging from "./packaging";
-import PaperCert from "./paper-cert";
-import PaperColor from "./paper-color";
-import PaperColorGroup from "./paper-color-group";
-import PaperPattern from "./paper-pattern";
-import Product from "./product";
-import Warehouse from "./warehouse";
+import Packaging from './packaging';
+import PaperCert from './paper-cert';
+import PaperColor from './paper-color';
+import PaperColorGroup from './paper-color-group';
+import PaperPattern from './paper-pattern';
+import Product from './product';
+import Warehouse from './warehouse';
 
-interface WarehouseWithoutCompany extends Omit<Warehouse, 'company'> { }
+type WarehouseWithoutCompany = Omit<Warehouse, 'company'>;
 
 export default interface StockGroup {
-    warehouse: WarehouseWithoutCompany;
-    product: Product;
-    packaging: Packaging;
-    grammage: number;
-    sizeX: number;
-    sizeY: number;
-    paperColorGroup: PaperColorGroup | null;
-    paperColor: PaperColor | null;
-    paperPattern: PaperPattern | null;
-    paperCert: PaperCert | null;
-    totalQuantity: number;
-    availableQuantity: number;
+  warehouse: WarehouseWithoutCompany;
+  product: Product;
+  packaging: Packaging;
+  grammage: number;
+  sizeX: number;
+  sizeY: number;
+  paperColorGroup: PaperColorGroup | null;
+  paperColor: PaperColor | null;
+  paperPattern: PaperPattern | null;
+  paperCert: PaperCert | null;
+  totalQuantity: number;
+  availableQuantity: number;
 }

@@ -1,6 +1,6 @@
-import { PaginationQuery } from "../../models/pagination";
+import { PaginationQuery } from '../../models/pagination';
 
-export interface VirtualCompanyListQuery extends PaginationQuery {}
+export type VirtualCompanyListQuery = PaginationQuery;
 
 export interface VirtualCompanyCreateRequest {
   businessName: string;
@@ -9,5 +9,4 @@ export interface VirtualCompanyCreateRequest {
   email: string;
 }
 
-export interface VirtualCompanyUpdateRequest
-  extends VirtualCompanyCreateRequest {}
+export type VirtualCompanyUpdateRequest = VirtualCompanyCreateRequest;

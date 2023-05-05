@@ -1,6 +1,6 @@
-import { PaginationQuery } from "../../models/pagination";
+import { PaginationQuery } from '../../models/pagination';
 
-export interface WarehouseListQuery extends PaginationQuery {}
+export type WarehouseListQuery = PaginationQuery;
 
 export interface WarehouseCreateRequest {
   name: string;
@@ -9,4 +9,4 @@ export interface WarehouseCreateRequest {
   address: string;
 }
 
-export interface WarehouseUpdateRequest extends WarehouseCreateRequest {}
+export type WarehouseUpdateRequest = WarehouseCreateRequest;

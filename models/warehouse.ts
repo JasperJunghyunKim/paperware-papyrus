@@ -1,4 +1,4 @@
-import { Company } from ".";
+import { Company } from '.';
 
 export default interface Warehouse {
   id: number;

@@ -1,4 +1,4 @@
-import { PackagingType } from "./enum";
+import { PackagingType } from './enum';
 
 export default interface Packaging {
   id: number;

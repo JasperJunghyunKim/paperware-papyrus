@@ -1,6 +1,6 @@
-import { PaginationQuery } from "../../models/pagination";
+import { PaginationQuery } from '../../models/pagination';
 
-export interface LocationListQuery extends PaginationQuery {}
+export type LocationListQuery = PaginationQuery;
 
 export interface LocationCreateRequest {
   name: string;
@@ -9,4 +9,4 @@ export interface LocationCreateRequest {
   address: string;
 }
 
-export interface LocationUpdateRequest extends LocationCreateRequest {}
+export type LocationUpdateRequest = LocationCreateRequest;

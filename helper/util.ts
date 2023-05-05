@@ -1,10 +1,10 @@
 export function dateToIso8601(
-  date: Date | string | null | undefined
+  date: Date | string | null | undefined,
 ): string | null {
   if (date === null || date === undefined) {
     return null;
   }
-  if (typeof date === "string") {
+  if (typeof date === 'string') {
     return date;
   }
   return date.toISOString();
@@ -26,7 +26,7 @@ export function numberToBigint(value: number): bigint {
 }
 
 export function parseNumber(
-  value: string | undefined | null
+  value: string | undefined | null,
 ): number | undefined {
   const parsed = Number(value);
 

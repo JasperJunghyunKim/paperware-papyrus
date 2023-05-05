@@ -1,6 +1,5 @@
-import { Company } from "../../models";
-import { PaginationResponse } from "../../models/pagination";
+import { Company } from '../../models';
+import { PaginationResponse } from '../../models/pagination';
 
-export interface VirtualCompanyListResponse
-  extends PaginationResponse<Company> {}
-export interface VirtualCompanyItemResponse extends Company {}
+export type VirtualCompanyListResponse = PaginationResponse<Company>;
+export type VirtualCompanyItemResponse = Company;

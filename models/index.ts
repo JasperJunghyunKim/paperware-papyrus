@@ -34,5 +34,5 @@ export type {
   PaperCert,
   Packaging,
   User,
-  StockGroup
+  StockGroup,
 };

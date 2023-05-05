@@ -1,11 +1,11 @@
 import { BusinessRelationshipRequest } from '../../models';
 import { PaginationResponse } from '../../models/pagination';
 
-export interface BusinessRelationshipRequestListResponse
-  extends PaginationResponse<BusinessRelationshipRequest> {}
+export type BusinessRelationshipRequestListResponse =
+  PaginationResponse<BusinessRelationshipRequest>;
 
-export interface BusinessRelationshipRequestItemResponse
-  extends BusinessRelationshipRequest {}
+export type BusinessRelationshipRequestItemResponse =
+  BusinessRelationshipRequest;
 
 export interface BusinessRelationshipRequestPendingCountResponse {
   value: number;

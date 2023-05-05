@@ -1,5 +1,5 @@
-import { Location } from "../../models";
-import { PaginationResponse } from "../../models/pagination";
+import { Location } from '../../models';
+import { PaginationResponse } from '../../models/pagination';
 
-export interface LocationListResponse extends PaginationResponse<Location> {}
-export interface LocationItemResponse extends Location {}
+export type LocationListResponse = PaginationResponse<Location>;
+export type LocationItemResponse = Location;

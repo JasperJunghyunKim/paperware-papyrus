@@ -1,7 +1,7 @@
-import { PaginationQuery } from "../../models/pagination";
+import { PaginationQuery } from '../../models/pagination';
 
 /** 자사 재고그룹 목록 요청 */
-export interface StockGroupListQuery extends PaginationQuery { }
+export type StockGroupListQuery = PaginationQuery;
 
 /** 자사 재고목록 요청 */
 export interface StockListQuery {

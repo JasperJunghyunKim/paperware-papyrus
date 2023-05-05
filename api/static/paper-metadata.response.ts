@@ -9,7 +9,7 @@ import {
   PaperPattern,
   PaperType,
   Product,
-} from "../../models";
+} from '../../models';
 
 export interface PaperMetadataResponse {
   paperDomains: PaperDomain[];

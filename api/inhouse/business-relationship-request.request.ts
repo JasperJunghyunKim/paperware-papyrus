@@ -1,6 +1,6 @@
 import { PaginationQuery } from '../../models/pagination';
 
-export interface BusinessRelationshipRequestListQuery extends PaginationQuery {}
+export type BusinessRelationshipRequestListQuery = PaginationQuery;
 
 export interface BusinessRelationshipRequestCreateRequest {
   companyId: number;
