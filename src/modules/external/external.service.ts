@@ -12,7 +12,7 @@ export class ExternalService {
   async findCompanyWithCompanyRegistrationNumber(
     companyRegistrationNumber: string,
   ) {
-    return await this.prisma.company.findUnique({
+    return await this.prisma.company.findFirst({
       where: {
         companyRegistrationNumber,
       },

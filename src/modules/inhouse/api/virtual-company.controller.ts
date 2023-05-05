@@ -74,6 +74,10 @@ export class VirtualCompanyController {
   ) {
     await this.virtualCompanyChangeService.create({
       businessName: body.businessName,
+      companyRegistrationNumber: body.companyRegistrationNumber,
+      invoiceCode: body.invoiceCode,
+      representative: body.representative,
+      address: body.address,
       phoneNo: body.phoneNo,
       faxNo: body.faxNo,
       email: body.email,

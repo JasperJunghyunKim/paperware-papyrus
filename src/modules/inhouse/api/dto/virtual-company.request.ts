@@ -20,6 +20,18 @@ export class VirtualCompanyCreateRequestDto
 {
   @IsString()
   @MaxLength(30)
+  companyRegistrationNumber: string;
+  @IsString()
+  @MaxLength(6)
+  invoiceCode: string;
+  @IsString()
+  @MaxLength(30)
+  representative: string;
+  @IsString()
+  @MaxLength(500)
+  address: string;
+  @IsString()
+  @MaxLength(30)
   businessName: string;
   @IsString()
   @MaxLength(30)
@@ -35,6 +47,18 @@ export class VirtualCompanyCreateRequestDto
 export class VirtualCompanyUpdateRequestDto
   implements VirtualCompanyUpdateRequest
 {
+  @IsString()
+  @MaxLength(30)
+  companyRegistrationNumber: string;
+  @IsString()
+  @MaxLength(6)
+  invoiceCode: string;
+  @IsString()
+  @MaxLength(30)
+  representative: string;
+  @IsString()
+  @MaxLength(500)
+  address: string;
   @IsString()
   @MaxLength(30)
   businessName: string;
