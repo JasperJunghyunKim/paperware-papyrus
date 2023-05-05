@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   ForbiddenException,
   Get,
   HttpCode,
@@ -13,16 +12,16 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { VirtualCompanyListResponse } from 'src/@shared/api';
 import { VirtualCompanyCreateRequest } from 'src/@shared/api/inhouse/virtual-company.request';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
+import { AuthType } from 'src/modules/auth/auth.type';
 import { VirtualCompanyChangeService } from 'src/modules/inhouse/service/virtual-company-change.service';
 import { VirtualCompanyRetriveService } from 'src/modules/inhouse/service/virtual-company-retrive.service';
 import {
   VirtualCompanyListQueryDto,
   VirtualCompanyUpdateRequestDto,
 } from './dto/virtual-company.request';
-import { AuthType } from 'src/modules/auth/auth.type';
-import { AuthGuard } from 'src/modules/auth/auth.guard';
-import { VirtualCompanyListResponse } from 'src/@shared/api';
 
 @Controller('inhouse/virtual-company')
 export class VirtualCompanyController {
@@ -39,12 +38,13 @@ export class VirtualCompanyController {
     @Query() query: VirtualCompanyListQueryDto,
   ): Promise<VirtualCompanyListResponse> {
     const items = await this.virtualCompanyRetriveService.getList({
+      managedById: req.user.companyId,
       skip: query.skip,
       take: query.take,
     });
 
     const total = await this.virtualCompanyRetriveService.getCount({
-      companyId: req.user.companyId,
+      managedById: req.user.companyId,
     });
 
     return {
@@ -75,6 +75,10 @@ export class VirtualCompanyController {
   ) {
     await this.virtualCompanyChangeService.create({
       businessName: body.businessName,
+      companyRegistrationNumber: body.companyRegistrationNumber,
+      invoiceCode: body.invoiceCode,
+      representative: body.representative,
+      address: body.address,
       phoneNo: body.phoneNo,
       faxNo: body.faxNo,
       email: body.email,

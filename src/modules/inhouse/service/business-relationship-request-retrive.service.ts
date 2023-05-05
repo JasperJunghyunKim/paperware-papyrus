@@ -11,6 +11,7 @@ export class BusinessRelationshipRequestRetriveService {
       select: Selector.BUSINESS_RELATIONSHIP_REQUEST,
       where: {
         dstCompanyId: params.dstCompanyId,
+        status: 'PENDING',
       },
       skip: params.skip,
       take: params.take,
@@ -21,14 +22,7 @@ export class BusinessRelationshipRequestRetriveService {
     return await this.prisma.businessRelationshipRequest.count({
       where: {
         dstCompanyId: params.dstCompanyId,
-      },
-    });
-  }
-
-  async getPendingCount(params: { dstCompanyId?: number }) {
-    return await this.prisma.businessRelationshipRequest.count({
-      where: {
-        dstCompanyId: params.dstCompanyId,
+        status: 'PENDING',
       },
     });
   }

@@ -11,6 +11,7 @@ export class WarehouseRetriveService {
       select: Selector.WAREHOUSE,
       where: {
         companyId: params.companyId,
+        isDeleted: false,
       },
       skip: params.skip,
       take: params.take,

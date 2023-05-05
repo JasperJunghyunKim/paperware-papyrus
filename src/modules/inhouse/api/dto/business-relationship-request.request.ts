@@ -13,7 +13,7 @@ export class BusinessRelationshipRequestListQueryDto
   @IsInt()
   @Type(() => Number)
   @IsOptional()
-  skip: number = 0;
+  skip = 0;
   @IsInt()
   @Type(() => Number)
   @IsOptional()

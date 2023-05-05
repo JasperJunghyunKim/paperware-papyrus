@@ -26,7 +26,7 @@ export class BusinessRelationshipRequestChangeService {
   }
 
   async accept(params: { srcCompanyId: number; dstCompanyId: number }) {
-    this.prisma.$transaction(async (tx) => {
+    await this.prisma.$transaction(async (tx) => {
       await tx.businessRelationship.create({
         data: {
           srcCompanyId: params.dstCompanyId,

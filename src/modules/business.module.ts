@@ -9,6 +9,15 @@ import { InhouseModule } from './inhouse/inhouse.module';
 import { StockModule } from './stock/stock.module';
 
 @Module({
-  imports: [AuthModule, MeModule, InternalModule, StaticModule, ExternalModule, ExampleModule, InhouseModule, StockModule],
+  imports: [
+    AuthModule,
+    MeModule,
+    InternalModule,
+    StaticModule,
+    ExternalModule,
+    ExampleModule,
+    InhouseModule,
+    StockModule,
+  ],
 })
-export class BusinessModule { }
+export class BusinessModule {}

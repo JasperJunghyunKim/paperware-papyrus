@@ -6,7 +6,7 @@ export class BusinessRelationshipChangeService {
   constructor(private prisma: PrismaService) {}
 
   async create(params: { srcCompanyId: number; dstCompanyId: number }) {
-    this.prisma.businessRelationship.create({
+    await this.prisma.businessRelationship.create({
       data: {
         srcCompanyId: params.srcCompanyId,
         dstCompanyId: params.dstCompanyId,

@@ -4,11 +4,10 @@ import { Selector } from 'src/common';
 import { PrismaService } from 'src/core';
 
 @Injectable()
-export class VirtualCompanyRetriveService {
+export class CompanyRetriveService {
   constructor(private prisma: PrismaService) {}
 
   async getList(params: {
-    managedById: number;
     skip: number;
     take: number;
   }): Promise<Array<Model.Company>> {
@@ -17,15 +16,15 @@ export class VirtualCompanyRetriveService {
       skip: params.skip,
       take: params.take,
       where: {
-        managedById: params.managedById,
+        managedById: null,
       },
     });
   }
 
-  async getCount(params: { managedById: number }): Promise<number> {
+  async getCount(): Promise<number> {
     return await this.prisma.company.count({
       where: {
-        managedById: params.managedById,
+        managedById: null,
       },
     });
   }

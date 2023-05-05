@@ -25,6 +25,7 @@ export class WarehouseCreateRequestDto implements WarehouseCreateRequest {
   @IsBoolean()
   isPublic: boolean;
   @IsString()
+  @MaxLength(500)
   address: string;
 }
 
@@ -38,5 +39,6 @@ export class WarehouseUpdateRequestDto implements WarehouseUpdateRequest {
   @IsBoolean()
   isPublic: boolean;
   @IsString()
+  @MaxLength(500)
   address: string;
 }

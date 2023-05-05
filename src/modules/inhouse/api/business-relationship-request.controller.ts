@@ -24,7 +24,7 @@ import {
   BusinessRelationshipRequestRejectRequestDto,
 } from './dto/business-relationship-request.request';
 
-@Controller('inhouse/business-relation-request')
+@Controller('inhouse/business-relationship-request')
 export class BusinessRelationshipRequestRequestController {
   constructor(
     private readonly retriveService: BusinessRelationshipRequestRetriveService,
@@ -60,7 +60,7 @@ export class BusinessRelationshipRequestRequestController {
   async getPendingCount(
     @Request() req: AuthType,
   ): Promise<BusinessRelationshipRequestPendingCountResponse> {
-    const value = await this.retriveService.getPendingCount({
+    const value = await this.retriveService.getCount({
       dstCompanyId: req.user.companyId,
     });
 

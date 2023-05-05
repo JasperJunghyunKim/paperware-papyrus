@@ -11,5 +11,5 @@ export const StockError: Readonly<{ [key in StockErrorEnum]: AppError }> = {
     name: STOCK_ERROR,
     code: 'STOCK001',
     message: '%s 은(는) 존재하지 않는 재고입니다.',
-  }
+  },
 };
