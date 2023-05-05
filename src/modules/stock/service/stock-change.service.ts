@@ -9,7 +9,7 @@ export class StockChangeService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly stockValidator: StockValidator,
-  ) {}
+  ) { }
 
   async cacheStockQuantityTx(
     tx: Omit<
@@ -52,22 +52,37 @@ export class StockChangeService {
     });
   }
 
-  async create(data: Prisma.StockCreateInput, quantity: number) {
+  async create(
+    stockData: Prisma.StockCreateInput,
+    stockPriceData: Prisma.StockPriceCreateInput,
+    quantity: number
+  ) {
     const stock = await this.prisma.$transaction(async (tx) => {
       const packaging = await tx.packaging.findUnique({
         where: {
-          id: data.packaging.connect.id,
+          id: stockData.packaging.connect.id,
         },
       });
 
       this.stockValidator.validateQuantity(packaging, quantity);
 
       const stock = await tx.stock.create({
-        data,
+        data: stockData,
         select: {
           id: true,
         },
       });
+      await tx.stockPrice.create({
+        data: {
+          ...stockPriceData,
+          stock: {
+            connect: {
+              id: stock.id,
+            }
+          }
+        }
+      });
+
       const stockEvent = await tx.stockEvent.create({
         data: {
           stock: {
@@ -88,7 +103,7 @@ export class StockChangeService {
       await tx.plan.create({
         data: {
           planNo: ulid(),
-          companyId: data.company.connect.id,
+          companyId: stockData.company.connect.id,
           stockEventOut: {
             connect: {
               id: stockEvent.id,
