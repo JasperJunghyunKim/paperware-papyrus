@@ -6,7 +6,7 @@ import { PrismaService } from 'src/core/database/prisma.service';
 
 @Injectable()
 export class ExternalService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   // #region Company
   async findCompanyWithCompanyRegistrationNumber(
@@ -262,11 +262,7 @@ export class ExternalService {
     return null;
   }
 
-  async acceptOrder(orderId: number): Promise<void> {
-
-
-
-  }
+  async acceptOrder(orderId: number): Promise<void> {}
 
   // #endregion
 

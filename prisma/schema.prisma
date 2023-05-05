@@ -260,10 +260,13 @@ model User {
 model Company {
   id                             Int                           @id @default(autoincrement())
   businessName                   String
-  companyRegistrationNumber      String?                       @unique
+  companyRegistrationNumber      String?
   phoneNo                        String                        @default("")
   faxNo                          String                        @default("")
   email                          String                        @default("")
+  representative                 String                        @default("")
+  invoiceCode                    String?
+  address                        String                        @default("")
   managedById                    Int?
   managedBy                      Company?                      @relation("CompanyManagedBy", fields: [managedById], references: [id])
   srcBusinessRelationship        BusinessRelationship[]        @relation("srcBusinessRelationship")

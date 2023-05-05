@@ -10,7 +10,7 @@ export class BusinessRelationshipListQueryDto
 {
   @IsInt()
   @Type(() => Number)
-  skip: number = 0;
+  skip = 0;
   @IsInt()
   @Type(() => Number)
   @IsOptional()

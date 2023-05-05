@@ -1,4 +1,10 @@
-import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  NestInterceptor,
+} from '@nestjs/common';
 import { isNil } from 'lodash';
 import * as moment from 'moment';
 import { Observable, throwError } from 'rxjs';
@@ -14,7 +20,7 @@ export class HttpLoggingInterceptor implements NestInterceptor {
   /**
    * 생성자
    */
-  constructor() { }
+  constructor() {}
 
   /**
    * 인터셉트
@@ -22,9 +28,9 @@ export class HttpLoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const request: Request = context.switchToHttp().getRequest();
     this.logger.log(
-      `Request - HTTP Method: [START - ${request.method}] Request URL: ${(request as any).originalUrl} Time: ${moment().format(
-        'YYYY년 MM월 DD일  HH시mm분ss초',
-      )}`,
+      `Request - HTTP Method: [START - ${request.method}] Request URL: ${
+        (request as any).originalUrl
+      } Time: ${moment().format('YYYY년 MM월 DD일  HH시mm분ss초')}`,
     );
     return next.handle().pipe(
       catchError((err: any) =>
@@ -33,7 +39,9 @@ export class HttpLoggingInterceptor implements NestInterceptor {
             const msg = `Code: ${err.response.code} Message: ${err.response.message}`;
 
             this.logger.error(
-              `Error: HTTP Method - [ERROR - ${request.method}] Request URL: ${(request as any).originalUrl} Time: ${moment().format(
+              `Error: HTTP Method - [ERROR - ${request.method}] Request URL: ${
+                (request as any).originalUrl
+              } Time: ${moment().format(
                 'YYYY년 MM월 DD일  HH시mm분ss초',
               )} ${msg}`,
               {
@@ -52,9 +60,9 @@ export class HttpLoggingInterceptor implements NestInterceptor {
       ),
       finalize(() => {
         this.logger.log(
-          `Response - HTTP Method: [END - ${request.method}] Request URL: ${(request as any).originalUrl} Time: ${moment().format(
-            'YYYY년 MM월 DD일  HH시mm분ss초',
-          )}`,
+          `Response - HTTP Method: [END - ${request.method}] Request URL: ${
+            (request as any).originalUrl
+          } Time: ${moment().format('YYYY년 MM월 DD일  HH시mm분ss초')}`,
         );
       }),
     );

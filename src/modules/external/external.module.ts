@@ -7,4 +7,4 @@ import { InternalService } from '../internal/internal.service';
   providers: [ExternalService, InternalService],
   controllers: [ExternalController],
 })
-export class ExternalModule { }
+export class ExternalModule {}

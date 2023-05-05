@@ -1,1 +1,1 @@
-export class StockRepository { }
+export class StockRepository {}

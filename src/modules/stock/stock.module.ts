@@ -5,7 +5,7 @@ import { StockRetriveService } from './service/stock-retrive.service';
 import { StockValidator } from './service/stock.validator';
 
 @Module({
-    controllers: [StockController],
-    providers: [StockRetriveService, StockChangeService, StockValidator]
+  controllers: [StockController],
+  providers: [StockRetriveService, StockChangeService, StockValidator],
 })
-export class StockModule { }
+export class StockModule {}
