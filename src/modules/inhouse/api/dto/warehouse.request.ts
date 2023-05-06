@@ -1,5 +1,12 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsInt, IsString, MaxLength } from 'class-validator';
+import {
+  IsBoolean,
+  IsInt,
+  IsOptional,
+  IsString,
+  MaxLength,
+  Min,
+} from 'class-validator';
 import {
   WarehouseCreateRequest,
   WarehouseListQuery,
@@ -7,12 +14,15 @@ import {
 } from 'src/@shared/api/inhouse/warehouse.request';
 
 export class WarehouseListQueryDto implements WarehouseListQuery {
+  @IsOptional()
   @IsInt()
   @Type(() => Number)
-  skip: number;
+  @Min(0)
+  readonly skip: number = 0;
   @IsInt()
+  @IsOptional()
   @Type(() => Number)
-  take: number;
+  readonly take: number = undefined;
 }
 
 export class WarehouseCreateRequestDto implements WarehouseCreateRequest {
