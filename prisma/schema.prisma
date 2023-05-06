@@ -221,8 +221,6 @@ model StockGroup {
   paperCert         PaperCert?        @relation(fields: [paperCertId], references: [id])
   warehouseId       Int?
   warehouse         Warehouse?        @relation(fields: [warehouseId], references: [id])
-  planId            Int?
-  plan              Plan?             @relation(fields: [planId], references: [id])
   orderStockId      Int?
   orderStock        OrderStock?       @relation(fields: [orderStockId], references: [id])
   companyId         Int
@@ -236,6 +234,8 @@ model StockGroupEvent {
   status       StockGroupEventStatus
   stockGroupId Int
   stockGroup   StockGroup            @relation(fields: [stockGroupId], references: [id])
+  Plan         Plan?                 @relation(fields: [planId], references: [id])
+  planId       Int?
 }
 
 enum StockGroupEventStatus {
@@ -458,17 +458,17 @@ enum TaskType {
 }
 
 model Plan {
-  id            Int          @id @default(autoincrement())
-  planNo        String       @unique
-  companyId     Int
-  company       Company      @relation(fields: [companyId], references: [id])
-  createdAt     DateTime     @default(now())
-  task          Task[]
-  stockEventIn  StockEvent[] @relation("StockEventInPlan")
-  stockEventOut StockEvent[] @relation("StockEventOutPlan")
-  orderStock    OrderStock?
-  stockGroup    StockGroup[]
-  invoice       Invoice[]
+  id                    Int               @id @default(autoincrement())
+  planNo                String            @unique
+  companyId             Int
+  company               Company           @relation(fields: [companyId], references: [id])
+  createdAt             DateTime          @default(now())
+  task                  Task[]
+  stockEventIn          StockEvent[]      @relation("StockEventInPlan")
+  stockEventOut         StockEvent[]      @relation("StockEventOutPlan")
+  orderStock            OrderStock?
+  targetGroupStockEvent StockGroupEvent[]
+  invoice               Invoice[]
 }
 
 enum TaskStatus {
