@@ -55,8 +55,8 @@ export default function Component(props: PropsWithChildren<Props>) {
       {
         label: "자사 재고 관리",
         icon: <TbServer2 />,
-        path: "/stock",
-        type: "wip",
+        path: "/stock-inhouse",
+        type: "progress",
       },
       {
         label: "도착 예정 목록",
@@ -122,7 +122,7 @@ export default function Component(props: PropsWithChildren<Props>) {
         type: "wip",
       },
     ],
-    []
+    [businessRelationshipRequestCount.data?.value]
   );
 
   const user = ApiHook.Auth.useGetMe();
@@ -138,7 +138,7 @@ export default function Component(props: PropsWithChildren<Props>) {
 
     localStorage.removeItem("at");
     router.replace("/login");
-  }, []);
+  }, [router]);
 
   return (
     <>

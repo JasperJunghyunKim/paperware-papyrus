@@ -4,8 +4,8 @@ import { Select } from "antd";
 import { useMemo } from "react";
 
 interface Props {
-  value?: number[];
-  onChange?: (value: number[]) => void;
+  value?: number;
+  onChange?: (value: number) => void;
 }
 
 export default function Component(props: Props) {
@@ -34,7 +34,6 @@ export default function Component(props: Props) {
         showSearch
         allowClear
         placeholder="인증 미지정"
-        mode="multiple"
       />
     </div>
   );
