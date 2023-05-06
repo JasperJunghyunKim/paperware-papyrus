@@ -1,5 +1,5 @@
-import { DiscountType, OfficialPriceType, PriceUnit } from "../../models/enum";
-import { PaginationQuery } from "../../models/pagination";
+import { DiscountType, OfficialPriceType, PriceUnit } from '../../models/enum';
+import { PaginationQuery } from '../../models/pagination';
 
 /** 자사 재고그룹 목록 요청 */
 export type StockGroupListQuery = PaginationQuery;
