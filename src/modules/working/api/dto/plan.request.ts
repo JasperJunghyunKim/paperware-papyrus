@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsInt, IsOptional, IsPositive } from 'class-validator';
-import { CreatePlanRequest, PlanListQuery } from 'src/@shared/api';
+import { PlanCreateRequest, PlanListQuery } from 'src/@shared/api';
 
 export class PlanListQueryDto implements PlanListQuery {
   @IsOptional()
@@ -15,7 +15,7 @@ export class PlanListQueryDto implements PlanListQuery {
   readonly take: number = undefined;
 }
 
-export class CreatePlanRequestDto implements CreatePlanRequest {
+export class CreatePlanRequestDto implements PlanCreateRequest {
   @IsInt()
   @IsPositive()
   @Type(() => Number)
