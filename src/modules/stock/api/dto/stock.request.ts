@@ -1,14 +1,19 @@
+import { DiscountType, OfficialPriceType, PriceUnit } from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
+  IsEnum,
   IsInt,
   IsNumber,
+  IsObject,
   IsOptional,
   IsPositive,
   Max,
   Min,
+  ValidateNested,
 } from 'class-validator';
 import {
   StockCreateRequest,
+  StockCreateStockPriceRequest,
   StockGroupListQuery,
   StockListQuery,
 } from 'src/@shared/api/stock/stock.request';
@@ -89,6 +94,35 @@ export class StockListRequestDto implements StockListQuery {
 }
 
 /** 재고생성 (신규등록) */
+export class StockCreateStockPriceDto implements StockCreateStockPriceRequest {
+  @IsEnum(OfficialPriceType)
+  readonly officialPriceType: OfficialPriceType;
+
+  @IsNumber()
+  @Min(0)
+  readonly officialPrice: number;
+
+  @IsEnum(PriceUnit)
+  readonly officialPriceUnit: PriceUnit;
+
+  @IsEnum(DiscountType)
+  readonly discountType: DiscountType;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  @Max(100)
+  readonly discountPrice: number = null;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  readonly unitPrice: number = null;
+
+  @IsEnum(PriceUnit)
+  readonly unitPriceUnit: PriceUnit;
+}
+
 export class StockCreateRequestDto implements StockCreateRequest {
   @IsOptional()
   @IsInt()
@@ -139,4 +173,9 @@ export class StockCreateRequestDto implements StockCreateRequest {
   @IsNumber()
   @IsPositive()
   readonly quantity: number;
+
+  @IsObject()
+  @ValidateNested()
+  @Type(() => StockCreateStockPriceDto)
+  readonly stockPrice: StockCreateStockPriceDto;
 }

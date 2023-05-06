@@ -3,94 +3,95 @@ import { PackagingType, Prisma, StockEventStatus } from '@prisma/client';
 import { PrismaService } from 'src/core';
 
 interface StockGroupFromDB {
-  warehouseId: number;
-  warehouseName: string;
-  warehouseCode: string;
-  warehouseIsPublic: boolean;
-  warehouseAddress: string;
+    warehouseId: number;
+    warehouseName: string;
+    warehouseCode: string;
+    warehouseIsPublic: boolean;
+    warehouseAddress: string;
 
-  packagingId: number;
-  packagingName: string;
-  packagingType: PackagingType;
-  packagingPackA: number;
-  packagingPackB: number;
+    packagingId: number;
+    packagingName: string;
+    packagingType: PackagingType;
+    packagingPackA: number;
+    packagingPackB: number;
 
-  productId: number;
-  paperDomainId: number;
-  paperDomainName: string;
-  paperGroupId: number;
-  paperGroupName: string;
-  manufacturerId: number;
-  manufacturerName: string;
-  paperTypeId: number;
-  paperTypeName: string;
+    productId: number;
+    paperDomainId: number;
+    paperDomainName: string;
+    paperGroupId: number;
+    paperGroupName: string;
+    manufacturerId: number;
+    manufacturerName: string;
+    paperTypeId: number;
+    paperTypeName: string;
 
-  grammage: number;
-  sizeX: number;
-  sizeY: number;
+    grammage: number;
+    sizeX: number;
+    sizeY: number;
 
-  paperColorGroupId: number;
-  paperColorGroupName: string;
-  paperColorId: number;
-  paperColorName: string;
-  paperPatternId: number;
-  paperPatternName: string;
-  paperCertId: number;
-  paperCertName: string;
+    paperColorGroupId: number;
+    paperColorGroupName: string;
+    paperColorId: number;
+    paperColorName: string;
+    paperPatternId: number;
+    paperPatternName: string;
+    paperCertId: number;
+    paperCertName: string;
 
-  totalQuantity: number;
-  availableQuantity: number;
-  total: bigint;
+    totalQuantity: number;
+    availableQuantity: number;
+    total: bigint;
 }
 
 @Injectable()
 export class StockRetriveService {
-  constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
-  async getStockList(data: Prisma.StockWhereInput) {
-    const stocks = await this.prisma.stock.findMany({
-      include: {
-        warehouse: true,
-        product: {
-          include: {
-            paperDomain: true,
-            manufacturer: true,
-            paperGroup: true,
-            paperType: true,
-          },
-        },
-        packaging: true,
-        paperColorGroup: true,
-        paperColor: true,
-        paperCert: true,
-      },
-      where: {
-        ...data,
-        isDeleted: false,
-      },
-    });
+    async getStockList(data: Prisma.StockWhereInput) {
+        const stocks = await this.prisma.stock.findMany({
+            include: {
+                warehouse: true,
+                product: {
+                    include: {
+                        paperDomain: true,
+                        manufacturer: true,
+                        paperGroup: true,
+                        paperType: true,
+                    },
+                },
+                packaging: true,
+                paperColorGroup: true,
+                paperColor: true,
+                paperCert: true,
+            },
+            where: {
+                ...data,
+                isDeleted: false,
+            },
+        });
 
-    for (const stock of stocks) {
-      delete stock.warehouseId;
-      delete stock.productId;
-      delete stock.packagingId;
-      delete stock.paperColorGroupId;
-      delete stock.paperColorId;
-      delete stock.paperPatternId;
-      delete stock.paperCertId;
-      delete stock.product.paperDomainId;
-      delete stock.product.manufacturerId;
-      delete stock.product.paperGroupId;
-      delete stock.product.paperTypeId;
+        for (const stock of stocks) {
+            delete stock.warehouseId;
+            delete stock.isDeleted;
+            delete stock.productId;
+            delete stock.packagingId;
+            delete stock.paperColorGroupId;
+            delete stock.paperColorId;
+            delete stock.paperPatternId;
+            delete stock.paperCertId;
+            delete stock.product.paperDomainId;
+            delete stock.product.manufacturerId;
+            delete stock.product.paperGroupId;
+            delete stock.product.paperTypeId;
+        }
+
+        return stocks;
     }
 
-    return stocks;
-  }
+    async getStockGroupList(companyId: number, skip: number, take: number) {
+        const limit = take ? Prisma.sql`LIMIT ${skip}, ${take}` : Prisma.empty;
 
-  async getStockGroupList(companyId: number, skip: number, take: number) {
-    const limit = take ? Prisma.sql`LIMIT ${skip}, ${take}` : Prisma.empty;
-
-    const stockGroups: StockGroupFromDB[] = await this.prisma.$queryRaw`
+        const stockGroups: StockGroupFromDB[] = await this.prisma.$queryRaw`
             SELECT  
                     s.warehouseId AS warehouseId
                     , w.name AS warehouseName
@@ -162,13 +163,13 @@ export class StockRetriveService {
              ${limit}
         `;
 
-    const total = stockGroups.length === 0 ? 0 : Number(stockGroups[0].total);
-    for (const stockGroup of stockGroups) {
-      stockGroup.totalQuantity = Number(stockGroup.totalQuantity);
-      stockGroup.availableQuantity = Number(stockGroup.availableQuantity);
-      delete stockGroup.total;
-    }
+        const total = stockGroups.length === 0 ? 0 : Number(stockGroups[0].total);
+        for (const stockGroup of stockGroups) {
+            stockGroup.totalQuantity = Number(stockGroup.totalQuantity);
+            stockGroup.availableQuantity = Number(stockGroup.availableQuantity);
+            delete stockGroup.total;
+        }
 
-    return { stockGroups, total };
-  }
+        return { stockGroups, total };
+    }
 }
