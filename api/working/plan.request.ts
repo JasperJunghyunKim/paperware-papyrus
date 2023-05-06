@@ -2,7 +2,7 @@ import { PaginationQuery } from 'src/@shared/models/pagination';
 
 export type PlanListQuery = PaginationQuery;
 
-export interface CreatePlanRequest {
+export interface PlanCreateRequest {
   productId: number;
   packagingId: number;
   grammage: number;
