@@ -41,7 +41,7 @@ export default function Component() {
       </StatBar.Container>
       <Toolbar.Container>
         <Toolbar.ButtonPreset.Create
-          label="창고 추가"
+          label="작업 계획 추가"
           onClick={() => setOpenCreate(true)}
         />
         <div className="flex-1" />
