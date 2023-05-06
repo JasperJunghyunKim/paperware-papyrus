@@ -7,6 +7,7 @@ import { ExternalModule } from './external/external.module';
 import { ExampleModule } from './example/user.module';
 import { InhouseModule } from './inhouse/inhouse.module';
 import { StockModule } from './stock/stock.module';
+import { WorkingModule } from './working/working.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { StockModule } from './stock/stock.module';
     ExampleModule,
     InhouseModule,
     StockModule,
+    WorkingModule,
   ],
 })
 export class BusinessModule {}
