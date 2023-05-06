@@ -226,6 +226,8 @@ model StockGroup {
   companyId         Int
   company           Company           @relation(fields: [companyId], references: [id])
   StockGroupEvent   StockGroupEvent[]
+
+  @@unique([productId, packagingId, grammage, sizeX, sizeY, paperColorGroupId, paperColorId, paperPatternId, paperCertId, warehouseId, companyId])
 }
 
 model StockGroupEvent {
@@ -462,12 +464,14 @@ model Plan {
   planNo                String            @unique
   companyId             Int
   company               Company           @relation(fields: [companyId], references: [id])
+  isDeleted             Boolean           @default(false)
+  memo                  String            @default("")
   createdAt             DateTime          @default(now())
   task                  Task[]
   stockEventIn          StockEvent[]      @relation("StockEventInPlan")
   stockEventOut         StockEvent[]      @relation("StockEventOutPlan")
   orderStock            OrderStock?
-  targetGroupStockEvent StockGroupEvent[]
+  targetStockGroupEvent StockGroupEvent[]
   invoice               Invoice[]
 }
 

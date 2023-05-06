@@ -238,6 +238,46 @@ export const STOCK_EVENT = {
   },
 } satisfies Prisma.StockEventSelect;
 
+export const STOCK_GROUP = {
+  id: true,
+  company: {
+    select: COMPANY,
+  },
+  product: {
+    select: PRODUCT,
+  },
+  packaging: {
+    select: PACKAGING,
+  },
+  grammage: true,
+  sizeX: true,
+  sizeY: true,
+  paperColorGroup: {
+    select: PAPER_COLOR_GROUP,
+  },
+  paperColor: {
+    select: PAPER_COLOR,
+  },
+  paperPattern: {
+    select: PAPER_PATTERN,
+  },
+  paperCert: {
+    select: PAPER_CERT,
+  },
+  warehouse: {
+    select: WAREHOUSE,
+  },
+} satisfies Prisma.StockGroupSelect;
+
+export const STOCK_GROUP_EVENT = {
+  id: true,
+  stockGroup: {
+    select: STOCK_GROUP,
+  },
+  change: true,
+  status: true,
+} satisfies Prisma.StockGroupEventSelect;
+
 export const ORDER = {
   id: true,
   orderNo: true,
@@ -277,12 +317,10 @@ export const PLAN = {
   company: {
     select: COMPANY,
   },
-  task: {
-    select: TASK,
-  },
-  stockEventIn: { select: STOCK_EVENT },
   createdAt: true,
-  // status: true,
+  targetStockGroupEvent: {
+    select: STOCK_GROUP_EVENT,
+  },
 } satisfies Prisma.PlanSelect;
 
 export const ORDER_STOCK = {
