@@ -10,5 +10,10 @@
 ## submodule update 
 1. git submodule update --recursive 
 
+## submoudle git pull alias 설정
+git config --global alias.pull-with-submodules '!git pull && git submodule update --init --recursive && git submodule foreach --recursive git pull'
+
+pull-with-submodules - 자신이 편한 이름으로 바꾸세요
+
 # 주의사항
 루트경로에서 받으면 해당 submodule pull이 안받아지기 때문에 submoudle 경로 가서 git submodule update --recursive 별도로 pull 요청 해줘야한다.!
