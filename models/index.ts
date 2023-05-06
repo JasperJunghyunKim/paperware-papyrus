@@ -15,6 +15,9 @@ import Product from './product';
 import User from './user';
 import Warehouse from './warehouse';
 import StockGroup from './stock-group';
+import Plan from './plan';
+import StockGroupBase from './stock-group-base';
+import StockGroupEvent from './stock-group-event';
 
 export * as Enum from './enum';
 export type {
@@ -35,4 +38,7 @@ export type {
   Packaging,
   User,
   StockGroup,
+  Plan,
+  StockGroupBase,
+  StockGroupEvent,
 };
