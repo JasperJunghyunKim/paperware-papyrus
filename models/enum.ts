@@ -8,7 +8,7 @@ export type OfficialPriceType =
 export type PriceUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX';
 export type ShippingType = 'DELIVERY' | 'PICKUP' | 'STORE';
 export type StockEventStatus = 'NORMAL' | 'CANCELLED' | 'PENDING';
-export type TaskType = 'CONVERTING' | 'GUILLOTINE';
+export type TaskType = 'CONVERTING' | 'GUILLOTINE' | 'QUANTITY';
 export type DiscountType = 'DEFAULT' | 'SPECIAL';
 export type BusinessRelationshipRequestStatus =
   | 'PENDING'
