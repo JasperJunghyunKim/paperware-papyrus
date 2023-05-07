@@ -13,11 +13,11 @@ export class PlanChangeService {
     grammage: number;
     sizeX: number;
     sizeY: number;
-    paperColorGroupId: number;
-    paperColorId: number;
-    paperPatternId: number;
-    paperCertId: number;
-    warehouseId: number;
+    paperColorGroupId: number | null;
+    paperColorId: number | null;
+    paperPatternId: number | null;
+    paperCertId: number | null;
+    warehouseId: number | null;
     memo: string;
     quantity: number;
   }) {
@@ -37,39 +37,40 @@ export class PlanChangeService {
       quantity,
     } = params;
 
+    console.log('TEST', params);
+
     await this.prisma.$transaction(async (tx) => {
-      const sg = await tx.stockGroup.upsert({
-        where: {
-          productId_packagingId_grammage_sizeX_sizeY_paperColorGroupId_paperColorId_paperPatternId_paperCertId_warehouseId_companyId:
-            {
-              productId,
-              packagingId,
-              grammage,
-              sizeX,
-              sizeY,
-              paperColorGroupId,
-              paperColorId,
-              paperPatternId,
-              paperCertId,
-              warehouseId,
-              companyId,
-            },
-        },
-        create: {
-          companyId,
-          productId,
-          packagingId,
-          grammage,
-          sizeX,
-          sizeY,
-          paperColorGroupId,
-          paperColorId,
-          paperPatternId,
-          paperCertId,
-          warehouseId,
-        },
-        update: {},
-      });
+      const sg =
+        (await tx.stockGroup.findFirst({
+          where: {
+            productId,
+            packagingId,
+            grammage,
+            sizeX,
+            sizeY,
+            paperColorGroupId,
+            paperColorId,
+            paperPatternId,
+            paperCertId,
+            warehouseId,
+            companyId,
+          },
+        })) ??
+        (await tx.stockGroup.create({
+          data: {
+            companyId,
+            productId,
+            packagingId,
+            grammage,
+            sizeX,
+            sizeY,
+            paperColorGroupId,
+            paperColorId,
+            paperPatternId,
+            paperCertId,
+            warehouseId,
+          },
+        }));
 
       const sge = await tx.stockGroupEvent.create({
         data: {

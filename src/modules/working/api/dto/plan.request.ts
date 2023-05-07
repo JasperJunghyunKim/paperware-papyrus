@@ -1,57 +1,59 @@
 import { Type } from 'class-transformer';
-import { IsInt, IsOptional, IsPositive } from 'class-validator';
+import { IsInt, IsOptional, Min } from 'class-validator';
 import { PlanCreateRequest, PlanListQuery } from 'src/@shared/api';
 
 export class PlanListQueryDto implements PlanListQuery {
   @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
+  @Min(0)
   readonly skip: number = 0;
   @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
+  @Min(0)
   readonly take: number = undefined;
 }
 
-export class CreatePlanRequestDto implements PlanCreateRequest {
+export class PlanCreateRequestDto implements PlanCreateRequest {
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
   readonly productId: number;
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
   readonly packagingId: number;
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
   readonly grammage: number;
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
   readonly sizeX: number;
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
   readonly sizeY: number;
+  @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
-  readonly paperColorGroupId: number;
+  readonly paperColorGroupId: number = null;
+  @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
-  readonly paperColorId: number;
+  readonly paperColorId: number = null;
+  @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
-  readonly paperPatternId: number;
+  readonly paperPatternId: number = null;
+  @IsOptional()
   @IsInt()
-  @IsPositive()
   @Type(() => Number)
-  readonly paperCertId: number;
+  readonly paperCertId: number = null;
+  @IsOptional()
+  @IsInt()
+  @Type(() => Number)
+  readonly warehouseId: number = null;
+  @IsInt()
+  @Type(() => Number)
+  readonly quantity: number;
   @IsOptional()
   @Type(() => String)
   readonly memo: string = '';
