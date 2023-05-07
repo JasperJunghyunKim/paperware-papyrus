@@ -314,7 +314,7 @@ export function taskTypeToString(value: Model.Enum.TaskType) {
     case "GUILLOTINE":
       return "길로틴";
     case "QUANTITY":
-      return "수량 입력";
+      return "출고 수량";
   }
 }
 

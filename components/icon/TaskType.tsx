@@ -1,5 +1,5 @@
 import { Model } from "@/@shared";
-import { TbCrop, TbRefresh } from "react-icons/tb";
+import { Tb123, TbCrop, TbRefresh } from "react-icons/tb";
 
 interface Props {
   taskType?: Model.Enum.TaskType | null;
@@ -11,6 +11,8 @@ export default function Component(props: Props) {
       return <TbRefresh />;
     case "GUILLOTINE":
       return <TbCrop />;
+    case "QUANTITY":
+      return <Tb123 />;
     default:
       return null;
   }

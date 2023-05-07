@@ -64,12 +64,23 @@ export default function Component(props: Props) {
             />
           </div>
         )}
-        <div className="flex-[0_0_1px] bg-gray-200" />
-        <div className="flex-[1_0_0px] flex flex-col bg-slate-100 h-0">
-          <TaskMap />
+        <div className="flex-[0_0_1px] bg-gray-300" />
+        <div className="flex-[1_0_0px] flex flex-col bg-slate-200 h-0">
+          {data.data && (
+            <TaskMap
+              planId={data.data.id}
+              packagingType={
+                data.data.targetStockGroupEvent.stockGroup.packaging.type
+              }
+            />
+          )}
         </div>
-        <div className="flex-[0_0_1px] bg-gray-200" />
-        <div className="flex-initial basis-48 flex flex-col">TODO</div>
+        <div className="flex-[0_0_1px] bg-gray-300" />
+        <div className="flex-initial basis-48 flex flex-col">
+          <div className="flex-initial font-bold px-4 py-3 text-base">
+            실투입 목록
+          </div>
+        </div>
       </div>
     </Popup.Template.Full>
   );
