@@ -1,8 +1,8 @@
-import { Protocol } from "@/common";
+import { Model } from "@/@shared";
 import { TbCrop, TbRefresh } from "react-icons/tb";
 
 interface Props {
-  taskType?: Protocol.Record.TaskType | null;
+  taskType?: Model.Enum.TaskType | null;
 }
 
 export default function Component(props: Props) {

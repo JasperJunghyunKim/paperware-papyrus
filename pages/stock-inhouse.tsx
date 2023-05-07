@@ -1,7 +1,7 @@
 import { Model } from "@/@shared";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
-import { Popup, StatBar, Table, Toolbar } from "@/components";
+import { Icon, Popup, StatBar, Table, Toolbar } from "@/components";
 import { Page } from "@/components/layout";
 import { useState } from "react";
 import { TbMapPin, TbMapPinFilled } from "react-icons/tb";
@@ -69,6 +69,20 @@ export default function Component() {
           {
             title: "지종",
             dataIndex: ["product", "paperType", "name"],
+          },
+          {
+            title: "포장",
+            dataIndex: ["packaging", "type"],
+            render: (value, record) => (
+              <div className="font-fixed flex gap-x-1">
+                <div className="flex-initial flex flex-col justify-center text-lg">
+                  <Icon.PackagingType packagingType={record.packaging.type} />
+                </div>
+                <div className="flex-initial flex flex-col justify-center">
+                  {value}
+                </div>
+              </div>
+            ),
           },
           {
             title: "평량",

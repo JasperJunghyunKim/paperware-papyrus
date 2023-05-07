@@ -1,7 +1,7 @@
+import { Model } from "@/@shared";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
-import { Record } from "@/common/protocol";
-import { Popup, StatBar, Table, Toolbar } from "@/components";
+import { Icon, Popup, StatBar, Table, Toolbar } from "@/components";
 import { Page } from "@/components/layout";
 import { useCallback, useState } from "react";
 import { TbHome, TbHomeShield } from "react-icons/tb";
@@ -11,8 +11,8 @@ export default function Component() {
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
 
   const [page, setPage] = usePage();
-  const list = ApiHook.Inhouse.Warehouse.useGetList({ query: page });
-  const [selected, setSelected] = useState<Record.Warehouse[]>([]);
+  const list = ApiHook.Working.Plan.useGetList({ query: page });
+  const [selected, setSelected] = useState<Model.Plan[]>([]);
 
   const only = Util.only(selected);
 
@@ -20,7 +20,9 @@ export default function Component() {
   const cmdDelete = useCallback(async () => {
     if (
       !only ||
-      !(await Util.confirm(`선택한 창고(${only.name})를 삭제하시겠습니까?`))
+      !(await Util.confirm(
+        `선택한 작업 계획(${only.planNo})를 삭제하시겠습니까?`
+      ))
     ) {
       return;
     }
@@ -31,10 +33,10 @@ export default function Component() {
   return (
     <Page title="작업 계획 목록">
       <StatBar.Container>
-        <StatBar.Item icon={<TbHome />} label="공개 창고" value={"-"} />
+        <StatBar.Item icon={<TbHome />} label="작업 계획" value={"-"} />
         <StatBar.Item
           icon={<TbHomeShield />}
-          label="비공개 창고"
+          label="작업 계획"
           value={"-"}
           iconClassName="text-purple-800"
         />
@@ -47,18 +49,12 @@ export default function Component() {
         <div className="flex-1" />
         {only && (
           <Toolbar.ButtonPreset.Update
-            label="선택 창고 상세"
+            label="선택 작업 계획 상세"
             onClick={() => setOpenUpdate(only.id)}
           />
         )}
-        {only && (
-          <Toolbar.ButtonPreset.Delete
-            label="선택 창고 삭제"
-            onClick={async () => await cmdDelete()}
-          />
-        )}
       </Toolbar.Container>
-      <Table.Default<Record.Warehouse>
+      <Table.Default<Model.Plan>
         data={list.data}
         page={page}
         setPage={setPage}
@@ -67,28 +63,138 @@ export default function Component() {
         onSelectedChange={setSelected}
         columns={[
           {
-            title: "창고 이름",
-            dataIndex: "name",
-          },
-          {
-            title: "창고 코드",
-            dataIndex: "code",
+            title: "작업 계획 번호",
+            dataIndex: "planNo",
             render: (value) => <div className="font-fixed">{value}</div>,
           },
           {
-            title: "공개 여부",
-            dataIndex: "isPublic",
-            render: (value) => (value ? "공개" : "비공개"),
+            title: "원지 창고",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "warehouse",
+              "name",
+            ],
           },
           {
-            title: "주소",
-            dataIndex: "address",
-            render: (value) => <div>{Util.formatAddress(value)}</div>,
+            title: "제품 유형",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "product",
+              "paperDomain",
+              "name",
+            ],
+          },
+          {
+            title: "제지사",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "product",
+              "manufacturer",
+              "name",
+            ],
+          },
+          {
+            title: "지군",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "product",
+              "paperGroup",
+              "name",
+            ],
+          },
+          {
+            title: "지종",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "product",
+              "paperType",
+              "name",
+            ],
+          },
+          {
+            title: "포장",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "packaging",
+              "type",
+            ],
+            render: (value, record) => (
+              <div className="font-fixed flex gap-x-1">
+                <div className="flex-initial flex flex-col justify-center text-lg">
+                  <Icon.PackagingType
+                    packagingType={
+                      record.targetStockGroupEvent.stockGroup.packaging.type
+                    }
+                  />
+                </div>
+                <div className="flex-initial flex flex-col justify-center">
+                  {value}
+                </div>
+              </div>
+            ),
+          },
+          {
+            title: "평량",
+            dataIndex: ["targetStockGroupEvent", "stockGroup", "grammage"],
+          },
+          {
+            title: "지폭",
+            dataIndex: ["targetStockGroupEvent", "stockGroup", "sizeX"],
+          },
+          {
+            title: "지장",
+            dataIndex: ["targetStockGroupEvent", "stockGroup", "sizeY"],
+          },
+          {
+            title: "색군",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "paperColorGroup",
+              "name",
+            ],
+          },
+          {
+            title: "색상",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "paperColor",
+              "name",
+            ],
+          },
+          {
+            title: "무늬",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "paperPattern",
+              "name",
+            ],
+          },
+          {
+            title: "인증",
+            dataIndex: [
+              "targetStockGroupEvent",
+              "stockGroup",
+              "paperCert",
+              "name",
+            ],
+          },
+          {
+            title: "원지 수량",
+            dataIndex: ["targetStockGroupEvent", "change"],
           },
         ]}
       />
-      <Popup.Warehouse.Create open={openCreate} onClose={setOpenCreate} />
-      <Popup.Warehouse.Update open={openUpdate} onClose={setOpenUpdate} />
+      <Popup.Plan.Create open={openCreate} onClose={setOpenCreate} />
+      <Popup.Plan.Update open={openUpdate} onClose={setOpenUpdate} />
     </Page>
   );
 }

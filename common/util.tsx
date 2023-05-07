@@ -307,12 +307,14 @@ export function inc<T extends string>(value: T, ...array: T[]): boolean {
   return array.includes(value);
 }
 
-export function taskTypeToString(value: Protocol.Record.TaskType) {
+export function taskTypeToString(value: Model.Enum.TaskType) {
   switch (value) {
     case "CONVERTING":
       return "컨버팅";
     case "GUILLOTINE":
       return "길로틴";
+    case "QUANTITY":
+      return "수량 입력";
   }
 }
 
