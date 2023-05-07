@@ -17,3 +17,4 @@ export * from './inhouse/virtual-company.response';
 export * from './static/paper-metadata.response';
 export * from './working/plan.request';
 export * from './working/plan.response';
+export * from './working/task.request';

@@ -4,7 +4,7 @@ export default interface Task {
   id: number;
   taskNo: string;
   type: Enum.TaskType;
-  taskStatus: Enum.PlanStatus;
+  status: Enum.PlanStatus;
   parentTaskId: number | null;
   taskConverting: TaskConverting | null;
   taskGuillotine: TaskGuillotine | null;
