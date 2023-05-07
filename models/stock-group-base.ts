@@ -1,4 +1,4 @@
-import { Company } from '@prisma/client';
+import { Company } from '.';
 import Packaging from './packaging';
 import PaperCert from './paper-cert';
 import PaperColor from './paper-color';

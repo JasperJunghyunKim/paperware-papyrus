@@ -1,4 +1,4 @@
-import { PaginationQuery } from 'src/@shared/models/pagination';
+import { PaginationQuery } from '../../models/pagination';
 
 export type PlanListQuery = PaginationQuery;
 
@@ -12,5 +12,7 @@ export interface PlanCreateRequest {
   paperColorId: number;
   paperPatternId: number;
   paperCertId: number;
+  warehouseId: number;
   memo: string;
+  quantity: number;
 }
