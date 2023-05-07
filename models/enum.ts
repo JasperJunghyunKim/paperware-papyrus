@@ -21,8 +21,5 @@ export type OrderStatus =
   | 'REQUESTED'
   | 'ACCEPTED'
   | 'REJECTED';
-export type PlanStatus =
-  | 'PREPARING'
-  | 'PROGRESSING'
-  | 'PROGRESSED'
-  | 'RELEASED';
+export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
+export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';

@@ -18,6 +18,10 @@ import StockGroup from './stock-group';
 import Plan from './plan';
 import StockGroupBase from './stock-group-base';
 import StockGroupEvent from './stock-group-event';
+import Task from './task';
+import TaskConverting from './task-converting';
+import TaskGuillotine from './task-guillotine';
+import TaskQuantity from './task-quantity';
 
 export * as Enum from './enum';
 export type {
@@ -41,4 +45,8 @@ export type {
   Plan,
   StockGroupBase,
   StockGroupEvent,
+  Task,
+  TaskConverting,
+  TaskGuillotine,
+  TaskQuantity,
 };
