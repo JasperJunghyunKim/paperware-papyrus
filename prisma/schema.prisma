@@ -459,11 +459,18 @@ enum TaskType {
   QUANTITY
 }
 
+enum PlanStatus {
+  PREPARING
+  PROGRESSING
+  PROGRESSED
+}
+
 model Plan {
   id                      Int             @id @default(autoincrement())
   planNo                  String          @unique
   companyId               Int
   company                 Company         @relation(fields: [companyId], references: [id])
+  status                  PlanStatus      @default(PREPARING)
   isDeleted               Boolean         @default(false)
   memo                    String          @default("")
   createdAt               DateTime        @default(now())
@@ -489,7 +496,7 @@ model Task {
   plan           Plan            @relation(fields: [planId], references: [id])
   type           TaskType
   isDeleted      Boolean         @default(false)
-  taskStatus     TaskStatus
+  status         TaskStatus
   taskConverting TaskConverting?
   taskGuillotine TaskGuillotine?
   taskQuantity   TaskQuantity?

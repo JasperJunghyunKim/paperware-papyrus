@@ -98,4 +98,58 @@ export class PlanChangeService {
       });
     });
   }
+
+  async startPlan(params: { planId: number }) {
+    const { planId } = params;
+
+    const plan = await this.prisma.plan.findUnique({
+      where: {
+        id: planId,
+      },
+      select: {
+        status: true,
+      },
+    });
+
+    if (plan.status !== 'PREPARING') {
+      throw new Error('이미 시작된 Plan 입니다.');
+    }
+
+    return await this.prisma.plan.update({
+      where: {
+        id: planId,
+      },
+      data: {
+        status: 'PROGRESSING',
+      },
+    });
+  }
+
+  async completePlan(params: { planId: number }) {
+    const { planId } = params;
+
+    const plan = await this.prisma.plan.findUnique({
+      where: {
+        id: planId,
+      },
+      select: {
+        status: true,
+      },
+    });
+
+    if (plan.status !== 'PROGRESSING') {
+      throw new Error('완료할 수 없는 Plan입니다.');
+    }
+
+    return await this.prisma.plan.update({
+      where: {
+        id: planId,
+      },
+      data: {
+        status: 'PROGRESSED',
+      },
+    });
+
+    // TODO: 입고 가능한 Release 재고를 생성합니다.
+  }
 }

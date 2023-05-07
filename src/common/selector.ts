@@ -303,13 +303,10 @@ export const TASK_GUILLOTINE = {
   memo: true,
 } satisfies Prisma.TaskGuillotineSelect;
 
-export const TASK = {
-  id: true,
-  taskNo: true,
-  type: true,
-  taskConverting: { select: TASK_CONVERTING },
-  taskGuillotine: { select: TASK_GUILLOTINE },
-} satisfies Prisma.TaskSelect;
+export const TASK_QUANTITY = {
+  taskId: true,
+  quantity: true,
+} satisfies Prisma.TaskQuantitySelect;
 
 export const PLAN = {
   id: true,
@@ -317,11 +314,25 @@ export const PLAN = {
   company: {
     select: COMPANY,
   },
+  status: true,
   createdAt: true,
   targetStockGroupEvent: {
     select: STOCK_GROUP_EVENT,
   },
 } satisfies Prisma.PlanSelect;
+
+export const TASK = {
+  id: true,
+  taskNo: true,
+  plan: {
+    select: PLAN,
+  },
+  status: true,
+  type: true,
+  taskConverting: { select: TASK_CONVERTING },
+  taskGuillotine: { select: TASK_GUILLOTINE },
+  taskQuantity: { select: TASK_QUANTITY },
+} satisfies Prisma.TaskSelect;
 
 export const ORDER_STOCK = {
   id: true,
