@@ -13,8 +13,11 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { TaskItemResponse } from 'src/@shared/api/working/task.response';
+import { Util } from 'src/common';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
 import { AuthType } from 'src/modules/auth/auth.type';
+import { PlanRetriveService } from '../service/plan-retrive.service';
 import { TaskChangeService } from '../service/task-change.service';
 import { TaskRetriveService } from '../service/task-retrive.service';
 import {
@@ -25,8 +28,6 @@ import {
   TaskUpdateGuillotineRequestDto,
   TaskUpdateQuantityRequestDto,
 } from './dto/task.request';
-import { PlanRetriveService } from '../service/plan-retrive.service';
-import { Util } from 'src/common';
 
 @Controller('working')
 export class TaskController {
@@ -39,7 +40,10 @@ export class TaskController {
   @Get('task/:id')
   @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard)
-  async getTaskById(@Request() req: AuthType, @Param('id') id: number) {
+  async getTaskById(
+    @Request() req: AuthType,
+    @Param('id') id: number,
+  ): Promise<TaskItemResponse> {
     const task = await this.taskRetriveService.getTaskById(id);
 
     if (task.plan.company.id !== req.user.companyId) {

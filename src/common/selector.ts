@@ -329,6 +329,7 @@ export const TASK = {
   },
   status: true,
   type: true,
+  parentTaskId: true,
   taskConverting: { select: TASK_CONVERTING },
   taskGuillotine: { select: TASK_GUILLOTINE },
   taskQuantity: { select: TASK_QUANTITY },

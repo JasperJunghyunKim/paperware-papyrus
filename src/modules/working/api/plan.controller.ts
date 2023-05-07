@@ -17,6 +17,7 @@ import { PlanChangeService } from '../service/plan-change.service';
 import { PlanRetriveService } from '../service/plan-retrive.service';
 import { PlanCreateRequestDto, PlanListQueryDto } from './dto/plan.request';
 import { TaskRetriveService } from '../service/task-retrive.service';
+import { TaskListResponse } from 'src/@shared/api/working/task.response';
 
 @Controller('working')
 export class PlanController {
@@ -80,7 +81,10 @@ export class PlanController {
   @Get('plan/:id/task')
   @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard)
-  async getTaskListByPlanId(@Request() req: AuthType, @Param('id') id: number) {
+  async getTaskListByPlanId(
+    @Request() req: AuthType,
+    @Param('id') id: number,
+  ): Promise<TaskListResponse> {
     const plan = await this.planRetriveService.getPlanById(id);
 
     if (plan.company.id !== req.user.companyId) {
