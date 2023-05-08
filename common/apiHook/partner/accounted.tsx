@@ -5,7 +5,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 export function useGetPaidList(params: {
-	query: Partial<Api.PaidRequest>;
+	query: Partial<Api.PaidQuery>;
 }) {
 	return useQuery(
 		["paid", "list", params.query.skip, params.query.take],
@@ -22,7 +22,7 @@ export function useGetPaidList(params: {
 }
 
 export function useGetCollectedList(params: {
-	query: Partial<Api.PaidRequest>;
+	query: Partial<Api.CollectedQuery>;
 }) {
 	return useQuery(
 		["collected", "list", params.query.skip, params.query.take],

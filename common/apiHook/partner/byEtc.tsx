@@ -4,7 +4,7 @@ import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export function useGetItem(params: { id: number | false }) {
+export function useGetByEtcPaidItem(params: { id: number | false }) {
 	return useQuery(["paid", "etc", params.id], async () => {
 		if (params.id === false) {
 			return null;
@@ -16,7 +16,7 @@ export function useGetItem(params: { id: number | false }) {
 	});
 }
 
-export function useCreate() {
+export function useByEtcPaidCreate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -35,7 +35,7 @@ export function useCreate() {
 	);
 }
 
-export function useUpdate() {
+export function useByEtcPaidUpdate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -54,7 +54,7 @@ export function useUpdate() {
 	);
 }
 
-export function useDelete() {
+export function useByEtcPaidDelete() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -70,10 +70,9 @@ export function useDelete() {
 	);
 }
 
-
 // ----------------------------------------------------------------------
 
-export function useGetCollectedItem(params: { id: number | false }) {
+export function useGetByEtcCollectedItem(params: { id: number | false }) {
 	return useQuery(["collected", "etc", params.id], async () => {
 		if (params.id === false) {
 			return null;
@@ -85,7 +84,7 @@ export function useGetCollectedItem(params: { id: number | false }) {
 	});
 }
 
-export function useCollectedCreate() {
+export function useByEtcCollectedCreate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -104,7 +103,7 @@ export function useCollectedCreate() {
 	);
 }
 
-export function useCollectedUpdate() {
+export function useByEtcCollectedUpdate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -123,7 +122,7 @@ export function useCollectedUpdate() {
 	);
 }
 
-export function useCollectedDelete() {
+export function useByEtcCollectedDelete() {
 	const queryClient = useQueryClient();
 
 	return useMutation(

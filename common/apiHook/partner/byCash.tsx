@@ -4,7 +4,7 @@ import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export function useGetPaidItem(params: { id: number | false }) {
+export function useByCashGetPaidItem(params: { id: number | false }) {
 	return useQuery(["paid", "cash", params.id], async () => {
 		if (params.id === false) {
 			return null;
@@ -16,7 +16,7 @@ export function useGetPaidItem(params: { id: number | false }) {
 	});
 }
 
-export function usePaidCreate() {
+export function useByCashPaidCreate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -35,7 +35,7 @@ export function usePaidCreate() {
 	);
 }
 
-export function usePaidUpdate() {
+export function useByCashPaidUpdate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -54,7 +54,7 @@ export function usePaidUpdate() {
 	);
 }
 
-export function usePaidDelete() {
+export function useByCashPaidDelete() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -72,7 +72,7 @@ export function usePaidDelete() {
 
 // ----------------------------------------------------------------------
 
-export function useGetCollectedItem(params: { id: number | false }) {
+export function useGetByCashCollectedItem(params: { id: number | false }) {
 	return useQuery(["collected", "cash", params.id], async () => {
 		if (params.id === false) {
 			return null;
@@ -84,7 +84,7 @@ export function useGetCollectedItem(params: { id: number | false }) {
 	});
 }
 
-export function useCollectedCreate() {
+export function useByCashCollectedCreate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -103,7 +103,7 @@ export function useCollectedCreate() {
 	);
 }
 
-export function useCollectedUpdate() {
+export function useByCashCollectedUpdate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
@@ -122,7 +122,7 @@ export function useCollectedUpdate() {
 	);
 }
 
-export function useCollectedDelete() {
+export function useByCashCollectedDelete() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
