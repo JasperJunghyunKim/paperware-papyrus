@@ -68,7 +68,7 @@ export default function Component(props: Props) {
         <div className="flex-[1_0_0px] flex flex-col bg-slate-200 h-0">
           {data.data && (
             <TaskMap
-              planId={data.data.id}
+              plan={data.data}
               packagingType={
                 data.data.targetStockGroupEvent.stockGroup.packaging.type
               }
