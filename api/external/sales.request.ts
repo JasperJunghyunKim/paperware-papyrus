@@ -6,11 +6,11 @@ export interface StockGroup {
     packageingId: number;
     grammage: number;
     sizeX: number;
-    sizeY: number;
-    paperColorGroupId: number;
-    paperColorId: number;
-    paperPatternId: number;
-    paperCertId: number;
+    sizeY?: number;
+    paperColorGroupId?: number;
+    paperColorId?: number;
+    paperPatternId?: number;
+    paperCertId?: number;
 }
 
 export interface CreateNormalSalesRequest {
