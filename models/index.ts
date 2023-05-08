@@ -23,6 +23,7 @@ import TaskConverting from './task-converting';
 import TaskGuillotine from './task-guillotine';
 import TaskQuantity from './task-quantity';
 import StockPrice from './stock-price';
+import Stock from './stock';
 
 export * as Enum from './enum';
 export type {
@@ -51,4 +52,5 @@ export type {
   TaskGuillotine,
   TaskQuantity,
   StockPrice,
+  Stock,
 };
