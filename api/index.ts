@@ -20,3 +20,17 @@ export * from './working/plan.response';
 export * from './working/task.request';
 export * from './working/task.response';
 export * from './external/sales.request';
+
+export * from './paid/paid.request';
+export * from './paid/paid.response';
+export * from './paid/paid-by-cash.request';
+export * from './paid/paid-by-cash.response';
+export * from './paid/paid-by-etc.request';
+export * from './paid/paid-by-etc.response';
+
+export * from './collected/collected.request';
+export * from './collected/collected.response';
+export * from './collected/collected-by-cash.request';
+export * from './collected/collected-by-cash.response';
+export * from './collected/collected-by-etc.request';
+export * from './collected/collected-by-etc.response';

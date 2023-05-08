@@ -24,6 +24,11 @@ import TaskGuillotine from './task-guillotine';
 import TaskQuantity from './task-quantity';
 import StockPrice from './stock-price';
 import Stock from './stock';
+import ByCash from './by-cash';
+import ByEtc from './by-etc';
+
+import Partner from './partner';
+import Accounted from './accounted';
 
 export * as Enum from './enum';
 export type {
@@ -53,4 +58,8 @@ export type {
   TaskQuantity,
   StockPrice,
   Stock,
+  ByCash,
+  ByEtc,
+  Partner,
+  Accounted,
 };
