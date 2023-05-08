@@ -79,15 +79,6 @@ export class TaskUpdateConvertingRequestDto
 {
   @IsInt()
   @Type(() => Number)
-  readonly planId: number;
-
-  @IsOptional()
-  @IsInt()
-  @Type(() => Number)
-  readonly parentTaskId: number = null;
-
-  @IsInt()
-  @Type(() => Number)
   readonly sizeX: number;
 
   @IsInt()
@@ -104,15 +95,6 @@ export class TaskUpdateGuillotineRequestDto
 {
   @IsInt()
   @Type(() => Number)
-  readonly planId: number;
-
-  @IsOptional()
-  @IsInt()
-  @Type(() => Number)
-  readonly parentTaskId: number = null;
-
-  @IsInt()
-  @Type(() => Number)
   readonly sizeX: number;
 
   @IsInt()
@@ -125,15 +107,6 @@ export class TaskUpdateGuillotineRequestDto
 }
 
 export class TaskUpdateQuantityRequestDto implements TaskUpdateQuantityRequest {
-  @IsInt()
-  @Type(() => Number)
-  readonly planId: number;
-
-  @IsOptional()
-  @IsInt()
-  @Type(() => Number)
-  readonly parentTaskId: number = null;
-
   @IsInt()
   @Type(() => Number)
   readonly quantity: number;

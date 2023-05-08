@@ -30,6 +30,7 @@ export class TaskChangeService {
             memo,
           },
         },
+        parentTaskId: params.parentTaskId,
       },
     });
   }
@@ -57,6 +58,7 @@ export class TaskChangeService {
             memo,
           },
         },
+        parentTaskId: params.parentTaskId,
       },
     });
   }
@@ -80,6 +82,7 @@ export class TaskChangeService {
             quantity,
           },
         },
+        parentTaskId: params.parentTaskId,
       },
     });
   }
