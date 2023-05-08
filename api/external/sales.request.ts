@@ -14,7 +14,8 @@ export interface StockGroup {
 }
 
 export interface CreateNormalSalesRequest {
-    companyId: number;
+    dstCompanyId: number;
+    locationId: number;
     memo: string;
     wantedDate: string;
     stockGroup: StockGroup;
