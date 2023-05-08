@@ -34,3 +34,8 @@ export interface TaskCreateQuantityRequest extends TaskCreate {
 export interface TaskUpdateQuantityRequest {
   quantity: number;
 }
+
+export interface TaskInsertInputStockRequest {
+  stockId: number;
+  quantity: number;
+}
