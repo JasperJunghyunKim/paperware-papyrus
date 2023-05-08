@@ -21,6 +21,9 @@ export * from './working/task.request';
 export * from './working/task.response';
 export * from './external/sales.request';
 
+export * from './partner/partner.request';
+export * from './partner/partner.response';
+
 export * from './paid/paid.request';
 export * from './paid/paid.response';
 export * from './paid/paid-by-cash.request';

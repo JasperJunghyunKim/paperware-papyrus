@@ -27,4 +27,4 @@ interface Collected extends PaginationQuery {
     collectedMethod: Method;
 }
 
-export type CollectedRequest = Collected;
+export type CollectedQuery = Collected;

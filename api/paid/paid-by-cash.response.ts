@@ -2,7 +2,7 @@ import { Method } from "@/@shared/models/enum";
 import { PaginationResponse } from "@/@shared/models/pagination";
 
 /**
- * 지급 현금 요청
+ * 지급 현금 응답
  */
 interface PaidByCash {
     /**
@@ -31,6 +31,6 @@ interface PaidByCash {
     amount: number;
 }
 
-
+export type PaidByCashQuery = PaidByCash;
 export type PaidByCashListResponse = PaginationResponse<PaidByCash>;
 export type PaidByCashItemResponse = PaidByCash;

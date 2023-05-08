@@ -27,4 +27,4 @@ interface Paid extends PaginationQuery {
     paidMethod: Method;
 }
 
-export type PaidRequest = Paid;
+export type PaidQuery = Paid;

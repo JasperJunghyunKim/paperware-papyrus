@@ -31,6 +31,6 @@ interface PaidByEtc {
     amount: number;
 }
 
-
+export type PaidByEtcQuery = PaidByEtc;
 export type PaidByEtcListResponse = PaginationResponse<PaidByEtc>;
 export type PaidByEtcItemResponse = PaidByEtc;
