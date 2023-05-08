@@ -31,7 +31,11 @@ export function useCreateConverting() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.data.planId]);
+        await queryClient.invalidateQueries([
+          "plan",
+          "item",
+          variables.data.planId,
+        ]);
       },
     }
   );
@@ -52,7 +56,11 @@ export function useCreateGuillotine() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.data.planId]);
+        await queryClient.invalidateQueries([
+          "plan",
+          "item",
+          variables.data.planId,
+        ]);
       },
     }
   );
@@ -73,7 +81,11 @@ export function useCreateQuantity() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.data.planId]);
+        await queryClient.invalidateQueries([
+          "plan",
+          "item",
+          variables.data.planId,
+        ]);
       },
     }
   );
@@ -97,7 +109,7 @@ export function useUpdateConverting() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.taskId]);
+        await queryClient.invalidateQueries(["plan", "item", variables.taskId]);
       },
     }
   );
@@ -121,7 +133,7 @@ export function useUpdateGuillotine() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.taskId]);
+        await queryClient.invalidateQueries(["plan", "item", variables.taskId]);
       },
     }
   );
@@ -142,7 +154,7 @@ export function useUpdateQuantity() {
     {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
-        await queryClient.invalidateQueries(["plan", variables.taskId]);
+        await queryClient.invalidateQueries(["plan", "item", variables.taskId]);
       },
     }
   );
@@ -161,7 +173,11 @@ export function useDelete() {
       onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["task"]);
         if (variables.planId) {
-          await queryClient.invalidateQueries(["plan", variables.planId]);
+          await queryClient.invalidateQueries([
+            "plan",
+            "item",
+            variables.planId,
+          ]);
         }
       },
     }

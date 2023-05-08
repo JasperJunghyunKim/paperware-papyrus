@@ -9,11 +9,29 @@ import { TbMapPin, TbMapPinFilled } from "react-icons/tb";
 export default function Component() {
   const [openCreate, setOpenCreate] = useState(false);
 
-  const [page, setPage] = usePage();
-  const list = ApiHook.Stock.StockInhouse.useGetGroupList({ query: page });
+  const [groupPage, setGroupPage] = usePage();
+  const groupList = ApiHook.Stock.StockInhouse.useGetGroupList({
+    query: groupPage,
+  });
   const [selectedGroup, setSelectedGroup] = useState<Model.StockGroup[]>([]);
 
   const onlyGroup = Util.only(selectedGroup);
+  const [page, setPage] = usePage();
+  const list = ApiHook.Stock.StockInhouse.useGetList({
+    query: {
+      productId: onlyGroup?.product.id,
+      packagingId: onlyGroup?.packaging?.id,
+      sizeX: onlyGroup?.sizeX,
+      sizeY: onlyGroup?.sizeY,
+      grammage: onlyGroup?.grammage,
+      paperColorGroupId: onlyGroup?.paperColorGroup?.id,
+      paperColorId: onlyGroup?.paperColor?.id,
+      paperPatternId: onlyGroup?.paperPattern?.id,
+      paperCertId: onlyGroup?.paperCert?.id,
+      warehouseId: onlyGroup?.warehouse?.id,
+    },
+  });
+  const [selected, setSelected] = useState<Model.Stock[]>([]);
 
   return (
     <Page title="자사 재고 관리">
@@ -34,9 +52,7 @@ export default function Component() {
         <div className="flex-1" />
       </Toolbar.Container>
       <Table.Default<Model.StockGroup>
-        data={list.data}
-        page={page}
-        setPage={setPage}
+        data={groupList.data}
         keySelector={(record) =>
           `${record.product.id} ${record.sizeX} ${record.sizeY} ${
             record.grammage
@@ -127,6 +143,49 @@ export default function Component() {
           {
             title: "인증",
             dataIndex: ["paperCert", "name"],
+          },
+          {
+            title: "실물 수량",
+            dataIndex: "totalQuantity",
+            render: (value) => (
+              <div className="text-right font-fixed">{`${Util.comma(
+                value
+              )}`}</div>
+            ),
+          },
+          {
+            title: "가용 수량",
+            dataIndex: "availableQuantity",
+            render: (value) => (
+              <div className="text-right font-fixed">{`${Util.comma(
+                value
+              )}`}</div>
+            ),
+          },
+        ]}
+      />
+      <Table.Default<Model.Stock>
+        data={list.data}
+        page={groupPage}
+        setPage={setGroupPage}
+        keySelector={(record) => `${record.id}`}
+        selected={selected}
+        onSelectedChange={setSelected}
+        selection="single"
+        columns={[
+          {
+            title: "#",
+            dataIndex: "id",
+            render: (value) => (
+              <div className="text-right font-fixed">{`${Util.comma(
+                value
+              )}`}</div>
+            ),
+          },
+          {
+            title: "재고 번호",
+            dataIndex: "serial",
+            render: (value) => <div className="font-fixed">{value}</div>,
           },
           {
             title: "실물 수량",

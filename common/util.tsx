@@ -318,16 +318,25 @@ export function taskTypeToString(value: Model.Enum.TaskType) {
   }
 }
 
-export function planStatusToString(value: Protocol.Record.PlanStatus) {
+export function taskStatusToString(value: Model.Enum.TaskStatus) {
   switch (value) {
     case "PREPARING":
       return "작업 대기중";
     case "PROGRESSING":
       return "작업 진행중";
     case "PROGRESSED":
-      return "출고 대기중";
-    case "RELEASED":
-      return "출고 완료";
+      return "작업 완료";
+  }
+}
+
+export function planStatusToString(value: Model.Enum.PlanStatus) {
+  switch (value) {
+    case "PREPARING":
+      return "작업 대기중";
+    case "PROGRESSING":
+      return "작업 진행중";
+    case "PROGRESSED":
+      return "작업 완료";
   }
 }
 

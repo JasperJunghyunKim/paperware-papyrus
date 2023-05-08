@@ -3,6 +3,7 @@ import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
 import { Icon, Popup, StatBar, Table, Toolbar } from "@/components";
 import { Page } from "@/components/layout";
+import classNames from "classnames";
 import { useCallback, useState } from "react";
 import { TbHome, TbHomeShield } from "react-icons/tb";
 
@@ -66,6 +67,26 @@ export default function Component() {
             title: "작업 계획 번호",
             dataIndex: "planNo",
             render: (value) => <div className="font-fixed">{value}</div>,
+          },
+          {
+            title: "상태",
+            dataIndex: "status",
+            render: (value: Model.Enum.PlanStatus) => (
+              <div
+                className={classNames("flex gap-x-2", {
+                  "text-amber-600": value === "PREPARING",
+                  "text-green-600": value === "PROGRESSING",
+                  "text-black": value === "PROGRESSED",
+                })}
+              >
+                <div className="flex-initial flex flex-col justify-center">
+                  <Icon.PlanStatus value={value} />
+                </div>
+                <div className="flex-initial flex flex-col justify-center">
+                  {Util.planStatusToString(value)}
+                </div>
+              </div>
+            ),
           },
           {
             title: "원지 창고",

@@ -1,7 +1,7 @@
 import { Api } from "@/@shared";
 import { API_HOST } from "@/common/const";
 import axios from "axios";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 export function useGetList(params: { query: Partial<Api.PlanListQuery> }) {
   return useQuery(
@@ -42,10 +42,48 @@ export function useCreate() {
 }
 
 export function useGetTaskList(params: { planId: number }) {
-  return useQuery(["plan", params.planId, "task"], async () => {
+  return useQuery(["plan", "item", params.planId, "task"], async () => {
     const resp = await axios.get<Api.TaskListResponse>(
       `${API_HOST}/working/plan/${params.planId}/task`
     );
     return resp.data;
   });
+}
+
+export function useStart() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["plan", "start"],
+    async (params: { id: number }) => {
+      const resp = await axios.post(
+        `${API_HOST}/working/plan/${params.id}/start`
+      );
+      return resp.data;
+    },
+    {
+      onSuccess: async (_data, variables) => {
+        await queryClient.invalidateQueries(["plan", "item", variables.id]);
+      },
+    }
+  );
+}
+
+export function useComplete() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["plan", "complete"],
+    async (params: { id: number }) => {
+      const resp = await axios.post(
+        `${API_HOST}/working/plan/${params.id}/complete`
+      );
+      return resp.data;
+    },
+    {
+      onSuccess: async (_data, variables) => {
+        await queryClient.invalidateQueries(["plan", "item", variables.id]);
+      },
+    }
+  );
 }

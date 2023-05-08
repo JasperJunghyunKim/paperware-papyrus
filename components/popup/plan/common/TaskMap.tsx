@@ -1,6 +1,6 @@
 import { Model } from "@/@shared";
 import { ApiHook, Util } from "@/common";
-import { Icon } from "@/components";
+import { Button, Icon } from "@/components";
 import { ConfigProvider, InputNumber } from "antd";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
@@ -58,16 +58,32 @@ export default function Component(props: Props) {
             />
           ))}
         </div>
-        {props.packagingType === "ROLL" && (
-          <AddNode type="CONVERTING" plan={props.plan} parentTaskId={null} />
+        {props.plan.status === "PREPARING" && (
+          <>
+            {props.packagingType === "ROLL" && (
+              <AddNode
+                type="CONVERTING"
+                plan={props.plan}
+                parentTaskId={null}
+              />
+            )}
+            {props.packagingType !== "ROLL" && (
+              <AddNode
+                type="GUILLOTINE"
+                plan={props.plan}
+                parentTaskId={null}
+              />
+            )}
+            {props.packagingType !== "ROLL" &&
+              !converted.some((p) => p.value.type === "QUANTITY") && (
+                <AddNode
+                  type="QUANTITY"
+                  plan={props.plan}
+                  parentTaskId={null}
+                />
+              )}
+          </>
         )}
-        {props.packagingType !== "ROLL" && (
-          <AddNode type="GUILLOTINE" plan={props.plan} parentTaskId={null} />
-        )}
-        {props.packagingType !== "ROLL" &&
-          !converted.some((p) => p.value.type === "QUANTITY") && (
-            <AddNode type="QUANTITY" plan={props.plan} parentTaskId={null} />
-          )}
       </div>
     </div>
   );
@@ -115,28 +131,43 @@ function Item(props: ItemProps) {
             <div className="flex-1">
               {Util.taskTypeToString(props.data.value.type)}
             </div>
-            <div
-              className="flex-initial flex flex-col justify-center text-2xl cursor-pointer hover:text-red-600"
-              onClick={() => cmdDelete()}
-            >
-              <TbX />
-            </div>
+            {props.plan.status === "PREPARING" && (
+              <div
+                className="flex-initial flex flex-col justify-center text-2xl cursor-pointer hover:text-red-600"
+                onClick={() => cmdDelete()}
+              >
+                <TbX />
+              </div>
+            )}
+            {props.plan.status === "PROGRESSING" && (
+              <div className="flex-initial flex gap-x-2 text-yellow-300">
+                <div className="flex-initial flex flex-col justify-center">
+                  {Util.taskStatusToString(props.data.value.status)}
+                </div>
+                <div className="flex-initial flex flex-col justify-center text-2xl">
+                  <Icon.TaskStatus value={props.data.value.status} />
+                </div>
+              </div>
+            )}
           </div>
-          <div className="flex-auto p-4">
+          <div className="flex-auto flex flex-col">
             {props.data.value.taskConverting && (
               <ConvertingNode
+                plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskConverting}
               />
             )}
             {props.data.value.taskGuillotine && (
               <GuillotineNode
+                plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskGuillotine}
               />
             )}
             {props.data.value.taskQuantity && (
               <QuantityNode
+                plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskQuantity}
               />
@@ -156,23 +187,25 @@ function Item(props: ItemProps) {
               );
             })}
           </div>
-          <div className="flex-initial flex flex-col">
-            {props.data.value.type === "CONVERTING" && (
-              <AddNode
-                type="GUILLOTINE"
-                plan={props.plan}
-                parentTaskId={props.data.value.id}
-              />
-            )}
-            {props.data.childs.length === 0 &&
-              Util.inc(props.data.value.type, "CONVERTING", "GUILLOTINE") && (
+          {props.plan.status === "PREPARING" && (
+            <div className="flex-initial flex flex-col">
+              {props.data.value.type === "CONVERTING" && (
                 <AddNode
-                  type="QUANTITY"
+                  type="GUILLOTINE"
                   plan={props.plan}
                   parentTaskId={props.data.value.id}
                 />
               )}
-          </div>
+              {props.data.childs.length === 0 &&
+                Util.inc(props.data.value.type, "CONVERTING", "GUILLOTINE") && (
+                  <AddNode
+                    type="QUANTITY"
+                    plan={props.plan}
+                    parentTaskId={props.data.value.id}
+                  />
+                )}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -321,7 +354,49 @@ function MiniButton(props: MiniButtonProps) {
   );
 }
 
+interface TaskCommandButtonProps {
+  label: string;
+  onClick?: () => Promise<void>;
+  type?: "default" | "danger";
+}
+function TaskCommandButton(props: TaskCommandButtonProps) {
+  const [pending, setPending] = useState(false);
+  const cmdClick = useCallback(async () => {
+    try {
+      setPending(true);
+      await props.onClick?.();
+    } catch (err) {
+      console.warn(err);
+    } finally {
+      setPending(false);
+    }
+  }, [props.onClick]);
+
+  const type = props.type ?? "default";
+
+  return (
+    <button
+      className={classNames(
+        "flex-1 px-2 pb-[6px] pt-[5px] flex flex-row justify-center border border-solid select-none rounded-full font-bold text-lg",
+        {
+          "bg-gray-600 hover:bg-gray-600 text-gray-400 cursor-not-allowed":
+            pending,
+          "bg-cyan-800 hover:bg-cyan-700 text-white border-cyan-900 hover:border-cyan-800":
+            !pending && type === "default",
+          "bg-amber-800 hover:bg-amber-700 text-white border-amber-900 hover:border-amber-800":
+            !pending && type === "danger",
+        }
+      )}
+      disabled={pending}
+      onClick={() => cmdClick()}
+    >
+      {props.label}
+    </button>
+  );
+}
+
 interface ConvertingProps {
+  plan: Model.Plan;
   taskId: number;
   data: Model.TaskConverting;
 }
@@ -351,28 +426,41 @@ function ConvertingNode(props: ConvertingProps) {
 
   return (
     <div className="flex-initial flex flex-col gap-y-2">
-      <ConfigProvider theme={{ token: { borderRadius: 999 } }}>
-        <MiniFormNumber
-          label="공정 지폭"
-          value={w}
-          onChange={(p) => setW(p ?? 0)}
-          unit="mm"
-        />
-        <MiniFormNumber
-          label="공정 지장"
-          value={h}
-          onChange={(p) => setH(p ?? 0)}
-          unit="mm"
-        />
-        {isChanged() && (
-          <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
-        )}
-      </ConfigProvider>
+      <div className="flex-1 flex flex-col gap-y-2 p-4">
+        <ConfigProvider
+          theme={{ token: { borderRadius: 999, colorTextDisabled: "black" } }}
+        >
+          <MiniFormNumber
+            label="공정 지폭"
+            value={w}
+            onChange={(p) => setW(p ?? 0)}
+            unit="mm"
+            disabled={props.plan.status !== "PREPARING"}
+          />
+          <MiniFormNumber
+            label="공정 지장"
+            value={h}
+            onChange={(p) => setH(p ?? 0)}
+            unit="mm"
+            disabled={props.plan.status !== "PREPARING"}
+          />
+          {props.plan.status === "PREPARING" && isChanged() && (
+            <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
+          )}
+        </ConfigProvider>
+      </div>
+      {props.plan.status === "PROGRESSING" && (
+        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+          <TaskCommandButton label="작업 역행" />
+          <TaskCommandButton label="작업 시작" />
+        </div>
+      )}
     </div>
   );
 }
 
 interface GuillotineProps {
+  plan: Model.Plan;
   taskId: number;
   data: Model.TaskGuillotine;
 }
@@ -402,28 +490,41 @@ function GuillotineNode(props: GuillotineProps) {
 
   return (
     <div className="flex-initial flex flex-col gap-y-2">
-      <ConfigProvider theme={{ token: { borderRadius: 999 } }}>
-        <MiniFormNumber
-          label="공정 지폭"
-          value={w}
-          onChange={(p) => setW(p ?? 0)}
-          unit="mm"
-        />
-        <MiniFormNumber
-          label="공정 지장"
-          value={h}
-          onChange={(p) => setH(p ?? 0)}
-          unit="mm"
-        />
-        {isChanged() && (
-          <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
-        )}
-      </ConfigProvider>
+      <div className="flex-1 flex flex-col gap-y-2 p-4">
+        <ConfigProvider
+          theme={{ token: { borderRadius: 999, colorTextDisabled: "black" } }}
+        >
+          <MiniFormNumber
+            label="공정 지폭"
+            value={w}
+            onChange={(p) => setW(p ?? 0)}
+            unit="mm"
+            disabled={props.plan.status !== "PREPARING"}
+          />
+          <MiniFormNumber
+            label="공정 지장"
+            value={h}
+            onChange={(p) => setH(p ?? 0)}
+            unit="mm"
+            disabled={props.plan.status !== "PREPARING"}
+          />
+          {isChanged() && (
+            <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
+          )}
+        </ConfigProvider>
+      </div>
+      {props.plan.status === "PROGRESSING" && (
+        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+          <TaskCommandButton label="작업 역행" />
+          <TaskCommandButton label="작업 시작" />
+        </div>
+      )}
     </div>
   );
 }
 
 interface QuantityProps {
+  plan: Model.Plan;
   taskId: number;
   data: Model.TaskQuantity;
 }
@@ -448,18 +549,28 @@ function QuantityNode(props: QuantityProps) {
 
   return (
     <div className="flex-initial flex flex-col gap-y-2">
-      <ConfigProvider theme={{ token: { borderRadius: 999 } }}>
-        <MiniFormNumber
-          label="출고 수량"
-          value={q}
-          onChange={(p) => setQ(p ?? 0)}
-          unit="매"
-        />
-        <MiniFormNumber label="중량" value={0} unit="톤" disabled />
-        {isChanged() && (
-          <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
-        )}
-      </ConfigProvider>
+      <div className="flex-1 flex flex-col gap-y-2 p-4">
+        <ConfigProvider
+          theme={{ token: { borderRadius: 999, colorTextDisabled: "black" } }}
+        >
+          <MiniFormNumber
+            label="출고 수량"
+            value={q}
+            onChange={(p) => setQ(p ?? 0)}
+            unit="매"
+            disabled={props.plan.status !== "PREPARING"}
+          />
+          <MiniFormNumber label="중량" value={0} unit="톤" disabled />
+          {isChanged() && (
+            <MiniButton label="저장" onClick={async () => await cmdUpdate()} />
+          )}
+        </ConfigProvider>
+      </div>
+      {props.plan.status === "PROGRESSING" && (
+        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+          <TaskCommandButton label="출고 대기" type="danger" />
+        </div>
+      )}
     </div>
   );
 }
