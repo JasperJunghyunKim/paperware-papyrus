@@ -3,7 +3,7 @@
 export interface StockGroup {
     warehouseId: number;
     productId: number;
-    packageingId: number;
+    packagingId: number;
     grammage: number;
     sizeX: number;
     sizeY?: number;
