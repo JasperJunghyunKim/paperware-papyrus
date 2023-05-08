@@ -19,3 +19,4 @@ export * from './working/plan.request';
 export * from './working/plan.response';
 export * from './working/task.request';
 export * from './working/task.response';
+export * from './external/sales.request';
