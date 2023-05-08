@@ -1,5 +1,5 @@
+import { Model } from "@/@shared";
 import { ApiHook } from "@/common";
-import { Record } from "@/common/protocol";
 import { Select } from "antd";
 import { useMemo } from "react";
 
@@ -9,13 +9,13 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const staticData = ApiHook.Accounted.;
+  const staticData = ApiHook.Partner.useGetList();
 
   const options = useMemo(() => {
-    return staticData.data?.paperCerts.map((x) => ({
-      label: <Item item={x} />,
-      text: `${x.name})`,
-      value: x.id,
+    return staticData.data?.map((el) => ({
+      label: <Item item={el} />,
+      text: `${el.partnerNickName})`,
+      value: el.partnerId,
     }));
   }, [staticData]);
 
@@ -25,29 +25,21 @@ export default function Component(props: Props) {
         value={props.value}
         onChange={props.onChange}
         options={options}
-        filterOption={(input, option) => {
-          if (!option) {
-            return false;
-          }
-          return option.text.toLowerCase().includes(input.toLowerCase());
-        }}
-        showSearch
-        allowClear
-        placeholder="인증 미지정"
+        placeholder="거래처"
       />
     </div>
   );
 }
 
 interface ItemProps {
-  item: Record.PaperPattern;
+  item: Omit<Model.Partner, 'id'>;
 }
 
 function Item(props: ItemProps) {
-  const x = props.item;
+  const { item } = props;
   return (
     <div className="flex font-fixed gap-x-4">
-      <div className="flex-1">{x.name}</div>
+      <div className="flex-1">{item.partnerNickName}</div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export function useByCashGetPaidItem(params: { id: number | false }) {
+export function useGetByCashPaidItem(params: { id: number | false }) {
 	return useQuery(["paid", "cash", params.id], async () => {
 		if (params.id === false) {
 			return null;
