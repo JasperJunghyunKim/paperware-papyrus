@@ -11,6 +11,6 @@ export interface LocationCreateRequest {
 
 export type LocationUpdateRequest = LocationCreateRequest;
 
-export interface LocationForPurchaseListQuery extends PaginationQuery {
+export interface LocationForSalesListQuery extends PaginationQuery {
   targetCompanyId: number;
 }
