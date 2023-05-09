@@ -15,12 +15,19 @@ export type BusinessRelationshipRequestStatus =
   | 'ACCEPTED'
   | 'REJECTED';
 export type OrderStatus =
-  | 'PREPARING'
-  | 'CANCELLED'
-  | 'ESTIMATE'
-  | 'REQUESTED'
-  | 'ACCEPTED'
-  | 'REJECTED';
+  | 'ORDER_PREPARING'
+  | 'ORDER_REQUESTED'
+  | 'ORDER_REJECTED'
+  | 'OFFER_PREPARING'
+  | 'OFFER_REQUESTED'
+  | 'OFFER_REJECTED'
+  | 'ACCEPTED';
 export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
-export type Method = 'ACCOUNT_TRANSFER' | 'PROMISSORY_NOTE' | 'CARD_PAYMENT' | 'CASH' | 'SET_OFF' | 'ETC';
+export type Method =
+  | 'ACCOUNT_TRANSFER'
+  | 'PROMISSORY_NOTE'
+  | 'CARD_PAYMENT'
+  | 'CASH'
+  | 'SET_OFF'
+  | 'ETC';
