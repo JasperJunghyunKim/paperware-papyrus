@@ -52,7 +52,11 @@ export default function Component(props: Props) {
     >
       <div className="w-full h-full flex">
         <div className="basis-[480px] flex-shrink-0 p-4 overflow-y-scroll">
-          <DataForm isOffer={isOffer} initialOrder={order.data ?? null} />
+          <DataForm
+            isOffer={isOffer}
+            isSales={isSales}
+            initialOrder={order.data ?? null}
+          />
         </div>
         {!isSales && (
           <>
@@ -67,6 +71,7 @@ export default function Component(props: Props) {
 
 interface DataFormProps {
   isOffer: boolean;
+  isSales: boolean;
   initialOrder: Model.Order | null;
 }
 function DataForm(props: DataFormProps) {
@@ -106,7 +111,7 @@ function DataForm(props: DataFormProps) {
     } else {
       form.resetFields();
     }
-  }, [props.initialOrder]);
+  }, [form, props.initialOrder]);
 
   const apiCreate = ApiHook.Trade.OrderStock.useCreate();
   const cmdCreate = useCallback(async () => {
@@ -155,7 +160,7 @@ function DataForm(props: DataFormProps) {
     } else {
       await cmdCreate();
     }
-  }, [props.initialOrder]);
+  }, [cmdCreate, cmdUpdate, props.initialOrder]);
 
   return (
     <Form
@@ -165,24 +170,24 @@ function DataForm(props: DataFormProps) {
       onFinish={submit}
     >
       <FormControl.Util.Split
-        label={props.isOffer ? "매출 정보" : "매입 정보"}
+        label={props.isSales ? "매출 정보" : "매입 정보"}
       />
-      {!props.isOffer && (
+      {!props.isSales && (
         <Form.Item name="dstCompanyId" label="매입처" rules={REQUIRED_RULES}>
           <FormControl.SelectCompanyPurchase disabled={!isCreate} />
         </Form.Item>
       )}
-      {props.isOffer && (
+      {props.isSales && (
         <Form.Item name="srcCompanyId" label="매출처" rules={REQUIRED_RULES}>
           <FormControl.SelectCompanySales disabled={!isCreate} />
         </Form.Item>
       )}
-      {!props.isOffer && dstCompanyId && (
+      {!props.isSales && dstCompanyId && (
         <Form.Item name="locationId" label="도착지" rules={REQUIRED_RULES}>
           <FormControl.SelectLocation />
         </Form.Item>
       )}
-      {props.isOffer && srcCompanyId && (
+      {props.isSales && srcCompanyId && (
         <Form.Item name="locationId" label="도착지" rules={REQUIRED_RULES}>
           <FormControl.SelectLocationForSales companyId={srcCompanyId} />
         </Form.Item>
@@ -191,7 +196,7 @@ function DataForm(props: DataFormProps) {
         <FormControl.DatePicker />
       </Form.Item>
       <FormControl.Util.Split
-        label={props.isOffer ? "수주 원지 정보" : "주문 원지 정보"}
+        label={props.isSales ? "수주 원지 정보" : "주문 원지 정보"}
       />
       <div className="flex-initial flex mb-4">
         <Button.Preset.SelectStockGroupInhouse
@@ -275,7 +280,7 @@ function DataForm(props: DataFormProps) {
       </Form.Item>
       <div className="flex-initial flex justify-end">
         <Button.Preset.Submit
-          label={`${props.isOffer ? "수주" : "주문"} 정보 ${
+          label={`${props.isSales ? "수주" : "주문"} 정보 ${
             isCreate ? "등록" : "수정"
           }`}
         />
@@ -454,6 +459,17 @@ function RightSideOrder(props: RightSideOrderProps) {
                     value
                   )}`}</div>
                 ),
+                fixed: "right",
+              },
+              {
+                title: "입고 여부",
+                dataIndex: "status",
+                render: (value: Model.Enum.StockEventStatus) => (
+                  <div className="font-bold">
+                    {value === "NORMAL" ? "입고 완료" : "입고 대기중"}
+                  </div>
+                ),
+                fixed: "right",
               },
             ]}
           />
@@ -464,6 +480,136 @@ function RightSideOrder(props: RightSideOrderProps) {
         매입 정보
       </div>
       <CreateArrival open={open} onClose={setOpen} />
+    </div>
+  );
+}
+
+interface RightSideSalesProps {
+  order: Model.Order | null;
+}
+function RightSideSales(props: RightSideSalesProps) {
+  const apiRequest = ApiHook.Trade.OrderStock.useRequest();
+  const cmdRequest = useCallback(async () => {
+    if (!props.order) return;
+    if (!(await Util.confirm("주문을 요청하시겠습니까?"))) return;
+    await apiRequest.mutateAsync({
+      orderId: props.order.id,
+    });
+  }, [apiRequest, props.order]);
+
+  const apiAccept = ApiHook.Trade.OrderStock.useAccept();
+  const cmdAccept = useCallback(
+    (virtual: boolean) => async () => {
+      if (!props.order) return;
+      if (
+        !(await Util.confirm(
+          virtual
+            ? "가상 매입처 대상 주문은 즉시 승인됩니다. 계속하시겠습니까?"
+            : "재고를 승인하시겠습니까?"
+        ))
+      )
+        return;
+      await apiAccept.mutateAsync({
+        orderId: props.order.id,
+      });
+    },
+    [apiAccept, props.order]
+  );
+
+  const apiReject = ApiHook.Trade.OrderStock.useReject();
+  const cmdReject = useCallback(async () => {
+    if (!props.order) return;
+    if (!(await Util.confirm("재고를 거절하시겠습니까?"))) return;
+    await apiReject.mutateAsync({
+      orderId: props.order.id,
+    });
+  }, [apiReject, props.order]);
+
+  const apiCancel = ApiHook.Trade.OrderStock.useCancel();
+  const cmdCancel = useCallback(async () => {
+    if (!props.order) return;
+    if (!(await Util.confirm("주문을 삭제하시겠습니까?"))) return;
+    await apiCancel.mutateAsync({
+      orderId: props.order.id,
+    });
+  }, [apiCancel, props.order]);
+
+  const isVirtual = !!props.order?.dstCompany.managedById;
+  const status = !props.order
+    ? 0
+    : Util.inc(props.order.status, "ORDER_PREPARING", "OFFER_PREPARING")
+    ? 0
+    : Util.inc(props.order.status, "ORDER_REQUESTED", "OFFER_REQUESTED")
+    ? 1
+    : Util.inc(props.order.status, "ACCEPTED")
+    ? 2
+    : 0;
+
+  const steps = isVirtual
+    ? [
+        {
+          title: "주문 작성중",
+        },
+        {
+          title: "매입정보 입력",
+        },
+      ]
+    : [
+        {
+          title: "주문 작성",
+        },
+        {
+          title: "주문 승인 대기",
+        },
+        {
+          title: "매입정보 입력",
+        },
+      ];
+
+  return (
+    <div className="flex-1 w-0 flex flex-col">
+      <Toolbar.Container rootClassName="p-4">
+        <div className="flex-1 flex flex-col justify-center select-none mx-8">
+          <Steps items={steps} current={status} />
+        </div>
+        {props.order?.status === "ORDER_PREPARING" && (
+          <Toolbar.ButtonPreset.Delete label="주문 삭제" onClick={cmdCancel} />
+        )}
+        {!isVirtual && props.order?.status === "ORDER_PREPARING" && (
+          <Toolbar.ButtonPreset.Send label="발주 요청" onClick={cmdRequest} />
+        )}
+        {isVirtual && props.order?.status === "ORDER_PREPARING" && (
+          <Toolbar.ButtonPreset.Continue
+            label="매입 등록"
+            onClick={cmdAccept(isVirtual)}
+          />
+        )}
+        {props.order?.status === "OFFER_REQUESTED" && (
+          <Toolbar.ButtonPreset.Reject label="재고 거절" onClick={cmdReject} />
+        )}
+        {props.order?.status === "OFFER_REQUESTED" && (
+          <Toolbar.ButtonPreset.Continue
+            label="재고 승인"
+            onClick={cmdAccept(isVirtual)}
+          />
+        )}
+        {props.order?.status === "ORDER_REQUESTED" && (
+          <Toolbar.ButtonPreset.Send label="발주 요청" disabled />
+        )}
+        {props.order?.status === "ORDER_REJECTED" && (
+          <Toolbar.ButtonPreset.Continue
+            label="수주 재입력"
+            onClick={cmdRequest}
+          />
+        )}
+      </Toolbar.Container>
+      <div className="flex-1 overflow-y-scroll px-4 pb-4">
+        <div className="flex-1"></div>
+      </div>
+      <div className="basis-px bg-gray-200" />
+      <div className="basis-[300px] overflow-y-scroll p-4 bg-yellow-50">
+        매출 정보
+      </div>
     </div>
   );
 }

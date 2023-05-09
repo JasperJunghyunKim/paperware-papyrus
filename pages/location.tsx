@@ -80,7 +80,7 @@ export default function Component() {
             render: (value) => <div className="font-fixed">{value}</div>,
           },
           {
-            title: "공개 여부",
+            title: "자사 도착지 여부",
             dataIndex: "isPublic",
             render: (value) => (value ? "공개" : "비공개"),
           },

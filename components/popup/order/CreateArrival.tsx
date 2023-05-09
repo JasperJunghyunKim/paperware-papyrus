@@ -30,10 +30,10 @@ export default function Component(props: Props) {
         orderId: props.open,
         data: values,
       });
-      form.resetFields();
+
       props.onClose(false);
     },
-    [api, form, props]
+    [api, props]
   );
 
   return (

@@ -44,7 +44,7 @@ export default function Component() {
         />
         <div className="flex-1" />
         <Toolbar.ButtonPreset.Update
-          label="매입 주문 수정"
+          label="매입 정보 상세"
           onClick={() => only && setOpenStockUpsert(only.id)}
           disabled={!only}
         />

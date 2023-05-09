@@ -61,7 +61,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "도착 예정 목록",
         icon: <TbServerBolt />,
         path: "/stock-arrival",
-        type: "progress",
       },
       {
         label: "창고 관리",

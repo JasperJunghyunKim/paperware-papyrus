@@ -42,7 +42,7 @@ export default function Component(props: Props) {
       </Form.Item>
       <Form.Item
         name="isPublic"
-        label="공개 여부"
+        label="자사 도착지 여부"
         valuePropName="checked"
         rules={[{ required: true }]}
       >

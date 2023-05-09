@@ -24,6 +24,7 @@ export default function Component() {
     },
   });
   const [selected, setSelected] = useState<RecordType[]>([]);
+  const only = Util.only(selected);
 
   return (
     <Page title="매출 주문 목록">
@@ -40,6 +41,12 @@ export default function Component() {
         <Toolbar.ButtonPreset.Create
           label="정상 매출 등록"
           onClick={() => setOpenStockUpsert("CREATE_OFFER")}
+        />
+        <div className="flex-1" />
+        <Toolbar.ButtonPreset.Update
+          label="매출 정보 상세"
+          onClick={() => only && setOpenStockUpsert(only.id)}
+          disabled={!only}
         />
       </Toolbar.Container>
       <Table.Default<RecordType>
