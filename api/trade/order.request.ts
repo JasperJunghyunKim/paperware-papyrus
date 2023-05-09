@@ -1,6 +1,11 @@
 import { PaginationQuery } from '../../models/pagination';
 
-export interface OrderListQuery extends PaginationQuery {}
+export interface OrderListQuery extends PaginationQuery {
+  /** 판매처 */
+  srcCompanyId: number;
+  /** 구매처 */
+  dstCompanyId: number;
+}
 
 export interface OrderCreateRequest {
   srcCompanyId: number;
