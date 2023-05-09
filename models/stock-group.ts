@@ -22,3 +22,4 @@ export default interface StockGroup {
   totalQuantity: number;
   availableQuantity: number;
 }
+
