@@ -1,3 +1,7 @@
+import { PaginationQuery } from "src/@shared/models/pagination";
+
+/** 매출 목록 조회 */
+export type SalesListQuery = PaginationQuery;
 
 /** 정상 매출 등록 */
 export interface StockGroup {
