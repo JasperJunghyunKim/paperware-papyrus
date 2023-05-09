@@ -1,4 +1,4 @@
-import { PaginationQuery } from "src/@shared/models/pagination";
+import { PaginationQuery } from "../../models/pagination";
 
 /** 매출 목록 조회 */
 export type SalesListQuery = PaginationQuery;
