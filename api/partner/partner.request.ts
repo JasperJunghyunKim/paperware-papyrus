@@ -1,3 +1,3 @@
-import { PaginationQuery } from "@/@shared/models/pagination";
+import { PaginationQuery } from '../../models/pagination';
 
 export type PartnerQuery = PaginationQuery;
