@@ -1,4 +1,5 @@
 import { PaginationQuery } from '../../models/pagination';
+import { StockCreateStockPriceRequest } from '../stock/stock.request';
 
 export interface OrderListQuery extends PaginationQuery {
   /** 판매처 */
@@ -42,3 +43,17 @@ export interface OrderStockUpdateRequest {
 }
 
 export interface OrderStockArrivalListQuery extends PaginationQuery {}
+
+export interface OrderStockArrivalCreateRequest {
+  warehouseId: number | null;
+  productId: number;
+  packagingId: number;
+  grammage: number;
+  sizeX: number;
+  sizeY: number;
+  paperColorGroupId?: number | null;
+  paperColorId?: number | null;
+  paperPatternId?: number | null;
+  paperCertId?: number | null;
+  quantity: number;
+}
