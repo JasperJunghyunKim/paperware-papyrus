@@ -91,5 +91,26 @@ export function columnStock<T>(
       title: "인증",
       dataIndex: [...path, "paperCert", "name"],
     },
+    {
+      title: "고시가",
+      dataIndex: [...path, "stockPrice", "price"],
+      render: (value: number) => (
+        <div className="text-right font-fixed">{`${Util.comma(value)} 원`}</div>
+      ),
+    },
+    {
+      title: "할인율",
+      dataIndex: [...path, "stockPrice", "discountRate"],
+      render: (value: number) => (
+        <div className="text-right font-fixed">{`${Util.comma(value)} %`}</div>
+      ),
+    },
+    {
+      title: "단가",
+      dataIndex: [...path, "stockPrice", "unitPrice"],
+      render: (value: number) => (
+        <div className="text-right font-fixed">{`${Util.comma(value)} 원`}</div>
+      ),
+    },
   ];
 }
