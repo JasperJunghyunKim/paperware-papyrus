@@ -1,6 +1,6 @@
-import { Company } from ".";
+import { Company, Entity } from ".";
 
-export default interface Partner {
+export default interface Partner extends Entity {
     id: number;
     ceoName: string;
     ceoPhoneNumber: string;
@@ -12,10 +12,4 @@ export default interface Partner {
     isDeleted: boolean;
     companyId: number;
     company: Company;
-    regId?: string;
-    regNm?: string;
-    chgId?: string;
-    chgNm?: string;
-    chgDt: Date;
-    regDt: Date;
 }

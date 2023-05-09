@@ -1,6 +1,6 @@
-import { Partner } from ".";
+import { Entity, Partner } from ".";
 
-export default interface Accounted {
+export default interface Accounted extends Entity {
   id: number;
   accountedType: string;
   accountedMethod: string;
@@ -10,10 +10,4 @@ export default interface Accounted {
   isDeleted: boolean;
   partnerId: number;
   partner: Partner;
-  regId?: string;
-  regNm?: string;
-  chgId?: string;
-  chgNm?: string;
-  chgDt: Date;
-  regDt: Date;
 }

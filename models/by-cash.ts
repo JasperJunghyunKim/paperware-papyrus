@@ -1,15 +1,8 @@
-import Accounted from "./accounted";
-
-export default interface ByCash {
+import { Entity, Accounted } from ".";
+export default interface ByCash extends Entity {
     id: number;
     cashAmount: number;
     isDeleted: boolean;
     accountedId: number;
     accounted: Accounted;
-    regId?: string;
-    regNm?: string;
-    chgId?: string;
-    chgNm?: string;
-    chgDt: Date;
-    regDt: Date;
 }
