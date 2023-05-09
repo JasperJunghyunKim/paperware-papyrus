@@ -1,13 +1,7 @@
-import { SelectPartner } from "@/components/formControl";
-import { Button, Form, Input } from "antd";
+import { FormControl } from "@/components";
+import { Form } from "antd";
 
-interface Props {
-  label?: string;
-  value?: string;
-  iconClassName?: string;
-}
-
-export default function Component(props: Props) {
+export default function Component() {
   return (
     <div
       className={
@@ -15,26 +9,20 @@ export default function Component(props: Props) {
       }
     >
       <Form layout="vertical">
-        <SelectPartner />
-
-        <Form.Item
-          name="businessName"
-          label="상호명"
-          rules={[{ required: true }]}
-        >
-          <Input maxLength={20} />
+        <Form.Item name="paperCertId" label="거래처">
+          <FormControl.SelectPartner />
         </Form.Item>
-        <Form.Item name="phoneNo" label="대표 전화">
-          <Input maxLength={20} />
+        <Form.Item name="collectedFromDate" label="수금일">
+          <FormControl.DatePicker />
         </Form.Item>
-        <Form.Item name="faxNo" label="팩스">
-          <Input maxLength={20} />
+        <Form.Item name="collectedToDate">
+          <FormControl.DatePicker />
         </Form.Item>
-        <Form.Item name="email" label="이메일">
-          <Input maxLength={20} />
+        <Form.Item name="subject" label="계정과목">
+          <FormControl.SelectPaidSubject />
         </Form.Item>
-        <Form.Item className="flex justify-end">
-
+        <Form.Item name="method" label="수금">
+          <FormControl.SelectMethod />
         </Form.Item>
       </Form>
     </div>

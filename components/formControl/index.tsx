@@ -15,6 +15,9 @@ import DatePicker from "./DatePicker";
 import SelectCompanySales from "./SelectCompanySales";
 import StockPrice from "./StockPrice";
 import SelectPartner from "./SelectPartner";
+import SelectMethod from "./SelectMethod";
+import SelectPaidSubject from "./SelectPaidSubject";
+import SelectCollectedSubject from "./SelectCollectedSubject";
 
 export {
   Address,
@@ -26,6 +29,9 @@ export {
   SelectCert,
   SelectWarehouse,
   SelectPackaging,
+  SelectMethod,
+  SelectPaidSubject,
+  SelectCollectedSubject,
   Number,
   Price,
   Quantity,
