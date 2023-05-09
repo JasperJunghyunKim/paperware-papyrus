@@ -1,7 +1,7 @@
-import { StockPrice } from 'src/@shared/models';
-import { PaginationQuery } from '../../models/pagination';
-import { StockCreateStockPriceRequest } from '../stock/stock.request';
-import { Api } from 'src/@shared';
+import { StockPrice } from "../../models";
+import { PaginationQuery } from "../../models/pagination";
+import { StockCreateStockPriceRequest } from "../stock/stock.request";
+import { Api } from "../..";
 
 export interface OrderListQuery extends PaginationQuery {
   /** 판매처 */
