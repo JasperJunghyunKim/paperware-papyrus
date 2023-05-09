@@ -28,6 +28,7 @@ import ByCash from './by-cash';
 import ByEtc from './by-etc';
 import Order from './order';
 import OrderStock from './order-stock';
+import StockEvent from './stock-event';
 
 import Partner from './partner';
 import Accounted from './accounted';
@@ -66,4 +67,5 @@ export type {
   Accounted,
   Order,
   OrderStock,
+  StockEvent,
 };

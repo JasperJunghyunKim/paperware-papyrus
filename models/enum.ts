@@ -21,7 +21,9 @@ export type OrderStatus =
   | 'OFFER_PREPARING'
   | 'OFFER_REQUESTED'
   | 'OFFER_REJECTED'
-  | 'ACCEPTED';
+  | 'ACCEPTED'
+  | 'ORDER_CANCELLED'
+  | 'OFFER_CANCELLED';
 export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type Method =
