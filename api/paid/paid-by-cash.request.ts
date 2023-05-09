@@ -1,14 +1,17 @@
-import { Method } from '../../models/enum';
-import { PaginationQuery } from '../../models/pagination';
+import { Method, Subject } from '../../models/enum';
 
 /**
  * 지급 현금 요청
  */
-interface PaidByCash extends PaginationQuery {
+interface PaidByCash {
   /**
    * 파트너 식별자
    */
   partnerId: number;
+  /**
+  * 파트너 닉네임
+  */
+  partnerNickName: string;
   /**
    * to date
    */
@@ -17,6 +20,10 @@ interface PaidByCash extends PaginationQuery {
    * 회계 수단
    */
   accountedMethod: Method;
+  /**
+   * 회계 과목
+   */
+  accountedSubject: Subject;
   /**
    * 메모
    */

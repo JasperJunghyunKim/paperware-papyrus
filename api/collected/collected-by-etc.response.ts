@@ -1,4 +1,4 @@
-import { Method } from '../../models/enum';
+import { Method, Subject } from '../../models/enum';
 import { PaginationResponse } from '../../models/pagination';
 
 /**
@@ -21,6 +21,10 @@ interface CollectedByEtc {
    * 회계 수단
    */
   accountedMethod: Method;
+  /**
+   * 회계 과목
+   */
+  accountedSubject: Subject;
   /**
    * 메모
    */
