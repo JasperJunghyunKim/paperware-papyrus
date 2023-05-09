@@ -29,6 +29,7 @@ import ByEtc from './by-etc';
 
 import Partner from './partner';
 import Accounted from './accounted';
+import Order from './order';
 
 export * as Enum from './enum';
 export type {
@@ -62,4 +63,5 @@ export type {
   ByEtc,
   Partner,
   Accounted,
+  Order,
 };
