@@ -13,5 +13,5 @@ export default interface Order {
   wantedDate: string;
   stockAcceptedCompanyId: number | null;
   isStockRejected: boolean;
-  orderStock: OrderStock | null;
+  orderStock: OrderStock;
 }
