@@ -1,5 +1,7 @@
+import { StockPrice } from 'src/@shared/models';
 import { PaginationQuery } from '../../models/pagination';
 import { StockCreateStockPriceRequest } from '../stock/stock.request';
+import { Api } from 'src/@shared';
 
 export interface OrderListQuery extends PaginationQuery {
   /** 판매처 */
@@ -56,4 +58,5 @@ export interface OrderStockArrivalCreateRequest {
   paperPatternId?: number | null;
   paperCertId?: number | null;
   quantity: number;
+  stockPrice: Api.StockCreateStockPriceRequest;
 }
