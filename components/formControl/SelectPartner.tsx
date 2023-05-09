@@ -6,10 +6,11 @@ import { useMemo } from "react";
 interface Props {
   value?: number;
   onChange?: (value: number) => void;
+  isDisabled?: boolean;
 }
 
 export default function Component(props: Props) {
-  const staticData = ApiHook.Partner.useGetList();
+  const staticData = ApiHook.Partner.Partner.useGetList();
 
   const options = useMemo(() => {
     return staticData.data?.map((el) => ({
@@ -22,6 +23,7 @@ export default function Component(props: Props) {
   return (
     <div className="flex flex-col gap-y-1">
       <Select
+        disabled={props.isDisabled}
         value={props.value}
         onChange={props.onChange}
         options={options}

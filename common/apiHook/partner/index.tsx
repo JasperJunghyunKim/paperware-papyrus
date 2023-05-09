@@ -1,4 +1,4 @@
-export * from './accounted';
-export * from './byCash';
-export * from './byEtc';
-export * from './partner';
+export * as Accounted from './accounted';
+export * as ByCash from './byCash';
+export * as ByEtc from './byEtc';
+export * as Partner from './partner';
