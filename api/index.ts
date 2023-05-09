@@ -20,5 +20,5 @@ export * from './working/plan.response';
 export * from './working/task.request';
 export * from './working/task.response';
 export * from './external/sales.request';
-export * from './trade/purchase.request';
-export * from './trade/purchase.response';
+export * from './trade/order.request';
+export * from './trade/order.response';
