@@ -8,6 +8,14 @@ export interface OrderCreateRequest {
   locationId: number;
   memo: string;
   wantedDate: string;
-  stockGroupId: number;
+  productId: number;
+  packagingId: number;
+  grammage: number;
+  sizeX: number;
+  sizeY: number;
+  paperColorGroupId: number | null;
+  paperColorId: number | null;
+  paperPatternId: number | null;
+  paperCertId: number | null;
   quantity: number;
 }
