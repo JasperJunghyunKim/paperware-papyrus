@@ -5,9 +5,7 @@ import {
   PaperColor,
   PaperColorGroup,
   PaperPattern,
-  Plan,
   Product,
-  StockGroup,
 } from '.';
 
 export default interface OrderStock {
@@ -19,9 +17,9 @@ export default interface OrderStock {
   grammage: number;
   sizeX: number;
   sizeY: number;
-  paperColorGroup: PaperColorGroup;
-  paperColor: PaperColor;
-  paperPattern: PaperPattern;
-  paperCert: PaperCert;
+  paperColorGroup: PaperColorGroup | null;
+  paperColor: PaperColor | null;
+  paperPattern: PaperPattern | null;
+  paperCert: PaperCert | null;
   quantity: number;
 }
