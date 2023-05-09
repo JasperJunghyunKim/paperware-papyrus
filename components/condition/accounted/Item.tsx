@@ -1,3 +1,4 @@
+import { SelectPartner } from "@/components/formControl";
 import { Button, Form, Input } from "antd";
 
 interface Props {
@@ -14,6 +15,8 @@ export default function Component(props: Props) {
       }
     >
       <Form layout="vertical">
+        <SelectPartner />
+
         <Form.Item
           name="businessName"
           label="상호명"

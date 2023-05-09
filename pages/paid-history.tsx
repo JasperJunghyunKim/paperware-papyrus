@@ -15,7 +15,7 @@ export default function Component() {
   return (
     <Page title="지급 내역 조회">
       <Condition.Container>
-
+        <Condition.Item />
       </Condition.Container>
       <Table.Default<Model.StockGroup>
         data={list.data}
