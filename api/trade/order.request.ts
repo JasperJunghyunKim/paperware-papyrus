@@ -40,3 +40,5 @@ export interface OrderStockUpdateRequest {
   paperCertId: number | null;
   quantity: number;
 }
+
+export interface OrderStockArrivalListQuery extends PaginationQuery {}
