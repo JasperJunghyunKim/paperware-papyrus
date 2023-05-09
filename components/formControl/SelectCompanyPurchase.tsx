@@ -13,7 +13,13 @@ interface Props {
 }
 
 export default function Component(props: Props) {
-  const list = ApiHook.Inhouse.BusinessRelationship.useGetList({ query: {} });
+  const me = ApiHook.Auth.useGetMe();
+
+  const list = ApiHook.Inhouse.BusinessRelationship.useGetList({
+    query: {
+      dstCompanyId: me.data?.companyId,
+    },
+  });
 
   const options = useMemo(() => {
     return list.data?.items.map((x) => ({

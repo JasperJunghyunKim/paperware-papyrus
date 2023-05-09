@@ -11,9 +11,11 @@ import Price from "./Price";
 import Quantity from "./Quantity";
 import SelectCompanyPurchase from "./SelectCompanyPurchase";
 import SelectLocation from "./SelectLocation";
+import SelectLocationForSales from "./SelectLocationForSales";
 import DatePicker from "./DatePicker";
 import SelectCompanySales from "./SelectCompanySales";
 import StockPrice from "./StockPrice";
+export * as Util from "./util";
 
 export {
   Address,
@@ -30,6 +32,7 @@ export {
   SelectCompanyPurchase,
   SelectCompanySales,
   SelectLocation,
+  SelectLocationForSales,
   DatePicker,
   StockPrice,
 };

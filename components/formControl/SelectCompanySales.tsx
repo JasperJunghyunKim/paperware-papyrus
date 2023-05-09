@@ -13,8 +13,12 @@ interface Props {
 }
 
 export default function Component(props: Props) {
+  const me = ApiHook.Auth.useGetMe();
+
   const list = ApiHook.Inhouse.BusinessRelationship.useGetList({
-    query: {},
+    query: {
+      srcCompanyId: me.data?.companyId,
+    },
   });
 
   const options = useMemo(() => {
@@ -24,8 +28,6 @@ export default function Component(props: Props) {
       value: x.dstCompany.id,
     }));
   }, [list]);
-
-  console.log(options);
 
   return (
     <div className="flex flex-col gap-y-1">

@@ -22,8 +22,6 @@ export default function Component(props: Props) {
   const api = ApiHook.Working.Plan.useCreate();
   const cmd = useCallback(
     async (values: Api.PlanCreateRequest) => {
-      console.log(values);
-
       await api.mutateAsync({ data: values });
       form.resetFields();
       props.onClose(false);

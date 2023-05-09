@@ -8,6 +8,7 @@ import { Model } from "@/@shared";
 interface Props {
   value?: number;
   onChange?: (value: number) => void;
+  disabled?: boolean;
 }
 
 export default function Component(props: Props) {
@@ -38,6 +39,8 @@ export default function Component(props: Props) {
         showSearch
         allowClear
         placeholder="포장을 선택하세요"
+        dropdownMatchSelectWidth={false}
+        disabled={props.disabled}
       />
     </div>
   );

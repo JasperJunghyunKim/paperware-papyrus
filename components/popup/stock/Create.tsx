@@ -1,10 +1,10 @@
-import { Button, FormControl, Popup } from "@/components";
-import { useCallback } from "react";
-import { useForm, useWatch } from "antd/lib/form/Form";
 import { Api } from "@/@shared";
-import { ApiHook, Const, Util } from "@/common";
-import { Form, Input, Switch } from "antd";
+import { ApiHook, Util } from "@/common";
+import { Button, FormControl, Popup } from "@/components";
 import { Number } from "@/components/formControl";
+import { Form } from "antd";
+import { useForm, useWatch } from "antd/lib/form/Form";
+import { useCallback } from "react";
 
 export interface Props {
   open: boolean;
@@ -22,8 +22,6 @@ export default function Component(props: Props) {
   const api = ApiHook.Stock.StockInhouse.useCreate();
   const cmd = useCallback(
     async (values: Api.StockCreateRequest) => {
-      console.log(values);
-
       await api.mutateAsync({ data: values });
       form.resetFields();
       props.onClose(false);

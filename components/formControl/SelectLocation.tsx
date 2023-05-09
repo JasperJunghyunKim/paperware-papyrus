@@ -8,6 +8,7 @@ type RecordType = Record.Location;
 interface Props {
   value?: number;
   onChange?: (value: number) => void;
+  disabled?: boolean;
 }
 
 export default function Component(props: Props) {
@@ -36,6 +37,8 @@ export default function Component(props: Props) {
         showSearch
         allowClear
         placeholder="도착지 선택"
+        dropdownMatchSelectWidth={false}
+        disabled={props.disabled}
       />
     </div>
   );

@@ -340,6 +340,25 @@ export function planStatusToString(value: Model.Enum.PlanStatus) {
   }
 }
 
+export function orderStatusToSTring(value: Model.Enum.OrderStatus) {
+  switch (value) {
+    case "ORDER_PREPARING":
+      return "주문 작성중";
+    case "OFFER_PREPARING":
+      return "수주 작성중";
+    case "ORDER_REQUESTED":
+      return "주문 승인 대기중";
+    case "OFFER_REQUESTED":
+      return "수주 승인 대기중";
+    case "ORDER_REJECTED":
+      return "주문 거절";
+    case "OFFER_REJECTED":
+      return "수주 거절";
+    case "ACCEPTED":
+      return "주문 승인";
+  }
+}
+
 export function formatPhoneNo(phoneNo: string | null | undefined) {
   if (phoneNo === null || phoneNo === undefined) {
     return "";

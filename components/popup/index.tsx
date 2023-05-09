@@ -5,3 +5,5 @@ export * as VirtualCompany from "./virtualCompany";
 export * as Warehouse from "./warehouse";
 export * as Stock from "./stock";
 export * as Plan from "./plan";
+export * as Order from "./order";
+export * as StockFinder from "./stockFinder";

@@ -56,7 +56,6 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "자사 재고 관리",
         icon: <TbServer2 />,
         path: "/stock-inhouse",
-        type: "progress",
       },
       {
         label: "도착 예정 목록",
@@ -74,13 +73,13 @@ export default function Component(props: PropsWithChildren<Props>) {
         label: "매입처 재고 조회",
         icon: <TbInputSearch />,
         path: "/stock-purchase",
-        type: "progress",
+        type: "wip",
       },
       {
         label: "매입 주문 목록",
         icon: <TbClipboardList />,
-        path: "/purchase-order",
-        type: "wip",
+        path: "/trade-order",
+        type: "progress",
       },
       {
         label: "매입처 관리",
@@ -91,8 +90,8 @@ export default function Component(props: PropsWithChildren<Props>) {
       {
         label: "매출 수주 목록",
         icon: <TbSubtask />,
-        path: "/sales-order",
-        type: "wip",
+        path: "/trade-sales",
+        type: "progress",
       },
       {
         label: "매출처 관리",

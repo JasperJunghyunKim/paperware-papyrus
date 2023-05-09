@@ -30,6 +30,27 @@ export function useGetList(params: { query: Partial<Api.LocationListQuery> }) {
   );
 }
 
+export function useGetListForSales(params: {
+  query: Partial<Api.LocationForSalesListQuery>;
+}) {
+  return useQuery(
+    ["inhouse", "location", "sales", params.query.skip, params.query.take],
+    async () => {
+      if (!params.query.targetCompanyId) {
+        return null;
+      }
+
+      const resp = await axios.get<Api.LocationListResponse>(
+        `${API_HOST}/inhouse/location/for-sales`,
+        {
+          params: params.query,
+        }
+      );
+      return resp.data;
+    }
+  );
+}
+
 export function useCreate() {
   const queryClient = useQueryClient();
 

@@ -6,6 +6,7 @@ import { useMemo } from "react";
 interface Props {
   value?: number;
   onChange?: (value: number) => void;
+  disabled?: boolean;
 }
 
 export default function Component(props: Props) {
@@ -36,6 +37,8 @@ export default function Component(props: Props) {
         showSearch
         allowClear
         placeholder="창고 미지정"
+        dropdownMatchSelectWidth={false}
+        disabled={props.disabled}
       />
     </div>
   );
