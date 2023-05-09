@@ -1,4 +1,4 @@
-import { Method } from "@/@shared/models/enum";
+import { Method, Subject } from "@/@shared/models/enum";
 import { PaginationQuery } from "@/@shared/models/pagination";
 
 /**
@@ -12,15 +12,15 @@ interface Collected extends PaginationQuery {
     /**
      * from date
      */
-    collectedFromDate: string;
+    accountedFromDate: string;
     /**
      * to date
      */
-    collectedToDate: string;
+    accountedToDate: string;
     /**
      * 계정 과목
      */
-    collectedSubject: string;
+    accountedSubject: Subject;
     /**
      * 회계 수단
      */

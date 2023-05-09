@@ -12,11 +12,11 @@ interface CollectedByCash extends PaginationQuery {
     /**
      * to date
      */
-    collectedDate: string;
+    accountedDate: string;
     /**
      * 회계 수단
      */
-    collectedMethod: Method;
+    accountedMethod: Method;
     /**
      * 메모
      */

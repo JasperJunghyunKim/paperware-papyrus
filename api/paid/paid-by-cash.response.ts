@@ -16,11 +16,11 @@ interface PaidByCash {
     /**
      * to date
      */
-    paidDate: string;
+    accountedDate: string;
     /**
      * 회계 수단
      */
-    paidMethod: Method;
+    accountedMethod: Method;
     /**
      * 메모
      */
