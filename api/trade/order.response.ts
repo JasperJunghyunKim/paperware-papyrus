@@ -1,5 +1,7 @@
 import { PaginationResponse } from '../../models/pagination';
-import { Order } from '../../models';
+import { Order, StockEvent } from '../../models';
 
 export type OrderListResponse = PaginationResponse<Order>;
 export type OrderItemResponse = Order;
+
+export type OrderStockArrivalListResponse = PaginationResponse<StockEvent>;
