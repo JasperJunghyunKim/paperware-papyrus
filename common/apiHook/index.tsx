@@ -5,3 +5,4 @@ export * as Inhouse from "./inhouse";
 export * as Stock from "./stock";
 export * as Working from "./working";
 export * as Trade from "./trade";
+export * as Shipping from "./shipping";

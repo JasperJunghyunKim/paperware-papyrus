@@ -104,7 +104,7 @@ export default function Component(props: PropsWithChildren<Props>) {
         path: "/plan",
         type: "progress",
       },
-      { label: "배송 목록", icon: <TbTruck />, path: "/shipping", type: "wip" },
+      { label: "배송 목록", icon: <TbTruck />, path: "/shipping" },
       { path: null },
       {
         label: "도착지 관리",

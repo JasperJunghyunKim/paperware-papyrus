@@ -7,3 +7,4 @@ export * as Stock from "./stock";
 export * as Plan from "./plan";
 export * as Order from "./order";
 export * as StockFinder from "./stockFinder";
+export * as Shipping from "./shipping";
