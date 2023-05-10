@@ -24,3 +24,7 @@ export * from './trade/order.request';
 export * from './trade/order.response';
 export * from './stock/stock-arrival.request';
 export * from './stock/stock-arrival.response';
+export * from './shipping/invoice.request';
+export * from './shipping/invoice.response';
+export * from './shipping/shipping.request';
+export * from './shipping/shipping.response';

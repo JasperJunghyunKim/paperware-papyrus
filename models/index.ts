@@ -29,6 +29,8 @@ import ByEtc from './by-etc';
 import Order from './order';
 import OrderStock from './order-stock';
 import StockEvent from './stock-event';
+import Shipping from './shipping';
+import Invoice from './invoice';
 
 import Partner from './partner';
 import Accounted from './accounted';
@@ -76,4 +78,6 @@ export type {
   TradePrice,
   OrderStockTradePrice,
   OrderStockTradeAltBundle,
+  Shipping,
+  Invoice,
 };
