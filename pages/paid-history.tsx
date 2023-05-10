@@ -6,7 +6,7 @@ import { Condition, Popup, Table, Toolbar } from "@/components";
 import { accountedAtom } from "@/components/condition/accounted/accounted.state";
 import { Page } from "@/components/layout";
 import { useForm } from "antd/lib/form/Form";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
 const METHOD_OPTIONS = [
@@ -64,25 +64,23 @@ const PAID_SUBJECT_OPTIONS = [
 ];
 
 export default function Component() {
+  const condition = useRecoilValue(accountedAtom);
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
   const [method, setMethod] = useState<Enum.Method | null>(null);
-  const condition = useRecoilValue(accountedAtom);
-
-
   const [page, setPage] = usePage();
+  const [selectedPaid, setSelectedPaid] = useState<Model.Accounted[]>([]);
+  const only = Util.only(selectedPaid);
+
   const list = ApiHook.Partner.Accounted.useGetPaidList({
     query: {
       ...page,
       ...condition,
     }
   });
-  const [selectedPaid, setSelectedPaid] = useState<Model.Accounted[]>([]);
-
-  const only = Util.only(selectedPaid);
-
   const apiByCashDelete = ApiHook.Partner.ByCash.useByCashPaidDelete();
   const apiByEtcDelete = ApiHook.Partner.ByEtc.useByEtcPaidDelete();
+
   const cmdDelete = useCallback(async () => {
     if (
       !only ||

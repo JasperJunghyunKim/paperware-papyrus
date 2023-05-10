@@ -12,27 +12,32 @@ export default function Component(props: Props) {
   const staticData = ApiHook.Partner.Partner.useGetList();
 
   const options = useMemo(() => {
-    const newItemList = staticData.data?.map((el) => ({
-      label: <Item item={el} />,
-      text: el.partnerNickName,
-      value: el.partnerId,
-    }));
+    const itemList = staticData.data?.reduce((acc: any[], crr, idx) => {
+      if (idx === 0) {
+        acc.push({
+          label: <Item item={{
+            partnerId: 0,
+            partnerNickName: "전체",
+          }} />,
+          value: 0,
+        })
+      }
 
-    newItemList?.unshift({
-      label: <Item item={{
-        partnerId: 0,
-        partnerNickName: "전체",
-      }} />,
-      text: '전체',
-      value: 0,
-    });
+      acc.push({
+        label: <Item item={crr} />,
+        value: crr.partnerId,
+      });
 
-    return newItemList;
+      return acc;
+    }, [])
+
+    return itemList;
   }, [staticData]);
 
   return (
     <div className="flex flex-col gap-y-1">
       <Select
+        defaultValue={0}
         value={props.value}
         onChange={props.onChange}
         options={options}

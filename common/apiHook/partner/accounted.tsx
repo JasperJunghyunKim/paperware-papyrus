@@ -13,6 +13,11 @@ export function useGetPaidList(params: {
 			"list",
 			params.query.skip,
 			params.query.take,
+			params.query.partnerId,
+			params.query.accountedSubject,
+			params.query.accountedMethod,
+			params.query.accountedFromDate,
+			params.query.accountedToDate,
 		],
 		async () => {
 			const resp = await axios.get<Api.PaidListResponse>(

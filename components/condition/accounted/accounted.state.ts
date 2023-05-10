@@ -2,7 +2,7 @@ import { Api } from "@/@shared";
 import { atom } from "recoil";
 import { v1 } from "uuid";
 
-export const accountedAtom = atom<Api.PaidQuery>({
+export const accountedAtom = atom<Omit<Api.PaidQuery, 'skip' | 'take'>>({
   key: `paid-condition-${v1()}`,
   default: {
     partnerId: 0,
@@ -10,7 +10,5 @@ export const accountedAtom = atom<Api.PaidQuery>({
     accountedMethod: 'All',
     accountedFromDate: '',
     accountedToDate: '',
-    skip: 0,
-    take: 100,
   },
 });

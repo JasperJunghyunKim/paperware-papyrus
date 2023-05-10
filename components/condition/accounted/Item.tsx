@@ -1,13 +1,13 @@
+import { Model } from "@/@shared";
 import { FormControl } from "@/components";
 import { Form } from "antd";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { accountedAtom } from "./accounted.state";
-import { Model } from "@/@shared";
 
 type NamePath = 'partnerId' | 'accountedFromDate' | 'accountedToDate' | 'accountedSubject' | 'accountedMethod';
 
 export default function Component() {
-  const setPiadCondtiuon = useSetRecoilState(accountedAtom);
+  const [paidCondtiuon, setPiadCondtiuon] = useRecoilState(accountedAtom);
 
   const onChange = (name: NamePath, value: string | number) => {
     switch (name) {
@@ -57,13 +57,13 @@ export default function Component() {
           <FormControl.SelectPartner />
         </Form.Item>
         <Form.Item name="accountedFromDate" label="수금일" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedFromDate', value)}>
-          <FormControl.DatePicker value={new Date().toISOString()} />
+          <FormControl.DatePicker value={paidCondtiuon.accountedFromDate} />
         </Form.Item>
         <div className={"mt-8"}>
           ~
         </div>
         <Form.Item name="accountedToDate" label=" " className={"w-1/5 mt-30"} getValueFromEvent={(value) => onChange('accountedToDate', value)}>
-          <FormControl.DatePicker value={new Date().toISOString()} />
+          <FormControl.DatePicker value={paidCondtiuon.accountedToDate} />
         </Form.Item>
         <Form.Item name="accountedSubject" label="계정 과목" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedSubject', value)}>
           <FormControl.SelectPaidSubject />

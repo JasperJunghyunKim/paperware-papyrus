@@ -33,7 +33,7 @@ const METHOD_OPTIONS = [
 ];
 
 interface Props {
-  value?: number;
+  value?: Model.Enum.Method & string & number;
   onChange?: (value: number) => void;
 }
 
@@ -41,8 +41,8 @@ export default function Component(props: Props) {
   return (
     <div className="flex flex-col gap-y-1">
       <Select
-        defaultValue={0}
-        value={props.value}
+        defaultValue={'All' as Model.Enum.Method as any}
+        value={props.value as unknown as Model.Enum.Method as any}
         onChange={props.onChange}
         options={METHOD_OPTIONS}
         placeholder="계정 과목"
