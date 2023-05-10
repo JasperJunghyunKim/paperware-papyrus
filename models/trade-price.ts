@@ -1,5 +1,6 @@
+import OrderStockTradePrice from "./order-stock-trade-price";
 
-export default interface OrderStockTradePrice {
+export default interface TradePrice {
     orderId: number;
     companyId: number;
     suppliedPrice: number;
