@@ -24,7 +24,7 @@ export default interface OrderStock {
   paperPattern: PaperPattern | null;
   paperCert: PaperCert | null;
   quantity: number;
-  plan: {
+  plan?: {
     id: number;
     planNo: string;
   } | null;
