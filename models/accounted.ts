@@ -13,7 +13,7 @@ export default interface Accounted extends Entity {
   /**
    * 지급 식별자
    */
-  id: number;
+  accountedId: number;
   /**
    * 회계 등록일
    */
