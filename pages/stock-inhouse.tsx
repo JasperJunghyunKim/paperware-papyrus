@@ -185,7 +185,13 @@ export default function Component() {
           {
             title: "재고 번호",
             dataIndex: "serial",
-            render: (value) => <div className="font-fixed">{value}</div>,
+            render: (value, record) => (
+              <div className="flex">
+                <div className="flex font-fixed bg-yellow-100 px-1 text-yellow-800 rounded-md">
+                  {value}
+                </div>
+              </div>
+            ),
           },
           {
             title: "실물 수량",

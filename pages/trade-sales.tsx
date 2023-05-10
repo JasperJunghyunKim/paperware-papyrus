@@ -15,6 +15,7 @@ export default function Component() {
 
   const [openStockUpsert, setOpenStockUpsert] =
     useState<OrderUpsertOpen>(false);
+  const [openUpdate, setOpenUpdate] = useState<number | false>(false);
 
   const [page, setPage] = usePage();
   const list = ApiHook.Trade.OrderStock.useGetList({
@@ -82,7 +83,31 @@ export default function Component() {
           },
           {
             title: "주문 번호",
-            dataIndex: "orderNumber",
+            dataIndex: "orderNo",
+            render: (value, record) => (
+              <div className="flex">
+                <div className="font-fixed bg-sky-100 px-1 text-sky-800 rounded-md">
+                  {value}
+                </div>
+              </div>
+            ),
+          },
+          {
+            title: "작업 번호",
+            dataIndex: ["orderStock", "plan", "planNo"],
+            render: (value, record) => (
+              <div className="flex">
+                <div
+                  className="font-fixed bg-green-100 px-1 text-green-800 rounded-md cursor-pointer"
+                  onClick={() =>
+                    record.orderStock.plan &&
+                    setOpenUpdate(record.orderStock.plan.id)
+                  }
+                >
+                  {value}
+                </div>
+              </div>
+            ),
           },
           {
             title: "도착 희망일",
@@ -222,6 +247,7 @@ export default function Component() {
         open={openStockUpsert}
         onClose={setOpenStockUpsert}
       />
+      <Popup.Plan.Update open={openUpdate} onClose={setOpenUpdate} />
     </Page>
   );
 }

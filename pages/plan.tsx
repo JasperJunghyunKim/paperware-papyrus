@@ -66,7 +66,24 @@ export default function Component() {
           {
             title: "작업 계획 번호",
             dataIndex: "planNo",
-            render: (value) => <div className="font-fixed">{value}</div>,
+            render: (value) => (
+              <div className="flex">
+                <div className="font-fixed bg-green-100 px-1 text-green-800 rounded-md">
+                  {value}
+                </div>
+              </div>
+            ),
+          },
+          {
+            title: "주문 번호",
+            dataIndex: ["orderStock", "order", "orderNo"],
+            render: (value, record) => (
+              <div className="flex">
+                <div className="font-fixed bg-sky-100 px-1 text-sky-800 rounded-md">
+                  {value}
+                </div>
+              </div>
+            ),
           },
           {
             title: "상태",

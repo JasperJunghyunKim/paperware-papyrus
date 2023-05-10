@@ -82,7 +82,14 @@ export default function Component() {
           },
           {
             title: "주문 번호",
-            dataIndex: "orderNumber",
+            dataIndex: "orderNo",
+            render: (value, record) => (
+              <div className="flex">
+                <div className="font-fixed bg-sky-100 px-1 text-sky-800 rounded-md">
+                  {value}
+                </div>
+              </div>
+            ),
           },
           {
             title: "도착 희망일",
