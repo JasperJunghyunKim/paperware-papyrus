@@ -5,3 +5,5 @@ export type OrderListResponse = PaginationResponse<Order>;
 export type OrderItemResponse = Order;
 
 export type OrderStockArrivalListResponse = PaginationResponse<StockEvent>;
+
+export type OrderCreateResponse = Order;
