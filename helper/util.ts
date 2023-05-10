@@ -40,11 +40,15 @@ export function toStringify(
 }
 
 export function formatString(pattern: string, ...values: any[]): string {
+  if (values.length === 0 || values.every(value => value === undefined)) {
+    return pattern;
+  }
   return values.reduce(
-    (currentPattern, value) => currentPattern.replace(/%s/, value),
+    (currentPattern, value) => currentPattern?.replace(/%s/, value),
     pattern,
   );
 }
+
 export function dateToIso8601(
   date: Date | string | null | undefined,
 ): string | null {
