@@ -1,4 +1,3 @@
 import { Accounted } from '../../models';
-import { PaginationQuery } from '../../models/pagination';
 
-export type PaidQuery = Accounted & PaginationQuery;
+export type PaidQuery = Pick<Accounted, 'partnerId' | 'accountedSubject' | 'accountedMethod'> & { accountedFromDate: string, accountedToDate: string };
