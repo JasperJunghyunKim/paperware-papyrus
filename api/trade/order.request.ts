@@ -1,5 +1,5 @@
-import { Api } from "../..";
-import { PaginationQuery } from "../../models/pagination";
+import { Api } from '../..';
+import { PaginationQuery } from '../../models/pagination';
 
 export interface OrderListQuery extends PaginationQuery {
   /** 판매처 */
@@ -14,6 +14,7 @@ export interface OrderStockCreateRequest {
   locationId: number;
   memo: string;
   wantedDate: string;
+  warehouseId: number;
   productId: number;
   packagingId: number;
   grammage: number;
@@ -30,6 +31,7 @@ export interface OrderStockUpdateRequest {
   locationId: number;
   memo: string;
   wantedDate: string;
+  warehouseId: number;
   productId: number;
   packagingId: number;
   grammage: number;

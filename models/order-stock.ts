@@ -6,12 +6,14 @@ import {
   PaperColorGroup,
   PaperPattern,
   Product,
+  Warehouse,
 } from '.';
 
 export default interface OrderStock {
   id: number;
   orderId: number;
   dstLocation: Location;
+  warehouse: Warehouse;
   product: Product;
   packaging: Packaging;
   grammage: number;
