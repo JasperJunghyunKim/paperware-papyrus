@@ -43,3 +43,9 @@ export interface StockCreateRequest {
   quantity: number;
   stockPrice: StockCreateStockPriceRequest;
 }
+
+
+/** 거래처 재고그룹 목록 조회 */
+export type PartnerStockGroupListQuery = PaginationQuery & {
+  companyId?: number;
+};

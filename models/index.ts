@@ -32,6 +32,7 @@ import StockEvent from './stock-event';
 
 import Partner from './partner';
 import Accounted from './accounted';
+import PartnerStockGroup from './partner-stock-group';
 
 export * as Enum from './enum';
 export type {
@@ -68,4 +69,5 @@ export type {
   Order,
   OrderStock,
   StockEvent,
+  PartnerStockGroup,
 };
