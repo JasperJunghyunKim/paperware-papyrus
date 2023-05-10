@@ -9,6 +9,10 @@ interface PaidByCash {
    */
   partnerId: number;
   /**
+   * 파트너 식별자
+   */
+  partnerNickName: string;
+  /**
    * to date
    */
   accountedDate: string;

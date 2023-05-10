@@ -14,6 +14,10 @@ interface PaidByCash {
    */
   partnerNickName: string;
   /**
+   * 회계 식별자
+   */
+  accountedId: number;
+  /**
    * to date
    */
   accountedDate: string;
