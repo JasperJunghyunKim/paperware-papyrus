@@ -4,6 +4,6 @@ export default interface Entity {
   regNm?: string;
   chgId?: string;
   chgNm?: string;
-  chgDt: Date;
-  regDt: Date;
+  chgDt?: Date;
+  regDt?: Date;
 }
