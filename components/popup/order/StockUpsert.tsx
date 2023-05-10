@@ -2,12 +2,20 @@ import { Api, Model } from "@/@shared";
 import { Button, FormControl, Popup, Table, Toolbar } from "@/components";
 import { Form, Input, Steps } from "antd";
 import { useForm, useWatch } from "antd/lib/form/Form";
-import { useCallback, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { Number } from "@/components/formControl";
 import { ApiHook, Util } from "@/common";
 import { OrderStatus } from "@/@shared/models/enum";
 import { usePage } from "@/common/hook";
 import { CreateArrival } from ".";
+import {
+  TbAB,
+  TbBrandMixpanel,
+  TbHandStop,
+  TbInfoCircle,
+  TbSend,
+  TbSquare,
+} from "react-icons/tb";
 
 export type OrderId = number;
 export type OrderUpsertOpen = "CREATE_ORDER" | "CREATE_OFFER" | OrderId | false;
@@ -42,9 +50,193 @@ export default function Component(props: Props) {
     }
   }, [props.open]);
 
+  const apiRequest = ApiHook.Trade.OrderStock.useRequest();
+  const cmdRequest = useCallback(async () => {
+    if (!order.data) return;
+    if (!(await Util.confirm("주문을 요청하시겠습니까?"))) return;
+    await apiRequest.mutateAsync({
+      orderId: order.data.id,
+    });
+  }, [apiRequest, order.data]);
+
+  const apiAccept = ApiHook.Trade.OrderStock.useAccept();
+  const cmdAccept = useCallback(
+    (virtual: boolean) => async () => {
+      if (!order.data) return;
+      if (
+        !(await Util.confirm(
+          virtual
+            ? "가상 매입처 대상 주문은 즉시 승인됩니다. 계속하시겠습니까?"
+            : "재고를 승인하시겠습니까?"
+        ))
+      )
+        return;
+      await apiAccept.mutateAsync({
+        orderId: order.data.id,
+      });
+    },
+    [apiAccept, order.data]
+  );
+
+  const apiReject = ApiHook.Trade.OrderStock.useReject();
+  const cmdReject = useCallback(async () => {
+    if (!order.data) return;
+    if (!(await Util.confirm("재고를 거절하시겠습니까?"))) return;
+    await apiReject.mutateAsync({
+      orderId: order.data.id,
+    });
+  }, [apiReject, order.data]);
+
+  const apiCancel = ApiHook.Trade.OrderStock.useCancel();
+  const cmdCancel = useCallback(async () => {
+    if (!order.data) return;
+    if (!(await Util.confirm("주문을 삭제하시겠습니까?"))) return;
+    await apiCancel.mutateAsync({
+      orderId: order.data.id,
+    });
+  }, [apiCancel, order.data]);
+
+  const apiReset = ApiHook.Trade.OrderStock.useReset();
+  const cmdReset = useCallback(async () => {
+    if (!order.data) return;
+    if (!(await Util.confirm("주문 내용을 재입력하시겠습니까?"))) return;
+    await apiReset.mutateAsync({
+      orderId: order.data.id,
+    });
+  }, [apiReset, order.data]);
+
+  const skeleton = useCallback(() => {
+    const wordKind = isSales ? "매출" : "매입";
+
+    if (!order.data) {
+      return (
+        <RightSideSkeleton
+          icon={<TbInfoCircle />}
+          title={`${wordKind} 정보를 입력한 후 등록하세요.`}
+        />
+      );
+    }
+    switch (order.data.status) {
+      case "OFFER_PREPARING":
+        return isSales ? (
+          <RightSideSkeleton
+            icon={<TbAB />}
+            title={`매출 원지 정보를 입력하고 재고 승인 요청을 보내세요.`}
+            buttons={[
+              {
+                fn: cmdRequest,
+                label: `재고 승인 요청`,
+              },
+            ]}
+          />
+        ) : (
+          <RightSideSkeleton />
+        );
+      case "OFFER_REQUESTED":
+        return isSales ? (
+          <RightSideSkeleton
+            icon={<TbBrandMixpanel />}
+            title={`매출처의 재고 승인을 기다리고 있습니다.`}
+            phone={Util.formatPhoneNo(order.data.srcCompany.phoneNo)}
+          />
+        ) : (
+          <RightSideSkeleton
+            icon={<TbSend />}
+            title={`재고 승인요청을 받았습니다. 거래를 계속하려면 주문을 승인하세요.`}
+            phone={Util.formatPhoneNo(order.data.srcCompany.phoneNo)}
+            buttons={[
+              {
+                fn: cmdAccept(order.data.srcCompany.managedById !== null),
+                label: `주문 승인`,
+              },
+              {
+                fn: cmdReject,
+                label: `주문 거절`,
+              },
+            ]}
+          />
+        );
+      case "OFFER_REJECTED":
+        return isSales ? (
+          <RightSideSkeleton
+            icon={<TbHandStop />}
+            title={`매출처의 재고 승인 요청이 거절되었습니다.`}
+            phone={Util.formatPhoneNo(order.data.srcCompany.phoneNo)}
+            buttons={[
+              {
+                fn: cmdReset,
+                label: `수주 정보 재입력`,
+              },
+            ]}
+          />
+        ) : (
+          <RightSideSkeleton title="재고 요청을 거절했습니다." />
+        );
+      case "ORDER_PREPARING":
+        return !isSales ? (
+          <RightSideSkeleton
+            icon={<TbAB />}
+            title={`거래 하려는 매입처와 재고를 선택하고 발주 요청을 보내세요.`}
+            buttons={[
+              {
+                fn: cmdRequest,
+                label: `발주 요청`,
+              },
+            ]}
+          />
+        ) : (
+          <RightSideSkeleton />
+        );
+      case "ORDER_REQUESTED":
+        return !isSales ? (
+          <RightSideSkeleton
+            icon={<TbBrandMixpanel />}
+            title={`매입처의 주문 승인을 기다리고 있습니다.`}
+            phone={Util.formatPhoneNo(order.data.dstCompany.phoneNo)}
+          />
+        ) : (
+          <RightSideSkeleton
+            icon={<TbSend />}
+            title={`주문 승인요청을 받았습니다. 거래를 계속하려면 주문을 승인하세요.`}
+            phone={Util.formatPhoneNo(order.data.dstCompany.phoneNo)}
+            buttons={[
+              {
+                fn: cmdAccept(order.data.dstCompany.managedById !== null),
+                label: `주문 승인`,
+              },
+              {
+                fn: cmdReject,
+                label: `주문 거절`,
+              },
+            ]}
+          />
+        );
+      case "ORDER_REJECTED":
+        return !isSales ? (
+          <RightSideSkeleton
+            icon={<TbHandStop />}
+            title={`매입처의 주문 요청이 거절되었습니다.`}
+            phone={Util.formatPhoneNo(order.data.dstCompany.phoneNo)}
+            buttons={[
+              {
+                fn: cmdReset,
+                label: `주문 재입력`,
+              },
+            ]}
+          />
+        ) : (
+          <RightSideSkeleton title="주문 요청을 거절했습니다." />
+        );
+      case "ACCEPTED":
+        return null;
+      default:
+        return null;
+    }
+  }, [order, isOffer, isSales]);
+
   return (
     <Popup.Template.Full
-      title={title(props.open) ?? "거래 상세"}
+      title={title(props.open) ?? `${isSales ? "매출" : "매입"} 상세`}
       {...props}
       open={!!props.open}
       width="calc(100vw - 80px)"
@@ -56,20 +248,21 @@ export default function Component(props: Props) {
             isOffer={isOffer}
             isSales={isSales}
             initialOrder={order.data ?? null}
+            onCreated={(p) => setInitialOrderId(p.id)}
           />
         </div>
-        {!isSales && (
-          <>
-            <div className="basis-px bg-gray-200" />
-            <RightSideOrder order={order.data ?? null} />
-          </>
-        )}
-        {isSales && (
-          <>
-            <div className="basis-px bg-gray-200" />
-            <RightSideSales order={order.data ?? null} />
-          </>
-        )}
+        {skeleton() ??
+          (isSales ? (
+            <>
+              <div className="basis-px bg-gray-200" />
+              <RightSideSales order={order.data ?? null} />
+            </>
+          ) : (
+            <>
+              <div className="basis-px bg-gray-200" />
+              <RightSideOrder order={order.data ?? null} />
+            </>
+          ))}
       </div>
     </Popup.Template.Full>
   );
@@ -79,6 +272,7 @@ interface DataFormProps {
   isOffer: boolean;
   isSales: boolean;
   initialOrder: Model.Order | null;
+  onCreated: (order: Model.Order) => void;
 }
 function DataForm(props: DataFormProps) {
   const metadata = ApiHook.Static.PaperMetadata.useGetAll();
@@ -87,8 +281,22 @@ function DataForm(props: DataFormProps) {
   const [form] = useForm<
     Api.OrderStockCreateRequest | Api.OrderStockUpdateRequest
   >();
-  const dstCompanyId = useWatch(["dstCompanyId"], form);
-  const srcCompanyId = useWatch(["srcCompanyId"], form);
+  const [warehouse, setWarehouse] = useState<Partial<Model.Warehouse> | null>(
+    null
+  );
+  const dstCompanyId = useWatch<number | null | undefined>(
+    ["dstCompanyId"],
+    form
+  );
+  const srcCompanyId = useWatch<number | null | undefined>(
+    ["srcCompanyId"],
+    form
+  );
+  const companies = ApiHook.Inhouse.BusinessRelationship.useGetList({
+    query: {
+      dstCompanyId: me.data?.companyId ?? undefined,
+    },
+  });
 
   const packagingId = useWatch(["packagingId"], form);
   const packaging = metadata.data?.packagings.find((x) => x.id === packagingId);
@@ -97,6 +305,10 @@ function DataForm(props: DataFormProps) {
     props.initialOrder === null ||
     props.initialOrder.status === "OFFER_PREPARING" ||
     props.initialOrder.status === "ORDER_PREPARING";
+  const manual =
+    !props.isSales &&
+    companies.data?.items.find((p) => p.srcCompany.id === dstCompanyId)
+      ?.srcCompany.managedById !== null;
 
   useEffect(() => {
     if (props.initialOrder) {
@@ -105,6 +317,7 @@ function DataForm(props: DataFormProps) {
         srcCompanyId: props.initialOrder.srcCompany.id,
         locationId: props.initialOrder.orderStock.dstLocation.id,
         wantedDate: props.initialOrder.wantedDate,
+        warehouseId: props.initialOrder.orderStock.warehouse?.id,
         productId: props.initialOrder.orderStock.product.id,
         packagingId: props.initialOrder.orderStock.packaging.id,
         grammage: props.initialOrder.orderStock.grammage,
@@ -131,14 +344,14 @@ function DataForm(props: DataFormProps) {
     }
 
     if (props.isOffer) {
-      await apiCreate.mutateAsync({
+      return await apiCreate.mutateAsync({
         data: {
           ...values,
           dstCompanyId: me.data.companyId,
         },
       });
     } else {
-      await apiCreate.mutateAsync({
+      return await apiCreate.mutateAsync({
         data: {
           ...values,
           srcCompanyId: me.data.companyId,
@@ -167,7 +380,10 @@ function DataForm(props: DataFormProps) {
     if (props.initialOrder) {
       await cmdUpdate();
     } else {
-      await cmdCreate();
+      const created = await cmdCreate();
+      if (created) {
+        props.onCreated(created);
+      }
     }
   }, [cmdCreate, cmdUpdate, props.initialOrder]);
 
@@ -207,82 +423,154 @@ function DataForm(props: DataFormProps) {
       <Form.Item name="wantedDate" label="도착 희망일" rules={REQUIRED_RULES}>
         <FormControl.DatePicker disabled={!editable} />
       </Form.Item>
-      <FormControl.Util.Split
-        label={props.isSales ? "수주 원지 정보" : "주문 원지 정보"}
-      />
-      {editable && (
-        <div className="flex-initial flex mb-4">
-          <Button.Preset.SelectStockGroupInhouse
-            onSelect={(stockGroup) => {
-              form.setFieldsValue({
-                productId: stockGroup.product.id,
-                packagingId: stockGroup.packaging.id,
-                grammage: stockGroup.grammage,
-                sizeX: stockGroup.sizeX,
-                sizeY: stockGroup.sizeY,
-                paperColorGroupId: stockGroup.paperColorGroup?.id,
-                paperColorId: stockGroup.paperColor?.id,
-                paperPatternId: stockGroup.paperPattern?.id,
-                paperCertId: stockGroup.paperCert?.id,
-              });
-            }}
-            rootClassName="flex-1"
+      {(srcCompanyId || dstCompanyId) && (
+        <>
+          <FormControl.Util.Split
+            label={props.isSales ? "수주 원지 정보" : "주문 원지 정보"}
           />
-        </div>
+          {editable && props.isSales && (
+            <div className="flex-initial flex mb-4">
+              <Button.Preset.SelectStockGroupInhouse
+                onSelect={(stockGroup) => {
+                  setWarehouse(stockGroup.warehouse);
+                  form.setFieldsValue({
+                    warehouseId: stockGroup.warehouse.id,
+                    productId: stockGroup.product.id,
+                    packagingId: stockGroup.packaging.id,
+                    grammage: stockGroup.grammage,
+                    sizeX: stockGroup.sizeX,
+                    sizeY: stockGroup.sizeY,
+                    paperColorGroupId: stockGroup.paperColorGroup?.id,
+                    paperColorId: stockGroup.paperColor?.id,
+                    paperPatternId: stockGroup.paperPattern?.id,
+                    paperCertId: stockGroup.paperCert?.id,
+                  });
+                }}
+                rootClassName="flex-1"
+              />
+            </div>
+          )}
+          {editable && !props.isSales && !manual && (
+            <div className="flex-initial flex mb-4">
+              <Button.Preset.SelectPartnerStockGroup
+                companyId={dstCompanyId ?? null}
+                onSelect={(stockGroup) => {
+                  setWarehouse(stockGroup.warehouse);
+                  form.setFieldsValue({
+                    warehouseId: stockGroup.warehouse.id,
+                    productId: stockGroup.product.id,
+                    packagingId: stockGroup.packaging.id,
+                    grammage: stockGroup.grammage,
+                    sizeX: stockGroup.sizeX,
+                    sizeY: stockGroup.sizeY,
+                    paperColorGroupId: stockGroup.paperColorGroup?.id,
+                    paperColorId: stockGroup.paperColor?.id,
+                    paperPatternId: stockGroup.paperPattern?.id,
+                    paperCertId: stockGroup.paperCert?.id,
+                  });
+                }}
+                rootClassName="flex-1"
+              />
+            </div>
+          )}
+          {!manual && (
+            <>
+              {props.isSales ? (
+                <Form.Item
+                  name="warehouseId"
+                  label="창고"
+                  rules={[{ required: true }]}
+                >
+                  <FormControl.SelectWarehouse disabled />
+                </Form.Item>
+              ) : (
+                <Form.Item
+                  name="warehouseId"
+                  label="창고"
+                  rules={[{ required: true }]}
+                >
+                  <Input value={warehouse?.name} disabled />
+                </Form.Item>
+              )}
+              <Form.Item label="창고 주소" rules={[{ required: true }]}>
+                <Input
+                  value={Util.formatAddress(warehouse?.address)}
+                  disabled
+                />
+              </Form.Item>
+            </>
+          )}
+          <Form.Item name="productId" label="제품" rules={[{ required: true }]}>
+            <FormControl.SelectProduct disabled={!editable || !manual} />
+          </Form.Item>
+          <Form.Item
+            name="packagingId"
+            label="포장"
+            rules={[{ required: true }]}
+          >
+            <FormControl.SelectPackaging disabled={!editable || !manual} />
+          </Form.Item>
+          <Form.Item>
+            <div className="flex justify-between gap-x-2">
+              <Form.Item
+                name="grammage"
+                label="평량"
+                rules={[{ required: true }]}
+                rootClassName="flex-1"
+              >
+                <Number
+                  min={0}
+                  max={9999}
+                  pricision={0}
+                  unit={Util.UNIT_GPM}
+                  disabled={!editable || !manual}
+                />
+              </Form.Item>
+              <Form.Item
+                name="sizeX"
+                label="지폭"
+                rules={[{ required: true }]}
+                rootClassName="flex-1"
+              >
+                <Number
+                  min={0}
+                  max={9999}
+                  pricision={0}
+                  unit="mm"
+                  disabled={!editable || !manual}
+                />
+              </Form.Item>
+              <Form.Item
+                name="sizeY"
+                label="지장"
+                rules={[{ required: true }]}
+                rootClassName="flex-1"
+              >
+                <Number
+                  min={0}
+                  max={9999}
+                  pricision={0}
+                  unit="mm"
+                  disabled={!editable || !manual}
+                />
+              </Form.Item>
+            </div>
+          </Form.Item>
+          <Form.Item name="paperColorGroupId" label="색군">
+            <FormControl.SelectColorGroup disabled={!editable || !manual} />
+          </Form.Item>
+          <Form.Item name="paperColorId" label="색상">
+            <FormControl.SelectColor disabled={!editable || !manual} />
+          </Form.Item>
+          <Form.Item name="paperPatternId" label="무늬">
+            <FormControl.SelectPattern disabled={!editable || !manual} />
+          </Form.Item>
+          <Form.Item name="paperCertId" label="인증">
+            <FormControl.SelectCert disabled={!editable || !manual} />
+          </Form.Item>
+          <FormControl.Util.Split label="수량 정보" />
+        </>
       )}
-      <Form.Item name="productId" label="제품" rules={[{ required: true }]}>
-        <FormControl.SelectProduct disabled />
-      </Form.Item>
-      <Form.Item name="packagingId" label="포장" rules={[{ required: true }]}>
-        <FormControl.SelectPackaging disabled />
-      </Form.Item>
-      <Form.Item>
-        <div className="flex justify-between gap-x-2">
-          <Form.Item
-            name="grammage"
-            label="평량"
-            rules={[{ required: true }]}
-            rootClassName="flex-1"
-          >
-            <Number
-              min={0}
-              max={9999}
-              pricision={0}
-              unit={Util.UNIT_GPM}
-              disabled
-            />
-          </Form.Item>
-          <Form.Item
-            name="sizeX"
-            label="지폭"
-            rules={[{ required: true }]}
-            rootClassName="flex-1"
-          >
-            <Number min={0} max={9999} pricision={0} unit="mm" disabled />
-          </Form.Item>
-          <Form.Item
-            name="sizeY"
-            label="지장"
-            rules={[{ required: true }]}
-            rootClassName="flex-1"
-          >
-            <Number min={0} max={9999} pricision={0} unit="mm" disabled />
-          </Form.Item>
-        </div>
-      </Form.Item>
-      <Form.Item name="paperColorGroupId" label="색군">
-        <FormControl.SelectColorGroup disabled />
-      </Form.Item>
-      <Form.Item name="paperColorId" label="색상">
-        <FormControl.SelectColor disabled />
-      </Form.Item>
-      <Form.Item name="paperPatternId" label="무늬">
-        <FormControl.SelectPattern disabled />
-      </Form.Item>
-      <Form.Item name="paperCertId" label="인증">
-        <FormControl.SelectCert disabled />
-      </Form.Item>
-      <FormControl.Util.Split label="수량 정보" />
       {packaging && (
         <Form.Item name="quantity" label="매입 수량">
           <FormControl.Quantity packaging={packaging} disabled={!editable} />
@@ -292,14 +580,60 @@ function DataForm(props: DataFormProps) {
       <Form.Item name="memo" label="기타 요청사항">
         <Input.TextArea maxLength={100} disabled={!editable} />
       </Form.Item>
-      <div className="flex-initial flex justify-end">
-        <Button.Preset.Submit
-          label={`${props.isSales ? "수주" : "주문"} 정보 ${
-            editable ? "등록" : "수정"
-          }`}
-        />
-      </div>
+      {editable && (
+        <div className="flex-initial flex justify-end">
+          <Button.Preset.Submit
+            label={`${props.isSales ? "수주" : "주문"} 정보 ${
+              props.initialOrder ? "수정" : "등록"
+            }`}
+          />
+        </div>
+      )}
     </Form>
+  );
+}
+
+interface RightSideSkeletonProps {
+  icon?: ReactNode;
+  title?: string;
+  phone?: string;
+  buttons?: {
+    fn: () => Promise<void>;
+    label: string;
+  }[];
+}
+function RightSideSkeleton(props: RightSideSkeletonProps) {
+  return (
+    <>
+      <div className="basis-px bg-gray-200" />
+      <div className="flex-1 w-0 flex flex-col justify-center select-none gap-y-4">
+        <div className="flex-initial flex justify-center text-gray-400 text-8xl">
+          {props.icon ?? <TbSquare />}
+        </div>
+        {props.title && (
+          <div className="flex-initial flex justify-center text-gray-400">
+            {props.title}
+          </div>
+        )}
+        {props.phone && (
+          <div className="flex-initial flex justify-center text-cyan-800">
+            (거래처: {props.phone})
+          </div>
+        )}
+        {props.buttons && (
+          <div className="flex-initial flex justify-center gap-x-4">
+            {props.buttons.map((button, i) => (
+              <Button.Default
+                key={i}
+                type="secondary"
+                label={button.label}
+                onClick={button.fn}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

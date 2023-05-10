@@ -65,3 +65,34 @@ export function SelectStockGroupInhouse(props: SelectStockGroupInhouseProps) {
     </>
   );
 }
+
+interface SelectPartnerStockGroupProps {
+  companyId: number | null;
+  onSelect: (stockGroup: Model.PartnerStockGroup) => void;
+  rootClassName?: string;
+}
+export function SelectPartnerStockGroup(props: SelectPartnerStockGroupProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button.Default
+        icon={<TbPencil />}
+        label="매입처 재고 선택"
+        type="primary"
+        rootClassName={props.rootClassName}
+        onClick={() => {
+          setOpen(true);
+        }}
+      />
+      <Popup.StockFinder.Partner
+        open={open && props.companyId ? props.companyId : false}
+        onClose={() => setOpen(false)}
+        onSelect={(stockGroup) => {
+          props.onSelect(stockGroup);
+          setOpen(false);
+        }}
+      />
+    </>
+  );
+}

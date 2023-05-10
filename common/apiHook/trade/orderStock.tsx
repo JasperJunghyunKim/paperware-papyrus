@@ -35,7 +35,10 @@ export function useCreate() {
   return useMutation(
     ["order", "stock", "create"],
     async (params: { data: Api.OrderStockCreateRequest }) => {
-      const resp = await axios.post(`${API_HOST}/order/stock`, params.data);
+      const resp = await axios.post<Api.OrderCreateResponse>(
+        `${API_HOST}/order/stock`,
+        params.data
+      );
       return resp.data;
     },
     {

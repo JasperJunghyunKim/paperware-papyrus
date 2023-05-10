@@ -53,9 +53,7 @@ export default function Component() {
         data={list.data}
         page={page}
         setPage={setPage}
-        keySelector={(record) =>
-          `${record.srcCompany.id}-${record.dstCompany.id}`
-        }
+        keySelector={(record) => `${record.id}`}
         selected={selected}
         onSelectedChange={setSelected}
         columns={[

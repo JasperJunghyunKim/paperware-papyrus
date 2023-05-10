@@ -71,8 +71,7 @@ export default function Component(props: PropsWithChildren<Props>) {
       {
         label: "매입처 재고 조회",
         icon: <TbInputSearch />,
-        path: "/stock-purchase",
-        type: "wip",
+        path: "/stock-partner",
       },
       {
         label: "매입 주문 목록",

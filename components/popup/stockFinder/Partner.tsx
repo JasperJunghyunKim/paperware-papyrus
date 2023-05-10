@@ -4,20 +4,25 @@ import { usePage } from "@/common/hook";
 import { Button, Icon, Popup, Table } from "@/components";
 import { useEffect, useState } from "react";
 
+type CompanyId = number;
+type OpenType = CompanyId | false;
 export interface Props {
-  open: boolean;
+  open: OpenType;
   onClose: (unit: false) => void;
-  onSelect: (stockGroup: Model.StockGroup) => void;
+  onSelect: (stockGroup: Model.PartnerStockGroup) => void;
 }
 
 export default function Component(props: Props) {
   const [groupPage, setGroupPage] = usePage();
-  const groupList = ApiHook.Stock.StockInhouse.useGetGroupList({
+  const groupList = ApiHook.Stock.PartnerStock.useGetList({
     query: {
+      companyId: typeof props.open === "number" ? props.open : undefined,
       ...groupPage,
     },
   });
-  const [selectedGroup, setSelectedGroup] = useState<Model.StockGroup[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState<Model.PartnerStockGroup[]>(
+    []
+  );
 
   useEffect(() => {
     if (props.open) {
@@ -35,7 +40,7 @@ export default function Component(props: Props) {
     >
       <div className="flex flex-col w-full h-full">
         <div className="flex-1">
-          <Table.Default<Model.StockGroup>
+          <Table.Default<Model.PartnerStockGroup>
             data={groupList.data}
             keySelector={(record) =>
               `${record.product.id} ${record.sizeX} ${record.sizeY} ${
