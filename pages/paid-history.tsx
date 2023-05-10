@@ -11,7 +11,16 @@ export default function Component() {
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
 
   const [page, setPage] = usePage();
-  const list = ApiHook.Partner.Accounted.useGetPaidList({ query: page });
+  const list = ApiHook.Partner.Accounted.useGetPaidList({
+    query: {
+      ...page,
+      partnerId: 0,
+      accountedSubject: 'All',
+      accountedMethod: 'All',
+      accountedFromDate: '2020-01-01',
+      accountedToDate: '2023-05-10'
+    }
+  });
   const [selectedPaid, setSelectedPaid] = useState<Model.Accounted[]>([]);
 
   const only = Util.only(selectedPaid);
@@ -83,31 +92,30 @@ export default function Component() {
         columns={[
           {
             title: "거래처",
-            dataIndex: ["warehouse", "name"],
+            dataIndex: ["partnerNickName"],
           },
           {
             title: "수금일",
-            dataIndex: ["product", "paperDomain", "name"],
+            dataIndex: ["accountedDate"],
           },
           {
             title: "수금 금액",
-            dataIndex: ["product", "manufacturer", "name"],
+            dataIndex: ["amount"],
             render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(value)} ${Util.UNIT_GPM
-                }`}</div>
+              <div className="text-right font-fixed">{`${Util.comma(value)}`}</div>
             ),
           },
           {
-            title: "계정과목",
-            dataIndex: ["product", "paperGroup", "name"],
+            title: "계정 과목",
+            dataIndex: ["accountedSubject"],
           },
           {
             title: "수금 수단",
-            dataIndex: ["product", "paperType", "name"],
+            dataIndex: ["accountedSubject"],
           },
           {
             title: "계정",
-            dataIndex: "grammage",
+            dataIndex: "gubun",
           },
         ]}
       />

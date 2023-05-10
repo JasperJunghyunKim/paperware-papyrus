@@ -17,7 +17,7 @@ export default function Component(props: Props) {
         <FormControl.DatePicker />
       </Form.Item>
       <Form.Item name="amount" label="지급 금액">
-        <Input />
+        <Input type="number" />
       </Form.Item>
       <Form.Item name="accountedSubject" label="계정 과목">
         <FormControl.SelectPaidSubject />

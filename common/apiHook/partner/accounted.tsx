@@ -8,7 +8,12 @@ export function useGetPaidList(params: {
 	query: Partial<Api.PaidQuery>;
 }) {
 	return useQuery(
-		["paid", "list", params.query.skip, params.query.take],
+		[
+			"paid",
+			"list",
+			params.query.skip,
+			params.query.take,
+		],
 		async () => {
 			const resp = await axios.get<Api.PaidListResponse>(
 				`${API_HOST}/paid`,

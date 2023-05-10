@@ -18,6 +18,7 @@ export default function Component(props: Props) {
   const [form] = useForm<Api.PaidByCashUpdateRequest | Api.PaidByEtcUpdateRequest>();
   const [edit, setEdit] = useState(false);
 
+  const res = ApiHook.Partner.ByCash.useGetByCashPaidItem({ id: props.open });
   const apiByCash = ApiHook.Partner.ByCash.useByCashPaidUpdate();
   const apiByEtc = ApiHook.Partner.ByEtc.useByEtcPaidUpdate();
   const cmd = useCallback(
@@ -30,32 +31,38 @@ export default function Component(props: Props) {
 
       switch (method) {
         case 'ACCOUNT_TRANSFER':
-        // TODO
+          // TODO
+          break;
         case 'CARD_PAYMENT':
-        // TODO
+          // TODO
+          break;
         case 'PROMISSORY_NOTE':
-        // TODO
+          // TODO
+          break;
         case 'SET_OFF':
-        // TODO
+          // TODO
+          break;
         case 'CASH':
           await apiByCash.mutateAsync({
             data: values,
-            id: values.partnerId
+            id: res?.data?.partnerId ?? 0
           });
+          break;
         case 'ETC':
           await apiByEtc.mutateAsync({
             data: values,
-            id: values.partnerId
+            id: res?.data?.partnerId ?? 0
           });
+          break;
       }
 
       await apiByCash.mutateAsync({ id: props.open, data: values });
       setEdit(false);
     },
-    [apiByCash, apiByEtc, form, props.open]
+    [apiByCash, apiByEtc, form, props.open, res]
   );
 
-  const res = ApiHook.Partner.ByCash.useGetByCashPaidItem({ id: props.open });
+
   useEffect(() => {
     if (!res.data || edit) {
       return;

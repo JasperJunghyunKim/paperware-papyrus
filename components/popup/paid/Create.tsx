@@ -22,17 +22,23 @@ export default function Component(props: Props) {
 
       switch (method) {
         case 'ACCOUNT_TRANSFER':
-        // TODO
+          // TODO
+          break;
         case 'CARD_PAYMENT':
-        // TODO
+          // TODO
+          break;
         case 'PROMISSORY_NOTE':
-        // TODO
+          // TODO
+          break;
         case 'SET_OFF':
-        // TODO
+          // TODO
+          break;
         case 'CASH':
           await apiByCash.mutateAsync({ data: values });
+          break;
         case 'ETC':
           await apiByEtc.mutateAsync({ data: values });
+          break;
       }
 
       form.resetFields();
