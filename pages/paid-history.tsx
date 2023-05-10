@@ -1,24 +1,80 @@
-import { Model } from "@/@shared";
+import { Api, Model } from "@/@shared";
 import { Enum } from "@/@shared/models";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
 import { Condition, Popup, Table, Toolbar } from "@/components";
+import { accountedAtom } from "@/components/condition/accounted/accounted.state";
 import { Page } from "@/components/layout";
+import { useForm } from "antd/lib/form/Form";
 import { useCallback, useState } from "react";
+import { useRecoilValue } from "recoil";
+
+const METHOD_OPTIONS = [
+  {
+    label: "계좌 이체",
+    value: "ACCOUNT_TRANSFER" as Model.Enum.Method,
+  },
+  {
+    label: "유가증권",
+    value: "PROMISSORY_NOTE" as Model.Enum.Method,
+  },
+  {
+    label: "카드입금",
+    value: "CARD_PAYMENT" as Model.Enum.Method,
+  },
+  {
+    label: "현금",
+    value: "CASH" as Model.Enum.Method,
+  },
+  {
+    label: "상계",
+    value: "SET_OFF" as Model.Enum.Method,
+  },
+  {
+    label: "기타",
+    value: "ETC" as Model.Enum.Method,
+  },
+];
+
+const PAID_SUBJECT_OPTIONS = [
+  {
+    label: "외상 매출금",
+    value: "PAID_ACCOUNTS_RECEIVABLE" as Model.Enum.Subject,
+  },
+  {
+    label: "미수금",
+    value: "PAID_UNPAID_AMOUNTS" as Model.Enum.Subject,
+  },
+  {
+    label: "선수금",
+    value: "PAID_ADVANCES" as Model.Enum.Subject,
+  },
+  {
+    label: "잡이익",
+    value: "PAID_MISCELLANEOUS_INCOME" as Model.Enum.Subject,
+  },
+  {
+    label: "상품 매출",
+    value: "PAID_PRODUCT_SALES" as Model.Enum.Subject,
+  },
+  {
+    label: "기타",
+    value: "ETC" as Model.Enum.Subject,
+  },
+];
 
 export default function Component() {
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
+  const [method, setMethod] = useState<Enum.Method | null>(null);
+  const condition = useRecoilValue(accountedAtom);
+
 
   const [page, setPage] = usePage();
   const list = ApiHook.Partner.Accounted.useGetPaidList({
     query: {
       ...page,
-      partnerId: 0,
-      accountedSubject: 'All',
-      accountedMethod: 'All',
-      accountedFromDate: '2020-01-01',
-      accountedToDate: '2023-05-10'
+      ...condition,
     }
   });
   const [selectedPaid, setSelectedPaid] = useState<Model.Accounted[]>([]);
@@ -39,17 +95,23 @@ export default function Component() {
 
     switch (method) {
       case 'ACCOUNT_TRANSFER':
-      // TODO
+        // TODO
+        break;
       case 'CARD_PAYMENT':
-      // TODO
+        // TODO
+        break;
       case 'PROMISSORY_NOTE':
-      // TODO
+        // TODO
+        break;
       case 'SET_OFF':
-      // TODO
+        // TODO
+        break;
       case 'CASH':
-        await apiByCashDelete.mutateAsync(only.id);
+        await apiByCashDelete.mutateAsync(only.accountedId);
+        break;
       case 'ETC':
-        await apiByEtcDelete.mutateAsync(only.id);
+        await apiByEtcDelete.mutateAsync(only.accountedId);
+        break;
     }
 
   }, [apiByCashDelete, apiByEtcDelete, only]);
@@ -68,7 +130,10 @@ export default function Component() {
         {only && (
           <Toolbar.ButtonPreset.Update
             label="지급 내역 상세"
-            onClick={() => setOpenUpdate(only.id)}
+            onClick={() => {
+              setOpenUpdate(only.accountedId)
+              setMethod(only.accountedMethod);
+            }}
           />
         )}
         {only && (
@@ -83,8 +148,7 @@ export default function Component() {
         page={page}
         setPage={setPage}
         keySelector={(record) => {
-          console.log(record);
-          return ''
+          return record.accountedId
         }}
         selected={selectedPaid}
         onSelectedChange={setSelectedPaid}
@@ -97,6 +161,9 @@ export default function Component() {
           {
             title: "수금일",
             dataIndex: ["accountedDate"],
+            render: (value) => (
+              <div className="text-right font-fixed">{`${Util.formatIso8601ToLocalDate(value)}`}</div>
+            ),
           },
           {
             title: "수금 금액",
@@ -108,19 +175,25 @@ export default function Component() {
           {
             title: "계정 과목",
             dataIndex: ["accountedSubject"],
+            render: (value) => (
+              <div className="text-right font-fixed">{`${PAID_SUBJECT_OPTIONS.filter((item) => item.value === value)[0].label}`}</div>
+            ),
           },
           {
             title: "수금 수단",
-            dataIndex: ["accountedSubject"],
+            dataIndex: ["accountedMethod"],
+            render: (value) => (
+              <div className="text-right font-fixed">{`${METHOD_OPTIONS.filter((item) => item.value === value)[0].label}`}</div>
+            ),
           },
           {
-            title: "계정",
-            dataIndex: "gubun",
+            title: "구분",
+            dataIndex: ["gubun"],
           },
         ]}
       />
       <Popup.Paid.Create open={openCreate} onClose={setOpenCreate} />
-      <Popup.Paid.Update open={openUpdate} onClose={setOpenUpdate} />
+      <Popup.Paid.Update method={method} open={openUpdate} onClose={setOpenUpdate} />
     </Page>
   );
 }

@@ -19,6 +19,7 @@ export default function Component(props: Props) {
   const cmd = useCallback(
     async (values: Api.PaidByCashCreateRequest | Api.PaidByEtcCreateRequest) => {
       const method: Enum.Method = form.getFieldValue("accountedMethod");
+      values.partnerNickName = '';
 
       switch (method) {
         case 'ACCOUNT_TRANSFER':

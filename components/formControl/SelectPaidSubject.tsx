@@ -3,6 +3,10 @@ import { Select } from "antd";
 
 const PAID_SUBJECT_OPTIONS = [
   {
+    label: "전체",
+    value: "All" as Model.Enum.Subject,
+  },
+  {
     label: "외상 매출금",
     value: "PAID_ACCOUNTS_RECEIVABLE" as Model.Enum.Subject,
   },
@@ -37,6 +41,7 @@ export default function Component(props: Props) {
   return (
     <div className="flex flex-col gap-y-1">
       <Select
+        // defaultValue={0}
         value={props.value}
         onChange={props.onChange}
         options={PAID_SUBJECT_OPTIONS}

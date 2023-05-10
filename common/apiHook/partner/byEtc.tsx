@@ -1,15 +1,19 @@
 
 import { Api } from "@/@shared";
+import { Enum } from "@/@shared/models";
 import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export function useGetByEtcPaidItem(params: { id: number | false }) {
-	return useQuery(["paid", "etc", params.id], async () => {
+export function useGetByEtcPaidItem(params: { id: number | false, method: Enum.Method | null }) {
+	return useQuery(["paid", "etc", params.id, params.method], async () => {
 		if (params.id === false) {
 			return null;
 		}
-		const resp = await axios.get<Api.PaidByCashItemResponse>(
+		if (params.method === null || params.method !== 'ETC') {
+			return null
+		}
+		const resp = await axios.get<Api.PaidByEtcItemResponse>(
 			`${API_HOST}/paid/${params.id}/etc`
 		);
 		return resp.data;
@@ -29,7 +33,7 @@ export function useByEtcPaidCreate() {
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "etc"]);
+				await queryClient.invalidateQueries(["paid", "list"]);
 			},
 		}
 	);
@@ -40,7 +44,7 @@ export function useByEtcPaidUpdate() {
 
 	return useMutation(
 		async (params: { data: Api.PaidByCashUpdateRequest; id: number }) => {
-			const resp = await axios.put(
+			const resp = await axios.patch(
 				`${API_HOST}/paid/${params.id}/etc`,
 				params.data
 			);
@@ -48,7 +52,7 @@ export function useByEtcPaidUpdate() {
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "etc"]);
+				await queryClient.invalidateQueries(["paid", "list"]);
 			},
 		}
 	);
@@ -59,12 +63,12 @@ export function useByEtcPaidDelete() {
 
 	return useMutation(
 		async (id: number) => {
-			const resp = await axios.delete(`${API_HOST}/paid/${id}}/etc`);
+			const resp = await axios.delete(`${API_HOST}/paid/${id}/etc`);
 			return resp.data;
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "etc"]);
+				await queryClient.invalidateQueries(["paid", "list"]);
 			},
 		}
 	);
@@ -108,7 +112,7 @@ export function useByEtcCollectedUpdate() {
 
 	return useMutation(
 		async (params: { data: Api.CollectedByCashUpdateRequest; id: number }) => {
-			const resp = await axios.put(
+			const resp = await axios.patch(
 				`${API_HOST}/collected/${params.id}/etc`,
 				params.data
 			);
@@ -127,7 +131,7 @@ export function useByEtcCollectedDelete() {
 
 	return useMutation(
 		async (id: number) => {
-			const resp = await axios.delete(`${API_HOST}/collected/${id}}/etc`);
+			const resp = await axios.delete(`${API_HOST}/collected/${id}/etc`);
 			return resp.data;
 		},
 		{

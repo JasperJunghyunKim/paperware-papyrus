@@ -7,29 +7,29 @@ import { Api } from "@/@shared";
 import { Enum } from "@/@shared/models";
 
 export interface Props {
+  method: Enum.Method | null;
   open: number | false;
   onClose: (unit: false) => void;
 }
-
-
-
 
 export default function Component(props: Props) {
   const [form] = useForm<Api.PaidByCashUpdateRequest | Api.PaidByEtcUpdateRequest>();
   const [edit, setEdit] = useState(false);
 
-  const res = ApiHook.Partner.ByCash.useGetByCashPaidItem({ id: props.open });
+  const resByCash = ApiHook.Partner.ByCash.useGetByCashPaidItem({ id: props.open, method: props.method });
+  const resByEtc = ApiHook.Partner.ByEtc.useGetByEtcPaidItem({ id: props.open, method: props.method });
   const apiByCash = ApiHook.Partner.ByCash.useByCashPaidUpdate();
   const apiByEtc = ApiHook.Partner.ByEtc.useByEtcPaidUpdate();
+
   const cmd = useCallback(
     async (values: Api.PaidByCashUpdateRequest | Api.PaidByEtcUpdateRequest) => {
       if (!props.open) {
         return;
       }
+      values.partnerId = resByCash.data?.partnerId ?? 0;
+      values.partnerNickName = '';
 
-      const method: Enum.Method = form.getFieldValue("accountedMethod");
-
-      switch (method) {
+      switch (props.method) {
         case 'ACCOUNT_TRANSFER':
           // TODO
           break;
@@ -45,13 +45,13 @@ export default function Component(props: Props) {
         case 'CASH':
           await apiByCash.mutateAsync({
             data: values,
-            id: res?.data?.partnerId ?? 0
+            id: resByCash.data?.accountedId ?? 0
           });
           break;
         case 'ETC':
           await apiByEtc.mutateAsync({
             data: values,
-            id: res?.data?.partnerId ?? 0
+            id: resByCash.data?.accountedId ?? 0
           });
           break;
       }
@@ -59,24 +59,47 @@ export default function Component(props: Props) {
       await apiByCash.mutateAsync({ id: props.open, data: values });
       setEdit(false);
     },
-    [apiByCash, apiByEtc, form, props.open, res]
+    [apiByCash, apiByEtc, props.open, props.method, resByCash]
   );
 
-
   useEffect(() => {
-    if (!res.data || edit) {
-      return;
+    switch (props.method) {
+      case 'ACCOUNT_TRANSFER':
+        // TODO
+        break;
+      case 'CARD_PAYMENT':
+        // TODO
+        break;
+      case 'PROMISSORY_NOTE':
+        // TODO
+        break;
+      case 'SET_OFF':
+        // TODO
+        break;
+      case 'CASH':
+        form.setFieldsValue({
+          partnerNickName: resByCash.data?.partnerNickName,
+          accountedDate: resByCash.data?.accountedDate,
+          accountedMethod: resByCash.data?.accountedMethod,
+          accountedSubject: resByCash.data?.accountedSubject,
+          memo: resByCash.data?.memo,
+          amount: resByCash.data?.amount,
+        });
+        break;
+      case 'ETC':
+        form.setFieldsValue({
+          partnerNickName: resByEtc.data?.partnerNickName,
+          accountedDate: resByEtc.data?.accountedDate,
+          accountedMethod: resByEtc.data?.accountedMethod,
+          accountedSubject: resByEtc.data?.accountedSubject,
+          memo: resByEtc.data?.memo,
+          amount: resByEtc.data?.amount,
+        });
+        break;
     }
 
-    form.setFieldsValue({
-      partnerNickName: res.data.partnerNickName,
-      accountedDate: res.data.accountedDate,
-      accountedMethod: res.data.accountedMethod,
-      accountedSubject: res.data.accountedSubject,
-      memo: res.data.memo,
-      amount: res.data.amount,
-    });
-  }, [form, res.data, edit]);
+  }, [props.method, form, resByCash, edit, resByEtc]);
+
   return (
     <Popup.Template.Property title="도착지 상세" {...props} open={!!props.open}>
       <div className="flex-1 p-4">
