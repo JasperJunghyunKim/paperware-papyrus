@@ -1,4 +1,4 @@
-import { Company, Enum, StockGroupEvent } from '.';
+import { Company, Enum, Order, StockGroupEvent } from '.';
 
 export default interface Plan {
   id: number;
@@ -7,4 +7,7 @@ export default interface Plan {
   status: Enum.PlanStatus;
   createdAt: string;
   targetStockGroupEvent: StockGroupEvent;
+  orderStock: {
+    order: Order;
+  } | null;
 }
