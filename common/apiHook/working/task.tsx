@@ -16,6 +16,87 @@ export function useGetItem(params: { id: number | null }) {
   });
 }
 
+export function useStart() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["task", "start"],
+    async (params: { id: number; planId?: number }) => {
+      const resp = await axios.post(
+        `${API_HOST}/working/task/${params.id}/start`
+      );
+      return resp.data;
+    },
+    {
+      onSuccess: async (_data, variables) => {
+        await queryClient.invalidateQueries(["task", "item", variables.id]);
+        if (variables.planId) {
+          await queryClient.invalidateQueries([
+            "plan",
+            "item",
+            variables.planId,
+            "task",
+          ]);
+        }
+      },
+    }
+  );
+}
+
+export function useReset() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["task", "reset"],
+    async (params: { id: number; planId?: number }) => {
+      const resp = await axios.post(
+        `${API_HOST}/working/task/${params.id}/reset`
+      );
+      return resp.data;
+    },
+    {
+      onSuccess: async (_data, variables) => {
+        await queryClient.invalidateQueries(["task", "item", variables.id]);
+        if (variables.planId) {
+          await queryClient.invalidateQueries([
+            "plan",
+            "item",
+            variables.planId,
+            "task",
+          ]);
+        }
+      },
+    }
+  );
+}
+
+export function useFinish() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ["task", "finish"],
+    async (params: { id: number; planId?: number }) => {
+      const resp = await axios.post(
+        `${API_HOST}/working/task/${params.id}/finish`
+      );
+      return resp.data;
+    },
+    {
+      onSuccess: async (_data, variables) => {
+        await queryClient.invalidateQueries(["task", "item", variables.id]);
+        if (variables.planId) {
+          await queryClient.invalidateQueries([
+            "plan",
+            "item",
+            variables.planId,
+            "task",
+          ]);
+        }
+      },
+    }
+  );
+}
+
 export function useCreateConverting() {
   const queryClient = useQueryClient();
 

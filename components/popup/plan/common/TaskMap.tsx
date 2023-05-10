@@ -55,6 +55,7 @@ export default function Component(props: Props) {
               key={item.value.id}
               plan={props.plan}
               edge={false}
+              parent={null}
             />
           ))}
         </div>
@@ -92,6 +93,7 @@ export default function Component(props: Props) {
 interface ItemProps {
   plan: Model.Plan;
   data: TempDataType;
+  parent: TempDataType | null;
   edge: boolean;
 }
 
@@ -156,6 +158,8 @@ function Item(props: ItemProps) {
                 plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskConverting}
+                current={props.data}
+                parent={props.parent}
               />
             )}
             {props.data.value.taskGuillotine && (
@@ -163,6 +167,8 @@ function Item(props: ItemProps) {
                 plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskGuillotine}
+                current={props.data}
+                parent={props.parent}
               />
             )}
             {props.data.value.taskQuantity && (
@@ -170,6 +176,8 @@ function Item(props: ItemProps) {
                 plan={props.plan}
                 taskId={props.data.value.id}
                 data={props.data.value.taskQuantity}
+                current={props.data}
+                parent={props.parent}
               />
             )}
           </div>
@@ -183,6 +191,7 @@ function Item(props: ItemProps) {
                   plan={props.plan}
                   key={item.value.id}
                   edge={true}
+                  parent={props.data}
                 />
               );
             })}
@@ -399,6 +408,8 @@ interface ConvertingProps {
   plan: Model.Plan;
   taskId: number;
   data: Model.TaskConverting;
+  current: TempDataType;
+  parent: TempDataType | null;
 }
 function ConvertingNode(props: ConvertingProps) {
   const [initialW, setInitialW] = useState(props.data.sizeX);
@@ -419,6 +430,36 @@ function ConvertingNode(props: ConvertingProps) {
     setInitialW(w);
     setInitialH(h);
   }, [props.taskId, w, h, apiUpdate]);
+
+  const apiStart = ApiHook.Working.Task.useStart();
+  const cmdStart = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiStart.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiStart]);
+
+  const apiReset = ApiHook.Working.Task.useReset();
+  const cmdReset = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiReset.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiReset]);
+
+  const apiFinish = ApiHook.Working.Task.useFinish();
+  const cmdFinish = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiFinish.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiFinish]);
 
   const isChanged = useCallback(() => {
     return initialW !== w || initialH !== h;
@@ -449,12 +490,21 @@ function ConvertingNode(props: ConvertingProps) {
           )}
         </ConfigProvider>
       </div>
-      {props.plan.status === "PROGRESSING" && (
-        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
-          <TaskCommandButton label="작업 역행" />
-          <TaskCommandButton label="작업 시작" />
-        </div>
-      )}
+      {props.plan.status === "PROGRESSING" &&
+        props.current.value.status !== "PROGRESSED" && (
+          <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+            {props.current.value.status === "PREPARING" &&
+              (!props.parent || props.parent.value.status === "PROGRESSED") && (
+                <TaskCommandButton label="작업 시작" onClick={cmdStart} />
+              )}
+            {props.current.value.status === "PROGRESSING" && (
+              <TaskCommandButton label="작업 역행" onClick={cmdReset} />
+            )}
+            {props.current.value.status === "PROGRESSING" && (
+              <TaskCommandButton label="작업 완료" onClick={cmdFinish} />
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -463,6 +513,8 @@ interface GuillotineProps {
   plan: Model.Plan;
   taskId: number;
   data: Model.TaskGuillotine;
+  current: TempDataType;
+  parent: TempDataType | null;
 }
 function GuillotineNode(props: GuillotineProps) {
   const [initialW, setInitialW] = useState(props.data.sizeX);
@@ -483,6 +535,36 @@ function GuillotineNode(props: GuillotineProps) {
     setInitialW(w);
     setInitialH(h);
   }, [props.taskId, w, h, apiUpdate]);
+
+  const apiStart = ApiHook.Working.Task.useStart();
+  const cmdStart = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiStart.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiStart]);
+
+  const apiReset = ApiHook.Working.Task.useReset();
+  const cmdReset = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiReset.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiReset]);
+
+  const apiFinish = ApiHook.Working.Task.useFinish();
+  const cmdFinish = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiFinish.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiFinish]);
 
   const isChanged = useCallback(() => {
     return initialW !== w || initialH !== h;
@@ -513,12 +595,21 @@ function GuillotineNode(props: GuillotineProps) {
           )}
         </ConfigProvider>
       </div>
-      {props.plan.status === "PROGRESSING" && (
-        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
-          <TaskCommandButton label="작업 역행" />
-          <TaskCommandButton label="작업 시작" />
-        </div>
-      )}
+      {props.plan.status === "PROGRESSING" &&
+        props.current.value.status !== "PROGRESSED" && (
+          <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+            {props.current.value.status === "PREPARING" &&
+              (!props.parent || props.parent.value.status === "PROGRESSED") && (
+                <TaskCommandButton label="작업 시작" onClick={cmdStart} />
+              )}
+            {props.current.value.status === "PROGRESSING" && (
+              <TaskCommandButton label="작업 역행" onClick={cmdReset} />
+            )}
+            {props.current.value.status === "PROGRESSING" && (
+              <TaskCommandButton label="작업 완료" onClick={cmdFinish} />
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -527,6 +618,8 @@ interface QuantityProps {
   plan: Model.Plan;
   taskId: number;
   data: Model.TaskQuantity;
+  current: TempDataType;
+  parent: TempDataType | null;
 }
 function QuantityNode(props: QuantityProps) {
   const [initialQ, setInitialQ] = useState(props.data.quantity);
@@ -542,6 +635,16 @@ function QuantityNode(props: QuantityProps) {
     });
     setInitialQ(q);
   }, [props.taskId, q, apiUpdate]);
+
+  const apiFinish = ApiHook.Working.Task.useFinish();
+  const cmdFinish = useCallback(async () => {
+    if (!props.taskId) return;
+
+    await apiFinish.mutateAsync({
+      id: props.taskId,
+      planId: props.plan.id,
+    });
+  }, [props.plan.id, props.taskId, apiFinish]);
 
   const isChanged = useCallback(() => {
     return initialQ !== q;
@@ -566,11 +669,19 @@ function QuantityNode(props: QuantityProps) {
           )}
         </ConfigProvider>
       </div>
-      {props.plan.status === "PROGRESSING" && (
-        <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
-          <TaskCommandButton label="출고 대기" type="danger" />
-        </div>
-      )}
+      {props.plan.status === "PROGRESSING" &&
+        props.current.value.status !== "PROGRESSED" && (
+          <div className="flex-initial flex gap-x-2 p-2 bg-yellow-100">
+            {props.current.value.status === "PREPARING" &&
+              (!props.parent || props.parent.value.status === "PROGRESSED") && (
+                <TaskCommandButton
+                  label="출고"
+                  onClick={cmdFinish}
+                  type="danger"
+                />
+              )}
+          </div>
+        )}
     </div>
   );
 }
