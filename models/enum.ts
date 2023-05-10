@@ -23,7 +23,7 @@ export type OrderStatus =
   | 'REJECTED';
 export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
-export type Method = 'ACCOUNT_TRANSFER' | 'PROMISSORY_NOTE' | 'CARD_PAYMENT' | 'CASH' | 'SET_OFF' | 'ETC';
+export type Method = 'ACCOUNT_TRANSFER' | 'PROMISSORY_NOTE' | 'CARD_PAYMENT' | 'CASH' | 'SET_OFF' | 'ETC' | 'All';
 export type Subject =
   'PAID_ACCOUNTS_RECEIVABLE'
   | 'PAID_UNPAID_AMOUNTS'
@@ -35,4 +35,5 @@ export type Subject =
   | 'COLLECTED_PREPAID_EXPENSES'
   | 'COLLECTED_MISCELLANEOUS_LOSSES'
   | 'COLLECTED_PRODUCT_PURCHASES'
-  | 'ETC';
+  | 'ETC'
+  | 'All';
