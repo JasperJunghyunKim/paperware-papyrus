@@ -1,5 +1,6 @@
 import { Api } from "@/@shared";
 import { API_HOST } from "@/common/const";
+import { message } from "antd";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
@@ -32,6 +33,7 @@ export function useApply() {
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries(["stock-rrival", "list"]);
+        message.info("재고 입고가 완료되었습니다.");
       },
     }
   );

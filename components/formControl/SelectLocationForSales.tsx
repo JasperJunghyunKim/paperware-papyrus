@@ -9,6 +9,7 @@ interface Props {
   value?: number;
   onChange?: (value: number) => void;
   companyId: number;
+  disabled?: boolean;
 }
 
 /** 자사의 기타도착지 또는 매입처의 도착지를 선택하는 컴포넌트 */
@@ -43,6 +44,7 @@ export default function Component(props: Props) {
         allowClear
         placeholder="도착지 선택"
         dropdownMatchSelectWidth={false}
+        disabled={props.disabled}
       />
     </div>
   );

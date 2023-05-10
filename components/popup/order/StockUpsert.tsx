@@ -64,6 +64,12 @@ export default function Component(props: Props) {
             <RightSideOrder order={order.data ?? null} />
           </>
         )}
+        {isSales && (
+          <>
+            <div className="basis-px bg-gray-200" />
+            <RightSideSales order={order.data ?? null} />
+          </>
+        )}
       </div>
     </Popup.Template.Full>
   );
@@ -87,7 +93,10 @@ function DataForm(props: DataFormProps) {
   const packagingId = useWatch(["packagingId"], form);
   const packaging = metadata.data?.packagings.find((x) => x.id === packagingId);
 
-  const isCreate = props.initialOrder === null;
+  const editable =
+    props.initialOrder === null ||
+    props.initialOrder.status === "OFFER_PREPARING" ||
+    props.initialOrder.status === "ORDER_PREPARING";
 
   useEffect(() => {
     if (props.initialOrder) {
@@ -174,48 +183,53 @@ function DataForm(props: DataFormProps) {
       />
       {!props.isSales && (
         <Form.Item name="dstCompanyId" label="매입처" rules={REQUIRED_RULES}>
-          <FormControl.SelectCompanyPurchase disabled={!isCreate} />
+          <FormControl.SelectCompanyPurchase disabled={!editable} />
         </Form.Item>
       )}
       {props.isSales && (
         <Form.Item name="srcCompanyId" label="매출처" rules={REQUIRED_RULES}>
-          <FormControl.SelectCompanySales disabled={!isCreate} />
+          <FormControl.SelectCompanySales disabled={!editable} />
         </Form.Item>
       )}
       {!props.isSales && dstCompanyId && (
         <Form.Item name="locationId" label="도착지" rules={REQUIRED_RULES}>
-          <FormControl.SelectLocation />
+          <FormControl.SelectLocation disabled={!editable} />
         </Form.Item>
       )}
       {props.isSales && srcCompanyId && (
         <Form.Item name="locationId" label="도착지" rules={REQUIRED_RULES}>
-          <FormControl.SelectLocationForSales companyId={srcCompanyId} />
+          <FormControl.SelectLocationForSales
+            companyId={srcCompanyId}
+            disabled={!editable}
+          />
         </Form.Item>
       )}
       <Form.Item name="wantedDate" label="도착 희망일" rules={REQUIRED_RULES}>
-        <FormControl.DatePicker />
+        <FormControl.DatePicker disabled={!editable} />
       </Form.Item>
       <FormControl.Util.Split
         label={props.isSales ? "수주 원지 정보" : "주문 원지 정보"}
       />
-      <div className="flex-initial flex mb-4">
-        <Button.Preset.SelectStockGroupInhouse
-          onSelect={(stockGroup) => {
-            form.setFieldsValue({
-              productId: stockGroup.product.id,
-              packagingId: stockGroup.packaging.id,
-              grammage: stockGroup.grammage,
-              sizeX: stockGroup.sizeX,
-              sizeY: stockGroup.sizeY,
-              paperColorGroupId: stockGroup.paperColorGroup?.id,
-              paperColorId: stockGroup.paperColor?.id,
-              paperPatternId: stockGroup.paperPattern?.id,
-              paperCertId: stockGroup.paperCert?.id,
-            });
-          }}
-          rootClassName="flex-1"
-        />
-      </div>
+      {editable && (
+        <div className="flex-initial flex mb-4">
+          <Button.Preset.SelectStockGroupInhouse
+            onSelect={(stockGroup) => {
+              form.setFieldsValue({
+                productId: stockGroup.product.id,
+                packagingId: stockGroup.packaging.id,
+                grammage: stockGroup.grammage,
+                sizeX: stockGroup.sizeX,
+                sizeY: stockGroup.sizeY,
+                paperColorGroupId: stockGroup.paperColorGroup?.id,
+                paperColorId: stockGroup.paperColor?.id,
+                paperPatternId: stockGroup.paperPattern?.id,
+                paperCertId: stockGroup.paperCert?.id,
+              });
+            }}
+            rootClassName="flex-1"
+          />
+        </div>
+      )}
       <Form.Item name="productId" label="제품" rules={[{ required: true }]}>
         <FormControl.SelectProduct disabled />
       </Form.Item>
@@ -271,17 +285,17 @@ function DataForm(props: DataFormProps) {
       <FormControl.Util.Split label="수량 정보" />
       {packaging && (
         <Form.Item name="quantity" label="매입 수량">
-          <FormControl.Quantity packaging={packaging} />
+          <FormControl.Quantity packaging={packaging} disabled={!editable} />
         </Form.Item>
       )}
       <FormControl.Util.Split label="기타" />
       <Form.Item name="memo" label="기타 요청사항">
-        <Input.TextArea maxLength={100} />
+        <Input.TextArea maxLength={100} disabled={!editable} />
       </Form.Item>
       <div className="flex-initial flex justify-end">
         <Button.Preset.Submit
           label={`${props.isSales ? "수주" : "주문"} 정보 ${
-            isCreate ? "등록" : "수정"
+            editable ? "등록" : "수정"
           }`}
         />
       </div>
@@ -349,6 +363,15 @@ function RightSideOrder(props: RightSideOrderProps) {
       orderId: props.order.id,
     });
   }, [apiCancel, props.order]);
+
+  const apiReset = ApiHook.Trade.OrderStock.useReset();
+  const cmdReset = useCallback(async () => {
+    if (!props.order) return;
+    if (!(await Util.confirm("주문 내용을 재입력하시겠습니까?"))) return;
+    await apiReset.mutateAsync({
+      orderId: props.order.id,
+    });
+  }, [apiReset, props.order]);
 
   const isVirtual = !!props.order?.dstCompany.managedById;
   const status = !props.order
@@ -425,7 +448,7 @@ function RightSideOrder(props: RightSideOrderProps) {
         {props.order?.status === "ORDER_REJECTED" && (
           <Toolbar.ButtonPreset.Continue
             label="주문 재입력"
-            onClick={cmdRequest}
+            onClick={cmdReset}
           />
         )}
       </Toolbar.Container>
@@ -491,7 +514,7 @@ function RightSideSales(props: RightSideSalesProps) {
   const apiRequest = ApiHook.Trade.OrderStock.useRequest();
   const cmdRequest = useCallback(async () => {
     if (!props.order) return;
-    if (!(await Util.confirm("주문을 요청하시겠습니까?"))) return;
+    if (!(await Util.confirm("재고 승인을 요청하시겠습니까?"))) return;
     await apiRequest.mutateAsync({
       orderId: props.order.id,
     });
@@ -504,8 +527,8 @@ function RightSideSales(props: RightSideSalesProps) {
       if (
         !(await Util.confirm(
           virtual
-            ? "가상 매입처 대상 주문은 즉시 승인됩니다. 계속하시겠습니까?"
-            : "재고를 승인하시겠습니까?"
+            ? "가상 매출처 대상 주문은 즉시 승인됩니다. 계속하시겠습니까?"
+            : "주문을 승인하시겠습니까?"
         ))
       )
         return;
@@ -519,7 +542,7 @@ function RightSideSales(props: RightSideSalesProps) {
   const apiReject = ApiHook.Trade.OrderStock.useReject();
   const cmdReject = useCallback(async () => {
     if (!props.order) return;
-    if (!(await Util.confirm("재고를 거절하시겠습니까?"))) return;
+    if (!(await Util.confirm("주문을 거절하시겠습니까?"))) return;
     await apiReject.mutateAsync({
       orderId: props.order.id,
     });
@@ -528,13 +551,22 @@ function RightSideSales(props: RightSideSalesProps) {
   const apiCancel = ApiHook.Trade.OrderStock.useCancel();
   const cmdCancel = useCallback(async () => {
     if (!props.order) return;
-    if (!(await Util.confirm("주문을 삭제하시겠습니까?"))) return;
+    if (!(await Util.confirm("수주를 삭제하시겠습니까?"))) return;
     await apiCancel.mutateAsync({
       orderId: props.order.id,
     });
   }, [apiCancel, props.order]);
 
-  const isVirtual = !!props.order?.dstCompany.managedById;
+  const apiReset = ApiHook.Trade.OrderStock.useReset();
+  const cmdReset = useCallback(async () => {
+    if (!props.order) return;
+    if (!(await Util.confirm("수주 내용을 재입력하시겠습니까?"))) return;
+    await apiReset.mutateAsync({
+      orderId: props.order.id,
+    });
+  }, [apiReset, props.order]);
+
+  const isVirtual = !!props.order?.srcCompany.managedById;
   const status = !props.order
     ? 0
     : Util.inc(props.order.status, "ORDER_PREPARING", "OFFER_PREPARING")
@@ -548,10 +580,10 @@ function RightSideSales(props: RightSideSalesProps) {
   const steps = isVirtual
     ? [
         {
-          title: "주문 작성중",
+          title: "수주 내용 작성중",
         },
         {
-          title: "매입정보 입력",
+          title: "매출정보 입력",
         },
       ]
     : [
@@ -562,7 +594,7 @@ function RightSideSales(props: RightSideSalesProps) {
           title: "주문 승인 대기",
         },
         {
-          title: "매입정보 입력",
+          title: "매출정보 입력",
         },
       ];
 
@@ -572,34 +604,37 @@ function RightSideSales(props: RightSideSalesProps) {
         <div className="flex-1 flex flex-col justify-center select-none mx-8">
           <Steps items={steps} current={status} />
         </div>
-        {props.order?.status === "ORDER_PREPARING" && (
+        {props.order?.status === "OFFER_PREPARING" && (
           <Toolbar.ButtonPreset.Delete label="주문 삭제" onClick={cmdCancel} />
         )}
-        {!isVirtual && props.order?.status === "ORDER_PREPARING" && (
-          <Toolbar.ButtonPreset.Send label="발주 요청" onClick={cmdRequest} />
-        )}
-        {isVirtual && props.order?.status === "ORDER_PREPARING" && (
-          <Toolbar.ButtonPreset.Continue
-            label="매입 등록"
-            onClick={cmdAccept(isVirtual)}
+        {!isVirtual && props.order?.status === "OFFER_PREPARING" && (
+          <Toolbar.ButtonPreset.Send
+            label="주문 승인 요청"
+            onClick={cmdRequest}
           />
         )}
-        {props.order?.status === "OFFER_REQUESTED" && (
-          <Toolbar.ButtonPreset.Reject label="재고 거절" onClick={cmdReject} />
-        )}
-        {props.order?.status === "OFFER_REQUESTED" && (
+        {isVirtual && props.order?.status === "OFFER_PREPARING" && (
           <Toolbar.ButtonPreset.Continue
-            label="재고 승인"
+            label="매출 등록"
             onClick={cmdAccept(isVirtual)}
           />
         )}
         {props.order?.status === "ORDER_REQUESTED" && (
-          <Toolbar.ButtonPreset.Send label="발주 요청" disabled />
+          <Toolbar.ButtonPreset.Reject label="주문 거절" onClick={cmdReject} />
         )}
-        {props.order?.status === "ORDER_REJECTED" && (
+        {props.order?.status === "ORDER_REQUESTED" && (
           <Toolbar.ButtonPreset.Continue
-            label="수주 재입력"
-            onClick={cmdRequest}
+            label="주문 승인"
+            onClick={cmdAccept(isVirtual)}
+          />
+        )}
+        {props.order?.status === "OFFER_REQUESTED" && (
+          <Toolbar.ButtonPreset.Send label="재고 승인" disabled />
+        )}
+        {props.order?.status === "OFFER_REJECTED" && (
+          <Toolbar.ButtonPreset.Continue
+            label="수주 내용 재입력"
+            onClick={cmdReset}
           />
         )}
       </Toolbar.Container>

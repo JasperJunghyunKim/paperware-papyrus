@@ -7,6 +7,7 @@ interface Props {
   value?: number | null;
   onChange?: (value: number | null) => void;
   packaging: Model.Packaging;
+  disabled?: boolean;
 }
 
 export default function Component(props: Props) {
@@ -42,6 +43,7 @@ export default function Component(props: Props) {
         min={0}
         rootClassName="w-full"
         addonAfter={unit.unit}
+        disabled={props.disabled}
       />
     </div>
   );

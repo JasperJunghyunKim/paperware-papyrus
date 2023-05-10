@@ -40,8 +40,8 @@ export function useCreate() {
     },
     {
       onSuccess: async (_data, _variables) => {
-        await message.info("주문이 생성되었습니다.");
         await queryClient.invalidateQueries(["order", "list"]);
+        message.info("주문이 생성되었습니다.");
       },
     }
   );
@@ -60,9 +60,14 @@ export function useUpdate() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("수정사항이 저장되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("수정사항이 저장되었습니다.");
       },
     }
   );
@@ -75,7 +80,8 @@ export function useGetOrderStockArrivalList(params: {
   return useQuery(
     [
       "order",
-      "stock",
+      "item",
+      params.orderId,
       "arrival",
       "list",
       params.orderId,
@@ -110,9 +116,14 @@ export function useRequest() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("요청되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("요청되었습니다.");
       },
     }
   );
@@ -130,9 +141,14 @@ export function useCancel() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("취소되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("취소되었습니다.");
       },
     }
   );
@@ -150,9 +166,14 @@ export function useAccept() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("승인되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("승인되었습니다.");
       },
     }
   );
@@ -170,9 +191,14 @@ export function useReject() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("거절되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("거절되었습니다.");
       },
     }
   );
@@ -190,9 +216,14 @@ export function useReset() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("초기화되었습니다.");
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
+        message.info("초기화되었습니다.");
       },
     }
   );
@@ -214,11 +245,15 @@ export function useCreateArrival() {
       return resp.data;
     },
     {
-      onSuccess: async (_data, _variables) => {
-        await message.info("입고 재고를 추가했습니다.");
-
+      onSuccess: async (_data, variables) => {
         await queryClient.invalidateQueries(["order", "list"]);
+        await queryClient.invalidateQueries([
+          "order",
+          "item",
+          variables.orderId,
+        ]);
         await queryClient.invalidateQueries(["stockInhouse"]);
+        message.info("입고 재고를 추가했습니다.");
       },
     }
   );
