@@ -49,7 +49,7 @@ export default function Component(props: Props) {
   );
 
   return (
-    <Popup.Template.Property title="지급 등록" {...props}>
+    <Popup.Template.Property title="수금 등록" {...props}>
       <div className="flex-1 p-4">
         <FormCreate
           form={form}

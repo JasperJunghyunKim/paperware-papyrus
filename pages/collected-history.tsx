@@ -41,11 +41,11 @@ const COLLECTED_OPTIONS = [
     value: "COLLECTED_ACCOUNTS_RECEIVABLE" as Model.Enum.Subject,
   },
   {
-    label: "미지급금",
+    label: "미수금금",
     value: "COLLECTED_UNPAID_EXPENSES" as Model.Enum.Subject,
   },
   {
-    label: "선지급금",
+    label: "선수금금",
     value: "COLLECTED_PREPAID_EXPENSES" as Model.Enum.Subject,
   },
   {
@@ -114,19 +114,19 @@ export default function Component() {
   }, [apiByCashDelete, apiByEtcDelete, only]);
 
   return (
-    <Page title="지급 내역 조회">
+    <Page title="수금 내역 조회">
       <Condition.Container>
         <Condition.Item />
       </Condition.Container>
       <Toolbar.Container>
         <Toolbar.ButtonPreset.Create
-          label="지급 내역 추가"
+          label="수금 내역 추가"
           onClick={() => setOpenCreate(true)}
         />
         <div className="flex-1" />
         {only && (
           <Toolbar.ButtonPreset.Update
-            label="지급 내역 상세"
+            label="수금 내역 상세"
             onClick={() => {
               setOpenUpdate(only.accountedId)
               setMethod(only.accountedMethod);
@@ -135,7 +135,7 @@ export default function Component() {
         )}
         {only && (
           <Toolbar.ButtonPreset.Delete
-            label="지급 내역 삭제"
+            label="수금 내역 삭제"
             onClick={async () => await cmdDelete()}
           />
         )}

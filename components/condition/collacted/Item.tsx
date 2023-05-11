@@ -2,41 +2,41 @@ import { Model } from "@/@shared";
 import { FormControl } from "@/components";
 import { Form } from "antd";
 import { useRecoilState } from "recoil";
-import { accountedAtom } from "./accounted.state";
+import { accountedAtom } from "../state/accounted.state";
 
 type NamePath = 'partnerId' | 'accountedFromDate' | 'accountedToDate' | 'accountedSubject' | 'accountedMethod';
 
 export default function Component() {
-  const [paidCondtiuon, setPiadCondtiuon] = useRecoilState(accountedAtom);
+  const [collactedCondtiuon, setCollactedCondtiuon] = useRecoilState(accountedAtom);
 
   const onChange = (name: NamePath, value: string | number) => {
     switch (name) {
       case 'partnerId':
-        setPiadCondtiuon((prev) => ({
+        setCollactedCondtiuon((prev) => ({
           ...prev,
           partnerId: value as number
         }));
         break;
       case 'accountedFromDate':
-        setPiadCondtiuon((prev) => ({
+        setCollactedCondtiuon((prev) => ({
           ...prev,
           accountedFromDate: value as string
         }));
         break;
       case 'accountedToDate':
-        setPiadCondtiuon((prev) => ({
+        setCollactedCondtiuon((prev) => ({
           ...prev,
           accountedToDate: value as string
         }));
         break;
       case 'accountedSubject':
-        setPiadCondtiuon((prev) => ({
+        setCollactedCondtiuon((prev) => ({
           ...prev,
           accountedSubject: value as Model.Enum.Subject
         }));
         break;
       case 'accountedMethod':
-        setPiadCondtiuon((prev) => ({
+        setCollactedCondtiuon((prev) => ({
           ...prev,
           accountedMethod: value as Model.Enum.Method
         }));
@@ -57,18 +57,18 @@ export default function Component() {
           <FormControl.SelectPartner />
         </Form.Item>
         <Form.Item name="accountedFromDate" label="수금일" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedFromDate', value)}>
-          <FormControl.DatePicker value={paidCondtiuon.accountedFromDate} />
+          <FormControl.DatePicker value={collactedCondtiuon.accountedFromDate} />
         </Form.Item>
         <div className={"mt-8"}>
           ~
         </div>
         <Form.Item name="accountedToDate" label=" " className={"w-1/5 mt-30"} getValueFromEvent={(value) => onChange('accountedToDate', value)}>
-          <FormControl.DatePicker value={paidCondtiuon.accountedToDate} />
+          <FormControl.DatePicker value={collactedCondtiuon.accountedToDate} />
         </Form.Item>
         <Form.Item name="accountedSubject" label="계정 과목" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedSubject', value)}>
           <FormControl.SelectPaidSubject />
         </Form.Item>
-        <Form.Item name="accountedMethod" label="지급 수단" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedMethod', value)}>
+        <Form.Item name="accountedMethod" label="수금 수단" className={"w-1/5"} getValueFromEvent={(value) => onChange('accountedMethod', value)}>
           <FormControl.SelectMethod />
         </Form.Item>
       </Form>

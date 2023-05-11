@@ -39,16 +39,16 @@ export default function Component(props: Props) {
       <Form.Item name="partnerNickName" label="거래처">
         <Input disabled />
       </Form.Item>
-      <Form.Item name="accountedDate" label="지급일">
+      <Form.Item name="accountedDate" label="수금일">
         <FormControl.DatePicker />
       </Form.Item>
-      <Form.Item name="amount" label="지급 금액">
+      <Form.Item name="amount" label="수금 금액">
         <Input />
       </Form.Item>
       <Form.Item name="accountedSubject" label="계정 과목">
         <FormControl.SelectCollectedSubject />
       </Form.Item>
-      <Form.Item name="accountedMethod" label="지급 수단">
+      <Form.Item name="accountedMethod" label="수금 수단">
         <FormControl.SelectMethod />
       </Form.Item>
       <Form.Item name="memo" label="비고">
