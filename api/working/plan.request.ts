@@ -16,3 +16,8 @@ export interface PlanCreateRequest {
   memo: string;
   quantity: number;
 }
+
+export interface RegisterInputStock {
+  stockId: number;
+  quantity: number;
+}
