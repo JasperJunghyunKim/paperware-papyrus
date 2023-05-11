@@ -5,6 +5,7 @@ import PaperColorGroup from './paper-color-group';
 import PaperPattern from './paper-pattern';
 import Product from './product';
 import Warehouse from './warehouse';
+import { OrderStock } from '../models';
 
 type WarehouseWithoutCompany = Omit<Warehouse, 'company'>;
 
@@ -19,6 +20,7 @@ export default interface StockGroup {
   paperColor: PaperColor | null;
   paperPattern: PaperPattern | null;
   paperCert: PaperCert | null;
+  orderStock: OrderStock;
   totalQuantity: number;
   availableQuantity: number;
 }
