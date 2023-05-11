@@ -29,3 +29,13 @@ export * from './shipping/invoice.request';
 export * from './shipping/invoice.response';
 export * from './shipping/shipping.request';
 export * from './shipping/shipping.response';
+
+export * from './partner/partner.request';
+export * from './partner/partner.response';
+
+export * from './accounted/accounted.request';
+export * from './accounted/accounted.response';
+export * from './accounted/by-cash.request';
+export * from './accounted/by-cash.response';
+export * from './accounted/by-etc.request';
+export * from './accounted/by-etc.response';

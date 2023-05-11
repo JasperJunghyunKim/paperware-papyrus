@@ -91,3 +91,17 @@ export function parseNumber(
 export function inc<T extends string>(value: T, ...array: T[]): boolean {
   return array.includes(value);
 }
+
+export function isValidDateRange(fromDate?: Date | null | string, toDate?: Date | null | string): boolean {
+  // fromDate와 toDate가 정의되었는지 확인
+  if (fromDate === null || toDate === null || fromDate === undefined || toDate === undefined || typeof 'string' === fromDate || typeof 'string' === toDate) {
+    return false;
+  }
+
+  // fromDate가 toDate보다 이전이거나 같은지 확인
+  if ((fromDate as Date).getTime() > (toDate as Date).getTime()) {
+    return false;
+  }
+
+  return true;
+}

@@ -39,6 +39,7 @@ import TradePrice from './trade-price';
 import OrderStockTradePrice from './order-stock-trade-price';
 import OrderStockTradeAltBundle from './order-stock-trade-alt-bundle';
 import OfficialPrice from './official-price';
+import Entity from './common-entity';
 
 export * as Enum from './enum';
 export type {
@@ -82,4 +83,5 @@ export type {
   Shipping,
   Invoice,
   OfficialPrice,
+  Entity,
 };
