@@ -40,13 +40,6 @@ export default function Component(props: Props) {
     <Popup.Template.Property title="재고 추가" {...props} open={!!props.open}>
       <div className="flex-1 p-4">
         <Form form={form} onFinish={cmd} layout="vertical">
-          <Form.Item
-            name="warehouseId"
-            label="창고"
-            rules={[{ required: true }]}
-          >
-            <FormControl.SelectWarehouse />
-          </Form.Item>
           <Form.Item name="productId" label="제품" rules={[{ required: true }]}>
             <FormControl.SelectProduct />
           </Form.Item>

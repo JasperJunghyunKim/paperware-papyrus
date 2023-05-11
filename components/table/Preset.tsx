@@ -14,10 +14,6 @@ export function columnStock<T>(
       render: (value) => <div className="font-fixed">{value}</div>,
     },
     {
-      title: "창고",
-      dataIndex: [...path, "warehouse", "name"],
-    },
-    {
       title: "제품 유형",
       dataIndex: [...path, "product", "paperDomain", "name"],
     },

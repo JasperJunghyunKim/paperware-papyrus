@@ -119,16 +119,29 @@ export default function Component(props: Props) {
     switch (order.data.status) {
       case "OFFER_PREPARING":
         return isSales ? (
-          <RightSideSkeleton
-            icon={<TbAB />}
-            title={`매출 원지 정보를 입력하고 재고 승인 요청을 보내세요.`}
-            buttons={[
-              {
-                fn: cmdRequest,
-                label: `재고 승인 요청`,
-              },
-            ]}
-          />
+          order.data.srcCompany.managedById !== null ? (
+            <RightSideSkeleton
+              icon={<TbAB />}
+              title={`매출 재고를 선택하고 가상 매출처 대상 매출 등록을 완료하세요.`}
+              buttons={[
+                {
+                  fn: cmdAccept(true),
+                  label: `매입 등록 완료`,
+                },
+              ]}
+            />
+          ) : (
+            <RightSideSkeleton
+              icon={<TbAB />}
+              title={`매출 원지 정보를 입력하고 재고 승인 요청을 보내세요.`}
+              buttons={[
+                {
+                  fn: cmdRequest,
+                  label: `재고 승인 요청`,
+                },
+              ]}
+            />
+          )
         ) : (
           <RightSideSkeleton />
         );
@@ -174,16 +187,29 @@ export default function Component(props: Props) {
         );
       case "ORDER_PREPARING":
         return !isSales ? (
-          <RightSideSkeleton
-            icon={<TbAB />}
-            title={`거래 하려는 매입처와 재고를 선택하고 발주 요청을 보내세요.`}
-            buttons={[
-              {
-                fn: cmdRequest,
-                label: `발주 요청`,
-              },
-            ]}
-          />
+          order.data.dstCompany.managedById !== null ? (
+            <RightSideSkeleton
+              icon={<TbAB />}
+              title={`매입 재고를 선택하고 가상 매입처 대상 매입 등록을 완료하세요.`}
+              buttons={[
+                {
+                  fn: cmdAccept(true),
+                  label: `매입 등록 완료`,
+                },
+              ]}
+            />
+          ) : (
+            <RightSideSkeleton
+              icon={<TbAB />}
+              title={`거래 하려는 매입처와 재고를 선택하고 발주 요청을 보내세요.`}
+              buttons={[
+                {
+                  fn: cmdRequest,
+                  label: `발주 요청`,
+                },
+              ]}
+            />
+          )
         ) : (
           <RightSideSkeleton />
         );
@@ -318,6 +344,7 @@ function DataForm(props: DataFormProps) {
         locationId: props.initialOrder.orderStock.dstLocation.id,
         wantedDate: props.initialOrder.wantedDate,
         warehouseId: props.initialOrder.orderStock.warehouse?.id,
+        orderStockId: props.initialOrder.orderStock.orderStock?.id,
         productId: props.initialOrder.orderStock.product.id,
         packagingId: props.initialOrder.orderStock.packaging.id,
         grammage: props.initialOrder.orderStock.grammage,
@@ -435,6 +462,7 @@ function DataForm(props: DataFormProps) {
                   setWarehouse(stockGroup.warehouse);
                   form.setFieldsValue({
                     warehouseId: stockGroup.warehouse.id,
+                    orderStockId: stockGroup.orderStock.id,
                     productId: stockGroup.product.id,
                     packagingId: stockGroup.packaging.id,
                     grammage: stockGroup.grammage,
@@ -458,6 +486,7 @@ function DataForm(props: DataFormProps) {
                   setWarehouse(stockGroup.warehouse);
                   form.setFieldsValue({
                     warehouseId: stockGroup.warehouse.id,
+                    orderStockId: stockGroup.orderStock.id,
                     productId: stockGroup.product.id,
                     packagingId: stockGroup.packaging.id,
                     grammage: stockGroup.grammage,
