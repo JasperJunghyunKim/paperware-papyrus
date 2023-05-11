@@ -28,7 +28,6 @@ const COLLECTED_OPTIONS = [
   },
 ];
 
-
 interface Props {
   value?: number;
   onChange?: (value: number) => void;
@@ -38,7 +37,8 @@ export default function Component(props: Props) {
   return (
     <div className="flex flex-col gap-y-1">
       <Select
-        value={props.value}
+        defaultValue={'All' as Model.Enum.Subject as any}
+        value={props.value as unknown as Model.Enum.Subject as any}
         onChange={props.onChange}
         options={COLLECTED_OPTIONS}
         placeholder="계정 과목"

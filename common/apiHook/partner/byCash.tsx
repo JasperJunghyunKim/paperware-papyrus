@@ -76,10 +76,13 @@ export function useByCashPaidDelete() {
 
 // ----------------------------------------------------------------------
 
-export function useGetByCashCollectedItem(params: { id: number | false }) {
+export function useGetByCashCollectedItem(params: { id: number | false, method: Enum.Method | null }) {
 	return useQuery(["collected", "cash", params.id], async () => {
 		if (params.id === false) {
 			return null;
+		}
+		if (params.method === null || params.method !== 'ETC') {
+			return null
 		}
 		const resp = await axios.get<Api.CollectedByCashItemResponse>(
 			`${API_HOST}/collected/${params.id}/cash`

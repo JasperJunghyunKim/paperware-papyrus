@@ -35,7 +35,17 @@ export function useGetCollectedList(params: {
 	query: Partial<Api.CollectedQuery>;
 }) {
 	return useQuery(
-		["collected", "list", params.query.skip, params.query.take],
+		[
+			"collected",
+			"list",
+			params.query.skip,
+			params.query.take,
+			params.query.partnerId,
+			params.query.accountedSubject,
+			params.query.accountedMethod,
+			params.query.accountedFromDate,
+			params.query.accountedToDate,
+		],
 		async () => {
 			const resp = await axios.get<Api.CollectedListResponse>(
 				`${API_HOST}/collected`,

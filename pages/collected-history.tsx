@@ -1,140 +1,196 @@
 import { Model } from "@/@shared";
+import { Enum } from "@/@shared/models";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
-import { Popup, StatBar, Table, Toolbar } from "@/components";
+import { Condition, Popup, Table, Toolbar } from "@/components";
+import { accountedAtom } from "@/components/condition/state/accounted.state";
 import { Page } from "@/components/layout";
-import { useState } from "react";
-import { TbMapPin, TbMapPinFilled } from "react-icons/tb";
+import { useCallback, useState } from "react";
+import { useRecoilValue } from "recoil";
+
+const METHOD_OPTIONS = [
+  {
+    label: "계좌 이체",
+    value: "ACCOUNT_TRANSFER" as Model.Enum.Method,
+  },
+  {
+    label: "유가증권",
+    value: "PROMISSORY_NOTE" as Model.Enum.Method,
+  },
+  {
+    label: "카드입금",
+    value: "CARD_PAYMENT" as Model.Enum.Method,
+  },
+  {
+    label: "현금",
+    value: "CASH" as Model.Enum.Method,
+  },
+  {
+    label: "상계",
+    value: "SET_OFF" as Model.Enum.Method,
+  },
+  {
+    label: "기타",
+    value: "ETC" as Model.Enum.Method,
+  },
+];
+
+const COLLECTED_OPTIONS = [
+  {
+    label: "외상 매입금",
+    value: "COLLECTED_ACCOUNTS_RECEIVABLE" as Model.Enum.Subject,
+  },
+  {
+    label: "미지급금",
+    value: "COLLECTED_UNPAID_EXPENSES" as Model.Enum.Subject,
+  },
+  {
+    label: "선지급금",
+    value: "COLLECTED_PREPAID_EXPENSES" as Model.Enum.Subject,
+  },
+  {
+    label: "잡손실",
+    value: "COLLECTED_MISCELLANEOUS_LOSSES" as Model.Enum.Subject,
+  },
+  {
+    label: "상품 매입",
+    value: "COLLECTED_PRODUCT_PURCHASES" as Model.Enum.Subject,
+  },
+  {
+    label: "기타",
+    value: "ETC" as Model.Enum.Subject,
+  },
+];
 
 export default function Component() {
+  const condition = useRecoilValue(accountedAtom);
   const [openCreate, setOpenCreate] = useState(false);
-
+  const [openUpdate, setOpenUpdate] = useState<number | false>(false);
+  const [method, setMethod] = useState<Enum.Method | null>(null);
   const [page, setPage] = usePage();
-  const list = ApiHook.Stock.StockInhouse.useGetGroupList({ query: page });
-  const [selectedGroup, setSelectedGroup] = useState<Model.StockGroup[]>([]);
+  const [selectedCollected, setSelectedCollected] = useState<Model.Accounted[]>([]);
+  const only = Util.only(selectedCollected);
 
-  const onlyGroup = Util.only(selectedGroup);
+  const list = ApiHook.Partner.Accounted.useGetCollectedList({
+    query: {
+      ...page,
+      ...condition,
+    }
+  });
+  const apiByCashDelete = ApiHook.Partner.ByCash.useByCashCollectedDelete();
+  const apiByEtcDelete = ApiHook.Partner.ByEtc.useByEtcCollectedDelete();
+
+  const cmdDelete = useCallback(async () => {
+    if (
+      !only ||
+      !(await Util.confirm(`해당 거래를(${only.partnerNickName})를 삭제하시겠습니까?`))
+    ) {
+      return;
+    }
+
+    const method: Enum.Method = only.accountedMethod;
+
+    switch (method) {
+      case 'ACCOUNT_TRANSFER':
+        // TODO
+        break;
+      case 'CARD_PAYMENT':
+        // TODO
+        break;
+      case 'PROMISSORY_NOTE':
+        // TODO
+        break;
+      case 'SET_OFF':
+        // TODO
+        break;
+      case 'CASH':
+        await apiByCashDelete.mutateAsync(only.accountedId);
+        break;
+      case 'ETC':
+        await apiByEtcDelete.mutateAsync(only.accountedId);
+        break;
+    }
+
+  }, [apiByCashDelete, apiByEtcDelete, only]);
 
   return (
-    <Page title="자사 재고 관리">
-      <StatBar.Container>
-        <StatBar.Item icon={<TbMapPinFilled />} label="자사 재고" value={"-"} />
-        <StatBar.Item
-          icon={<TbMapPin />}
-          label="보관 재고"
-          value={"-"}
-          iconClassName="text-purple-800"
-        />
-      </StatBar.Container>
+    <Page title="지급 내역 조회">
+      <Condition.Container>
+        <Condition.Item />
+      </Condition.Container>
       <Toolbar.Container>
         <Toolbar.ButtonPreset.Create
-          label="자사 재고 추가"
+          label="지급 내역 추가"
           onClick={() => setOpenCreate(true)}
         />
         <div className="flex-1" />
+        {only && (
+          <Toolbar.ButtonPreset.Update
+            label="지급 내역 상세"
+            onClick={() => {
+              setOpenUpdate(only.accountedId)
+              setMethod(only.accountedMethod);
+            }}
+          />
+        )}
+        {only && (
+          <Toolbar.ButtonPreset.Delete
+            label="지급 내역 삭제"
+            onClick={async () => await cmdDelete()}
+          />
+        )}
       </Toolbar.Container>
-      <Table.Default<Model.StockGroup>
+      <Table.Default<Model.Accounted>
         data={list.data}
         page={page}
         setPage={setPage}
-        keySelector={(record) =>
-          `${record.product.id} ${record.sizeX} ${record.sizeY} ${
-            record.grammage
-          } ${record.paperColorGroup?.id ?? "_"} ${
-            record.paperColor?.id ?? "_"
-          } ${record.paperPattern?.id ?? "_"} ${record.paperCert?.id ?? "_"} ${
-            record.warehouse?.id ?? "_"
-          }`
-        }
-        selected={selectedGroup}
-        onSelectedChange={setSelectedGroup}
+        keySelector={(record) => {
+          return record.accountedId
+        }}
+        selected={selectedCollected}
+        onSelectedChange={setSelectedCollected}
         selection="single"
         columns={[
           {
-            title: "창고",
-            dataIndex: ["warehouse", "name"],
+            title: "거래처",
+            dataIndex: ["partnerNickName"],
           },
           {
-            title: "제품 유형",
-            dataIndex: ["product", "paperDomain", "name"],
-          },
-          {
-            title: "제지사",
-            dataIndex: ["product", "manufacturer", "name"],
-          },
-          {
-            title: "지군",
-            dataIndex: ["product", "paperGroup", "name"],
-          },
-          {
-            title: "지종",
-            dataIndex: ["product", "paperType", "name"],
-          },
-          {
-            title: "평량",
-            dataIndex: "grammage",
+            title: "수금일",
+            dataIndex: ["accountedDate"],
             render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(value)} ${
-                Util.UNIT_GPM
-              }`}</div>
+              <div className="text-right font-fixed">{`${Util.formatIso8601ToLocalDate(value)}`}</div>
             ),
           },
           {
-            title: "지폭",
-            dataIndex: "sizeX",
+            title: "수금 금액",
+            dataIndex: ["amount"],
             render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(
-                value
-              )} mm`}</div>
+              <div className="text-right font-fixed">{`${Util.comma(value)}`}</div>
             ),
           },
           {
-            title: "지장",
-            dataIndex: "sizeY",
-            render: (value, record) =>
-              record.packaging.type !== "ROLL" ? (
-                <div className="text-right font-fixed">{`${Util.comma(
-                  value
-                )} mm`}</div>
-              ) : null,
-          },
-          {
-            title: "색군",
-            dataIndex: ["paperColorGroup", "name"],
-          },
-          {
-            title: "색상",
-            dataIndex: ["paperColor", "name"],
-          },
-          {
-            title: "무늬",
-            dataIndex: ["paperPattern", "name"],
-          },
-          {
-            title: "인증",
-            dataIndex: ["paperCert", "name"],
-          },
-          {
-            title: "실물 수량",
-            dataIndex: "totalQuantity",
+            title: "계정 과목",
+            dataIndex: ["accountedSubject"],
             render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(
-                value
-              )}`}</div>
+              <div className="text-right font-fixed">{`${COLLECTED_OPTIONS.filter((item) => item.value === value)[0].label}`}</div>
             ),
           },
           {
-            title: "가용 수량",
-            dataIndex: "availableQuantity",
+            title: "수금 수단",
+            dataIndex: ["accountedMethod"],
             render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(
-                value
-              )}`}</div>
+              <div className="text-right font-fixed">{`${METHOD_OPTIONS.filter((item) => item.value === value)[0].label}`}</div>
             ),
+          },
+          {
+            title: "구분",
+            dataIndex: ["gubun"],
           },
         ]}
       />
-      <Popup.Stock.Create open={openCreate} onClose={setOpenCreate} />
+      <Popup.Collected.Create open={openCreate} onClose={setOpenCreate} />
+      <Popup.Collected.Update method={method} open={openUpdate} onClose={setOpenUpdate} />
     </Page>
   );
 }

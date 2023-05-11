@@ -1,12 +1,11 @@
-import { Api, Model } from "@/@shared";
+import { Model } from "@/@shared";
 import { Enum } from "@/@shared/models";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
 import { Condition, Popup, Table, Toolbar } from "@/components";
-import { accountedAtom } from "@/components/condition/accounted/accounted.state";
+import { accountedAtom } from "@/components/condition/state/accounted.state";
 import { Page } from "@/components/layout";
-import { useForm } from "antd/lib/form/Form";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
 
 const METHOD_OPTIONS = [
