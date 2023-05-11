@@ -1,4 +1,4 @@
-import { ByCash } from '../../../@shared/models';
+import { ByCash } from '../../models';
 import { PaginationResponse } from '../../models/pagination';
 
 export type PaidByCashQuery = ByCash;

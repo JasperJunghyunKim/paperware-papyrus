@@ -24,16 +24,9 @@ export * from './external/sales.request';
 export * from './partner/partner.request';
 export * from './partner/partner.response';
 
-export * from './paid/paid.request';
-export * from './paid/paid.response';
-export * from './paid/paid-by-cash.request';
-export * from './paid/paid-by-cash.response';
-export * from './paid/paid-by-etc.request';
-export * from './paid/paid-by-etc.response';
-
-export * from './collected/collected.request';
-export * from './collected/collected.response';
-export * from './collected/collected-by-cash.request';
-export * from './collected/collected-by-cash.response';
-export * from './collected/collected-by-etc.request';
-export * from './collected/collected-by-etc.response';
+export * from './accounted/accounted.request';
+export * from './accounted/accounted.response';
+export * from './accounted/by-cash.request';
+export * from './accounted/by-cash.response';
+export * from './accounted/by-etc.request';
+export * from './accounted/by-etc.response';

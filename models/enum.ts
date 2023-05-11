@@ -37,3 +37,4 @@ export type Subject =
   | 'COLLECTED_PRODUCT_PURCHASES'
   | 'ETC'
   | 'All';
+export type AccountedType = 'PAID' | 'COLLECTED';

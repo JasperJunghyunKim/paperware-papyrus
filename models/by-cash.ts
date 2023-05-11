@@ -1,5 +1,5 @@
 import { Entity } from ".";
-import { Method, Subject } from "./enum";
+import { AccountedType, Method, Subject } from "./enum";
 export default interface ByCash extends Entity {
   /**
    * 파트너 식별자
@@ -13,6 +13,10 @@ export default interface ByCash extends Entity {
    * 식별자
    */
   accountedId: number;
+  /**
+   * 회계 유형
+   */
+  accountedType: AccountedType;
   /**
    * to date
    */
