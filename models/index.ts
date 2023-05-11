@@ -39,6 +39,7 @@ import TradePrice from './trade-price';
 import OrderStockTradePrice from './order-stock-trade-price';
 import OrderStockTradeAltBundle from './order-stock-trade-alt-bundle';
 import OfficialPrice from './official-price';
+import OfficialPriceCondition from './official-price-condition';
 import Entity from './common-entity';
 
 import OrderStockBase from './order-stock-base';
@@ -85,6 +86,7 @@ export type {
   Shipping,
   Invoice,
   OfficialPrice,
+  OfficialPriceCondition,
   Entity,
   OrderStockBase,
 };
