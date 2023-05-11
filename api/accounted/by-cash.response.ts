@@ -1,6 +1,6 @@
 import { ByCash } from '../../models';
 import { PaginationResponse } from '../../models/pagination';
 
-export type PaidByCashQuery = ByCash;
-export type PaidByCashListResponse = PaginationResponse<ByCash>;
-export type PaidByCashItemResponse = ByCash;
+export type ByCashQuery = ByCash;
+export type ByCashListResponse = PaginationResponse<ByCash>;
+export type ByCashItemResponse = ByCash;
