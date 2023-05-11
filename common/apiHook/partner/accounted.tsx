@@ -1,5 +1,6 @@
 
 import { Api } from "@/@shared";
+import { isValidDateRange } from "@/@shared/helper/util";
 import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -21,6 +22,12 @@ export function useAccountedList(params: {
 			params.query.accountedToDate,
 		],
 		async () => {
+			if (params.query.accountedFromDate === '' || params.query.accountedToDate === '') {
+				return;
+			} else if (!isValidDateRange(new Date(params.query.accountedFromDate ?? ''), new Date(params.query.accountedToDate ?? ''))) {
+				return;
+			}
+
 			const resp = await axios.get<Api.AccountedListResponse>(
 				`${API_HOST}/accounted/accountedType/${params.query.accountedType}`,
 				{
