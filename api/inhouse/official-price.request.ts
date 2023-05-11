@@ -17,3 +17,9 @@ export interface OfficialPriceCreateRequest {
     wholesalePrice: OfficialPrice;
     retailPrice: OfficialPrice;
 }
+
+/** 고시가 수정 */
+export interface OfficialPriceUpdateRequest {
+    wholesalePrice: OfficialPrice;
+    retailPrice: OfficialPrice;
+}
