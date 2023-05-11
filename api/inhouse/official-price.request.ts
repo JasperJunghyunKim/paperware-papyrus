@@ -1,5 +1,5 @@
-import { OfficialPrice } from "src/@shared/models";
-import { PaginationQuery } from "src/@shared/models/pagination";
+import { OfficialPrice } from "../../models";
+import { PaginationQuery } from "../../models/pagination";
 
 /** 고시가 목록 */
 export type OfficialPriceListQuery = PaginationQuery;
