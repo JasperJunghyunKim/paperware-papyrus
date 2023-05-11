@@ -1,4 +1,4 @@
-import { ByEtc } from '@/@shared/models';
+import { ByEtc } from '../../../@shared/models';
 import { PaginationResponse } from '../../models/pagination';
 
 export type PaidByEtcQuery = ByEtc;
