@@ -45,10 +45,9 @@ export interface OrderStockUpdateRequest {
   quantity: number;
 }
 
-export interface OrderStockArrivalListQuery extends PaginationQuery { }
+export interface OrderStockArrivalListQuery extends PaginationQuery {}
 
 export interface OrderStockArrivalCreateRequest {
-  warehouseId: number | null;
   productId: number;
   packagingId: number;
   grammage: number;
