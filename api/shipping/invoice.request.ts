@@ -1,7 +1,7 @@
 import { PaginationQuery } from '../../models/pagination';
 
 export interface InvoiceListQuery extends PaginationQuery {
-  shippingId: number;
+  shippingId: number | null;
 }
 
 export interface InvoiceDisconnectShippingRequest {
