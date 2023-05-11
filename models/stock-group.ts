@@ -1,4 +1,4 @@
-import OrderStock from './order-stock';
+import { OrderStockBase } from '../models';
 import Packaging from './packaging';
 import PaperCert from './paper-cert';
 import PaperColor from './paper-color';
@@ -20,8 +20,7 @@ export default interface StockGroup {
   paperColor: PaperColor | null;
   paperPattern: PaperPattern | null;
   paperCert: PaperCert | null;
-  orderStock: OrderStock | null;
+  orderStock: OrderStockBase;
   totalQuantity: number;
   availableQuantity: number;
 }
-

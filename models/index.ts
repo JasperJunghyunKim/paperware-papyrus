@@ -41,6 +41,8 @@ import OrderStockTradeAltBundle from './order-stock-trade-alt-bundle';
 import OfficialPrice from './official-price';
 import Entity from './common-entity';
 
+import OrderStockBase from './order-stock-base';
+
 export * as Enum from './enum';
 export type {
   BusinessRelationship,
@@ -84,4 +86,5 @@ export type {
   Invoice,
   OfficialPrice,
   Entity,
+  OrderStockBase,
 };
