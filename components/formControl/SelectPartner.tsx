@@ -4,6 +4,7 @@ import { Select } from "antd";
 import { useMemo } from "react";
 
 interface Props {
+  isAll?: boolean;
   value?: number;
   onChange?: (value: number) => void;
 }
@@ -13,7 +14,7 @@ export default function Component(props: Props) {
 
   const options = useMemo(() => {
     const itemList = staticData.data?.reduce((acc: any[], crr, idx) => {
-      if (idx === 0) {
+      if (idx === 0 && props.isAll) {
         acc.push({
           label: <Item item={{
             partnerId: 0,
@@ -32,12 +33,12 @@ export default function Component(props: Props) {
     }, [])
 
     return itemList;
-  }, [staticData]);
+  }, [staticData, props.isAll]);
 
   return (
     <div className="flex flex-col gap-y-1">
       <Select
-        defaultValue={0}
+        defaultValue={props.isAll ? 0 : undefined}
         value={props.value}
         onChange={props.onChange}
         options={options}

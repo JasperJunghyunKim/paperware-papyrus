@@ -4,5 +4,4 @@ export * as Template from "./template";
 export * as VirtualCompany from "./virtualCompany";
 export * as Warehouse from "./warehouse";
 export * as Stock from "./stock";
-export * as Paid from "./paid";
-export * as Collected from "./collected";
+export * as Accounted from "./accounted";

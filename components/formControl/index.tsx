@@ -16,8 +16,7 @@ import SelectCompanySales from "./SelectCompanySales";
 import StockPrice from "./StockPrice";
 import SelectPartner from "./SelectPartner";
 import SelectMethod from "./SelectMethod";
-import SelectPaidSubject from "./SelectPaidSubject";
-import SelectCollectedSubject from "./SelectCollectedSubject";
+import SelectSubject from "./SelectSubject";
 
 export {
   Address,
@@ -30,8 +29,7 @@ export {
   SelectWarehouse,
   SelectPackaging,
   SelectMethod,
-  SelectPaidSubject,
-  SelectCollectedSubject,
+  SelectSubject,
   Number,
   Price,
   Quantity,

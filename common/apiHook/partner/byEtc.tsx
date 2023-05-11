@@ -1,145 +1,75 @@
 
 import { Api } from "@/@shared";
 import { Enum } from "@/@shared/models";
+import { AccountedType } from "@/@shared/models/enum";
 import { API_HOST } from "@/common/const";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-export function useGetByEtcPaidItem(params: { id: number | false, method: Enum.Method | null }) {
-	return useQuery(["paid", "etc", params.id, params.method], async () => {
+export function useGetByEtcItem(params: { id: number | false, method: Enum.Method | null, accountedType: AccountedType }) {
+	return useQuery(["accounted", "etc", params.id, params.method], async () => {
 		if (params.id === false) {
 			return null;
 		}
 		if (params.method === null || params.method !== 'ETC') {
 			return null
 		}
-		const resp = await axios.get<Api.PaidByEtcItemResponse>(
-			`${API_HOST}/paid/${params.id}/etc`
+		const resp = await axios.get<Api.ByEtcItemResponse>(
+			`${API_HOST}/accounted/accountedType/${params.accountedType}/accountedId/${params.id}/etc`
 		);
 		return resp.data;
 	});
 }
 
-export function useByEtcPaidCreate() {
+export function useByEtcCreate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		async (params: { data: Api.PaidByCashCreateRequest }) => {
+		async (params: { data: Api.ByCashCreateRequest }) => {
 			const resp = await axios.post(
-				`${API_HOST}/paid/etc`,
+				`${API_HOST}/accounted/accountedType/${params.data.accountedType}/etc`,
 				params.data
 			);
 			return resp.data;
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "list"]);
+				await queryClient.invalidateQueries(["accounted", "list"]);
 			},
 		}
 	);
 }
 
-export function useByEtcPaidUpdate() {
+export function useByEtcUpdate() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		async (params: { data: Api.PaidByCashUpdateRequest; id: number }) => {
+		async (params: { data: Api.ByCashUpdateRequest; id: number }) => {
 			const resp = await axios.patch(
-				`${API_HOST}/paid/${params.id}/etc`,
+				`${API_HOST}/accounted/accountedType/${params.data.accountedType}/accountedId/${params.id}/etc`,
 				params.data
 			);
 			return resp.data;
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "list"]);
+				await queryClient.invalidateQueries(["accounted", "list"]);
 			},
 		}
 	);
 }
 
-export function useByEtcPaidDelete() {
+export function useByEtcDelete() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		async (id: number) => {
-			const resp = await axios.delete(`${API_HOST}/paid/${id}/etc`);
+		async (params: { id: number | false, accountedType: AccountedType }) => {
+			const resp = await axios.delete(`${API_HOST}/accounted/accountedType/${params.accountedType}/accountedId/${params.id}/etc`);
 			return resp.data;
 		},
 		{
 			onSuccess: async () => {
-				await queryClient.invalidateQueries(["paid", "list"]);
-			},
-		}
-	);
-}
-
-// ----------------------------------------------------------------------
-
-export function useGetByEtcCollectedItem(params: { id: number | false, method: Enum.Method | null }) {
-	return useQuery(["collected", "etc", params.id], async () => {
-		if (params.id === false) {
-			return null;
-		}
-		if (params.method === null || params.method !== 'ETC') {
-			return null
-		}
-		const resp = await axios.get<Api.CollectedByCashItemResponse>(
-			`${API_HOST}/collected/${params.id}/etc`
-		);
-		return resp.data;
-	});
-}
-
-export function useByEtcCollectedCreate() {
-	const queryClient = useQueryClient();
-
-	return useMutation(
-		async (params: { data: Api.CollectedByCashCreateRequest }) => {
-			const resp = await axios.post(
-				`${API_HOST}/collected/etc`,
-				params.data
-			);
-			return resp.data;
-		},
-		{
-			onSuccess: async () => {
-				await queryClient.invalidateQueries(["collected", "etc"]);
-			},
-		}
-	);
-}
-
-export function useByEtcCollectedUpdate() {
-	const queryClient = useQueryClient();
-
-	return useMutation(
-		async (params: { data: Api.CollectedByCashUpdateRequest; id: number }) => {
-			const resp = await axios.patch(
-				`${API_HOST}/collected/${params.id}/etc`,
-				params.data
-			);
-			return resp.data;
-		},
-		{
-			onSuccess: async () => {
-				await queryClient.invalidateQueries(["collected", "etc"]);
-			},
-		}
-	);
-}
-
-export function useByEtcCollectedDelete() {
-	const queryClient = useQueryClient();
-
-	return useMutation(
-		async (id: number) => {
-			const resp = await axios.delete(`${API_HOST}/collected/${id}/etc`);
-			return resp.data;
-		},
-		{
-			onSuccess: async () => {
-				await queryClient.invalidateQueries(["collected", "etc"]);
+				await queryClient.invalidateQueries(["accounted", "list"]);
 			},
 		}
 	);

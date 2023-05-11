@@ -3,7 +3,7 @@ import { Enum } from "@/@shared/models";
 import { ApiHook, Util } from "@/common";
 import { usePage } from "@/common/hook";
 import { Condition, Popup, Table, Toolbar } from "@/components";
-import { accountedAtom } from "@/components/condition/state/accounted.state";
+import { accountedAtom } from "@/components/condition/accounted/accounted.state";
 import { Page } from "@/components/layout";
 import { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -71,14 +71,15 @@ export default function Component() {
   const [selectedCollected, setSelectedCollected] = useState<Model.Accounted[]>([]);
   const only = Util.only(selectedCollected);
 
-  const list = ApiHook.Partner.Accounted.useGetCollectedList({
+  const list = ApiHook.Partner.Accounted.useAccountedList({
     query: {
       ...page,
       ...condition,
+      accountedType: "COLLECTED",
     }
   });
-  const apiByCashDelete = ApiHook.Partner.ByCash.useByCashCollectedDelete();
-  const apiByEtcDelete = ApiHook.Partner.ByEtc.useByEtcCollectedDelete();
+  const apiByCashDelete = ApiHook.Partner.ByCash.useByCashDelete();
+  const apiByEtcDelete = ApiHook.Partner.ByEtc.useByEtcDelete();
 
   const cmdDelete = useCallback(async () => {
     if (
@@ -104,10 +105,16 @@ export default function Component() {
         // TODO
         break;
       case 'CASH':
-        await apiByCashDelete.mutateAsync(only.accountedId);
+        await apiByCashDelete.mutateAsync({
+          id: only.accountedId,
+          accountedType: only.accountedType,
+        });
         break;
       case 'ETC':
-        await apiByEtcDelete.mutateAsync(only.accountedId);
+        await apiByEtcDelete.mutateAsync({
+          id: only.accountedId,
+          accountedType: only.accountedType,
+        });
         break;
     }
 
@@ -116,7 +123,7 @@ export default function Component() {
   return (
     <Page title="수금 내역 조회">
       <Condition.Container>
-        <Condition.Item />
+        <Condition.Item accountedType="COLLECTED" />
       </Condition.Container>
       <Toolbar.Container>
         <Toolbar.ButtonPreset.Create
@@ -189,8 +196,8 @@ export default function Component() {
           },
         ]}
       />
-      <Popup.Collected.Create open={openCreate} onClose={setOpenCreate} />
-      <Popup.Collected.Update method={method} open={openUpdate} onClose={setOpenUpdate} />
+      <Popup.Accounted.Create accountedType="COLLECTED" open={openCreate} onClose={setOpenCreate} />
+      <Popup.Accounted.Update accountedType="COLLECTED" method={method} open={openUpdate} onClose={setOpenUpdate} />
     </Page>
   );
 }

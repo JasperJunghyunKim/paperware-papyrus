@@ -5,29 +5,31 @@ import { useCallback, useEffect, useState } from "react";
 import FormUpdate from "./common/FormUpdate";
 import { Api } from "@/@shared";
 import { Enum } from "@/@shared/models";
+import { AccountedType } from "@/@shared/models/enum";
 
 export interface Props {
   method: Enum.Method | null;
+  accountedType: AccountedType;
   open: number | false;
   onClose: (unit: false) => void;
 }
 
 export default function Component(props: Props) {
-  const [form] = useForm<Api.CollectedByCashUpdateRequest | Api.CollectedByEtcUpdateRequest>();
+  const [form] = useForm<Api.ByCashUpdateRequest | Api.ByEtcUpdateRequest>();
   const [edit, setEdit] = useState(false);
 
-  const resByCash = ApiHook.Partner.ByCash.useGetByCashCollectedItem({ id: props.open, method: props.method });
-  const resByEtc = ApiHook.Partner.ByEtc.useGetByEtcCollectedItem({ id: props.open, method: props.method });
-  const apiByCash = ApiHook.Partner.ByCash.useByCashCollectedUpdate();
-  const apiByEtc = ApiHook.Partner.ByEtc.useByEtcCollectedUpdate();
+  const resByCash = ApiHook.Partner.ByCash.useGetByCashItem({ id: props.open, method: props.method, accountedType: props.accountedType });
+  const resByEtc = ApiHook.Partner.ByEtc.useGetByEtcItem({ id: props.open, method: props.method, accountedType: props.accountedType });
+  const apiByCash = ApiHook.Partner.ByCash.useByCashUpdate();
+  const apiByEtc = ApiHook.Partner.ByEtc.useByEtcUpdate();
 
   const cmd = useCallback(
-    async (values: Api.CollectedByCashUpdateRequest | Api.CollectedByEtcUpdateRequest) => {
+    async (values: Api.ByCashUpdateRequest | Api.ByEtcUpdateRequest) => {
       if (!props.open) {
         return;
       }
-      values.partnerId = resByCash.data?.partnerId ?? 0;
-      values.partnerNickName = '';
+
+      values.accountedType = props.accountedType;
 
       switch (props.method) {
         case 'ACCOUNT_TRANSFER':
@@ -43,23 +45,25 @@ export default function Component(props: Props) {
           // TODO
           break;
         case 'CASH':
+          values.partnerId = resByCash.data?.partnerId ?? 0;
           await apiByCash.mutateAsync({
             data: values,
             id: resByCash.data?.accountedId ?? 0
           });
           break;
         case 'ETC':
+          values.partnerId = resByEtc.data?.partnerId ?? 0;
           await apiByEtc.mutateAsync({
             data: values,
-            id: resByCash.data?.accountedId ?? 0
+            id: resByEtc.data?.accountedId ?? 0
           });
           break;
       }
 
-      await apiByCash.mutateAsync({ id: props.open, data: values });
       setEdit(false);
+      props.onClose(false);
     },
-    [apiByCash, apiByEtc, props.open, props.method, resByCash]
+    [props, apiByCash, apiByEtc, resByCash, resByEtc]
   );
 
   useEffect(() => {
@@ -98,12 +102,13 @@ export default function Component(props: Props) {
         break;
     }
 
-  }, [props.method, form, resByCash, edit, resByEtc]);
+  }, [props, form, resByCash, edit, resByEtc]);
 
   return (
-    <Popup.Template.Property title="도착지 상세" {...props} open={!!props.open}>
+    <Popup.Template.Property title={`${props.accountedType === 'PAID' ? '지급' : '수금'} 상세`} {...props} open={!!props.open}>
       <div className="flex-1 p-4">
         <FormUpdate
+          accountedType={props.accountedType}
           form={form}
           edit={edit}
           onFinish={async (values) => await cmd(values)}

@@ -5,21 +5,23 @@ import { Popup } from "@/components";
 import { useForm } from "antd/lib/form/Form";
 import { useCallback } from "react";
 import { FormCreate } from "./common";
+import { AccountedType } from "@/@shared/models/enum";
 
 export interface Props {
+  accountedType: AccountedType;
   open: boolean;
   onClose: (unit: boolean) => void;
 }
 
 export default function Component(props: Props) {
-  const [form] = useForm<Api.CollectedByCashCreateRequest | Api.CollectedByEtcCreateRequest>();
+  const [form] = useForm<Api.ByCashCreateRequest | Api.ByEtcCreateRequest>();
 
-  const apiByCash = ApiHook.Partner.ByCash.useByCashCollectedCreate();
-  const apiByEtc = ApiHook.Partner.ByEtc.useByEtcCollectedCreate();
+  const apiByCash = ApiHook.Partner.ByCash.useByCashCreate();
+  const apiByEtc = ApiHook.Partner.ByEtc.useByEtcCreate();
   const cmd = useCallback(
-    async (values: Api.CollectedByCashCreateRequest | Api.CollectedByEtcCreateRequest) => {
+    async (values: Api.ByCashCreateRequest | Api.ByEtcCreateRequest) => {
       const method: Enum.Method = form.getFieldValue("accountedMethod");
-      values.partnerNickName = '';
+      values.accountedType = props.accountedType;
 
       switch (method) {
         case 'ACCOUNT_TRANSFER':
@@ -49,9 +51,10 @@ export default function Component(props: Props) {
   );
 
   return (
-    <Popup.Template.Property title="수금 등록" {...props}>
+    <Popup.Template.Property title={`${props.accountedType === 'PAID' ? '지급' : '수금'} 등록`} {...props}>
       <div className="flex-1 p-4">
         <FormCreate
+          accountedType={props.accountedType}
           form={form}
           onFinish={async (values) => await cmd(values)}
         />

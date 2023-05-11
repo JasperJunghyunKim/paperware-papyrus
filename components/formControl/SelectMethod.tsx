@@ -1,5 +1,7 @@
 import { Model } from "@/@shared";
 import { Select } from "antd";
+import { DefaultOptionType } from "antd/es/select";
+import { useCallback, useMemo } from "react";
 
 const METHOD_OPTIONS = [
   {
@@ -33,18 +35,27 @@ const METHOD_OPTIONS = [
 ];
 
 interface Props {
+  isAll?: boolean;
+  isDisabled?: boolean;
   value?: Model.Enum.Method & string & number;
   onChange?: (value: number) => void;
 }
 
 export default function Component(props: Props) {
+  const options = useMemo(() => {
+    const itemList = METHOD_OPTIONS.filter((item) => props.isAll ? true : item.value !== 'All')
+
+    return itemList;
+  }, [props.isAll]);
+
   return (
     <div className="flex flex-col gap-y-1">
       <Select
-        defaultValue={'All' as Model.Enum.Method as any}
+        defaultValue={props.isAll ? 'All' : undefined as unknown as Model.Enum.Method as any}
+        disabled={props.isDisabled}
         value={props.value as unknown as Model.Enum.Method as any}
         onChange={props.onChange}
-        options={METHOD_OPTIONS}
+        options={options as DefaultOptionType[]}
         placeholder="계정 과목"
       />
     </div>
