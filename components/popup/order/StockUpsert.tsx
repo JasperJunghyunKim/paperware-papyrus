@@ -325,6 +325,8 @@ function DataForm(props: DataFormProps) {
   });
 
   const packagingId = useWatch(["packagingId"], form);
+  const sizeX = useWatch(["sizeX"], form);
+  const sizeY = useWatch(["sizeY"], form);
   const packaging = metadata.data?.packagings.find((x) => x.id === packagingId);
 
   const editable =
@@ -357,6 +359,7 @@ function DataForm(props: DataFormProps) {
         quantity: props.initialOrder.orderStock.quantity,
         memo: props.initialOrder.memo,
       });
+      setWarehouse(props.initialOrder.orderStock.warehouse);
     } else {
       form.resetFields();
     }
@@ -461,7 +464,7 @@ function DataForm(props: DataFormProps) {
                 onSelect={(stockGroup) => {
                   setWarehouse(stockGroup.warehouse);
                   form.setFieldsValue({
-                    warehouseId: stockGroup.warehouse.id,
+                    warehouseId: stockGroup.warehouse?.id,
                     orderStockId: stockGroup.orderStock.id,
                     productId: stockGroup.product.id,
                     packagingId: stockGroup.packaging.id,
@@ -485,8 +488,8 @@ function DataForm(props: DataFormProps) {
                 onSelect={(stockGroup) => {
                   setWarehouse(stockGroup.warehouse);
                   form.setFieldsValue({
-                    warehouseId: stockGroup.warehouse.id,
-                    orderStockId: stockGroup.orderStock.id,
+                    warehouseId: stockGroup.warehouse?.id,
+                    orderStockId: stockGroup.orderStock?.id,
                     productId: stockGroup.product.id,
                     packagingId: stockGroup.packaging.id,
                     grammage: stockGroup.grammage,
@@ -539,52 +542,49 @@ function DataForm(props: DataFormProps) {
           >
             <FormControl.SelectPackaging disabled={!editable || !manual} />
           </Form.Item>
-          <Form.Item>
-            <div className="flex justify-between gap-x-2">
-              <Form.Item
-                name="grammage"
-                label="평량"
-                rules={[{ required: true }]}
-                rootClassName="flex-1"
-              >
-                <Number
-                  min={0}
-                  max={9999}
-                  pricision={0}
-                  unit={Util.UNIT_GPM}
-                  disabled={!editable || !manual}
-                />
-              </Form.Item>
-              <Form.Item
-                name="sizeX"
-                label="지폭"
-                rules={[{ required: true }]}
-                rootClassName="flex-1"
-              >
-                <Number
-                  min={0}
-                  max={9999}
-                  pricision={0}
-                  unit="mm"
-                  disabled={!editable || !manual}
-                />
-              </Form.Item>
-              <Form.Item
-                name="sizeY"
-                label="지장"
-                rules={[{ required: true }]}
-                rootClassName="flex-1"
-              >
-                <Number
-                  min={0}
-                  max={9999}
-                  pricision={0}
-                  unit="mm"
-                  disabled={!editable || !manual}
-                />
-              </Form.Item>
-            </div>
+          <Form.Item
+            name="grammage"
+            label="평량"
+            rules={[{ required: true }]}
+            rootClassName="flex-1"
+          >
+            <Number min={0} max={9999} pricision={0} unit={Util.UNIT_GPM} />
           </Form.Item>
+          {packaging && (
+            <Form.Item>
+              <div className="flex justify-between gap-x-2">
+                {packaging.type !== "ROLL" && (
+                  <Form.Item label="규격" rootClassName="flex-1">
+                    <FormControl.Util.PaperSize
+                      sizeX={sizeX}
+                      sizeY={sizeY}
+                      onChange={(sizeX, sizeY) =>
+                        form.setFieldsValue({ sizeX, sizeY })
+                      }
+                    />
+                  </Form.Item>
+                )}
+                <Form.Item
+                  name="sizeX"
+                  label="지폭"
+                  rules={[{ required: true }]}
+                  rootClassName="flex-1"
+                >
+                  <Number min={0} max={9999} pricision={0} unit="mm" />
+                </Form.Item>
+                {packaging.type !== "ROLL" && (
+                  <Form.Item
+                    name="sizeY"
+                    label="지장"
+                    rules={[{ required: true }]}
+                    rootClassName="flex-1"
+                  >
+                    <Number min={0} max={9999} pricision={0} unit="mm" />
+                  </Form.Item>
+                )}
+              </div>
+            </Form.Item>
+          )}
           <Form.Item name="paperColorGroupId" label="색군">
             <FormControl.SelectColorGroup disabled={!editable || !manual} />
           </Form.Item>
