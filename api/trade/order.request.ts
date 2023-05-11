@@ -15,7 +15,8 @@ export interface OrderStockCreateRequest {
   locationId: number;
   memo: string;
   wantedDate: string;
-  warehouseId: number;
+  warehouseId: number | null;
+  orderId: number | null;
   productId: number;
   packagingId: number;
   grammage: number;
@@ -32,7 +33,8 @@ export interface OrderStockUpdateRequest {
   locationId: number;
   memo: string;
   wantedDate: string;
-  warehouseId: number;
+  warehouseId: number | null;
+  orderId: number | null;
   productId: number;
   packagingId: number;
   grammage: number;
