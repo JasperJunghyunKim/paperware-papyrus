@@ -4,3 +4,4 @@ export * as Static from "./static";
 export * as Inhouse from "./inhouse";
 export * as Stock from "./stock";
 export * as Working from "./working";
+export * as Partner from "./partner";
