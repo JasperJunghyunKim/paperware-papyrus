@@ -17,7 +17,7 @@ export interface PlanCreateRequest {
   quantity: number;
 }
 
-export interface RegisterInputStock {
+export interface RegisterInputStockRequest {
   stockId: number;
   quantity: number;
 }
