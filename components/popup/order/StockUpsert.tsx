@@ -882,7 +882,17 @@ function RightSideOrder(props: RightSideOrderProps) {
       </div>
       <div className="basis-px bg-gray-200" />
       <div className="basis-[300px] overflow-y-scroll p-4 bg-yellow-50">
-        매입 정보
+        <Form layout="vertical">
+          <Form.Item label="공정비">
+            <FormControl.Number />
+          </Form.Item>
+          <Form.Item label="공급가">
+            <FormControl.Number />
+          </Form.Item>
+          <Form.Item label="부가세">
+            <FormControl.Number />
+          </Form.Item>
+        </Form>
       </div>
       <CreateArrival open={open} onClose={setOpen} />
     </div>
