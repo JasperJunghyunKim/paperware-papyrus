@@ -29,14 +29,12 @@ export default function Component() {
   }, [apiApply, only]);
 
   return (
-    <Page title="자사 재고 관리">
+    <Page title="도착 예정 목록">
       <StatBar.Container>
-        <StatBar.Item icon={<TbMapPinFilled />} label="자사 재고" value={"-"} />
         <StatBar.Item
-          icon={<TbMapPin />}
-          label="보관 재고"
+          icon={<TbMapPinFilled />}
+          label="도착 예정 재고"
           value={"-"}
-          iconClassName="text-purple-800"
         />
       </StatBar.Container>
       <Toolbar.Container>
@@ -65,28 +63,15 @@ export default function Component() {
               )}`}</div>
             ),
           },
-          ...Table.Preset.columnStock<Model.StockEvent>(
+          ...Table.Preset.columnStockGroup<Model.StockEvent>(
             (p) => p.stock,
             ["stock"]
           ),
-          {
-            title: "실물 수량",
-            dataIndex: "totalQuantity",
-            render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(
-                value
-              )}`}</div>
-            ),
-          },
-          {
-            title: "가용 수량",
-            dataIndex: "availableQuantity",
-            render: (value) => (
-              <div className="text-right font-fixed">{`${Util.comma(
-                value
-              )}`}</div>
-            ),
-          },
+          ...Table.Preset.columnQuantity<Model.StockEvent>(
+            (record) => record.stock,
+            ["change"],
+            { prefix: "실물" }
+          ),
         ]}
       />
     </Page>

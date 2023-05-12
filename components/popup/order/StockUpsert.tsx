@@ -548,7 +548,13 @@ function DataForm(props: DataFormProps) {
             rules={[{ required: true }]}
             rootClassName="flex-1"
           >
-            <Number min={0} max={9999} pricision={0} unit={Util.UNIT_GPM} />
+            <Number
+              min={0}
+              max={9999}
+              pricision={0}
+              unit={Util.UNIT_GPM}
+              disabled={!editable || !manual}
+            />
           </Form.Item>
           {packaging && (
             <Form.Item>
@@ -561,6 +567,7 @@ function DataForm(props: DataFormProps) {
                       onChange={(sizeX, sizeY) =>
                         form.setFieldsValue({ sizeX, sizeY })
                       }
+                      disabled={!editable || !manual}
                     />
                   </Form.Item>
                 )}
@@ -570,7 +577,13 @@ function DataForm(props: DataFormProps) {
                   rules={[{ required: true }]}
                   rootClassName="flex-1"
                 >
-                  <Number min={0} max={9999} pricision={0} unit="mm" />
+                  <Number
+                    min={0}
+                    max={9999}
+                    pricision={0}
+                    unit="mm"
+                    disabled={!editable || !manual}
+                  />
                 </Form.Item>
                 {packaging.type !== "ROLL" && (
                   <Form.Item
@@ -579,7 +592,13 @@ function DataForm(props: DataFormProps) {
                     rules={[{ required: true }]}
                     rootClassName="flex-1"
                   >
-                    <Number min={0} max={9999} pricision={0} unit="mm" />
+                    <Number
+                      min={0}
+                      max={9999}
+                      pricision={0}
+                      unit="mm"
+                      disabled={!editable || !manual}
+                    />
                   </Form.Item>
                 )}
               </div>
