@@ -11,6 +11,9 @@ type WarehouseWithoutCompany = Omit<Warehouse, "company">;
 
 export default interface StockGroup {
   orderCompanyInfo: Company | null;
+  orderInfo: {
+    wantedDate: string;
+  } | null;
   warehouse: WarehouseWithoutCompany | null;
   product: Product;
   packaging: Packaging;
