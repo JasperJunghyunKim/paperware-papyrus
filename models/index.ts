@@ -43,6 +43,7 @@ import OfficialPriceCondition from './official-price-condition';
 import Entity from './common-entity';
 
 import OrderStockBase from './order-stock-base';
+import InitialOrder from './initial-order';
 
 export * as Enum from './enum';
 export type {
@@ -89,4 +90,5 @@ export type {
   OfficialPriceCondition,
   Entity,
   OrderStockBase,
+  InitialOrder,
 };
