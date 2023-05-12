@@ -1,4 +1,4 @@
-import { OrderStockBase } from "../models";
+import { Company, OrderStockBase } from "../models";
 import Packaging from "./packaging";
 import PaperCert from "./paper-cert";
 import PaperColor from "./paper-color";
@@ -10,6 +10,7 @@ import Warehouse from "./warehouse";
 type WarehouseWithoutCompany = Omit<Warehouse, "company">;
 
 export default interface StockGroup {
+  orderCompanyInfo: Company | null;
   warehouse: WarehouseWithoutCompany | null;
   product: Product;
   packaging: Packaging;
