@@ -1,4 +1,4 @@
-import { OrderStock } from '.';
+import { Location } from '.';
 import Company from './company';
 import { OrderStatus } from './enum';
 
@@ -13,4 +13,7 @@ export default interface InitialOrder {
   wantedDate: string;
   stockAcceptedCompanyId: number | null;
   isStockRejected: boolean;
+  orderStock: {
+    dstLocation: Location;
+  };
 }
