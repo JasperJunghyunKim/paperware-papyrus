@@ -1,6 +1,6 @@
+import { DiscountType, OfficialPriceType, PriceUnit } from '../../models/enum';
 import { Api } from '../..';
 import { PaginationQuery } from '../../models/pagination';
-import { DiscountType, OfficialPriceType, PriceUnit } from './order.enum';
 
 export interface OrderListQuery extends PaginationQuery {
   /** 판매처 */
@@ -47,7 +47,7 @@ export interface OrderStockUpdateRequest {
   quantity: number;
 }
 
-export interface OrderStockArrivalListQuery extends PaginationQuery {}
+export interface OrderStockArrivalListQuery extends PaginationQuery { }
 
 export interface OrderStockArrivalCreateRequest {
   productId: number;

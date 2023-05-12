@@ -1,22 +1,4 @@
-
-enum OfficialPriceType {
-    NONE = 'NONE',
-    MANUAL_NONE = 'MANUAL_NONE',
-    MANUAL_DEFAULT = 'MANUAL_DEFAULT',
-    RETAIL = 'RETAIL',
-    WHOLESALE = 'WHOLESALE',
-}
-
-enum DiscountType {
-    DEFAULT = 'DEFAULT',
-    SPECIAL = 'SPECIAL',
-}
-
-enum PriceUnit {
-    WON_PER_TON = 'WON_PER_TON',
-    WON_PER_REAM = 'WON_PER_REAM',
-    WON_PER_BOX = 'WON_PER_BOX',
-}
+import { DiscountType, OfficialPriceType, PriceUnit } from "./enum";
 
 export default interface StockPrice {
     id: number;
