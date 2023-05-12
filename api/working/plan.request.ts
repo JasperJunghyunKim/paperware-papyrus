@@ -21,3 +21,5 @@ export interface RegisterInputStockRequest {
   stockId: number;
   quantity: number;
 }
+
+export interface PlanInputListQuery extends PaginationQuery {}
