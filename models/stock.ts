@@ -1,4 +1,4 @@
-import { InitialOrder } from '.';
+import { InitialOrder, StockPrice } from '.';
 import Company from './company';
 import Packaging from './packaging';
 import PaperCert from './paper-cert';
@@ -26,4 +26,5 @@ export default interface Stock {
   cachedQuantityAvailable: number;
   isSyncPrice: boolean;
   initialOrder: InitialOrder;
+  stockPrice: StockPrice;
 }
