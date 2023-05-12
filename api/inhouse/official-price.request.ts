@@ -23,3 +23,15 @@ export interface OfficialPriceUpdateRequest {
     wholesalePrice: OfficialPrice;
     retailPrice: OfficialPrice;
 }
+
+/** 고시가 매핑 */
+export interface OfficialPriceMappingQuery {
+    productId: number;
+    grammage: number;
+    sizeX?: number;
+    sizeY?: number;
+    paperColorGroupId?: number;
+    paperColorId?: number;
+    paperPatternId?: number;
+    paperCertId?: number;
+}
