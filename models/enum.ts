@@ -41,3 +41,4 @@ export type Subject =
   | 'ETC'
   | 'All';
 export type AccountedType = 'PAID' | 'COLLECTED';
+export type OfficialPriceMapType = 'WHOLESALE' | 'RETAIL';
