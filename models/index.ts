@@ -46,6 +46,8 @@ import Entity from './common-entity';
 import OrderStockBase from './order-stock-base';
 import InitialOrder from './initial-order';
 
+import CompanyPartner from './company-partner';
+
 export * as Enum from './enum';
 export type {
   BusinessRelationship,
@@ -93,4 +95,5 @@ export type {
   Entity,
   OrderStockBase,
   InitialOrder,
+  CompanyPartner,
 };
