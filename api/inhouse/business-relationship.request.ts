@@ -11,3 +11,7 @@ export interface BusinessRelationshipCreateRequest {
 }
 
 export interface BusinessRelationshipCompactListQuery extends PaginationQuery {}
+
+export interface SearchPartnerRequest {
+  companyRegistrationNumber: string;
+}
