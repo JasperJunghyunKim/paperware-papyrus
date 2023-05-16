@@ -1,3 +1,4 @@
-import BankAccount from 'src/@shared/models/bank-account';
+import { PaginationResponse } from '../../models/pagination';
+import BankAccount from '../..//models/bank-account';
 
-export type BankAccountResponse = BankAccount;
+export type BankAccountResponse = PaginationResponse<BankAccount>;

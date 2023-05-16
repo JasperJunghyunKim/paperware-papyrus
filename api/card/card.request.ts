@@ -1,4 +1,4 @@
-import Card from 'src/@shared/models/card';
+import Card from '../..//models/card';
 import { PaginationQuery } from '../../models/pagination';
 
 export type CardQuery = PaginationQuery;

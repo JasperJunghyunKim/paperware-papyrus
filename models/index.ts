@@ -44,6 +44,8 @@ import Entity from './common-entity';
 
 import OrderStockBase from './order-stock-base';
 import InitialOrder from './initial-order';
+import Card from './card';
+import BankAccount from './bank-account';
 
 export * as Enum from './enum';
 export type {
@@ -91,4 +93,6 @@ export type {
   Entity,
   OrderStockBase,
   InitialOrder,
+  Card,
+  BankAccount,
 };
