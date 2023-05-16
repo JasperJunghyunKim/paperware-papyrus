@@ -15,3 +15,15 @@ export interface BusinessRelationshipCompactListQuery extends PaginationQuery {}
 export interface SearchPartnerRequest {
   companyRegistrationNumber: string;
 }
+
+export interface RegisterPartnerRequest {
+  companyRegistrationNumber: string;
+  type: 'PURCHASE' | 'SALES' | 'BOTH';
+  partnerNickname: string;
+  invoiceCode: string;
+  address: string;
+  phoneNumber: string;
+  faxNumber: string;
+  email: string;
+  memo: string;
+}
