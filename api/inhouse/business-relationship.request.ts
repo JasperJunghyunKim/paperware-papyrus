@@ -9,3 +9,5 @@ export interface BusinessRelationshipCreateRequest {
   srcCompanyId: number;
   dstCompanyId: number;
 }
+
+export interface BusinessRelationshipCompactListQuery extends PaginationQuery {}

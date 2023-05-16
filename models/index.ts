@@ -1,4 +1,5 @@
 import BusinessRelationship from './business-relationship';
+import BusinessRelationshipCompact from './business-relationship-compact';
 import BusinessRelationshipRequest from './business-relationship-request';
 import Company from './company';
 import Location from './location';
@@ -48,6 +49,7 @@ import InitialOrder from './initial-order';
 export * as Enum from './enum';
 export type {
   BusinessRelationship,
+  BusinessRelationshipCompact,
   BusinessRelationshipRequest,
   Company,
   Location,
