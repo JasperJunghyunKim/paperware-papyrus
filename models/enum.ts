@@ -42,3 +42,41 @@ export type Subject =
   | 'All';
 export type AccountedType = 'PAID' | 'COLLECTED';
 export type OfficialPriceMapType = 'WHOLESALE' | 'RETAIL';
+export type AccountType = 'DEPOSIT';
+export type Bank =
+  "KAKAO_BANK" |
+  "KOOKMIN_BANK" |
+  "KEB_HANA_BANK" |
+  "NH_BANK" |
+  "SHINHAN_BANK" |
+  "IBK" |
+  "WOORI_BANK" |
+  "CITI_BANK_KOREA" |
+  "HANA_BANK" |
+  "SC_FIRST_BANK" |
+  "KYONGNAM_BANK" |
+  "KWANGJU_BANK" |
+  "DAEGU_BANK" |
+  "DEUTSCHE_BANK" |
+  "BANK_OF_AMERICA" |
+  "BUSAN_BANK" |
+  "NACF" |
+  "SAVINGS_BANK" |
+  "NACCSF" |
+  "SUHYUP_BANK" |
+  "NACUFOK" |
+  "POST_OFFICE" |
+  "JEONBUK_BANK" |
+  "JEJU_BANK" |
+  "K_BANK" |
+  "TOS_BANK";
+export type CardCompany =
+  "BC_CARD" |
+  "KB_CARD" |
+  "SAMSUNG_CARD" |
+  "SHINHAN_CARD" |
+  "WOORI_CARD" |
+  "HANA_CARD" |
+  "LOTTE_CARD" |
+  "HYUNDAI_CARD" |
+  "NH_CARD";
