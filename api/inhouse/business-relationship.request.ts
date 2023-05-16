@@ -23,8 +23,8 @@ export interface RegisterPartnerRequest {
   partnerNickname: string;
   invoiceCode: string;
   address: string;
-  phoneNumber: string;
-  faxNumber: string;
+  phoneNo: string;
+  faxNo: string;
   email: string;
   memo: string;
 }
