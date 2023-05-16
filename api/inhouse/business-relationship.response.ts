@@ -1,7 +1,7 @@
 import {
   BusinessRelationship,
   BusinessRelationshipCompact,
-  Partner,
+  CompanyPartner,
 } from '../../models';
 import { PaginationResponse } from '../../models/pagination';
 
@@ -13,4 +13,4 @@ export type BusinessRelationshipItemResponse = BusinessRelationship;
 export type BusinessRelationshipCompactListResponse =
   PaginationResponse<BusinessRelationshipCompact>;
 
-export type SearchPartnerResponse = Partner;
+export type SearchPartnerResponse = CompanyPartner;
