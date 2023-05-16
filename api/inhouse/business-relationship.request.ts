@@ -18,6 +18,7 @@ export interface SearchPartnerRequest {
 
 export interface RegisterPartnerRequest {
   companyRegistrationNumber: string;
+  create: boolean;
   type: 'PURCHASE' | 'SALES' | 'BOTH';
   partnerNickname: string;
   invoiceCode: string;
