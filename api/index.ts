@@ -39,8 +39,8 @@ export * from './accounted/by-cash.response';
 export * from './accounted/by-etc.request';
 export * from './accounted/by-etc.response';
 
-export * from './card/card.request';
+export * from './inhouse/card.request';
 export * from './card/card.response';
 
-export * from './back-account/bank-account.request';
+export * from './inhouse/bank-account.request';
 export * from './back-account/bank-account.response';
