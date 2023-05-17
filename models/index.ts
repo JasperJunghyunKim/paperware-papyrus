@@ -40,12 +40,14 @@ import OrderStockTradePrice from './order-stock-trade-price';
 import OrderStockTradeAltBundle from './order-stock-trade-alt-bundle';
 import OfficialPrice from './official-price';
 import OfficialPriceCondition from './official-price-condition';
-import Entity from './common-entity';
 
 import OrderStockBase from './order-stock-base';
 import InitialOrder from './initial-order';
 import Card from './card';
 import BankAccount from './bank-account';
+import ByBankAccount from './by-bank-account';
+import ByCard from './by-card';
+import ByOffset from './by-offset';
 
 export * as Enum from './enum';
 export type {
@@ -90,9 +92,11 @@ export type {
   Invoice,
   OfficialPrice,
   OfficialPriceCondition,
-  Entity,
   OrderStockBase,
   InitialOrder,
   Card,
   BankAccount,
+  ByBankAccount,
+  ByCard,
+  ByOffset
 };

@@ -1,24 +1,24 @@
 import { AccountedType, Method, Subject } from "./enum";
 
-export default interface Accounted {
+export default interface ByBankAccount {
   /**
-  * 파트너 식별자
-  */
+   * 파트너 식별자
+   */
   partnerId: number;
   /**
    * 파트너 닉네임
    */
   partnerNickName: string;
   /**
-   * 지급 식별자
+   * 식별자
    */
   accountedId: number;
   /**
-   * 지급 타입
+   * 회계 유형
    */
   accountedType: AccountedType;
   /**
-   * 회계 등록일
+   * to date
    */
   accountedDate: string;
   /**
@@ -26,19 +26,19 @@ export default interface Accounted {
    */
   accountedMethod: Method;
   /**
-   * 계정 과목
+   * 회계 과목
    */
   accountedSubject: Subject;
-  /**
-   * 금액
-   */
-  amount: number;
   /**
    * 메모
    */
   memo: string;
   /**
-   * 구분
+   * 금액
    */
-  gubun: string;
+  amount: number;
+  /**
+   * 은행계좌 식별자
+   */
+  bankAccountId: number;
 }

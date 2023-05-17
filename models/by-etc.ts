@@ -1,7 +1,6 @@
-import { Entity } from ".";
 import { AccountedType, Method, Subject } from "./enum";
 
-export default interface ByEtc extends Entity {
+export default interface ByEtc {
   /**
    * 파트너 식별자
    */
