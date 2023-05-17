@@ -40,7 +40,7 @@ export * from './accounted/by-etc.request';
 export * from './accounted/by-etc.response';
 
 export * from './inhouse/card.request';
-export * from './card/card.response';
+export * from './inhouse/card.response';
 
 export * from './inhouse/bank-account.request';
-export * from './back-account/bank-account.response';
+export * from './inhouse/bank-account.response';
