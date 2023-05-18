@@ -1,7 +1,8 @@
 import DiscountRate from "../../models/discount-rate";
 import { PackagingType } from "src/@shared/models/enum";
+import { PaginationQuery } from "src/@shared/models/pagination";
 
-/** 고시가 등록 */
+/** 할인율 등록 */
 export interface DiscountRateCreateRequest {
     companyRegistrationNumber: string;
     packagingType?: PackagingType;
@@ -18,4 +19,9 @@ export interface DiscountRateCreateRequest {
     paperCertId?: number;
     basicDiscountRate: DiscountRate;
     specialDiscountRate: DiscountRate;
+}
+
+/** 할인율 조회 */
+export interface DiscountRateListQuery extends PaginationQuery {
+    companyRegistrationNumber: string;
 }
