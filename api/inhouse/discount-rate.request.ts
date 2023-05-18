@@ -34,3 +34,20 @@ export interface DiscountRateUpdateRequest {
     basicDiscountRate: DiscountRate;
     specialDiscountRate: DiscountRate;
 }
+
+/** 할인율 매핑 */
+export interface DiscountRateMappingQuery {
+    companyRegistrationNumber: string;
+    packagingType?: PackagingType;
+    paperDomainId?: number;
+    manufacturerId?: number;
+    paperGroupId?: number;
+    paperTypeId?: number;
+    grammage?: number;
+    sizeX?: number;
+    sizeY?: number;
+    paperColorGroupId?: number;
+    paperColorId?: number;
+    paperPatternId?: number;
+    paperCertId?: number;
+}
