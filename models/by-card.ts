@@ -46,6 +46,11 @@ export default interface ByCard {
    */
   chargeAmount: number;
   /**
+   * 수수료 총 금액 
+   * @description 합 or 뺀 금액(지급, 수급에 따라 변경)
+   */
+  totalAmount: number;
+  /**
    * 수수료 여부
    */
   isCharge: boolean;
