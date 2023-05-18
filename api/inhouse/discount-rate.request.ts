@@ -25,3 +25,9 @@ export interface DiscountRateCreateRequest {
 export interface DiscountRateListQuery extends PaginationQuery {
     companyRegistrationNumber: string;
 }
+
+/** 할인율 수정 */
+export interface DiscountRateUpdateRequest {
+    basicDiscountRate: DiscountRate;
+    specialDiscountRate: DiscountRate;
+}
