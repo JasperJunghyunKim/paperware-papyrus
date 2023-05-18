@@ -2,6 +2,9 @@ import DiscountRate from "../../models/discount-rate";
 import { PackagingType } from "src/@shared/models/enum";
 import { PaginationQuery } from "src/@shared/models/pagination";
 
+/** 할인율 거래처 목록 */
+export type DiscountRatePartnerListQuery = PaginationQuery;
+
 /** 할인율 등록 */
 export interface DiscountRateCreateRequest {
     companyRegistrationNumber: string;
