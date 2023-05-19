@@ -5,6 +5,7 @@ export type OfficialPriceType =
   | 'RETAIL'
   | 'WHOLESALE';
 export type PriceUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX';
+export type DiscountRateUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX' | 'PERCENT';
 export type ShippingType = 'DELIVERY' | 'PICKUP' | 'STORE';
 export type StockEventStatus = 'NORMAL' | 'CANCELLED' | 'PENDING';
 export type TaskType = 'CONVERTING' | 'GUILLOTINE' | 'QUANTITY';

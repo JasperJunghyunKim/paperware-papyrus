@@ -1,6 +1,6 @@
-import { PriceUnit } from "./enum";
+import { DiscountRateUnit } from "./enum";
 
 export default interface DiscountRate {
     discountRate: number;
-    discountRateUnit: PriceUnit;
+    discountRateUnit: DiscountRateUnit;
 }
