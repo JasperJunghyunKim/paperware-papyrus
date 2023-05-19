@@ -1,4 +1,4 @@
 import { ByCash } from '../../models';
 
-export type ByCashCreateRequest = ByCash;
-export type ByCashUpdateRequest = Omit<ByCash, 'partnerNickName'>;
+export type ByCashCreateRequest = Omit<ByCash, 'accountedId' | 'partnerNickName'>;;
+export type ByCashUpdateRequest = Omit<ByCash, 'partnerId' | 'partnerNickName'>;
