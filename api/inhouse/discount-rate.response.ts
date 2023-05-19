@@ -32,7 +32,7 @@ export type DiscountRateMappingResponse = {
         paperColor: PaperColor | null;
         paperPattern: PaperPattern | null;
         paperCert: PaperCert | null;
-    }
+    };
     discountRateMapType: DiscountRateMapType;
     discountRate: number;
     discountRateUnit: DiscountRateUnit;
