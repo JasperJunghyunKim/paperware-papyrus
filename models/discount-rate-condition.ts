@@ -8,9 +8,11 @@ import PaperDomain from "./paper-domain";
 import PaperGroup from "./paper-group";
 import PaperPattern from "./paper-pattern";
 import PaperType from "./paper-type";
+import Partner from "./partner";
 
 export default interface DiscountRateCondition {
     id: number;
+    partner: Partner;
     packagingType: PackagingType;
     paperDomain?: PaperDomain;
     manufacturer?: Manufacturer;
