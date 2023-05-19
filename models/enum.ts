@@ -43,3 +43,4 @@ export type Subject =
 export type AccountedType = 'PAID' | 'COLLECTED';
 export type OfficialPriceMapType = 'WHOLESALE' | 'RETAIL';
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
+export type DiscountRateType = 'SALES' | 'PURCHASE';
