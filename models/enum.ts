@@ -28,16 +28,16 @@ export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type Method = 'ACCOUNT_TRANSFER' | 'PROMISSORY_NOTE' | 'CARD_PAYMENT' | 'CASH' | 'OFFSET' | 'ETC' | 'All';
 export type Subject =
-  'PAID_ACCOUNTS_RECEIVABLE'
-  | 'PAID_UNPAID_AMOUNTS'
-  | 'PAID_ADVANCES'
-  | 'PAID_MISCELLANEOUS_INCOME'
-  | 'PAID_PRODUCT_SALES'
-  | 'COLLECTED_ACCOUNTS_RECEIVABLE'
-  | 'COLLECTED_UNPAID_EXPENSES'
-  | 'COLLECTED_PREPAID_EXPENSES'
-  | 'COLLECTED_MISCELLANEOUS_LOSSES'
-  | 'COLLECTED_PRODUCT_PURCHASES'
+  /// paid: 외상 매출금 collected: 외상 매입금
+  | 'ACCOUNTS_RECEIVABLE'
+  /// paid: 미수금 collected: 미지급금
+  | 'UNPAID'
+  /// paid: 선수금 collected: 선지급금
+  | 'ADVANCES'
+  /// paid: 잡이익 collected: 잡손실
+  | 'MISCELLANEOUS_INCOME'
+  /// paid: 상품 매출 collected: 상품 매입
+  | 'PRODUCT_SALES'
   | 'ETC'
   | 'All';
 export type AccountedType = 'PAID' | 'COLLECTED';
