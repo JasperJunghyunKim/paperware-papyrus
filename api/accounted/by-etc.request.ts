@@ -1,4 +1,4 @@
 import { ByEtc } from '../../models';
 
-export type ByEtcCreateRequest = Omit<ByEtc, 'accountedId' | 'partnerNickName'>;;
-export type ByEtcUpdateRequest = Omit<ByEtc, 'partnerId' | 'partnerNickName'>;
+export type ByEtcCreateRequest = ByEtc;
+export type ByEtcUpdateRequest = Omit<ByEtc, | 'partnerNickName'>;
