@@ -9,3 +9,22 @@ export interface BusinessRelationshipCreateRequest {
   srcCompanyId: number;
   dstCompanyId: number;
 }
+
+export interface BusinessRelationshipCompactListQuery extends PaginationQuery {}
+
+export interface SearchPartnerRequest {
+  companyRegistrationNumber: string;
+}
+
+export interface RegisterPartnerRequest {
+  companyRegistrationNumber: string;
+  create: boolean;
+  type: 'PURCHASE' | 'SALES' | 'BOTH';
+  partnerNickname: string;
+  invoiceCode: string;
+  address: string;
+  phoneNo: string;
+  faxNo: string;
+  email: string;
+  memo: string;
+}

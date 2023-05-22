@@ -2,14 +2,14 @@ export type PackagingType = 'ROLL' | 'REAM' | 'SKID' | 'BOX';
 export type OfficialPriceType =
   | 'NONE'
   | 'MANUAL_NONE'
-  | 'MANUAL_DEFAULT'
   | 'RETAIL'
   | 'WHOLESALE';
 export type PriceUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX';
+export type DiscountRateUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX' | 'PERCENT';
 export type ShippingType = 'DELIVERY' | 'PICKUP' | 'STORE';
 export type StockEventStatus = 'NORMAL' | 'CANCELLED' | 'PENDING';
 export type TaskType = 'CONVERTING' | 'GUILLOTINE' | 'QUANTITY';
-export type DiscountType = 'DEFAULT' | 'SPECIAL';
+export type DiscountType = 'NONE' | 'MANUAL_NONE' | 'DEFAULT' | 'SPECIAL';
 export type BusinessRelationshipRequestStatus =
   | 'PENDING'
   | 'ACCEPTED'
@@ -80,3 +80,5 @@ export type CardCompany =
   "LOTTE_CARD" |
   "HYUNDAI_CARD" |
   "NH_CARD";
+export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
+export type DiscountRateType = 'SALES' | 'PURCHASE';

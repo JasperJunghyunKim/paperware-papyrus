@@ -1,4 +1,5 @@
 import BusinessRelationship from './business-relationship';
+import BusinessRelationshipCompact from './business-relationship-compact';
 import BusinessRelationshipRequest from './business-relationship-request';
 import Company from './company';
 import Location from './location';
@@ -49,9 +50,12 @@ import ByBankAccount from './by-bank-account';
 import ByCard from './by-card';
 import ByOffset from './by-offset';
 
+import CompanyPartner from './company-partner';
+
 export * as Enum from './enum';
 export type {
   BusinessRelationship,
+  BusinessRelationshipCompact,
   BusinessRelationshipRequest,
   Company,
   Location,
@@ -98,5 +102,6 @@ export type {
   BankAccount,
   ByBankAccount,
   ByCard,
-  ByOffset
+  ByOffset,
+  CompanyPartner,
 };
