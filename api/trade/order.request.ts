@@ -60,6 +60,7 @@ export interface OrderStockArrivalCreateRequest {
   paperPatternId?: number | null;
   paperCertId?: number | null;
   quantity: number;
+  isSyncPrice: boolean;
   stockPrice: Api.StockCreateStockPriceRequest;
 }
 
