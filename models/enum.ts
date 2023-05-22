@@ -1,11 +1,11 @@
 export type PackagingType = 'ROLL' | 'REAM' | 'SKID' | 'BOX';
-export type OfficialPriceType =
-  | 'NONE'
-  | 'MANUAL_NONE'
-  | 'RETAIL'
-  | 'WHOLESALE';
+export type OfficialPriceType = 'NONE' | 'MANUAL_NONE' | 'RETAIL' | 'WHOLESALE';
 export type PriceUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX';
-export type DiscountRateUnit = 'WON_PER_TON' | 'WON_PER_REAM' | 'WON_PER_BOX' | 'PERCENT';
+export type DiscountRateUnit =
+  | 'WON_PER_TON'
+  | 'WON_PER_REAM'
+  | 'WON_PER_BOX'
+  | 'PERCENT';
 export type ShippingType = 'DELIVERY' | 'PICKUP' | 'STORE';
 export type StockEventStatus = 'NORMAL' | 'CANCELLED' | 'PENDING';
 export type TaskType = 'CONVERTING' | 'GUILLOTINE' | 'QUANTITY';
@@ -26,9 +26,16 @@ export type OrderStatus =
   | 'OFFER_CANCELLED';
 export type PlanStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
 export type TaskStatus = 'PREPARING' | 'PROGRESSING' | 'PROGRESSED';
-export type Method = 'ACCOUNT_TRANSFER' | 'PROMISSORY_NOTE' | 'CARD_PAYMENT' | 'CASH' | 'SET_OFF' | 'ETC' | 'All';
+export type Method =
+  | 'ACCOUNT_TRANSFER'
+  | 'PROMISSORY_NOTE'
+  | 'CARD_PAYMENT'
+  | 'CASH'
+  | 'SET_OFF'
+  | 'ETC'
+  | 'All';
 export type Subject =
-  'PAID_ACCOUNTS_RECEIVABLE'
+  | 'PAID_ACCOUNTS_RECEIVABLE'
   | 'PAID_UNPAID_AMOUNTS'
   | 'PAID_ADVANCES'
   | 'PAID_MISCELLANEOUS_INCOME'
@@ -44,3 +51,4 @@ export type AccountedType = 'PAID' | 'COLLECTED';
 export type OfficialPriceMapType = 'WHOLESALE' | 'RETAIL';
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
 export type DiscountRateType = 'SALES' | 'PURCHASE';
+export type ShippingStatus = 'PREPARING' | 'DONE';
