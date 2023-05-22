@@ -2,9 +2,13 @@ import { AccountedType, Method, Subject } from "./enum";
 
 export default interface ByCard {
   /**
-   * 파트너 식별자
+   * 기업 식별자
    */
-  partnerId: number;
+  companyId: number;
+  /**
+   * 사업자번호
+   */
+  companyRegistrationNumber: string;
   /**
    * 파트너 닉네임
    */
@@ -46,7 +50,7 @@ export default interface ByCard {
    */
   chargeAmount: number;
   /**
-   * 수수료 총 금액 
+   * 수수료 총 금액
    * @description 합 or 뺀 금액(지급, 수급에 따라 변경)
    */
   totalAmount: number;
