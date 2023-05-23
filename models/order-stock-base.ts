@@ -1,4 +1,13 @@
-import { Location, Packaging, PaperCert, PaperColor, PaperColorGroup, PaperPattern, Product, Warehouse } from '.';
+import {
+  Location,
+  Packaging,
+  PaperCert,
+  PaperColor,
+  PaperColorGroup,
+  PaperPattern,
+  Product,
+  Warehouse,
+} from '.';
 
 export default interface OrderStockBase {
   id: number;
