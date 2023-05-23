@@ -82,3 +82,5 @@ export type CardCompany =
   "NH_CARD";
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
 export type DiscountRateType = 'SALES' | 'PURCHASE';
+export type SecuritiesStatus = 'BASE' | 'ENDORSED' | 'NORMAL_PAYMENT' | 'DISCOUNT_PAYMENT' | 'INSOLVENCY' | 'LOST' | 'SAFEKEEPING';
+export type SecuritiesType = 'PROMISSORY_NOTE' | 'ELECTRONIC_NOTE' | 'ELECTRONIC_BOND' | 'PERSONAL_CHECK' | 'DEMAND_DRAFT' | 'HOUSEHOLD_CHECK' | 'STATIONERY_NOTE' | 'ETC';
