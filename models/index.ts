@@ -51,6 +51,8 @@ import ByCard from './by-card';
 import ByOffset from './by-offset';
 
 import CompanyPartner from './company-partner';
+import Security from './security';
+import BySecurity from './by-security';
 
 export * as Enum from './enum';
 export type {
@@ -104,4 +106,6 @@ export type {
   ByCard,
   ByOffset,
   CompanyPartner,
+  Security,
+  BySecurity,
 };
