@@ -1,5 +1,6 @@
 import { AccountedType, Method, Subject } from "./enum";
-export default interface ByCash {
+
+export default interface ByCard {
   /**
    * 기업 식별자
    */
@@ -40,4 +41,25 @@ export default interface ByCash {
    * 금액
    */
   amount: number;
+  /**
+   * 카드 식별자
+   */
+  cardId: number;
+  /**
+   * 카드 수수료
+   */
+  chargeAmount: number;
+  /**
+   * 수수료 총 금액
+   * @description 합 or 뺀 금액(지급, 수급에 따라 변경)
+   */
+  totalAmount: number;
+  /**
+   * 수수료 여부
+   */
+  isCharge: boolean;
+  /**
+   * 승인번호
+   */
+  approvalNumber: string;
 }

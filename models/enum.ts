@@ -31,24 +31,61 @@ export type Method =
   | 'PROMISSORY_NOTE'
   | 'CARD_PAYMENT'
   | 'CASH'
-  | 'SET_OFF'
+  | 'OFFSET'
   | 'ETC'
   | 'All';
 export type Subject =
-  | 'PAID_ACCOUNTS_RECEIVABLE'
-  | 'PAID_UNPAID_AMOUNTS'
-  | 'PAID_ADVANCES'
-  | 'PAID_MISCELLANEOUS_INCOME'
-  | 'PAID_PRODUCT_SALES'
-  | 'COLLECTED_ACCOUNTS_RECEIVABLE'
-  | 'COLLECTED_UNPAID_EXPENSES'
-  | 'COLLECTED_PREPAID_EXPENSES'
-  | 'COLLECTED_MISCELLANEOUS_LOSSES'
-  | 'COLLECTED_PRODUCT_PURCHASES'
+  /// paid: 외상 매출금 collected: 외상 매입금
+  | 'ACCOUNTS_RECEIVABLE'
+  /// paid: 미수금 collected: 미지급금
+  | 'UNPAID'
+  /// paid: 선수금 collected: 선지급금
+  | 'ADVANCES'
+  /// paid: 잡이익 collected: 잡손실
+  | 'MISCELLANEOUS_INCOME'
+  /// paid: 상품 매출 collected: 상품 매입
+  | 'PRODUCT_SALES'
   | 'ETC'
   | 'All';
 export type AccountedType = 'PAID' | 'COLLECTED';
 export type OfficialPriceMapType = 'WHOLESALE' | 'RETAIL';
+export type AccountType = 'DEPOSIT';
+export type Bank =
+  | 'KAKAO_BANK'
+  | 'KOOKMIN_BANK'
+  | 'KEB_HANA_BANK'
+  | 'NH_BANK'
+  | 'SHINHAN_BANK'
+  | 'IBK'
+  | 'WOORI_BANK'
+  | 'CITI_BANK_KOREA'
+  | 'HANA_BANK'
+  | 'SC_FIRST_BANK'
+  | 'KYONGNAM_BANK'
+  | 'KWANGJU_BANK'
+  | 'DAEGU_BANK'
+  | 'DEUTSCHE_BANK'
+  | 'BANK_OF_AMERICA'
+  | 'BUSAN_BANK'
+  | 'NACF'
+  | 'SAVINGS_BANK'
+  | 'NACCSF'
+  | 'SUHYUP_BANK'
+  | 'NACUFOK'
+  | 'POST_OFFICE'
+  | 'JEONBUK_BANK'
+  | 'JEJU_BANK'
+  | 'K_BANK'
+  | 'TOS_BANK';
+export type CardCompany =
+  | 'BC_CARD'
+  | 'KB_CARD'
+  | 'SAMSUNG_CARD'
+  | 'SHINHAN_CARD'
+  | 'WOORI_CARD'
+  | 'HANA_CARD'
+  | 'LOTTE_CARD'
+  | 'HYUNDAI_CARD'
+  | 'NH_CARD';
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
 export type DiscountRateType = 'SALES' | 'PURCHASE';
-export type ShippingStatus = 'PREPARING' | 'DONE';

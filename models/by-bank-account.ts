@@ -1,5 +1,6 @@
 import { AccountedType, Method, Subject } from "./enum";
-export default interface ByCash {
+
+export default interface ByBankAccount {
   /**
    * 기업 식별자
    */
@@ -40,4 +41,8 @@ export default interface ByCash {
    * 금액
    */
   amount: number;
+  /**
+   * 은행계좌 식별자
+   */
+  bankAccountId: number;
 }

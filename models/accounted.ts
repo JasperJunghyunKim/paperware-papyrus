@@ -1,11 +1,14 @@
-import { Entity } from ".";
 import { AccountedType, Method, Subject } from "./enum";
 
-export default interface Accounted extends Entity {
+export default interface Accounted {
   /**
-  * 파트너 식별자
-  */
-  partnerId: number;
+   * 사업자 식별자
+   */
+  companyId: number;
+  /**
+   * 사업자 번호
+   */
+  companyRegistrationNumber: string;
   /**
    * 파트너 닉네임
    */
