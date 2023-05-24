@@ -50,3 +50,6 @@ export * from './inhouse/card.response';
 
 export * from './inhouse/bank-account.request';
 export * from './inhouse/bank-account.response';
+
+export * from './inhouse/security.request';
+export * from './inhouse/security.response';

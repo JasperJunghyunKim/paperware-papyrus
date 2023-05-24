@@ -5,7 +5,7 @@ import { Bank, DrawedStatus, SecurityStatus, SecurityType } from "./enum";
  */
 export default interface Security {
   /**
-   * 유가증권 타입
+   * 유가증권 식별자
    */
   securityId: number;
   /**
