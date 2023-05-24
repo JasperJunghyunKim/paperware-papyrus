@@ -44,6 +44,8 @@ export * from './accounted/by-card.request';
 export * from './accounted/by-card.response';
 export * from './accounted/by-offset.request';
 export * from './accounted/by-offset.response';
+export * from './accounted/by-security.request';
+export * from './accounted/by-security.response';
 
 export * from './inhouse/card.request';
 export * from './inhouse/card.response';
