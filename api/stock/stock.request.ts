@@ -50,7 +50,7 @@ export type PartnerStockGroupListQuery = PaginationQuery & {
 };
 
 /** 재고 그룹 상세 조회 */
-export interface StockGroupQuery {
+export interface StockGroupQuantityQuery {
   warehouseId: number | null;
   initialOrderId: number | null;
   productId: number;
