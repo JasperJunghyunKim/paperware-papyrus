@@ -15,4 +15,4 @@ export type StockDetailResponse = Stock;
 export type PartnerStockGroupListResponse =
   PaginationResponse<PartnerStockGroup>;
 
-export type StockGroupQuantityResponse = Model.StockGroup;
+export type StockGroupQuantityResponse = Model.StockQuantity;
