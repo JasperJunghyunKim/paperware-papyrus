@@ -1,4 +1,4 @@
-import { AccountedType, Method, Subject } from "./enum";
+import { AccountedType, Method, SecurityStatus, Subject } from "./enum";
 
 export default interface Accounted {
   /**
@@ -45,4 +45,8 @@ export default interface Accounted {
    * 구분
    */
   gubun: string;
+  /**
+   * 유가증권 상태(optional)
+   */
+  securityStatus?: SecurityStatus;
 }
