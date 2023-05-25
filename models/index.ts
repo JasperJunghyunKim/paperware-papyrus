@@ -20,6 +20,7 @@ import ArrivalStockGroup from './arrival-stock-group';
 import Plan from './plan';
 import StockGroupBase from './stock-group-base';
 import StockGroupEvent from './stock-group-event';
+import StockQuantity from './stock-quantity';
 import Task from './task';
 import TaskConverting from './task-converting';
 import TaskGuillotine from './task-guillotine';
@@ -89,6 +90,7 @@ export type {
   Order,
   OrderStock,
   StockEvent,
+  StockQuantity,
   PartnerStockGroup,
   TradePrice,
   OrderStockTradePrice,

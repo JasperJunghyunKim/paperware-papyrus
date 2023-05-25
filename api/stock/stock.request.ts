@@ -44,8 +44,22 @@ export interface StockCreateRequest {
   stockPrice: StockCreateStockPriceRequest;
 }
 
-
 /** 거래처 재고그룹 목록 조회 */
 export type PartnerStockGroupListQuery = PaginationQuery & {
   companyId?: number;
 };
+
+/** 재고 그룹 상세 조회 */
+export interface StockGroupQuery {
+  warehouseId: number | null;
+  initialOrderId: number | null;
+  productId: number;
+  packagingId: number;
+  grammage: number;
+  sizeX: number;
+  sizeY?: number;
+  paperColorGroupId?: number | null;
+  paperColorId?: number | null;
+  paperPatternId?: number | null;
+  paperCertId?: number | null;
+}
