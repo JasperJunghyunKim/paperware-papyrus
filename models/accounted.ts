@@ -10,6 +10,10 @@ export default interface Accounted {
    */
   companyRegistrationNumber: string;
   /**
+   * 파트너 식별자
+   */
+  partnerId: number;
+  /**
    * 파트너 닉네임
    */
   partnerNickName: string;
