@@ -90,3 +90,4 @@ export type CardCompany =
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
 export type DiscountRateType = 'SALES' | 'PURCHASE';
 export type ShippingStatus = 'PREPARING' | 'PROGRESSING' | 'DONE';
+export type DepositType = 'SALES' | 'PURCHASE';

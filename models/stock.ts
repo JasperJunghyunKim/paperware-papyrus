@@ -1,4 +1,4 @@
-import { InitialOrder, StockPrice } from '.';
+import { InitialOrder, Order, StockPrice } from '.';
 import Company from './company';
 import Packaging from './packaging';
 import PaperCert from './paper-cert';
