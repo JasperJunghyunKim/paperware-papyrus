@@ -33,6 +33,7 @@ import Order from './order';
 import OrderStock from './order-stock';
 import StockEvent from './stock-event';
 import Shipping from './shipping';
+import ShippingItem from './shipping-item';
 import Invoice from './invoice';
 
 import Partner from './partner';
@@ -96,6 +97,7 @@ export type {
   OrderStockTradePrice,
   OrderStockTradeAltBundle,
   Shipping,
+  ShippingItem,
   Invoice,
   OfficialPrice,
   OfficialPriceCondition,
