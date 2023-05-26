@@ -1,4 +1,4 @@
-import { DiscountType, OfficialPriceType, PriceUnit } from '../../models/enum';
+import { DepositType, DiscountType, OfficialPriceType, PriceUnit } from '../../models/enum';
 import { Api } from '../..';
 import { PaginationQuery } from '../../models/pagination';
 
@@ -89,4 +89,20 @@ export interface TradePriceUpdateRequest {
   suppliedPrice: number;
   vatPrice: number;
   orderStockTradePrice?: OrderStockTradePriceUpdateRequest;
+}
+
+/** 보관 등록 */
+export interface OrderDepositCreateRequest {
+  srcCompanyId: number;
+  dstCompanyId: number;
+  productId: number;
+  packagingId: number;
+  grammage: number;
+  sizeX: number;
+  sizeY: number;
+  paperColorGroupId?: number | null;
+  paperColorId?: number | null;
+  paperPatternId?: number | null;
+  paperCertId?: number | null;
+  quantity: number;
 }

@@ -89,3 +89,4 @@ export type CardCompany =
   | 'NH_CARD';
 export type DiscountRateMapType = 'BASIC' | 'SPECIAL';
 export type DiscountRateType = 'SALES' | 'PURCHASE';
+export type DepositType = 'SALES' | 'PURCHASE';
