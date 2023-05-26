@@ -1,5 +1,6 @@
-import { PartnerStockGroup, Stock, StockGroup } from '../../models';
-import { PaginationResponse } from '../../models/pagination';
+import { Model } from "../..";
+import { PartnerStockGroup, Stock, StockGroup } from "../../models";
+import { PaginationResponse } from "../../models/pagination";
 
 /** 재고그룹 목록 조회 */
 export type StockGroupListResponse = PaginationResponse<StockGroup>;
@@ -13,3 +14,5 @@ export type StockDetailResponse = Stock;
 /** 거래처 재고그룹 목록 조회 */
 export type PartnerStockGroupListResponse =
   PaginationResponse<PartnerStockGroup>;
+
+export type StockGroupQuantityResponse = Model.StockQuantity;

@@ -16,9 +16,11 @@ import Product from './product';
 import User from './user';
 import Warehouse from './warehouse';
 import StockGroup from './stock-group';
+import ArrivalStockGroup from './arrival-stock-group';
 import Plan from './plan';
 import StockGroupBase from './stock-group-base';
 import StockGroupEvent from './stock-group-event';
+import StockQuantity from './stock-quantity';
 import Task from './task';
 import TaskConverting from './task-converting';
 import TaskGuillotine from './task-guillotine';
@@ -31,6 +33,7 @@ import Order from './order';
 import OrderStock from './order-stock';
 import StockEvent from './stock-event';
 import Shipping from './shipping';
+import ShippingItem from './shipping-item';
 import Invoice from './invoice';
 
 import Partner from './partner';
@@ -90,11 +93,13 @@ export type {
   Order,
   OrderStock,
   StockEvent,
+  StockQuantity,
   PartnerStockGroup,
   TradePrice,
   OrderStockTradePrice,
   OrderStockTradeAltBundle,
   Shipping,
+  ShippingItem,
   Invoice,
   OfficialPrice,
   OfficialPriceCondition,
@@ -108,4 +113,5 @@ export type {
   CompanyPartner,
   Security,
   BySecurity,
+  ArrivalStockGroup,
 };
