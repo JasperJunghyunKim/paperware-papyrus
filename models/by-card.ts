@@ -1,4 +1,4 @@
-import { AccountedType, Method, Subject } from "./enum";
+import { AccountedType, CardCompany, Method, Subject } from "./enum";
 
 export default interface ByCard {
   /**
@@ -45,6 +45,18 @@ export default interface ByCard {
    * 카드 식별자
    */
   cardId: number;
+  /**
+   * 카드 이름
+   */
+  cardName: string;
+  /**
+   * 카드번호
+   */
+  cardNumber: string;
+  /**
+   * 카드 회사
+   */
+  cardCompany: CardCompany;
   /**
    * 카드 수수료
    */

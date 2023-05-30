@@ -1,4 +1,4 @@
-import { AccountedType, Method, Subject } from "./enum";
+import { AccountedType, Bank, Method, Subject } from "./enum";
 
 export default interface ByBankAccount {
   /**
@@ -45,4 +45,16 @@ export default interface ByBankAccount {
    * 은행계좌 식별자
    */
   bankAccountId: number;
+  /**
+   * 계좌 이름
+   */
+  accountName: string;
+  /**
+   * 계번 번호
+   */
+  accountNumber: string;
+  /**
+   * 은행
+   */
+  bankComapny: Bank;
 }
