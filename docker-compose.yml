@@ -13,9 +13,7 @@ services:
       - PASSWORD=Papyrus1!
       # Route53 resolver 주소
       - WG_DEFAULT_DNS=192.168.133.242, 192.168.152.190, 1.1.1.1, 0.0.0.0
-      - WG_DEFAULT_ADDRESS=10.8.0.0
       - WG_DEVICE=eth0
-      - WG_POST_UP=iptables -t nat -A POSTROUTING -s 10.8.0.2/16 -o eth0 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT;
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
