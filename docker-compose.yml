@@ -1,0 +1,19 @@
+
+version: "3"
+services:
+  wg-easy:
+    container_name: wg-easy
+    image: weejewel/wg-easy
+    network_mode: bridge
+    volumes:
+      - .:/etc/wireguard
+    environment:
+      # 필수 파라미터, 내 퍼블릭 아이피를 정해준다.
+      - WG_HOST=43.202.26.173
+      - PASSWORD=0000 # 옵셔널 파라미터
+      - WG_DEFAULT_DNS=192.168.141.53, 1.1.1.1, 0.0.0.0
+      - WG_DEFAULT_ADDRESS=10.8.0.0
+      - WG_DEVICE=eth0
+      - WG_POST_UP=iptables -t nat -A POSTROUTING -s 10.8.0.2/16 -o eth0 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT;
+    ports:
+      - "51820:51820/udp"
