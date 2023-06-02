@@ -8,9 +8,9 @@ services:
     volumes:
       - .:/etc/wireguard
     environment:
-      # 필수 파라미터, 내 퍼블릭 아이피를 정해준다.
+      # 필수 파라미터 eip
       - WG_HOST=43.202.26.173
-      - PASSWORD=0000 # 옵셔널 파라미터
+      - PASSWORD=Papyrus1!
       - WG_DEFAULT_DNS=192.168.141.53, 1.1.1.1, 0.0.0.0
       - WG_DEFAULT_ADDRESS=10.8.0.0
       - WG_DEVICE=eth0
