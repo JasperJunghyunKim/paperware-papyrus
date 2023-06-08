@@ -14,9 +14,9 @@ services:
       # Route53 resolver 주소
       - WG_DEFAULT_DNS=192.168.133.242, 192.168.15.45, 8.8.8.8, 1.1.1.1
       # 인바운드 허용
-      - WG_POST_UP=iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o ens5 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;
+      - WG_POST_UP=iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE; iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;
       # 외부 인터넷 허용
-      - WG_POST_DOWN=iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o ens5 -j MASQUERADE
+      - WG_POST_DOWN=iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
