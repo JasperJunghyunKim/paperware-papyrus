@@ -21,6 +21,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo docker-compose --version
 
 
+# linux ip 확인
+
+1. ec2 os에 ip routing outbound traffic 나가는 NIC
+- /etc/sysconfig/network-scripts/ifcfg-eth0
+
 
 # wireguard 설정
 
@@ -34,7 +39,6 @@ sudo yum install -y iptables-services
 
 3. nat 설정
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-
 
 4. nat 정보 세이브
 sudo service iptables save
