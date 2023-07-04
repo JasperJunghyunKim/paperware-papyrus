@@ -3015,18 +3015,11 @@ router.get("/GetTaxCertURL", function (req, res, next) {
         corpNum,
         userId,
         function (url) {
-            // res.render("result", {
-            //     path: req.path,
-            //     result: url,
-            // });
             return res.send(url);
         },
-        function (Error) {
-            res.render("response", {
-                path: req.path,
-                code: Error.code,
-                message: Error.message,
-            });
+        function (err) {
+            console.log(err)
+            return res.status(500).send('Internal Server Error');
         },
     );
 });
