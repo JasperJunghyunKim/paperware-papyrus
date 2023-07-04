@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        if ( (result.length) > 0 ){
+        result.forEach(function(info, index){
+        %>
+            <fieldset class="fieldset2">
+                <legend> 수집상태(jobState) [<%= index + 1 %>/<%= result.length %>]</legend>
+                <ul>
+                    <li>jobID (작업아이디) : <%= info.jobID %></li>
+                    <li>jobState (수집상태) : <%= info.jobState %></li>
+                    <li>queryType (수집유형) : <%= info.queryType %></li>
+                    <li>queryDateType (일자유형) : <%= info.queryDateType %></li>
+                    <li>queryStDate (시작일자) : <%= info.queryStDate %></li>
+                    <li>queryEnDate (종료일자) : <%= info.queryEnDate %></li>
+                    <li>errorCode (오류코드) : <%= info.errorCode %></li>
+                    <li>errorReason (오류메시지) : <%= info.errorReason %></li>
+                    <li>jobStartDT (작업 시작일시) : <%= info.jobStartDT %></li>
+                    <li>jobEndDT (작업 종료일시) : <%= info.jobEndDT %></li>
+                    <li>collectCount (수집개수) : <%= info.collectCount %></li>
+                    <li>regDT (수집 요청일시) : <%= info.regDT %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        } else {
+        %>
+            <br/>
+            <p> 작업 요청 목록이 존재하지 않습니다. </p>
+        <%
+        }
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

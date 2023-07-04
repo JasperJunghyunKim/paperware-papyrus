@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">팝빌 홈택스연동(전자세금계산서) Nodejs SDK - Express Example.</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스 전자세금계산서 매입/매출 내역 수집</legend>
+        <ul>
+            <li>
+                <a href="HTTaxinvoiceService/RequestJob">requestJob</a>
+                - 수집 요청
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetJobState">getJobState</a>
+                - 수집 상태 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/ListActiveJob">listActiveJob</a>
+                - 수집 상태 목록 확인
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스 전자세금계산서 매입/매출 내역 수집 결과 조회</legend>
+        <ul>
+            <li>
+                <a href="HTTaxinvoiceService/Search">search</a>
+                - 수집 결과 조회
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/Summary">summary</a>
+                - 수집 결과 요약정보 조회
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetTaxinvoice">getTaxinvoice</a>
+                - 상세정보 확인 - JSON
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetXML">getXML</a>
+                - 상세정보 확인 - XML
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPopUpURL">getPopUpURL</a>
+                - 홈택스 전자세금계산서 보기 팝업 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPrintURL">getPrintURL</a>
+                - 홈택스 전자세금계산서 인쇄 팝업 URL
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스연동 인증 관리</legend>
+        <ul>
+            <li>
+                <a href="HTTaxinvoiceService/GetCertificatePopUpURL">getCertificatePopUpURL</a>
+                - 홈택스연동 인증 관리 팝업 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetCertificateExpireDate">getCertificateExpireDate</a>
+                - 홈택스연동 공인인증서 만료일자 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/CheckCertValidation">checkCertValidation</a>
+                - 홈택스 공인인증서 로그인 테스트
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/RegistDeptUser">registDeptUser</a>
+                - 부서사용자 계정등록
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/CheckDeptUser">checkDeptUser</a>
+                - 부서사용자 등록정보 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/CheckLoginDeptUser">checkLoginDeptUser</a>
+                - 부서사용자 로그인 테스트
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/DeleteDeptUser">deleteDeptUser</a>
+                - 부서사용자 등록정보 삭제
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>포인트 관리 / 정액제 신청</legend>
+        <ul>
+            <li>
+                <a href="HTTaxinvoiceService/GetBalance">getBalance</a>
+                - 연동회원 잔여포인트 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetChargeURL">getChargeURL</a>
+                - 연동회원 포인트충전 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPaymentURL">getPaymentURL</a>
+                - 연동회원 포인트 결제내역 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetUseHistoryURL">getUseHistoryURL</a>
+                - 연동회원 포인트 사용내역 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPartnerBalance">getPartnerBalance</a>
+                - 파트너 잔여포인트 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPartnerURL">getPartnerURL</a>
+                - 파트너 포인트충전 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetChargeInfo">getChargeInfo</a>
+                - 과금정보 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetFlatRatePopUpURL">getFlatRatePopUpURL</a>
+                - 정액제 서비스 신청 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/PaymentRequest">paymentRequest</a>
+                연동회원 무통장 입금신청
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetSettleResult">getSettleResult</a>
+                연동회원 무통장 입금신청 정보확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetPaymentHistory">getPaymentHistory</a>
+                연동회원 포인트 결제내역 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetUseHistory">getUseHistory</a>
+                연동회원 포인트 사용내역 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/Refund">refund</a>
+                연동회원 포인트 환불신청
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetRefundHistory">getRefundHistory</a>
+                연동회원 포인트 환불내역 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetFlatRateState">getFlatRateState</a>
+                - 정액제 서비스 상태 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetRefundInfo">getRefundInfo</a>
+                환불 신청 상태 조회
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetRefundableBalance">getRefundableBalance</a>
+                환불 가능 포인트 조회
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>회원정보</legend>
+        <ul>
+            <li>
+                <a href="HTTaxinvoiceService/GetAccessURL">getAccessURL</a>
+                - 팝빌 로그인 URL
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/CheckIsMember">checkIsMember</a>
+                - 연동회원 가입여부 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/CheckID">checkID</a>
+                - 아이디 중복 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/JoinMember">joinMember</a>
+                - 연동회원 신규가입
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetCorpInfo">getCorpInfo</a>
+                - 회사정보 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/UpdateCorpInfo">updateCorpInfo</a>
+                - 회사정보 수정
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/RegistContact">registContact</a>
+                - 담당자 등록
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/GetContactInfo">getContactInfo</a>
+                - 담당자 정보 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/ListContact">listContact</a>
+                - 담당자 목록 확인
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/UpdateContact">updateContact</a>
+                - 담당자 정보 수정
+            </li>
+            <li>
+                <a href="HTTaxinvoiceService/QuitMember">quitMember</a>
+                - 팝빌회원 탈퇴
+            </li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>

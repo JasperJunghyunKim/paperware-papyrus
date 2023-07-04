@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>code (응답코드) : <%= result.code %></li>
+            <li>message (응답메시지) : <%= result.message %></li>
+            <li>total (총 검색결과 건수) : <%= result.total %></li>
+            <li>perPage (페이지당 검색개수) : <%= result.perPage %></li>
+            <li>pageNum (페이지번호) : <%= result.pageNum %></li>
+            <li>pageCount (페이지개수) : <%= result.pageCount %></li>
+            <li>lastScrapDT (최종 조회일시) : <%= result.lastScrapDT %></li>
+            <li>balance (현재잔액) : <%= result.balance %></li>
+
+            <%
+            result.list.forEach(function(info, index){
+            %>
+                <fieldset class="fieldset2">
+                    <legend> 거래내역정보 [<%= index + 1 %>]</legend>
+                    <ul>
+                        <li>tid (거래내역 아이디) : <%= info.tid %></li>
+                        <li>trdate (거래일자) : <%= info.trdate %></li>
+                        <li>trserial (거래일자별 일련번호) : <%= info.trserial %></li>
+                        <li>trdt (거래일시) : <%= info.trdt %></li>
+                        <li>accIn (입금액) : <%= info.accIn %></li>
+                        <li>accOut (출금액) : <%= info.accOut %></li>
+                        <li>balance (잔액) : <%= info.balance %></li>
+                        <li>remark1 (비고1) : <%= info.remark1 %></li>
+                        <li>remark2 (비고2) : <%= info.remark2 %></li>
+                        <li>remark3 (비고3) : <%= info.remark3 %></li>
+                        <li>memo (메모) : <%= info.memo %></li>
+                    </ul>
+                </fieldset>
+            <%
+            });
+            %>
+    </fieldset>
+</div>
+</body>
+
+</html>

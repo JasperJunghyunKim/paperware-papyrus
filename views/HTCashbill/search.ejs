@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>code (응답코드) : <%= result.code %></li>
+            <li>message (응답메시지) : <%= result.message %></li>
+            <li>total (총 검색결과 건수) : <%= result.total %></li>
+            <li>perPage (페이지당 검색개수) : <%= result.perPage %></li>
+            <li>pageNum (페이지번호) : <%= result.pageNum %></li>
+            <li>pageCount (페이지개수) : <%= result.pageCount %></li>
+
+            <%
+            result.list.forEach(function(info, index){
+            %>
+                <fieldset class="fieldset2">
+                    <legend> 현금영수증 정보 [<%= index + 1 %>]</legend>
+                    <ul>
+                        <li>ntsconfirmNum (국세청승인번호) : <%= info.ntsconfirmNum %></li>
+                        <li>tradeDate (거래일자) : <%= info.tradeDate %></li>
+                        <li>tradeDT (거래일시) : <%= info.tradeDT %></li>
+                        <li>tradeType (문서형태) : <%= info.tradeType %></li>
+                        <li>tradeUsage (거래구분) : <%= info.tradeUsage %></li>
+                        <li>totalAmount (거래금액) : <%= info.totalAmount %></li>
+                        <li>supplyCost (공급가액) : <%= info.supplyCost %></li>
+                        <li>tax (부가세) : <%= info.tax %></li>
+                        <li>serviceFee (봉사료) : <%= info.serviceFee %></li>
+                        <li>invoiceType (매입/매출) : <%= info.invoiceType %></li>
+                        <li>franchiseCorpNum (발행자 사업자번호) : <%= info.franchiseCorpNum %></li>
+                        <li>franchiseCorpName (발행자 상호) : <%= info.franchiseCorpName %></li>
+                        <li>franchiseCorpType (발행자 사업자유형) : <%= info.franchiseCorpType %></li>
+                        <li>identityNum (거래처 식별번호) : <%= info.identityNum %></li>
+                        <li>identityNumType (식별번호유형) : <%= info.identityNumType %></li>
+                        <li>customerName (고객명) : <%= info.customerName %></li>
+                        <li>cardOwnerName (카드소유자명) : <%= info.cardOwnerName %></li>
+                        <li>deductionType (공제유형) : <%= info.deductionType %></li>
+                    </ul>
+                </fieldset>
+            <%
+            });
+            %>
+    </fieldset>
+</div>
+</body>
+
+</html>

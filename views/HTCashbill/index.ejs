@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">팝빌 홈택스연동(현금영수증) Nodejs SDK - Express Example.</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스 현금영수증 매입/매출 내역 수집</legend>
+        <ul>
+            <li>
+                <a href="HTCashbillService/RequestJob">requestJob</a>
+                - 수집 요청
+            </li>
+            <li>
+                <a href="HTCashbillService/GetJobState">getJobState</a>
+                - 수집 상태 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/ListActiveJob">listActiveJob</a>
+                - 수집 상태 목록 확인
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스 현금영수증 매입/매출 내역 수집 결과 조회</legend>
+        <ul>
+            <li>
+                <a href="HTCashbillService/Search">search</a>
+                - 수집 결과 조회
+            </li>
+            <li>
+                <a href="HTCashbillService/Summary">summary</a>
+                - 수집 결과 요약정보 조회
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>홈택스연동 인증 관리</legend>
+        <ul>
+            <li>
+                <a href="HTCashbillService/GetCertificatePopUpURL">getCertificatePopUpURL</a>
+                - 홈택스연동 인증 관리 팝업 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetCertificateExpireDate">getCertificateExpireDate</a>
+                - 홈택스연동 공인인증서 만료일자 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/CheckCertValidation">checkCertValidation</a>
+                - 홈택스 공인인증서 로그인 테스트
+            </li>
+            <li>
+                <a href="HTCashbillService/RegistDeptUser">registDeptUser</a>
+                - 부서사용자 계정등록
+            </li>
+            <li>
+                <a href="HTCashbillService/CheckDeptUser">checkDeptUser</a>
+                - 부서사용자 등록정보 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/CheckLoginDeptUser">checkLoginDeptUser</a>
+                - 부서사용자 로그인 테스트
+            </li>
+            <li>
+                <a href="HTCashbillService/DeleteDeptUser">deleteDeptUser</a>
+                - 부서사용자 등록정보 삭제
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>포인트 관리 / 정액제 신청</legend>
+        <ul>
+            <li>
+                <a href="HTCashbillService/GetBalance">getBalance</a>
+                - 연동회원 잔여포인트 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/GetChargeURL">getChargeURL</a>
+                - 연동회원 포인트충전 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetPaymentURL">getPaymentURL</a>
+                - 연동회원 포인트 결제내역 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetUseHistoryURL">getUseHistoryURL</a>
+                - 연동회원 포인트 사용내역 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetPartnerBalance">getPartnerBalance</a>
+                - 파트너 잔여포인트 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/GetPartnerURL">getPartnerURL</a>
+                - 파트너 포인트충전 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetChargeInfo">getChargeInfo</a>
+                - 과금정보 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/GetFlatRatePopUpURL">getFlatRatePopUpURL</a>
+                - 정액제 서비스 신청 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/GetFlatRateState">getFlatRateState</a>
+                - 정액제 서비스 상태 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/PaymentRequest">paymentRequest</a>
+                연동회원 무통장 입금신청
+            </li>
+            <li>
+                <a href="HTCashbillService/GetSettleResult">getSettleResult</a>
+                연동회원 무통장 입금신청 정보확인
+            </li>
+            <li>
+                <a href="HTCashbillService/GetUseHistory">getUseHistory</a>
+                연동회원 포인트 사용내역 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/GetPaymentHistory">getPaymentHistory</a>
+                연동회원 포인트 결제내역 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/Refund">refund</a>
+                연동회원 포인트 환불신청
+            </li>
+            <li>
+                <a href="HTCashbillService/GetRefundHistory">getRefundHistory</a>
+                연동회원 포인트 환불내역 확인
+            </li>
+
+            <li>
+                <a href="HTCashbillService/GetRefundInfo">getRefundInfo</a>
+                환불 신청 상태 조회
+            </li>
+            <li>
+                <a href="HTCashbillService/GetRefundableBalance">getRefundableBalance</a>
+                환불 가능 포인트 조회
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>회원정보</legend>
+        <ul>
+            <li>
+                <a href="HTCashbillService/GetAccessURL">getAccessURL</a>
+                - 팝빌 로그인 URL
+            </li>
+            <li>
+                <a href="HTCashbillService/CheckIsMember">checkIsMember</a>
+                - 연동회원 가입여부 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/CheckID">checkID</a>
+                - 아이디 중복 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/JoinMember">joinMember</a>
+                - 연동회원 신규가입
+            </li>
+            <li>
+                <a href="HTCashbillService/GetCorpInfo">getCorpInfo</a>
+                - 회사정보 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/UpdateCorpInfo">updateCorpInfo</a>
+                - 회사정보 수정
+            </li>
+            <li>
+                <a href="HTCashbillService/RegistContact">registContact</a>
+                - 담당자 등록
+            </li>
+            <li>
+                <a href="HTCashbillService/GetContactInfo">getContactInfo</a>
+                - 담당자 정보 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/ListContact">listContact</a>
+                - 담당자 목록 확인
+            </li>
+            <li>
+                <a href="HTCashbillService/UpdateContact">updateContact</a>
+                - 담당자 정보 수정
+            </li>
+            <li>
+                <a href="HTCashbillService/QuitMember">quitMember</a>
+                - 팝빌회원 탈퇴
+            </li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>

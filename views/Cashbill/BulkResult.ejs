@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <ul>
+            <li>code (응답코드) : <%= result.code %></li>
+            <li>message (응답메시지) : <%= result.message %></li>
+            <li>submitID (제출아이디) : <%= result.submitID %></li>
+            <li>submitCount (현금영수증 접수 건수) : <%= result.submitCount %></li>
+            <li>successCount (현금영수증 발행 성공 건수) : <%= result.successCount %></li>
+            <li>failCount (현금영수증 발행 실패 건수) : <%= result.failCount %></li>
+            <li>txState (접수상태코드) : <%= result.txState %></li>
+            <li>txResultCode (접수 결과코드) : <%= result.txResultCode %></li>
+            <li>txStartDT (발행처리 시작일시) : <%= result.txStartDT %></li>
+            <li>txEndDT (발행처리 완료일시 ) : <%= result.txEndDT %></li>
+            <li>receiptDT (접수일시) : <%= result.receiptDT %></li>
+            <li>receiptID (접수아이디) : <%= result.receiptID %></li>
+        </ul>
+        <legend><%= path %></legend>
+        <%
+        result.issueResult.forEach(function(cashbillIssueResult, index){
+        %>
+            <fieldset class="fieldset2">
+                <legend>발행결과</legend>
+                <ul>
+                    <li>mgtKey (문서번호) : <%= cashbillIssueResult.mgtKey %></li>
+                    <li>code (응답코드) : <%= cashbillIssueResult.code %></li>
+                    <li>confirmNum (국세청승인번호) : <%= cashbillIssueResult.confirmNum %></li>
+                    <li>tradeDate (거래일자) : <%= cashbillIssueResult.tradeDate %></li>
+                    <li>issueDT (발행일시) : <%= cashbillIssueResult.issueDT %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(result, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li>docLogType (로그타입) : <%= result.docLogType %></li>
+                    <li>log (이력정보) : <%= result.log %></li>
+                    <li>procType (처리형태) : <%= result.procType %></li>
+                    <li>procMemo (처리메모) : <%= result.procMemo %></li>
+                    <li>regDT (등록일시) : <%= result.regDT %></li>
+                    <li>ip (아이피) : <%= result.ip %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

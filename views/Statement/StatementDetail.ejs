@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <fieldset class="fieldset2">
+            <ul>
+                <li> itemCode (명세서 코드) : <%= result.itemCode %></li>
+                <li> mgtKey (문서번호) : <%= result.mgtKey %></li>
+                <li> invoiceNum (팝빌 승인번호) : <%= result.invoiceNum %></li>
+                <li> formCode (맞춤양식 코드) : <%= result.formCode %></li>
+                <li> writeDate (작성일자) : <%= result.writeDate %></li>
+                <li> taxType (세금형태) : <%= result.taxType %></li>
+                <li> purposeType (영수/청구) : <%= result.purposeType %></li>
+                <li> serialNum (일련번호) : <%= result.serialNum %></li>
+                <li> taxTotal (세액 합계) : <%= result.taxTotal %></li>
+                <li> supplyCostTotal (공급가액 합계) : <%= result.supplyCostTotal %></li>
+                <li> totalAmount (합계금액) : <%= result.totalAmount %></li>
+                <li> remark1 (비고1) : <%= result.remark1 %></li>
+                <li> remark2 (비고2) : <%= result.remark2 %></li>
+                <li> remark3 (비고3) : <%= result.remark3 %></li>
+
+                <li> senderCorpNum (발신자 사업자번호) : <%= result.senderCorpNum %></li>
+                <li> senderTaxRegID (발신자 종사업장번호) : <%= result.senderTaxRegID %></li>
+                <li> senderCorpName (발신자 상호) : <%= result.senderCorpName %></li>
+                <li> senderCEOName (발신자 대표자 성명) : <%= result.senderCEOName %></li>
+                <li> senderAddr (발신자 주소) : <%= result.senderAddr %></li>
+                <li> senderBizType (발신자 업태) : <%= result.senderBizType %></li>
+                <li> senderBizClass (발신자 종목) : <%= result.senderBizClass %></li>
+                <li> senderContactName (발신자 성명) : <%= result.senderContactName %></li>
+                <li> senderDeptName (발신자 부서명) : <%= result.senderDeptName %></li>
+                <li> senderTEL (발신자 연락처) : <%= result.senderTEL %></li>
+                <li> senderHP (발신자 휴대전화) : <%= result.senderHP %></li>
+                <li> senderEmail (발신자 이메일주소) : <%= result.senderEmail %></li>
+                <li> senderFAX (발신자 팩스번호) : <%= result.senderFAX %></li>
+
+                <li> receiverCorpNum (수신자 사업자번호) : <%= result.receiverCorpNum %></li>
+                <li> receiverTaxRegID (수신자 종사업장번호) : <%= result.receiverTaxRegID %></li>
+                <li> receiverCorpName (수신자 상호) : <%= result.receiverCorpName %></li>
+                <li> receiverCEOName (수신자 대표자 성명) : <%= result.receiverCEOName %></li>
+                <li> receiverAddr (수신자 주소) : <%= result.receiverAddr %></li>
+                <li> receiverBizType (수신자 업태) : <%= result.receiverBizType %></li>
+                <li> receiverBizClass (수신자 종목) : <%= result.receiverBizClass %></li>
+                <li> receiverContactName (수신자 성명) : <%= result.receiverContactName %></li>
+                <li> receiverDeptName (수신자 부서명) : <%= result.receiverDeptName %></li>
+                <li> receiverTEL (수신자 연락처) : <%= result.receiverTEL %></li>
+                <li> receiverHP (수신자 휴대전화) : <%= result.receiverHP %></li>
+                <li> receiverEmail (수신자 이메일주소) : <%= result.receiverEmail %></li>
+                <li> receiverFAX (수신자 팩스번호) : <%= result.receiverFAX %></li>
+
+                <%
+                result.detailList.forEach(function(detailInfo, index){
+                %>
+                    <fieldset class="fieldset3">
+                        <legend>detailList [<%= index + 1 %>]</legend>
+                        <ul>
+                            <li>serialNum (일련번호) : <%= detailInfo.serialNum %></li>
+                            <li>purchaseDT (거래일자) : <%= detailInfo.purchaseDT %></li>
+                            <li>itemName (품목명) : <%= detailInfo.itemName %></li>
+                            <li>spec (규격) : <%= detailInfo.spec %></li>
+                            <li>qty (수량) : <%= detailInfo.qty %></li>
+                            <li>unitCost (단가) : <%= detailInfo.unitCost %></li>
+                            <li>supplyCost (공급가액) : <%= detailInfo.supplyCost %></li>
+                            <li>tax (세액) : <%= detailInfo.tax %></li>
+                            <li>remark (비고) : <%= detailInfo.remark %></li>
+                            <li>spare1 (비고) : <%= detailInfo.spare1 %></li>
+                            <li>spare2 (비고) : <%= detailInfo.spare2 %></li>
+                            <li>spare3 (비고) : <%= detailInfo.spare3 %></li>
+                            <li>spare4 (비고) : <%= detailInfo.spare4 %></li>
+                            <li>spare5 (비고) : <%= detailInfo.spare5 %></li>
+                        </ul>
+                    </fieldset>
+                <%
+                });
+                %>
+
+                <fieldset class="fieldset3">
+                    <legend>propertyBag</legend>
+                    <ul>
+                        <%
+                        for(key in result.propertyBag){
+                            var value = result.propertyBag[key];
+                        %>
+                        <li><%= key %> : <%= value %></li>
+                        <%
+                        }
+                        %>
+                    </ul>
+            </ul>
+        </fieldset>
+    </fieldset>
+</div>
+</body>
+
+</html>

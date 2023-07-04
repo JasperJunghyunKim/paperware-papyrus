@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <fieldset class="fieldset2">
+            <ul>
+                <li>mgtKey (문서번호) : <%= result.mgtKey %></li>
+                <li>confirmNum (국세청 승인번호) : <%= result.confirmNum %></li>
+                <li>orgConfirmNum (원본 현금영수증 국세청승인번호) : <%= result.orgConfirmNum %></li>
+                <li>orgTradeDate (원본 현금영수증 거래일자) : <%= result.orgTradeDate %></li>
+                <li>tradeDate (거래일자) : <%= result.tradeDate %></li>
+                <li>tradeDT (거래일시) : <%= result.tradeDT %></li>
+                <li>tradeType (문서형태) : <%= result.tradeType %></li>
+                <li>tradeUsage (거래구분) : <%= result.tradeUsage %></li>
+                <li>tradeOpt (거래유형) : <%= result.tradeOpt %></li>
+                <li>taxationType (과세형태) : <%= result.taxationType %></li>
+                <li>totalAmount (거래금액) : <%= result.totalAmount %></li>
+                <li>supplyCost (공급가액) : <%= result.supplyCost %></li>
+                <li>tax (세액) : <%= result.tax %></li>
+                <li>serviceFee (봉사료) : <%= result.serviceFee %></li>
+                <li>franchiseCorpNum (가맹점 사업자번호) : <%= result.franchiseCorpNum %></li>
+                <li>franchiseTaxRegID (가맹점 종사업장 식별번호) : <%= result.franchiseTaxRegID %></li>
+                <li>franchiseCorpName (가맹점 상호) : <%= result.franchiseCorpName %></li>
+                <li>franchiseCEOName (가맹점 대표자 성명) : <%= result.franchiseCEOName %></li>
+                <li>franchiseAddr (가맹점 주소) : <%= result.franchiseAddr %></li>
+                <li>franchiseTEL (가맹점 연락처) : <%= result.franchiseTEL %></li>
+                <li>identityNum (식별번호) : <%= result.identityNum %></li>
+                <li>customerName (주문자명) : <%= result.customerName %></li>
+                <li>itemName (주문상품명) : <%= result.itemName %></li>
+                <li>orderNumber (주문번호) : <%= result.orderNumber %></li>
+                <li>email (이메일) : <%= result.email %></li>
+                <li>hp (휴대폰) : <%= result.hp %></li>
+                <li>smssendYN (SMS 전송여부) : <%= result.smssendYN %></li>
+                <li>cancelType (취소사유) : <%= result.cancelType %></li>
+            </ul>
+        </fieldset>
+    </fieldset>
+</div>
+</body>
+
+</html>

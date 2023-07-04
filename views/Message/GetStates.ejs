@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(result, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li> rNum (접수번호) : <%= result.rNum %></li>
+                    <li> sn (일련번호) : <%= result.sn %></li>
+                    <li> stat (전송 상태코드) : <%= result.stat %></li>
+                    <li> rlt (전송 결과코드) : <%= result.rlt %></li>
+                    <li> sDT (전송일시) : <%= result.sDT %></li>
+                    <li> rDT (결과코드 수신일시) : <%= result.rDT %></li>
+                    <li> net (전송 이동통신사명) : <%= result.net %></li>
+                    <li> srt (구 전송결과 코드) : <%= result.srt %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

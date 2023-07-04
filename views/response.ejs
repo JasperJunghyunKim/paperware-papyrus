@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>code (응답코드) : <%= code %></li>
+            <li>message (응답메시지) : <%= message %></li>
+            <% if (typeof ntsConfirmNum != "undefined") { %>
+                <li>ntsConfirmNum (국세청승인번호) : <%= ntsConfirmNum %></li>
+            <% } %>
+            <% if (typeof receiptID != "undefined") { %>
+                <li>receiptID (접수아이디 ) : <%= receiptID %></li>
+            <% } %>
+        </ul>
+    </fieldset>
+</div>
+</body>
+</html>

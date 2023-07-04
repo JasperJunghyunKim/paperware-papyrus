@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <fieldset class="fieldset2">
+            <legend> 알림톡/친구톡 전송내용</legend>
+            <ul>
+                <li>contentType (카카오톡 유형) : <%= result.contentType %></li>
+                <li>templateCode (템플릿 코드) : <%= result.templateCode %></li>
+                <li>plusFriendID (카카오톡 채널 아이디) : <%= result.plusFriendID %></li>
+                <li>sendNum (발신번호) : <%= result.sendNum %></li>
+                <li>altSubject ([동보] 대체문자 제목) : <%= result.altSubject %></li>
+                <li>altContent ([동보] 대체문자 내용) : <%= result.altContent %></li>
+                <li>altSendType (대체문자 유형 : <%= result.altSendType %></li>
+                <li>reserveDT (예약일시) : <%= result.reserveDT %></li>
+                <li>adsYN (광고전송 여부) : <%= result.adsYN %></li>
+                <li>imageURL (친구톡 이미지 URL) : <%= result.imageURL %></li>
+                <li>sendCnt (전송건수) : <%= result.sendCnt %></li>
+                <li>successCnt (성공건수) : <%= result.successCnt %></li>
+                <li>failCnt (실패건수) : <%= result.failCnt %></li>
+                <li>altCnt (대체문자 건수) : <%= result.altCnt %></li>
+                <li>cancelCnt (취소건수) : <%= result.cancelCnt %></li>
+
+                <% if (result.btns) { %>
+                    <% result.btns.forEach(function (btn, index) { %>
+                        <fieldset class="fieldset3">
+                            <legend> btns ([배열]버튼 목록) [ <%= index + 1 %> / <%= result.btns.length %> ]</legend>
+                            <ul>
+                                <li>n (버튼명) : <%= btn.n %></li>
+                                <li>t (버튼유형) : <%= btn.t %></li>
+                                <li>u1 ([앱링크] Android [웹링크] Mobile) : <%= btn.u1 %></li>
+                                <li>u2 ([앱링크] IOS [웹링크] PC) : <%= btn.u2 %></li>
+                            </ul>
+                        </fieldset>
+                <% });} %>
+
+                <% if (result.msgs) { %>
+                    <% result.msgs.forEach(function (msg, index) { %>
+                        <fieldset class="fieldset3">
+                            <legend> msgs (전송결과 정보 배열) [ <%= index + 1 %> / <%= result.msgs.length %> ]</legend>
+                            <ul>
+                                <li>state (전송상태 코드) : <%= msg.state %></li>
+                                <li>sendDT (전송일시) : <%= msg.sendDT %></li>
+                                <li>receiveNum (수신번호) : <%= msg.receiveNum %></li>
+                                <li>receiveName (수신자명) : <%= msg.receiveName %></li>
+                                <li>content (알림톡/친구톡 내용) : <%= msg.content %></li>
+                                <li>result (알림톡/친구톡 전송결과 코드) : <%= msg.result %></li>
+                                <li>resultDT (알림톡/친구톡 전송결과 수신일시) : <%= msg.resultDT %></li>
+                                <li>altSubject (대체문자 제목) : <%= msg.altSubject %></li>
+                                <li>altContent (대체문자 내용) : <%= msg.altContent %></li>
+                                <li>altContentType (대체문자 전송유형) : <%= msg.altContentType %></li>
+                                <li>altSendDT (대체문자 전송일시) : <%= msg.altSendDT %></li>
+                                <li>altResult (대체문자 전송결과 코드) : <%= msg.altResult %></li>
+                                <li>altResultDT (대체문자 전송결과 수신일시) : <%= msg.altResultDT %></li>
+                                <li>receiptNum (접수번호) : <%= msg.receiptNum %></li>
+                                <li>requestNum (요청번호) : <%= msg.requestNum %></li>
+                                <li>interOPRefKey (파트너 지정키) : <%= msg.interOPRefKey %></li>
+                            </ul>
+                        </fieldset>
+                <% });} %>
+            </ul>
+        </fieldset>
+    </fieldset>
+</div>
+</body>
+
+</html>

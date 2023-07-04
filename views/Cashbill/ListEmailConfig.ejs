@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <fieldset class="fieldset2">
+            <ul>
+                <%
+                result.forEach(function(emailConfig, index){
+                %>
+                    <% if(emailConfig.emailType === "CSH_ISSUE") { %>
+                        <li><%= emailConfig.emailType %> (고객에게 현금영수증이 발행 되었음을 알려주는 메일 전송 여부) : <%= emailConfig.sendYN %></li>
+                    <% } %>
+                    <% if(emailConfig.emailType === "CSH_CANCEL") { %>
+                        <li><%= emailConfig.emailType %> (고객에게 현금영수증이 발행취소 되었음을 알려주는 메일 전송 여부) : <%= emailConfig.sendYN %></li>
+                    <% } %>
+                <%
+                });
+                %>
+            </ul>
+        </fieldset>
+    </fieldset>
+</div>
+</body>
+
+</html>

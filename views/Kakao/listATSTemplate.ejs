@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <% result.forEach(function(template, index){ %>
+            <fieldset class="fieldset2">
+                <legend> 템플릿목록 [ <%= index + 1 %> / <%= result.length %> ]</legend>
+                <ul>
+                    <li> templateCode (템플릿 코드) : <%= template.templateCode %></li>
+                    <li> templateName (템플릿 제목) : <%= template.templateName %></li>
+                    <li> template (템플릿 내용) : <%= template.template %></li>
+                    <li> plusFriendID (템플릿 카카오톡 채널 아이디) : <%= template.plusFriendID %></li>
+                    <li> ads (광고 메시지) : <%= template.ads %></li>
+                    <li> appendix (부가 메시지) : <%= template.appendix %></li>
+                    <li> secureYN (보안템플릿 여부) : <%= template.secureYN %></li>
+                    <li> state (템플릿 상태) : <%= template.state %></li>
+                    <li> stateDT (템플릿 상태 일시) : <%= template.stateDT %></li>
+
+                    <% if (template.btns) { %>
+                        <% template.btns.forEach(function (btn, index) { %>
+                            <fieldset class="fieldset3">
+                                <legend> btns (버튼목록) [ <%= index + 1 %> / <%= template.btns.length %> ]</legend>
+                                <ul>
+                                    <li> n (버튼명) : <%= btn.n %> </li>
+                                    <li> t (버튼유형) <%= btn.t %> </li>
+                                    <li> u1 ([앱링크] Android [웹링크] Mobile) : <%= btn.u1 %></li>
+                                    <li> u2 ([앱링크] IOS [웹링크] PC) : <%= btn.u2 %></li>
+                                </ul>
+                            </fieldset>
+                    <% });} %>
+
+                </ul>
+            </fieldset>
+        <% }); %>
+    </fieldset>
+</div>
+</body>
+
+</html>

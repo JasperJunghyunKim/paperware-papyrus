@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <ul>
+            <li>code (응답코드) : <%= result.code %></li>
+            <li>message (응답메시지) : <%= result.message %></li>
+            <li>total (총 검색건수) : <%= result.total %></li>
+            <li>perPage (페이지당 검색개수) : <%= result.perPage %></li>
+            <li>pageNum (페이지 번호) : <%= result.pageNum %></li>
+            <li>pageCount (페이지 개수) : <%= result.pageCount %></li>
+        </ul>
+        <legend><%= path %></legend>
+        <%
+        result.list.forEach(function(cashbillInfo, index){
+        %>
+            <fieldset class="fieldset2">
+                <legend>조회결과 [ <%= ((result.pageNum - 1) * result.perPage) + (index + 1) %> / <%= result.total %>]
+                </legend>
+                <ul>
+                    <li> itemKey (팝빌번호) : <%= cashbillInfo.itemKey %></li>
+                    <li> confirmNum (국세청 승인번호) : <%= cashbillInfo.confirmNum %></li>
+                    <li> mgtKey (문서번호) : <%= cashbillInfo.mgtKey %></li>
+                    <li> tradeDate (거래일자) : <%= cashbillInfo.tradeDate %></li>
+                    <li> tradeDT (거래일시) : <%= cashbillInfo.tradeDT %></li>
+                    <li> issueDT (발행일시) : <%= cashbillInfo.issueDT %></li>
+                    <li> regDT (등록일시) : <%= cashbillInfo.regDT %></li>
+                    <li> taxationType (과세형태) : <%= cashbillInfo.taxationType %></li>
+                    <li> totalAmount (거래금액) : <%= cashbillInfo.totalAmount %></li>
+                    <li> tradeUsage (거래구분) : <%= cashbillInfo.tradeUsage %></li>
+                    <li> tradeOpt (거래유형) : <%= cashbillInfo.tradeOpt %></li>
+                    <li> tradeType (현금영수증 형태) : <%= cashbillInfo.tradeType %></li>
+                    <li> stateCode (상태코드) : <%= cashbillInfo.stateCode %></li>
+                    <li> stateDT (상태변경일시) : <%= cashbillInfo.stateDT %></li>
+                    <li> identityNum (거래처 식별번호) : <%= cashbillInfo.identityNum %></li>
+                    <li> itemName (상품명) : <%= cashbillInfo.itemName %></li>
+                    <li> customerName (고객명) : <%= cashbillInfo.customerName %></li>
+                    <li> ntssendDT (국세청 전송일시) : <%= cashbillInfo.ntssendDT %></li>
+                    <li> ntsresultDT (국세청 처리결과 수신일시) : <%= cashbillInfo.ntsresultDT %></li>
+                    <li> ntsresultCode (국세청 처리결과 상태코드) : <%= cashbillInfo.ntsresultCode %></li>
+                    <li> ntsresultMessage (국세청 처리결과 메시지) : <%= cashbillInfo.ntsresultMessage %></li>
+                    <li> orgConfirmNum (원본 현금영수증 국세청승인번호) : <%= cashbillInfo.orgConfirmNum %></li>
+                    <li> orgTradeDate (원본 현금영수증 거래일자) : <%= cashbillInfo.orgTradeDate %></li>
+                    <li> printYN (인쇄여부) : <%= cashbillInfo.printYN %></li>
+                    <li> interOPYN (연동문서 여부) : <%= cashbillInfo.interOPYN %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>
