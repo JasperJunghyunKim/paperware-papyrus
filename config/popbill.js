@@ -1,3 +1,4 @@
+require('dotenv').config();
 /**
  * 팝빌 API Node.js SDK Example
  *
@@ -17,22 +18,22 @@ var popbill = require("popbill");
  */
 popbill.config({
     // 링크아이디
-    LinkID: "TESTER",
+    LinkID: process.env.LINK_ID || "TESTER",
 
     // 비밀키
-    SecretKey: "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=",
+    SecretKey: process.env.SECRET_KEY || "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=",
 
     // 연동환경 설정값, 개발용(true), 상업용(false)
-    IsTest: true,
+    IsTest: process.env.IS_TEST,
 
     // 인증토큰 IP제한기능 사용여부, 권장(true)
-    IPRestrictOnOff: true,
+    IPRestrictOnOff: process.env.IP_RESTRICT_ON_OFF,
 
     // 팝빌 API 서비스 고정 IP 사용여부, 기본값(false)
-    UseStaticIP: false,
+    UseStaticIP: process.env.USE_STATIC_IP,
 
     // 로컬서버 시간 사용 여부 true(기본값) - 사용, false(미사용)
-    UseLocalTimeYN: true,
+    UseLocalTimeYN: process.env.USE_LOCAL_TIME_YN,
 
     // function 타입이 아닌 error 를 파라미터로 넣고 API 요청에 대한 응답이 실패할 경우 동작하게 되는 handler.
     defaultErrorHandler: function (Error) {

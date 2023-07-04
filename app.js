@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
@@ -10,17 +11,17 @@ var popbill = require("./config/popbill.js");
 
 // Router handler
 var taxinvoice = require("./routes/taxinvoice");
-var statement = require("./routes/statement");
-var cashbill = require("./routes/cashbill");
-var message = require("./routes/message");
-var kakao = require("./routes/kakao");
-var fax = require("./routes/fax");
-var htTaxinvoice = require("./routes/httaxinvoice");
-var htCashbill = require("./routes/htcashbill");
-var closedown = require("./routes/closedown");
-var bizInfoCheck = require("./routes/bizinfocheck");
-var easyfinbank = require("./routes/easyfinbank");
-var accountCheck = require("./routes/accountCheck");
+// var statement = require("./routes/statement");
+// var cashbill = require("./routes/cashbill");
+// var message = require("./routes/message");
+// var kakao = require("./routes/kakao");
+// var fax = require("./routes/fax");
+// var htTaxinvoice = require("./routes/httaxinvoice");
+// var htCashbill = require("./routes/htcashbill");
+// var closedown = require("./routes/closedown");
+// var bizInfoCheck = require("./routes/bizinfocheck");
+// var easyfinbank = require("./routes/easyfinbank");
+// var accountCheck = require("./routes/accountCheck");
 
 var app = express();
 
@@ -40,17 +41,17 @@ app.use("/", routes); // Direct ./routes/index.js
 
 //app.use(route URI Schema, route handler)
 app.use("/TaxinvoiceService", taxinvoice);
-app.use("/StatementService", statement);
-app.use("/CashbillService", cashbill);
-app.use("/MessageService", message);
-app.use("/KakaoService", kakao);
-app.use("/FaxService", fax);
-app.use("/HTTaxinvoiceService", htTaxinvoice);
-app.use("/HTCashbillService", htCashbill);
-app.use("/ClosedownService", closedown);
-app.use("/BizInfoCheckService", bizInfoCheck);
-app.use("/EasyFinBankService", easyfinbank);
-app.use("/AccountCheckService", accountCheck);
+// app.use("/StatementService", statement);
+// app.use("/CashbillService", cashbill);
+// app.use("/MessageService", message);
+// app.use("/KakaoService", kakao);
+// app.use("/FaxService", fax);
+// app.use("/HTTaxinvoiceService", htTaxinvoice);
+// app.use("/HTCashbillService", htCashbill);
+// app.use("/ClosedownService", closedown);
+// app.use("/BizInfoCheckService", bizInfoCheck);
+// app.use("/EasyFinBankService", easyfinbank);
+// app.use("/AccountCheckService", accountCheck);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -83,4 +84,13 @@ app.use(function (err, req, res, next) {
     });
 });
 
-module.exports = app;
+app.listen(process.env.PORT, (err) => {
+    if (err) {
+        console.log(err)
+        process.exit(1);
+    } else {
+        console.log(`starting server on http://localhost:${process.env.PORT}`);
+    }
+});
+
+// module.exports = app;

@@ -177,4 +177,7 @@ dist
 # and uncomment the following lines
 # .pnp.*
 
+# Environment
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/node,yarn,visualstudiocode
