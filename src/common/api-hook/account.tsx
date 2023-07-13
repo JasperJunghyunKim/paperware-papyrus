@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API_HOST } from "../const";
+import { API_HOST } from "@/common/const";
 
 export function useSignIn() {
   return useMutation(async (data: { username: string; password: string }) => {
