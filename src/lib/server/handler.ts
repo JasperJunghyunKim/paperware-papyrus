@@ -15,7 +15,7 @@ export const handleApi =
       if (e instanceof z.ZodError) {
         return new NextResponse(
           JSON.stringify({
-            message: "잘못된 데이터를 포함한 요청입니다.",
+            message: "요청에 유효하지 않은 데이터가 포함되었습니다.",
             data: e.issues,
           }),
           {

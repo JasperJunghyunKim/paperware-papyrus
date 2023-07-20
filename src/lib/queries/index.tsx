@@ -1,3 +1,4 @@
+import * as Company from "./company";
 import * as Metadata from "./metadata";
 
-export { Metadata };
+export { Company, Metadata };

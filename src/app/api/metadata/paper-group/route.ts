@@ -6,8 +6,8 @@ import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 const getQuerySchema = z.object({
-  skip: z.coerce.number().min(0),
-  take: z.coerce.number().min(1).max(100),
+  skip: z.optional(z.coerce.number().min(0)),
+  take: z.optional(z.coerce.number().min(1)),
   name: z.optional(z.string()),
 });
 export const GET = handleApi<GetPaperGroupListResponse>(async (req) => {

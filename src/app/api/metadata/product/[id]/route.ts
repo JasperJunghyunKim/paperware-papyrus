@@ -2,19 +2,15 @@ import prisma from "@/lib/prisma";
 import { NotFoundError } from "@/lib/server/error";
 import { handleApi } from "@/lib/server/handler";
 import { z } from "zod";
-import { Manufacturer } from "../route";
+import { Product } from "../route";
 
 const paramsSchema = z.object({
   id: z.string().transform((v) => parseInt(v)),
 });
 
-const putBodySchema = z.object({
-  name: z.string().min(1).max(20),
-});
-
 export const GET = handleApi(async (req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
-  const data = await prisma.manufacturer.findUnique({
+  const data = await prisma.product.findUnique({
     where: { id: params.id },
   });
 
@@ -23,21 +19,34 @@ export const GET = handleApi(async (req, context) => {
   return data;
 });
 
+const putBodySchema = z.object({
+  paperDomainId: z.number(),
+  paperGroupId: z.number(),
+  paperTypeId: z.number(),
+  manufacturerId: z.number(),
+});
+
 export const PUT = handleApi(async (req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
   const data = await putBodySchema.parseAsync(await req.json());
 
-  return await prisma.manufacturer.update({
+  return await prisma.product.update({
     where: {
       id: params.id,
     },
     data: {
-      name: data.name,
+      paperDomainId: data.paperDomainId,
+      paperGroupId: data.paperGroupId,
+      paperTypeId: data.paperTypeId,
+      manufacturerId: data.manufacturerId,
     },
   });
 });
 
-export type GetManufacturerItemResponse = Manufacturer;
-export type UpdateManufacturerBody = {
-  name: string;
+export type GetProductItemResponse = Product;
+export type UpdateProductBody = {
+  paperDomainId: number;
+  paperGroupId: number;
+  paperTypeId: number;
+  manufacturerId: number;
 };

@@ -37,7 +37,7 @@ export default function Component(props: PropsWithChildren<Props>) {
             )}
             <div className="flex-1">{props.title}</div>
           </div>
-          <div className="flex-1">{props.children}</div>
+          <div className="flex-1 h-0">{props.children}</div>
           {props.footer && (
             <div className="flex-initial border-t border-gray-200">
               {props.footer}

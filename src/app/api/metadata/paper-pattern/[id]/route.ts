@@ -13,7 +13,6 @@ const putBodySchema = z.object({
 });
 
 export const GET = handleApi(async (req, context) => {
-  console.log(context);
   const params = await paramsSchema.parseAsync(context.params);
   const data = await prisma.paperPattern.findUnique({
     where: { id: params.id },
