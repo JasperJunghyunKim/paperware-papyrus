@@ -5,7 +5,7 @@ export interface SignInBody {
   pw: string;
 }
 
-export async function POST(req: Request, _: { params: {} }) {
+export async function POST(req: Request, _context: { params: any }) {
   const body = await req.json();
   const token = "testtoken";
 

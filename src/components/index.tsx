@@ -1,3 +1,4 @@
+import * as Control from "./control";
 import * as Layout from "./layout";
 
-export { Layout };
+export { Control, Layout };

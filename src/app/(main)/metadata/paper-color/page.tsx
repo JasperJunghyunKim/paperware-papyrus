@@ -13,7 +13,7 @@ export default function Component() {
   const [take, setTake] = useState(10);
   const [search, setSearch] = useState<Record<string, string>>({});
 
-  const data = Queries.Metadata.useGetPaperDomainList({
+  const data = Queries.Metadata.useGetPaperColorList({
     skip,
     take,
     ...search,
@@ -24,7 +24,7 @@ export default function Component() {
 
   return (
     <Page
-      title={`제품 유형 (${data.data?.total ?? ""})`}
+      title={`색상 (${data.data?.total ?? ""})`}
       containerClassName="flex-1 flex flex-col gap-y-4"
     >
       <div className="flex-initial flex px-4 gap-x-2">
@@ -101,7 +101,7 @@ export default function Component() {
 function PopupCreate(props: { open: boolean; onClose: (unit: false) => void }) {
   const [form] = useForm();
 
-  const api = Queries.Metadata.useCreatePaperDomain();
+  const api = Queries.Metadata.useCreatePaperColor();
   const action = useCallback(async () => {
     const values = await form.validateFields();
     await api.mutateAsync({ data: values });
@@ -154,11 +154,11 @@ function PopupUpdate(props: {
 }) {
   const [form] = useForm();
 
-  const data = Queries.Metadata.useGetPaperDomainItem({
+  const data = Queries.Metadata.useGetPaperColorItem({
     id: props.open ? props.open : undefined,
   });
 
-  const api = Queries.Metadata.useUpdatePaperDomain();
+  const api = Queries.Metadata.useUpdatePaperColor();
   const action = useCallback(async () => {
     if (!props.open) return;
 

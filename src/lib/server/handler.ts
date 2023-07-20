@@ -1,0 +1,37 @@
+import { z } from "zod";
+import { NextResponse } from "next/server";
+import { NotFoundError } from "./error";
+
+interface Context {
+  params: any;
+}
+
+export const handleApi =
+  <T>(fn: (req: Request, context: Context) => Promise<T>) =>
+  async (req: Request, context: Context) => {
+    try {
+      return new NextResponse(JSON.stringify(await fn(req, context)));
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        return new NextResponse(
+          JSON.stringify({
+            message: "잘못된 데이터를 포함한 요청입니다.",
+            data: e.issues,
+          }),
+          {
+            status: 400,
+          }
+        );
+      } else if (e instanceof NotFoundError) {
+        return new NextResponse(
+          JSON.stringify({
+            message: "존재하지 않는 데이터입니다.",
+            data: e.message,
+          }),
+          {
+            status: 404,
+          }
+        );
+      }
+    }
+  };

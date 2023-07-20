@@ -16,22 +16,17 @@ interface MenuDef {
 const menus: MenuDef[] = [
   {
     icon: <TbBox />,
-    name: "메타데이터",
+    name: "메타데이터 관리",
     path: "/metadata",
     subs: [
       { name: "제품 유형", path: "/paper-domain" },
       { name: "지군", path: "/paper-group" },
       { name: "지종", path: "/paper-type" },
       { name: "제지사", path: "/manufacturer" },
-    ],
-  },
-  {
-    icon: <TbBox />,
-    name: "테스트",
-    path: "/test",
-    subs: [
-      { name: "테스트1", path: "/hello" },
-      { name: "테스트2", path: "/world" },
+      { name: "색군", path: "/paper-color-group" },
+      { name: "색상", path: "/paper-color" },
+      { name: "무늬", path: "/paper-pattern" },
+      { name: "인증", path: "/paper-cert" },
     ],
   },
 ];
@@ -49,8 +44,8 @@ export default function Component(props: { className?: string }) {
 
   return (
     <aside className={classNames("bg-white flex flex-col", props.className)}>
-      <div className="flex-initial basis-16 flex flex-col justify-center items-center text-2xl font-bold text-gray-700">
-        PAPERWARE
+      <div className="flex-initial basis-24 flex flex-col justify-center items-center text-2xl font-bold text-gray-700">
+        PAPERWARE admin
       </div>
       <div className="flex-initial flex flex-col">
         {menuList.map((item) =>
@@ -93,17 +88,18 @@ function Menu(props: {
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const checkActive = (path: string) => pathname.startsWith(path);
+  const checkActive = (path: string) =>
+    props.sub ? pathname === path : pathname.startsWith(path);
 
   return (
     <div
       className={classNames(
-        "flex-initial basis-10 flex items-center gap-x-2 cursor-pointer text-sm",
+        "flex-initial basis-12 flex items-center gap-x-2 cursor-pointer text-sm select-none",
         {
-          "text-gray-800/80 hover:text-gray-800": !checkActive(props.path),
-          "bg-blue-500 text-white font-bold":
+          "text-gray-500 hover:text-gray-800": !checkActive(props.path),
+          "bg-black text-white font-bold":
             !props.sub && checkActive(props.path),
-          "text-blue-500": props.sub && checkActive(props.path),
+          "text-black font-bold": props.sub && checkActive(props.path),
           "px-4": !props.sub,
           "pl-8 pr-4": props.sub,
         }

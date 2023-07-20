@@ -5,6 +5,20 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    {
+      pattern: /bg-.*/,
+      variants: ['hover', 'focus', 'active', 'disabled'],
+    },
+    {
+      pattern: /text-.*/,
+      variants: ['hover', 'focus', 'active', 'disabled'],
+    },
+    {
+      pattern: /border-.*/,
+      variants: ['hover', 'focus', 'active', 'disabled'],
+    },
+  ],
   theme: {
     extend: {
       backgroundImage: {

@@ -1,15 +1,25 @@
+import classNames from "classnames";
 import { PropsWithChildren } from "react";
 
 interface PageProps {
   title: string;
+  wrapperClassName?: string;
+  containerClassName?: string;
 }
 export default function Component(props: PropsWithChildren<PageProps>) {
   return (
-    <div className="flex-initial flex flex-col w-0">
-      <div className="flex-initial basis-12 flex items-center text-lg font-bold px-4">
+    <div
+      className={classNames(
+        "flex flex-col",
+        props.wrapperClassName ?? "flex-initial"
+      )}
+    >
+      <div className="flex-initial flex items-center text-xl font-bold p-4">
         {props.title}
       </div>
-      <div className="flex-initial flex">{props.children}</div>
+      <div className={props.containerClassName ?? "flex-initial"}>
+        {props.children}
+      </div>
     </div>
   );
 }
