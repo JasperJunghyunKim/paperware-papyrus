@@ -96,7 +96,9 @@ export default function Component() {
             title: "단종 여부",
             key: "isDiscontinued",
             dataIndex: "isDiscontinued",
-            render: (value) => <div className="px-2">{value}</div>,
+            render: (value) => (
+              <div className="px-2">{value ? "예" : "아니오"}</div>
+            ),
           },
           {
             title: "드롭다운 표시 여부",
@@ -293,7 +295,13 @@ function PopupUpdate(props: {
 
   useEffect(() => {
     if (data.data) {
-      form.setFieldsValue(data.data);
+      form.setFieldsValue({
+        paperDomainId: data.data.paperDomain.id,
+        paperGroupId: data.data.paperGroup.id,
+        paperTypeId: data.data.paperType.id,
+        manufacturerId: data.data.manufacturer.id,
+        isDiscontinued: data.data.isDiscontinued,
+      });
     } else {
       form.resetFields();
     }
@@ -370,23 +378,12 @@ function PopupUpdate(props: {
               { value: true, label: "예" },
               { value: false, label: "아니오" },
             ]}
-          />
-        </Form.Item>
-        <Form.Item
-          name="isDeleted"
-          label="드롭다운 표시 여부"
-          rules={[
-            {
-              required: true,
-              message: "드롭다운 표시 여부를 선택해주세요.",
-            },
-          ]}
-        >
-          <Radio.Group
-            options={[
-              { value: true, label: "예" },
-              { value: false, label: "아니오" },
-            ]}
+            disabled={
+              !data.data?.paperDomain.isDiscontinued ||
+              !data.data.paperGroup.isDiscontinued ||
+              !data.data.paperType.isDiscontinued ||
+              !data.data.manufacturer.isDiscontinued
+            }
           />
         </Form.Item>
       </Form>

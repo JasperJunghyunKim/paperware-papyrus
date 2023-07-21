@@ -29,17 +29,18 @@ export const GET = handleApi<GetProductListResponse>(async (req) => {
       select: {
         id: true,
         paperDomain: {
-          select: { id: true, name: true },
+          select: { id: true, name: true, isDiscontinued: true },
         },
         paperGroup: {
-          select: { id: true, name: true },
+          select: { id: true, name: true, isDiscontinued: true },
         },
         paperType: {
-          select: { id: true, name: true },
+          select: { id: true, name: true, isDiscontinued: true },
         },
         manufacturer: {
-          select: { id: true, name: true },
+          select: { id: true, name: true, isDiscontinued: true },
         },
+        isDiscontinued: true,
       },
       where,
       skip: query.skip,
@@ -71,10 +72,11 @@ export const POST = handleApi(async (req) => {
 
 export type Product = {
   id: number;
-  paperDomain: { id: number; name: string };
-  paperGroup: { id: number; name: string };
-  paperType: { id: number; name: string };
-  manufacturer: { id: number; name: string };
+  paperDomain: { id: number; name: string; isDiscontinued: boolean };
+  paperGroup: { id: number; name: string; isDiscontinued: boolean };
+  paperType: { id: number; name: string; isDiscontinued: boolean };
+  manufacturer: { id: number; name: string; isDiscontinued: boolean };
+  isDiscontinued: boolean;
 };
 export type CreateProductBody = {
   paperDomainId: number;

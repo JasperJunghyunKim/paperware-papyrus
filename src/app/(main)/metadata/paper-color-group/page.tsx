@@ -74,7 +74,9 @@ export default function Component() {
             title: "단종 여부",
             key: "isDiscontinued",
             dataIndex: "isDiscontinued",
-            render: (value) => <div className="px-2">{value}</div>,
+            render: (value) => (
+              <div className="px-2">{value ? "예" : "아니오"}</div>
+            ),
           },
           {
             title: "드롭다운 표시 여부",
@@ -205,23 +207,6 @@ function PopupUpdate(props: {
             {
               required: true,
               message: "단종 여부를 선택해주세요.",
-            },
-          ]}
-        >
-          <Radio.Group
-            options={[
-              { value: true, label: "예" },
-              { value: false, label: "아니오" },
-            ]}
-          />
-        </Form.Item>
-        <Form.Item
-          name="isDeleted"
-          label="드롭다운 표시 여부"
-          rules={[
-            {
-              required: true,
-              message: "드롭다운 표시 여부를 선택해주세요.",
             },
           ]}
         >

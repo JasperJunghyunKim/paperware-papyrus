@@ -10,11 +10,17 @@ const paramsSchema = z.object({
 
 const putBodySchema = z.object({
   name: z.string().min(1).max(20),
+  isDiscontinued: z.boolean(),
 });
 
 export const GET = handleApi(async (req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
   const data = await prisma.paperColor.findUnique({
+    select: {
+      id: true,
+      name: true,
+      isDiscontinued: true,
+    },
     where: { id: params.id },
   });
 
@@ -33,6 +39,7 @@ export const PUT = handleApi(async (req, context) => {
     },
     data: {
       name: data.name,
+      isDiscontinued: data.isDiscontinued,
     },
   });
 });
@@ -40,4 +47,5 @@ export const PUT = handleApi(async (req, context) => {
 export type GetPaperColorItemResponse = PaperColor;
 export type UpdatePaperColorBody = {
   name: string;
+  isDiscontinued: boolean;
 };

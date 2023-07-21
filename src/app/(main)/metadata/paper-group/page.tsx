@@ -215,23 +215,6 @@ function PopupUpdate(props: {
             ]}
           />
         </Form.Item>
-        <Form.Item
-          name="isDeleted"
-          label="드롭다운 표시 여부"
-          rules={[
-            {
-              required: true,
-              message: "드롭다운 표시 여부를 선택해주세요.",
-            },
-          ]}
-        >
-          <Radio.Group
-            options={[
-              { value: true, label: "예" },
-              { value: false, label: "아니오" },
-            ]}
-          />
-        </Form.Item>
       </Form>
     </Popup>
   );

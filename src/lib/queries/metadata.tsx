@@ -41,7 +41,10 @@ import {
   CreatePaperTypeBody,
   GetPaperTypeListQuery,
 } from "@/app/api/metadata/paper-type/route";
-import { UpdateProductBody } from "@/app/api/metadata/product/[id]/route";
+import {
+  GetProductItemResponse,
+  UpdateProductBody,
+} from "@/app/api/metadata/product/[id]/route";
 import {
   CreateProductBody,
   GetProductListQuery,
@@ -64,11 +67,13 @@ namespace Template {
           .then((res) => res.data)
     );
 
-  export const useGetItemQuery = (name: string, id?: number) =>
+  export const useGetItemQuery = <T,>(name: string, id?: number) =>
     useQuery(
       ["metadata", name, "item", id],
       async () =>
-        await axios.get(`/api/metadata/${name}/${id}`).then((res) => res.data),
+        await axios
+          .get<T>(`/api/metadata/${name}/${id}`)
+          .then((res) => res.data),
       {
         enabled: id !== undefined,
       }
@@ -182,7 +187,7 @@ export const useUpdatePaperCert = () =>
 export const useGetProductList = (query: GetProductListQuery) =>
   Template.useGetListQuery("product", query ?? {});
 export const useGetProductItem = (params: { id?: number }) =>
-  Template.useGetItemQuery("product", params.id);
+  Template.useGetItemQuery<GetProductItemResponse>("product", params.id);
 export const useCreateProduct = () =>
   Template.useCreateMutation<CreateProductBody>("product");
 export const useUpdateProduct = () =>

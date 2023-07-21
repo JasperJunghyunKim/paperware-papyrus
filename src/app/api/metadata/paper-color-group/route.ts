@@ -25,6 +25,7 @@ export const GET = handleApi<GetPaperColorGroupListResponse>(async (req) => {
       select: {
         id: true,
         name: true,
+        isDiscontinued: true,
       },
       where,
       skip: query.skip,
@@ -53,6 +54,7 @@ export const POST = handleApi(async (req) => {
 export type PaperColorGroup = {
   id: number;
   name: string;
+  isDiscontinued: boolean;
 };
 export type CreatePaperColorGroupBody = {
   name: string;

@@ -25,6 +25,7 @@ export const GET = handleApi<GetManufacturerListResponse>(async (req) => {
       select: {
         id: true,
         name: true,
+        isDiscontinued: true,
       },
       where,
       skip: query.skip,
@@ -51,6 +52,7 @@ export const POST = handleApi(async (req) => {
 export type Manufacturer = {
   id: number;
   name: string;
+  isDiscontinued: boolean;
 };
 export type CreateManufacturerBody = {
   name: string;

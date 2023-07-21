@@ -25,6 +25,7 @@ export const GET = handleApi<GetPaperCertListResponse>(async (req) => {
       select: {
         id: true,
         name: true,
+        isDiscontinued: true,
       },
       where,
       skip: query.skip,
@@ -51,6 +52,7 @@ export const POST = handleApi(async (req) => {
 export type PaperCert = {
   id: number;
   name: string;
+  isDiscontinued: boolean;
 };
 export type CreatePaperCertBody = {
   name: string;
