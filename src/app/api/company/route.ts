@@ -20,6 +20,7 @@ export const GET = handleApi<GetCompanyListResponse>(async (req) => {
   const query = await getQuerySchema.parseAsync(searchParams);
 
   const where: Prisma.CompanyWhereInput = {
+    managedById: null,
     businessName: {
       contains: query.businessName,
     },
