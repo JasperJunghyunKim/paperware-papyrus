@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { NotFoundError } from "@/lib/server/error";
+import { ConflictError, NotFoundError } from "@/lib/server/error";
 import { handleApi } from "@/lib/server/handler";
 import { z } from "zod";
 import { Company } from "../route";
@@ -80,6 +80,30 @@ export const PUT = handleApi(async (req, context) => {
       bizItem: data.bizItem,
       startDate: data.startDate,
       memo: data.memo,
+    },
+  });
+});
+
+  
+export const DELETE = handleApi(async (req, context) => {
+  const params = await paramsSchema.parseAsync(context.params);
+
+  const company = await prisma.company.findFirst({
+      where: {
+          id: params.id,
+          managedById: null,
+      }
+  });
+  if (!company) throw new NotFoundError('존재하지 않는 고객사');
+  if (company.isDeleted) throw new ConflictError('이미 탈퇴 처리된 고객사');
+  if (company.popbillId !== null) throw new ConflictError('팝빌연동 해제 필요');
+
+  return await prisma.company.update({
+    where: {
+      id: params.id,
+    },
+    data: {
+      isDeleted: true,
     },
   });
 });

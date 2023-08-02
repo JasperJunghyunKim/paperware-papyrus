@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { NextResponse } from "next/server";
-import { NotFoundError } from "./error";
+import { ConflictError, NotFoundError } from "./error";
 
 interface Context {
   params: any;
@@ -30,6 +30,15 @@ export const handleApi =
           }),
           {
             status: 404,
+          }
+        );
+      } else if (e instanceof ConflictError) {
+        return new NextResponse(JSON.stringify({
+            message: e.message,
+            data: e.message,
+          }),
+          {
+            status: 409,
           }
         );
       }
