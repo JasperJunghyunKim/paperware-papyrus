@@ -114,9 +114,14 @@ export default function Component() {
           },
           {
             title: "상호",
-            key: "businessName",
-            dataIndex: "businessName",
-            render: (value) => <div className="px-2">{value}</div>,
+            render: (record) => (<div className="px-2">
+              {record.businessName} 
+              {record.isDeleted && 
+                (<span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                  탈퇴
+                </span>)
+              }
+            </div>),
           },
           {
             title: "사업자등록번호",
@@ -188,8 +193,24 @@ export default function Component() {
             width: "0px",
             render: (record) => (
               <div className="flex justify-center gap-x-2 p-1">
-                <Button text="수정" onClick={() => setOpenUpdate(record.id)} />
+                <Button text="수정" disabled={record.isDeleted} onClick={() => setOpenUpdate(record.id)} />
               </div>
+            ),
+          },
+          {
+            width: "0px",
+            render: (record) => (
+              <div className="flex justify-center gap-x-2 p-1">
+                  <Button text={record.isActivated ? '비활성화' : '활성화'} disabled={record.isDeleted} onClick={() => console.log('비활성화')} />
+                </div>
+            ),
+          },
+          {
+            width: "0px",
+            render: (record) => (
+              <div className="flex justify-center gap-x-2 p-1">
+                  <Button text="탈퇴" disabled={record.isDeleted} onClick={() => console.log('탈퇴')} />
+                </div>
             ),
           },
         ]}

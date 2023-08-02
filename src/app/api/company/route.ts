@@ -56,6 +56,8 @@ export const GET = handleApi<GetCompanyListResponse>(async (req) => {
         startDate: true,
         memo: true,
         popbillId: true,
+        isActivated: true,
+        isDeleted: true,
         _count: {
           select: {
             user: true,
@@ -65,6 +67,9 @@ export const GET = handleApi<GetCompanyListResponse>(async (req) => {
       where,
       skip: query.skip,
       take: query.take,
+      orderBy: {
+        id: 'asc',
+      }
     }),
     total: await prisma.company.count({ where }),
   };
@@ -129,6 +134,8 @@ export type Company = {
   startDate?: Date;
   memo: string;
   popbillId: string | null;
+  isDeleted: boolean;
+  isActivated: boolean;
 };
 export type CreateCompanyBody = {
   companyRegistrationNumber: string;
