@@ -243,15 +243,27 @@ model StockEvent {
 
 // User
 model User {
-  id           Int            @id @default(autoincrement())
-  username     String         @unique
-  password     String
-  name         String
-  phoneNo      String
-  email        String?
-  company      Company?       @relation(fields: [companyId], references: [id])
-  companyId    Int?
-  DepositEvent DepositEvent[]
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+  name          String
+  phoneNo       String         @default("")
+  email         String?
+  birthDate     DateTime?
+  company       Company?       @relation(fields: [companyId], references: [id])
+  companyId     Int?
+  isActivated   Boolean        @default(true)
+  isAdmin       Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  lastLoginTime DateTime?
+  DepositEvent  DepositEvent[]
+  menu          UserMenu?
+}
+
+model UserFindPasswordAuth {
+  userId    Int      @unique
+  authKey   String
+  createdAt DateTime @default(now())
 }
 
 // Company & Client
@@ -281,6 +293,7 @@ model Company {
   managedBy                      Company?                      @relation("CompanyManagedBy", fields: [managedById], references: [id])
   startDate                      DateTime                      @default(now())
   memo                           String                        @default("")
+  createdAt                      DateTime                      @default(now())
   srcBusinessRelationship        BusinessRelationship[]        @relation("srcBusinessRelationship")
   dstBusinessRelationship        BusinessRelationship[]        @relation("dstBusinessRelationship")
   srcOrder                       Order[]                       @relation("srcOrderCompany")
@@ -352,6 +365,7 @@ model Location {
   company         Company        @relation(fields: [companyId], references: [id])
   isPublic        Boolean
   isDeleted       Boolean        @default(false)
+  phoneNo         String?
   orderStock      OrderStock[] // 정상거래의 도착지
   PlanShipping    PlanShipping[]
   dstOrderProcess OrderProcess[] @relation("dstLocation")
@@ -426,8 +440,9 @@ enum OrderStatus {
   OFFER_REQUESTED
   OFFER_REJECTED
   ACCEPTED
-  ORDER_CANCELLED
-  OFFER_CANCELLED
+  ORDER_DELETED
+  OFFER_DELETED
+  CANCELLED
 }
 
 enum OrderType {
@@ -449,6 +464,7 @@ model Order {
   status            OrderStatus   @default(ORDER_PREPARING)
   isEntrusted       Boolean       @default(false)
   memo              String
+  ordererName       String        @default("")
   acceptedCompanyId Int?
   acceptedCompany   Company?      @relation("acceptedCompany", fields: [acceptedCompanyId], references: [id])
   isStockRejected   Boolean       @default(false)
@@ -689,10 +705,12 @@ model TaskGuillotine {
 }
 
 model TaskQuantity {
-  taskId   Int    @id
-  task     Task   @relation(fields: [taskId], references: [id])
-  quantity Int
-  memo     String
+  taskId    Int      @id
+  task      Task     @relation(fields: [taskId], references: [id])
+  quantity  Int
+  memo      String
+  invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+  invoiceId Int?
 }
 
 enum ShippingStatus {
@@ -720,6 +738,8 @@ enum InvoiceStatus {
   ON_SHIPPING
   // 배송완료
   DONE_SHIPPING
+  // 취소
+  CANCELLED
 }
 
 model Invoice {
@@ -746,6 +766,7 @@ model Invoice {
   planId            Int
   plan              Plan             @relation(fields: [planId], references: [id])
   invoiceStatus     InvoiceStatus    @default(WAIT_LOADING)
+  taskQuantity      TaskQuantity[]
 }
 
 enum TaxInvoiceStatus {
@@ -1491,6 +1512,7 @@ model OrderRequest {
   location          Location?          @relation(fields: [locationId], references: [id])
   wantedDate        DateTime?
   memo              String             @default("")
+  createdAt         DateTime           @default(now())
   orderRequestItems OrderRequestItem[]
 }
 
@@ -1510,4 +1532,35 @@ model TempInvoiceCode {
   invoiceCode String @unique
   number      Int
   maxPercent  Float
+}
+
+model Authentication {
+  phoneNo   String   @unique
+  authNo    String
+  authKey   String
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+}
+
+enum AuthenticationLogType {
+  CREATE // 인증 요청
+  AUTH_NO // 인증번호 인증
+  AUTH_KEY // 인증키 인증
+}
+
+model AuthenticationLog {
+  id           BigInt                @id @default(autoincrement())
+  type         AuthenticationLogType
+  phoneNo      String
+  authNo       String
+  authKey      String
+  inputAuthNo  String?
+  inputAuthKey String?
+  createdAt    DateTime              @default(now())
+}
+
+model UserMenu {
+  userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id])
+  menu   String @db.Text
 }
