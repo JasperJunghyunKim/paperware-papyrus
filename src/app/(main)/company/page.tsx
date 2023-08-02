@@ -179,6 +179,12 @@ export default function Component() {
             ),
           },
           {
+            title: "Popbill ID",
+            key: "popbillId",
+            dataIndex: "popbillId",
+            render: (value) => <div className="px-2">{value}</div>,
+          },
+          {
             width: "0px",
             render: (record) => (
               <div className="flex justify-center gap-x-2 p-1">

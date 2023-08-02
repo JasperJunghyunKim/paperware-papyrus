@@ -55,6 +55,7 @@ export const GET = handleApi<GetCompanyListResponse>(async (req) => {
         invoiceCode: true,
         startDate: true,
         memo: true,
+        popbillId: true,
         _count: {
           select: {
             user: true,
@@ -127,6 +128,7 @@ export type Company = {
   invoiceCode: string;
   startDate?: Date;
   memo: string;
+  popbillId: string | null;
 };
 export type CreateCompanyBody = {
   companyRegistrationNumber: string;
