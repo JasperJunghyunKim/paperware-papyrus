@@ -4,7 +4,9 @@ import classNames from "classnames";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 import Collapsible from "react-collapsible";
-import { TbBox, TbBuilding, TbChevronDown } from "react-icons/tb";
+import { TbBox, TbBuilding, TbChartArcs, TbChevronDown } from "react-icons/tb";
+import ImageLogo from "@/assets/images/logo.png";
+import Image from "next/image";
 
 interface MenuDef {
   icon: ReactNode;
@@ -14,6 +16,11 @@ interface MenuDef {
 }
 
 const menus: MenuDef[] = [
+  {
+    icon: <TbChartArcs />,
+    name: "대시보드",
+    path: "/",
+  },
   {
     icon: <TbBuilding />,
     name: "고객사 관리",
@@ -51,7 +58,7 @@ export default function Component(props: { className?: string }) {
   return (
     <aside className={classNames("bg-white flex flex-col", props.className)}>
       <div className="flex-initial basis-24 flex flex-col justify-center items-center text-2xl font-bold text-gray-700">
-        PAPERWARE admin
+        <Image src={ImageLogo} alt="PAPERWARE" height={42} />
       </div>
       <div className="flex-initial flex flex-col sticky top-0">
         {menuList.map((item) =>
@@ -62,7 +69,7 @@ export default function Component(props: { className?: string }) {
                 <Menu
                   icon={item.icon}
                   label={item.name}
-                  path={item.key}
+                  path={item.path}
                   chevron
                 />
               }
@@ -80,7 +87,7 @@ export default function Component(props: { className?: string }) {
               key={item.key}
               icon={item.icon}
               label={item.name}
-              path={item.key}
+              path={item.path}
               link
             />
           )
@@ -100,18 +107,22 @@ function Menu(props: {
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const checkActive = (path: string) =>
-    props.sub ? pathname === path : pathname.startsWith(path);
+  const isActive = useMemo(
+    () =>
+      props.sub || props.path === "/"
+        ? pathname === props.path
+        : pathname.startsWith(props.path),
+    [pathname, props.sub]
+  );
 
   return (
     <div
       className={classNames(
         "flex-initial basis-12 flex items-center gap-x-2 cursor-pointer text-sm select-none",
         {
-          "text-gray-500 hover:text-gray-800": !checkActive(props.path),
-          "bg-black text-white font-bold":
-            !props.sub && checkActive(props.path),
-          "text-black font-bold": props.sub && checkActive(props.path),
+          "text-gray-500 hover:text-gray-800": !isActive,
+          "bg-black text-white font-bold": !props.sub && isActive,
+          "text-black font-bold": props.sub && isActive,
           "px-4": !props.sub,
           "pl-8 pr-4": props.sub,
         }
