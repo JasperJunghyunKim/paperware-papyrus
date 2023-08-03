@@ -34,27 +34,25 @@ export const POST = handleApi(async (req, context) => {
     if (company.popbillId) throw new ConflictError('이미 팝빌 연동되어 있는 고객사');
 
     const body = {
-        ID: data.id,
-        Password: data.password,
-        LinkID: process.env.POPBILL_LINK_ID,
-        CorpNum: company.companyRegistrationNumber,
-        CEOName: data.ceoName,
-        CorpName: data.companyName,
-        Addr: data.address,
-        BizType: data.bizType,
-        BizClass: data.bizItem,
-        ContactName: data.contactName,
-        ContactEmail: data.contactEmail,
-        ContactTEL: data.contactPhoneNo,
+        id: data.id,
+        password: data.password,
+        companyRegistrationNumber: company.companyRegistrationNumber,
+        ceoName: data.ceoName,
+        companyName: data.companyName,
+        address: data.address,
+        bizType: data.bizType,
+        bizItem: data.bizItem,
+        contactName: data.contactName,
+        contactEmail: data.contactEmail,
+        contactPhoneNo: data.contactPhoneNo,
     };
 
     const result = await new Promise((res, rej) => {
-        axios.post(`${process.env.POPBILL_API_URL}/Join`, body).then(result => {
-            console.log(result);
+        axios.post(`${process.env.POPBILL_API_URL}/TaxinvoiceService/JoinMember`, body).then(result => {
             res(result.data)
         }).catch(err => {
             console.log(err.message);
-            rej(err)
+            rej(err.message)
         })
     });
 
@@ -63,6 +61,7 @@ export const POST = handleApi(async (req, context) => {
     }
 
     const _result = result as PopbillDefaultResponse;
+    console.log(_result)
     if (_result.code === 1) {
         throw new InternalServerError(_result.message);
     } else {

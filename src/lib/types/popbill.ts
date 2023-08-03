@@ -1,4 +1,4 @@
-export interface PobillException {
+export interface PopbillException {
     code: number;
     message: string;
 } 

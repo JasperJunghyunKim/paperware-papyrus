@@ -15,7 +15,7 @@ export const GET = handleApi<CheckPopbillIdResponse>(async (req, context) => {
     const data = await queriesSchema.parseAsync(queryString.parse(search));
 
     const result = await new Promise((res, rej) => {
-        axios.get(`${process.env.POPBILL_API_URL}/IDCheck`, {
+        axios.get(`${process.env.POPBILL_API_URL}/TaxInvoiceService/CheckID?id=${data.id}`, {
             params: {
                 ID: data.id,
             }

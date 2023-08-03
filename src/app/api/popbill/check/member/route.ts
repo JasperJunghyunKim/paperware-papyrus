@@ -24,12 +24,8 @@ export const GET = handleApi<CheckPopbillMemberResponse>(async (req, context) =>
     if (company.isDeleted) throw new ConflictError('이미 탈퇴 처리된 고객사');
   
     const result = await new Promise((res, rej) => {
-        axios.get(`${process.env.POPBILL_API_URL}/Join`, {
-            params: {
-                CorpNum: company.companyRegistrationNumber,
-                LID: process.env.POPBILL_LINK_ID,
-            }
-        }).then(result => {
+        axios.get(`${process.env.POPBILL_API_URL}/TaxinvoiceService/CheckIsMember?companyRegistrationNumber=${company.companyRegistrationNumber}`)
+        .then(result => {
             res(result.data)
         }).catch(err => {
             rej(err)

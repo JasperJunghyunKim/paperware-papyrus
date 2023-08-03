@@ -24,11 +24,8 @@ export const GET = handleApi<GetPopbillCompanyInfoReseponse>(async (req, context
     if(!company.popbillId) throw new ConflictError('팝빌 연동되어 있지 않는 고객사');
 
     const result = await new Promise((res, rej) => {
-        axios.get(`${process.env.POPBILL_API_URL}/CorpInfo`, {
-            params: {
-                CorpNum: company.companyRegistrationNumber,
-            }
-        }).then(result => {
+        axios.get(`${process.env.POPBILL_API_URL}/TaxinvoiceService/GetCorpInfo?companyRegistrationNumber=${company.companyRegistrationNumber}`
+        ).then(result => {
             res(result.data)
         }).catch(err => {
             console.log(err);
@@ -64,9 +61,8 @@ export const DELETE = handleApi(async (req, context) => {
     if (company.isDeleted) throw new ConflictError('이미 탈퇴 처리된 고객사');
 
     if(!company.popbillId) throw new ConflictError('팝빌 연동되어 있지 않는 고객사');
-
-    
-});
+  
+  });
 
 export type GetPopbillCompanyInfoReseponse = {
     ceoName: string;
