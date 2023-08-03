@@ -1,14 +1,7 @@
-require('dotenv').config();
 var express = require("express");
 var router = express.Router();
-var popbill = require("popbill");
+const { popbill, popbillConfig } = require('../config/popbill')
 var fs = require("fs");
-
-// 팝빌회원 사업자번호, "-" 제외 10자리
-const corpNum = process.env.CORP_NUM || '';
-// 팝빌회원 아이디
-const userId = process.env.USER_ID || '';
-
 
 /**
  * 전자세금계산서 API 모듈 초기화
@@ -1280,11 +1273,11 @@ router.get("/", function (req, res, next) {
 //     );
 // });
 
-/**
- * 국세청 전송 이전 "발행완료" 상태의 세금계산서를 "발행취소"하고 국세청 전송 대상에서 제외합니다.
- * - Delete(삭제)함수를 호출하여 "발행취소" 상태의 전자세금계산서를 삭제하면, 문서번호 재사용이 가능합니다.
- * - https://developers.popbill.com/reference/taxinvoice/node/api/issue#CancelIssue
- */
+// /**
+//  * 국세청 전송 이전 "발행완료" 상태의 세금계산서를 "발행취소"하고 국세청 전송 대상에서 제외합니다.
+//  * - Delete(삭제)함수를 호출하여 "발행취소" 상태의 전자세금계산서를 삭제하면, 문서번호 재사용이 가능합니다.
+//  * - https://developers.popbill.com/reference/taxinvoice/node/api/issue#CancelIssue
+//  */
 // router.get("/CancelIssue", function (req, res, next) {
 //     // 팝빌회원 사업자번호, "-" 제외 10자리
 //     var CorpNum = "1234567890";
@@ -3010,19 +3003,31 @@ router.get("/", function (req, res, next) {
  * - 인증서 갱신/재발급/비밀번호 변경한 경우, 변경된 인증서를 팝빌 인증서버에 재등록 해야합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/cert#GetTaxCertURL
  */
-router.get("/GetTaxCertURL", function (req, res, next) {
-    taxinvoiceService.getTaxCertURL(
-        corpNum,
-        userId,
-        function (url) {
-            return res.send(url);
-        },
-        function (err) {
-            console.log(err)
-            return res.status(500).send('Internal Server Error');
-        },
-    );
-});
+// router.get("/GetTaxCertURL", function (req, res, next) {
+//     // 팝빌회원 사업자번호, "-" 제외 10자리
+//     var CorpNum = "1234567890";
+
+//     // 팝빌회원 아이디
+//     var UserID = "testkorea";
+
+//     taxinvoiceService.getTaxCertURL(
+//         CorpNum,
+//         UserID,
+//         function (url) {
+//             res.render("result", {
+//                 path: req.path,
+//                 result: url,
+//             });
+//         },
+//         function (Error) {
+//             res.render("response", {
+//                 path: req.path,
+//                 code: Error.code,
+//                 message: Error.message,
+//             });
+//         },
+//     );
+// });
 
 /**
  * 팝빌 인증서버에 등록된 인증서의 만료일을 확인합니다.
@@ -3133,7 +3138,7 @@ router.get("/GetTaxCertURL", function (req, res, next) {
  * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
  * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/point#GetChargeURL
- */
+//  */
 // router.get("/GetChargeURL", function (req, res, next) {
 //     // 팝빌회원 사업자번호, "-" 제외 10자리
 //     var CorpNum = "1234567890";
@@ -3335,144 +3340,163 @@ router.get("/GetTaxCertURL", function (req, res, next) {
  * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#CheckIsMember
  */
-// router.get("/CheckIsMember", function (req, res, next) {
-//     // 조회할 사업자번호, "-" 제외 10자리
-//     var CorpNum = "1234567890";
+router.get("/CheckIsMember", async (req, res, next) => {
+    // 조회할 사업자번호, "-" 제외 10자리
+    const CorpNum = req.query.companyRegistrationNumber;
 
-//     taxinvoiceService.checkIsMember(
-//         CorpNum,
-//         function (result) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: result.code,
-//                 message: result.message,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.checkIsMember(
+                CorpNum,
+                function (result) {
+                    res(result);
+                },
+                function (err) {
+                    console.log(err);
+                    rej(err);
+                },
+            );
+        });
+    
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 사용하고자 하는 아이디의 중복여부를 확인합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#CheckID
  */
-// router.get("/CheckID", function (req, res, next) {
-//     // 팝빌회원 사업자번호, "-" 제외 10자리
-//     var testID = "testkorea";
+router.get("/CheckID", async (req, res, next) => {
+    // 팝빌회원 사업자번호, "-" 제외 10자리
+    const id = req.query.id;
 
-//     taxinvoiceService.checkID(
-//         testID,
-//         function (result) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: result.code,
-//                 message: result.message,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.checkID(
+                id,
+                function (result) {
+                    res(result)
+                },
+                function (err) {
+                    console.log(err);
+                    rej(err);
+                },
+            );
+        });
+    
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 사용자를 연동회원으로 가입처리합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#JoinMember
  */
-// router.get("/JoinMember", function (req, res, next) {
-//     // 회원정보
-//     var joinInfo = {
-//         // 회원 아이디 (6자 이상 50자 미만)
-//         ID: "userid",
+router.post("/JoinMember", async (req, res, next) => {
+    const {
+        id,
+        password,
+        companyRegistrationNumber,
+        ceoName,
+        companyName,
+        address,
+        bizType,
+        bizItem,
+        contactName,
+        contactEmail,
+        contactPhoneNo,
+    } = req.body;
+ 
+    // 회원정보
+    const joinInfo = {
+        // 회원 아이디 (6자 이상 50자 미만)
+        ID: id,
 
-//         // 비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
-//         Password: "asdf8536!@#",
+        // 비밀번호, 8자 이상 20자 이하(영문, 숫자, 특수문자 조합)
+        Password: password,
 
-//         // 링크아이디
-//         LinkID: taxinvoiceService._config.LinkID,
+        // 링크아이디
+        LinkID: popbillConfig.POPBILL_LINK_ID,
 
-//         // 사업자번호, "-" 제외 10자리
-//         CorpNum: "1234567890",
+        // 사업자번호, "-" 제외 10자리
+        CorpNum: companyRegistrationNumber,
 
-//         // 대표자명 (최대 100자)
-//         CEOName: "대표자성명",
+        // 대표자명 (최대 100자)
+        CEOName: ceoName,
 
-//         // 상호 (최대 200자)
-//         CorpName: "테스트상호",
+        // 상호 (최대 200자)
+        CorpName: companyName,
 
-//         // 주소 (최대 300자)
-//         Addr: "주소",
+        // 주소 (최대 300자)
+        Addr: address,
 
-//         // 업태 (최대 100자)
-//         BizType: "업태",
+        // 업태 (최대 100자)
+        BizType: bizType,
 
-//         // 종목 (최대 100자)
-//         BizClass: "업종",
+        // 종목 (최대 100자)
+        BizClass: bizItem,
 
-//         // 담당자 성명 (최대 100자)
-//         ContactName: "담당자 성명",
+        // 담당자 성명 (최대 100자)
+        ContactName: contactName,
 
-//         // 담당자 이메일 (최대 20자)
-//         ContactEmail: "",
+        // 담당자 이메일 (최대 20자)
+        ContactEmail: contactEmail,
 
-//         // 담당자 연락처 (최대 20자)
-//         ContactTEL: "",
-//     };
+        // 담당자 연락처 (최대 20자)
+        ContactTEL: contactPhoneNo,
+    };
 
-//     taxinvoiceService.joinMember(
-//         joinInfo,
-//         function (result) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: result.code,
-//                 message: result.message,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.joinMember(
+                joinInfo,
+                function (result) {
+                    res(result);
+                },
+                function (err) {
+                    console.log(err)
+                    rej(err);
+                },
+            );
+        })
+    
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 연동회원의 회사정보를 확인합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#GetCorpInfo
  */
-// router.get("/GetCorpInfo", function (req, res, next) {
-//     // 팝빌회원 사업자번호, "-" 제외 10자리
-//     var CorpNum = "1234567890";
+router.get("/GetCorpInfo", async (req, res, next) => {
+    // 팝빌회원 사업자번호, "-" 제외 10자리
+    const CorpNum = req.query.companyRegistrationNumber;
 
-//     taxinvoiceService.getCorpInfo(
-//         CorpNum,
-//         function (result) {
-//             res.render("Base/getCorpInfo", {
-//                 path: req.path,
-//                 result: result,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.getCorpInfo(
+                CorpNum,
+                function (result) {
+                    res(result);
+                },
+                function (err) {
+                    console.log(err);
+                    rej(err);
+                },
+            );
+        });
+
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 연동회원의 회사정보를 수정합니다
@@ -3963,36 +3987,37 @@ router.get("/GetTaxCertURL", function (req, res, next) {
  * - 관리자 계정만 회원탈퇴가 가능합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#QuitMember
  */
-// router.get("/QuitMember", function (req, res, next) {
-//     // 팝빌회원 사업자번호, "-" 제외 10자리
-//     var CorpNum = "1234567890";
+router.post("/QuitMember", async (req, res, next) => {
+    // 팝빌회원 사업자번호, "-" 제외 10자리
+    const CorpNum = req.body.companyRegistrationNumber;
 
-//     // 탈퇴 사유
-//     var QuitReason = "탈퇴 사유";
+    // 탈퇴 사유
+    var QuitReason = req.body.reason;
 
-//     // 팝빌회원 아이디
-//     var UserID = "testkorea";
+    // 팝빌회원 아이디
+    var UserID = req.body.popbillId;
 
-//     taxinvoiceService.quitMember(
-//         CorpNum,
-//         QuitReason,
-//         UserID,
-//         function (result) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: result.code,
-//                 message: result.message,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.quitMember(
+                CorpNum,
+                QuitReason,
+                UserID,
+                function (result) {
+                    res(result);
+                },
+                function (err) {
+                    console.log(err);
+                    rej(err);
+                },
+            );
+        });
+
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
