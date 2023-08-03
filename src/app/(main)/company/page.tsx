@@ -9,7 +9,7 @@ import { CompanyType } from "@prisma/client";
 import { Form, Input, Radio, Select, Table } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { TbCheck, TbCirclePlus, TbPencil } from "react-icons/tb";
+import { TbCheck, TbCirclePlus, TbPencil, TbLock, TbLockOff } from "react-icons/tb";
 import { match } from "ts-pattern";
 
 const toOptions = (items: { id: number; name: string }[]) => {
@@ -29,6 +29,7 @@ export default function Component() {
 
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
+  const [openActivate, setOpenActivate] = useState<{ id: number; isActivated: boolean } | false>(false);
 
   return (
     <Page
@@ -201,7 +202,7 @@ export default function Component() {
             width: "0px",
             render: (record) => (
               <div className="flex justify-center gap-x-2 p-1">
-                  <Button text={record.isActivated ? '비활성화' : '활성화'} disabled={record.isDeleted} onClick={() => console.log('비활성화')} />
+                  <Button text={record.isActivated ? '비활성화' : '활성화'} disabled={record.isDeleted} onClick={() => setOpenActivate({id: record.id, isActivated: record.isActivated})} />
                 </div>
             ),
           },
@@ -217,6 +218,7 @@ export default function Component() {
       />
       <PopupCreate open={openCreate} onClose={setOpenCreate} />
       <PopupUpdate open={openUpdate} onClose={setOpenUpdate} />
+      <PopupActivate open={openActivate} onClose={setOpenActivate} />
     </Page>
   );
 }
@@ -556,6 +558,41 @@ function PopupUpdate(props: {
           <Input />
         </Form.Item>
       </Form>
+    </Popup>
+  );
+}
+
+function PopupActivate(props: {
+  open: { id: number; isActivated: boolean; } | false;
+  onClose: (unit: false) => void;
+}) {
+  const open = props.open as { id: number; isActivated: boolean; };
+
+  const action = useCallback(async () => {
+    if (!props.open) return;
+    console.log("비활성화")
+    props.onClose(false);
+  }, [props.onClose, props.open]);
+
+  return (
+    <Popup
+      {...props}
+      title={open.isActivated ? '비활성화 하시겠습니까?' : '활성화 하시겠습니까?'}
+      icon={open.isActivated ? <TbLock /> : <TbLockOff />}
+      open={props.open !== false}
+      width="500px"
+      height="auto"
+      footer={
+        <div className="flex justify-center p-2 gap-x-2">
+          <Button
+            text="취소"
+            color="white"
+            onClick={() => props.onClose(false)}
+          />
+          <Button text="확인" icon={<TbCheck />} onClick={action} />
+        </div>
+      }
+    >
     </Popup>
   );
 }
