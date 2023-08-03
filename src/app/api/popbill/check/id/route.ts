@@ -10,7 +10,7 @@ const queriesSchema = z.object({
     id: z.string(),
 });
 
-export const GET = handleApi(async (req, context) => {
+export const GET = handleApi<CheckPopbillIdResponse>(async (req, context) => {
     const search = new URL(req.url).search;
     const data = await queriesSchema.parseAsync(queryString.parse(search));
 
@@ -29,7 +29,6 @@ export const GET = handleApi(async (req, context) => {
     if (result instanceof Error) {
         throw new InternalServerError();
     }
-    console.log(result);
 
     const _result = result as PopbillDefaultResponse;
     return {
@@ -37,3 +36,6 @@ export const GET = handleApi(async (req, context) => {
     }    
   });
 
+  export type CheckPopbillIdResponse = {
+    isUsed: boolean; // 사용여부
+  };

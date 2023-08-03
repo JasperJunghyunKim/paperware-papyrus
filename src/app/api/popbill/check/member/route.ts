@@ -10,7 +10,7 @@ const queriesSchema = z.object({
     companyId: z.string().transform(v => parseInt(v)),
 });
 
-export const GET = handleApi(async (req, context) => {
+export const GET = handleApi<CheckPopbillMemberResponse>(async (req, context) => {
     const search = new URL(req.url).search;
     const data = await queriesSchema.parseAsync(queryString.parse(search));
 
@@ -46,3 +46,6 @@ export const GET = handleApi(async (req, context) => {
     }    
   });
 
+  export type CheckPopbillMemberResponse = {
+    isMember: boolean; // 연동여부
+  };

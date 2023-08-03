@@ -107,18 +107,3 @@ export const DELETE = handleApi(async (req, context) => {
     },
   });
 });
-
-export type GetCompanyItemResponse = Company;
-export type UpdateCompanyBody = {
-  businessName: string;
-  companyType: CompanyType;
-  corporateRegistrationNumber?: string;
-  representative: string;
-  phoneNo: string;
-  faxNo?: string;
-  address: string;
-  bizType: string;
-  bizItem: string;
-  startDate?: Date;
-  memo?: string;
-};
