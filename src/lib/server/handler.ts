@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { NextResponse } from "next/server";
-import { ConflictError, NotFoundError } from "./error";
+import { ConflictError, InternalServerError, NotFoundError } from "./error";
 
 interface Context {
   params: any;
@@ -39,6 +39,15 @@ export const handleApi =
           }),
           {
             status: 409,
+          }
+        );
+      } else if (e instanceof InternalServerError) {
+        return new NextResponse(JSON.stringify({
+            message: e.message,
+            data: e.message,
+          }),
+          {
+            status: 500,
           }
         );
       }
