@@ -30,6 +30,7 @@ export default function Component() {
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
   const [openActivate, setOpenActivate] = useState<{ id: number; isActivated: boolean } | false>(false);
+  const [openDelete, setOpenDelete] = useState<number | false>(false);
 
   return (
     <Page
@@ -210,7 +211,7 @@ export default function Component() {
             width: "0px",
             render: (record) => (
               <div className="flex justify-center gap-x-2 p-1">
-                  <Button text="탈퇴" disabled={record.isDeleted} onClick={() => console.log('탈퇴')} />
+                  <Button text="탈퇴" disabled={record.isDeleted} onClick={() => setOpenDelete(record.id)} />
                 </div>
             ),
           },
@@ -219,6 +220,7 @@ export default function Component() {
       <PopupCreate open={openCreate} onClose={setOpenCreate} />
       <PopupUpdate open={openUpdate} onClose={setOpenUpdate} />
       <PopupActivate open={openActivate} onClose={setOpenActivate} />
+      <PopupDelete open={openDelete} onClose={setOpenDelete} />
     </Page>
   );
 }
@@ -579,6 +581,39 @@ function PopupActivate(props: {
       {...props}
       title={open.isActivated ? '비활성화 하시겠습니까?' : '활성화 하시겠습니까?'}
       icon={open.isActivated ? <TbLock /> : <TbLockOff />}
+      open={props.open !== false}
+      width="500px"
+      height="auto"
+      footer={
+        <div className="flex justify-center p-2 gap-x-2">
+          <Button
+            text="취소"
+            color="white"
+            onClick={() => props.onClose(false)}
+          />
+          <Button text="확인" icon={<TbCheck />} onClick={action} />
+        </div>
+      }
+    >
+    </Popup>
+  );
+}
+
+function PopupDelete(props: {
+  open: number | false;
+  onClose: (unit: false) => void;
+}) {
+  const action = useCallback(async () => {
+    if (!props.open) return;
+    console.log("탈퇴처리")
+    props.onClose(false);
+  }, [props.onClose, props.open]);
+
+  return (
+    <Popup
+      {...props}
+      title="영구적으로 탈퇴처리됩니다. 정말로 탈퇴처리 하시겠습니까? "
+      icon={<TbPencil />}
       open={props.open !== false}
       width="500px"
       height="auto"
