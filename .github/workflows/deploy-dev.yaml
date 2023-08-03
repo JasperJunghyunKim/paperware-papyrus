@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Set environment
-        run: echo -e "${{ secrets.ENV_DEV }}" >> .env
-
       - name: Generate deployment package
         run: zip -r deploy.zip ./
 
