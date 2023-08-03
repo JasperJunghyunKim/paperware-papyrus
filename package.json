@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "node_modules/next/dist/bin/next start -p $PORT"
   },
   "dependencies": {
     "@prisma/client": "^4.16.2",
@@ -23,6 +24,7 @@
     "eslint-config-next": "13.4.9",
     "lodash": "^4.17.21",
     "next": "13.4.9",
+    "popbill": "^1.59.4",
     "postcss": "8.4.25",
     "query-string": "^8.1.0",
     "react": "18.2.0",
