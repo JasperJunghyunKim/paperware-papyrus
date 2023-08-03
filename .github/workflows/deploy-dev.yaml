@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -28,7 +26,7 @@ jobs:
 
       - name: Generate deployment package
         run: zip -r deploy.zip ./
-        
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v20
         with:
