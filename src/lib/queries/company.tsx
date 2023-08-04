@@ -3,28 +3,34 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { UpdateCompanyBody } from "@/app/api/company/[id]/route";
 import {
+  Company,
   CreateCompanyBody,
   GetCompanyListQuery,
+  GetCompanyListResponse,
 } from "@/app/api/company/route";
 import { UpdateCompanyActivatedBody } from "@/app/api/company/[id]/activated/route";
 import { flatQueries } from "../util/parser";
 
 namespace Template {
-  export const useGetListQuery = (name: string, query: Record<string, any>) =>
+  export const useGetListQuery = <T = any,>(
+    name: string,
+    query: Record<string, any>
+  ) =>
     useQuery(
       [name, "list", ...flatQueries(query)],
       async () =>
         await axios
-          .get(`/api/${name}`, {
+          .get<T>(`/api/${name}`, {
             params: query,
           })
           .then((res) => res.data)
     );
 
-  export const useGetItemQuery = (name: string, id?: number) =>
+  export const useGetItemQuery = <T = any,>(name: string, id?: number) =>
     useQuery(
       [name, "item", id],
-      async () => await axios.get(`/api/${name}/${id}`).then((res) => res.data),
+      async () =>
+        await axios.get<T>(`/api/${name}/${id}`).then((res) => res.data),
       {
         enabled: id !== undefined,
       }
@@ -76,9 +82,9 @@ namespace Template {
 }
 
 export const useGetCompanyList = (query: GetCompanyListQuery) =>
-  Template.useGetListQuery("company", query ?? {});
+  Template.useGetListQuery<GetCompanyListResponse>("company", query ?? {});
 export const useGetCompanyItem = (params: { id?: number }) =>
-  Template.useGetItemQuery("company", params.id);
+  Template.useGetItemQuery<Company>("company", params.id);
 export const useCreateCompany = () =>
   Template.useCreateMutation<CreateCompanyBody>("company");
 export const useUpdateCompany = () =>

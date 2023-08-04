@@ -17,7 +17,7 @@ export default function Component(props: PropsWithChildren<Props>) {
       onRequestClose={() => props.onClose(false)}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
-      overlayClassName="bg-black/50 left-0 top-0 bottom-0 right-0 fixed"
+      overlayClassName="bg-black/50 left-0 top-0 bottom-0 right-0 fixed z-50"
       contentElement={(x) => (
         <div
           {...x}

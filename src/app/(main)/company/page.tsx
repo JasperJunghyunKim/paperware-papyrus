@@ -1,32 +1,29 @@
 "use client";
 
+import { UpdateCompanyBody } from "@/app/api/company/[id]/route";
+import { Company } from "@/app/api/company/route";
+import { PopbillMemberContactUpdateBody } from "@/app/api/popbill/member/[id]/contact/route";
+import { PopbillMemberCreateBody } from "@/app/api/popbill/member/route";
 import { Control } from "@/components";
-import { Button, Popup, Search } from "@/components/control";
+import { AddressForPopbill, Button, Popup, Search } from "@/components/control";
 import { Page } from "@/components/layout";
-import { Queries } from "@/lib";
-import { Formatter } from "@/lib/util";
+import { Queries, Util } from "@/lib";
+import { Formatter, Template } from "@/lib/util";
+import * as R from "@/lib/util/rules";
 import { CompanyType } from "@prisma/client";
-import { Form, Input, Radio, Select, Table } from "antd";
+import { Alert, Form, Input, Radio, Table } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import classNames from "classnames";
+import dayjs from "dayjs";
+import { useCallback, useEffect, useState } from "react";
 import {
   TbCheck,
+  TbCircleCheck,
   TbCirclePlus,
   TbPencil,
-  TbLock,
-  TbLockOff,
-  TbCircleCheck,
   TbQuestionMark,
 } from "react-icons/tb";
 import { match } from "ts-pattern";
-import * as R from "@/lib/util/rules";
-import classNames from "classnames";
-import { Company } from "@/app/api/company/route";
-import { UpdateCompanyBody } from "@/app/api/company/[id]/route";
-
-const toOptions = (items: { id: number; name: string }[]) => {
-  return items.map((p) => ({ value: p.id, label: p.name }));
-};
 
 export default function Component() {
   const [skip, setSkip] = useState(0);
@@ -45,6 +42,12 @@ export default function Component() {
     { id: number; isActivated: boolean } | false
   >(false);
   const [openDelete, setOpenDelete] = useState<number | false>(false);
+  const [openCreatePopbill, setOpenCreatePopbill] = useState<number | false>(
+    false
+  );
+  const [openUpdatePopbill, setOpenUpdatePopbill] = useState<number | false>(
+    false
+  );
 
   return (
     <Page
@@ -97,6 +100,7 @@ export default function Component() {
         />
       </div>
       <Table
+        {...Template.table.scrollX()}
         rootClassName="flex-1 px-4"
         dataSource={data.data?.items ?? []}
         bordered
@@ -251,7 +255,8 @@ export default function Component() {
           },
           {
             width: "0px",
-            render: (record) => (
+            fixed: "right",
+            render: (record: Company) => (
               <div className="flex justify-center gap-x-1 p-1">
                 <Button
                   text="수정"
@@ -269,6 +274,16 @@ export default function Component() {
                   }
                 />
                 <Button
+                  text={record.popbillId ? "POPBILL 수정" : "POPBILL 등록"}
+                  disabled={record.isDeleted}
+                  onClick={() =>
+                    record.popbillId
+                      ? setOpenUpdatePopbill(record.id)
+                      : setOpenCreatePopbill(record.id)
+                  }
+                  color="blue"
+                />
+                <Button
                   text="탈퇴"
                   color="red"
                   disabled={record.isDeleted}
@@ -283,6 +298,14 @@ export default function Component() {
       <PopupUpdate open={openUpdate} onClose={setOpenUpdate} />
       <PopupActivate open={openActivate} onClose={setOpenActivate} />
       <PopupDelete open={openDelete} onClose={setOpenDelete} />
+      <PopupPopbillCreate
+        open={openCreatePopbill}
+        onClose={setOpenCreatePopbill}
+      />
+      <PopupPopbillUpdate
+        open={openUpdatePopbill}
+        onClose={setOpenUpdatePopbill}
+      />
     </Page>
   );
 }
@@ -297,9 +320,7 @@ function PopupCreate(props: { open: boolean; onClose: (unit: false) => void }) {
     props.onClose(false);
   }, [api, props.onClose]);
 
-  useEffect(() => {
-    form.resetFields();
-  }, [props.open]);
+  useEffect(() => form.resetFields(), [props.open]);
 
   return (
     <Popup
@@ -464,7 +485,18 @@ function PopupUpdate(props: {
   useEffect(() => {
     if (data.data) {
       form.setFieldsValue({
-        ...data.data,
+        address: data.data.address,
+        bizItem: data.data.bizItem,
+        bizType: data.data.bizType,
+        businessName: data.data.businessName,
+        companyType: data.data.companyType,
+        corporateRegistrationNumber:
+          data.data.corporateRegistrationNumber ?? undefined,
+        faxNo: data.data.faxNo ?? undefined,
+        memo: data.data.memo,
+        phoneNo: data.data.phoneNo,
+        representative: data.data.representative,
+        startDate: dayjs(data.data.startDate)?.toISOString(),
         admin: {
           password: undefined,
         },
@@ -589,15 +621,6 @@ function PopupUpdate(props: {
         >
           <Input placeholder="비밀번호를 변경하려면 입력하세요." />
         </Form.Item>
-        <Form.Item label="전화번호">
-          <Input
-            disabled
-            value={Formatter.formatPhoneNo(data.data?.user.at(0)?.phoneNo)}
-          />
-        </Form.Item>
-        <Form.Item label="이메일">
-          <Input disabled value={data.data?.user.at(0)?.email} />
-        </Form.Item>
       </Form>
     </Popup>
   );
@@ -678,6 +701,323 @@ function PopupDelete(props: {
       }
     >
       <div className="p-4">영구적으로 탈퇴처리됩니다. 계속하시겠습니까?</div>
+    </Popup>
+  );
+}
+
+interface PopupPopbillCreateProps {
+  open: number | false;
+  onClose: (unit: false) => void;
+}
+function PopupPopbillCreate(props: PopupPopbillCreateProps) {
+  const [form] = useForm<PopbillMemberCreateBody>();
+
+  const item = Queries.Company.useGetCompanyItem({
+    id: props.open ? props.open : undefined,
+  });
+
+  const api = Queries.Popbill.useCreateAccount();
+  const action = useCallback(async () => {
+    if (!props.open) return;
+
+    const values = await form.validateFields();
+    await api.mutateAsync({ body: values });
+    props.onClose(false);
+  }, [api, props.onClose, props.open]);
+
+  useEffect(() => form.resetFields(), [props.open]);
+
+  return (
+    <Popup
+      {...props}
+      title="POPBILL 계정 등록"
+      icon={<TbPencil />}
+      open={props.open !== false}
+      width="500px"
+      height="calc(100vh - 200px)"
+      footer={
+        <div className="flex justify-center p-2 gap-x-2">
+          <Button
+            text="취소"
+            color="white"
+            onClick={() => props.onClose(false)}
+          />
+          <Button text="완료" icon={<TbCheck />} onClick={action} />
+        </div>
+      }
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        rootClassName="w-full h-full p-4 overflow-y-scroll"
+      >
+        <Alert
+          showIcon
+          message="아직 POPBILL 계정이 등록되지 않은 고객사입니다. 아래 정보를 입력한 다음 POPBILL 계정을 등록합니다."
+          rootClassName="mb-4"
+        />
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          고객사 정보
+        </div>
+        <Form.Item label="사업자등록번호">
+          <Input readOnly value={item.data?.companyRegistrationNumber} />
+        </Form.Item>
+        <Form.Item label="상호">
+          <Input readOnly value={item.data?.businessName} />
+        </Form.Item>
+        <Form.Item label="대표자">
+          <Input readOnly value={item.data?.representative} />
+        </Form.Item>
+        <Form.Item label="전화번호">
+          <Input
+            readOnly
+            value={Util.Formatter.formatPhoneNo(item.data?.phoneNo)}
+          />
+        </Form.Item>
+        <Form.Item label="업종">
+          <Input readOnly value={item.data?.bizType} />
+        </Form.Item>
+        <Form.Item label="업태">
+          <Input readOnly value={item.data?.bizItem} />
+        </Form.Item>
+        <Form.Item label="비고">
+          <Input.TextArea readOnly rows={2} value={item.data?.memo} />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 계정 정보
+        </div>
+        <Form.Item
+          name="id"
+          label="POPBILL 아이디"
+          rules={[R.required(), R.length(6, 50)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          label="비밀번호"
+          rules={[
+            R.required(),
+            R.pattern(
+              /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/,
+              "영문, 숫자를 포함한 8~20자로 입력해주세요."
+            ),
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 업체 정보
+        </div>
+        <Form.Item
+          name="ceoName"
+          label="대표자"
+          rules={[R.required(), R.length(1, 100)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="companyName"
+          label="상호"
+          rules={[R.required(), R.length(1, 200)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item name="address" label="주소" rules={[R.required()]}>
+          <AddressForPopbill />
+        </Form.Item>
+        <Form.Item
+          name="bizType"
+          label="업태"
+          rules={[R.required(), R.length(1, 100)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="bizItem"
+          label="업종"
+          rules={[R.required(), R.length(1, 100)]}
+        >
+          <Input />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 담당자 정보
+        </div>
+        <Form.Item
+          name="contactName"
+          label="담당자명"
+          rules={[R.required(), R.length(1, 100)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="contactEmail"
+          label="담당자 이메일"
+          rules={[R.required(), R.email()]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="contactPhoneNo"
+          label="담당자 연락처"
+          rules={[R.required(), R.phone()]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
+    </Popup>
+  );
+}
+
+interface PopupPopbillUpdateProps {
+  open: number | false;
+  onClose: (unit: false) => void;
+}
+function PopupPopbillUpdate(props: PopupPopbillUpdateProps) {
+  const [form] = useForm<PopbillMemberContactUpdateBody>();
+
+  const item = Queries.Company.useGetCompanyItem({
+    id: props.open ? props.open : undefined,
+  });
+  const popbill = Queries.Popbill.useGetItem({
+    id: props.open ? props.open : null,
+  });
+  const contact = Queries.Popbill.useGetContact({
+    id: props.open ? props.open : null,
+  });
+
+  const api = Queries.Popbill.useUpdateContact();
+  const action = useCallback(async () => {
+    if (!props.open) return;
+
+    const values = await form.validateFields();
+    await api.mutateAsync({ id: props.open, body: values });
+    props.onClose(false);
+  }, [api, props.onClose, props.open]);
+
+  const apiDelete = Queries.Popbill.useDeleteAccount();
+  const actionDelete = useCallback(async () => {
+    if (!props.open) return;
+    if (!confirm("정말로 POPBILL 계정을 삭제하시겠습니까?")) return;
+
+    await apiDelete.mutateAsync({ id: props.open });
+    props.onClose(false);
+  }, [apiDelete, props.onClose, props.open]);
+
+  useEffect(() => {
+    if (contact.data) {
+      form.setFieldsValue({
+        contactName: contact.data.contactName,
+        contactEmail: contact.data.contactEmail,
+        contactPhoneNo: contact.data.contactPhoneNo,
+      });
+    } else {
+      form.resetFields();
+    }
+  }, [contact.data]);
+
+  return (
+    <Popup
+      {...props}
+      title="POPBILL 계정 상세"
+      icon={<TbPencil />}
+      open={props.open !== false}
+      width="500px"
+      height="calc(100vh - 200px)"
+      footer={
+        <div className="flex justify-center p-2 gap-x-2">
+          <Button text="POPBILL 계정 삭제" color="red" onClick={actionDelete} />
+          <div className="flex-1" />
+          <Button
+            text="취소"
+            color="white"
+            onClick={() => props.onClose(false)}
+          />
+          <Button text="저장" icon={<TbCheck />} onClick={action} />
+        </div>
+      }
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        rootClassName="w-full h-full p-4 overflow-y-scroll"
+      >
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          고객사 정보
+        </div>
+        <Form.Item label="사업자등록번호">
+          <Input disabled value={item.data?.companyRegistrationNumber} />
+        </Form.Item>
+        <Form.Item label="상호">
+          <Input disabled value={item.data?.businessName} />
+        </Form.Item>
+        <Form.Item label="대표자">
+          <Input disabled value={item.data?.representative} />
+        </Form.Item>
+        <Form.Item label="전화번호">
+          <Input
+            disabled
+            value={Util.Formatter.formatPhoneNo(item.data?.phoneNo)}
+          />
+        </Form.Item>
+        <Form.Item label="업종">
+          <Input disabled value={item.data?.bizType} />
+        </Form.Item>
+        <Form.Item label="업태">
+          <Input disabled value={item.data?.bizItem} />
+        </Form.Item>
+        <Form.Item label="비고">
+          <Input.TextArea disabled rows={2} value={item.data?.memo} />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 계정 정보
+        </div>
+        <Form.Item label="POPBILL 아이디">
+          <Input disabled value={item.data?.popbillId ?? undefined} />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 업체 정보
+        </div>
+        <Form.Item label="대표자">
+          <Input disabled value={popbill.data?.ceoName} />
+        </Form.Item>
+        <Form.Item label="상호">
+          <Input disabled value={popbill.data?.companyName} />
+        </Form.Item>
+        <Form.Item label="주소">
+          <AddressForPopbill disabled value={popbill.data?.address} />
+        </Form.Item>
+        <Form.Item label="업태">
+          <Input disabled value={popbill.data?.bizType} />
+        </Form.Item>
+        <Form.Item label="업종">
+          <Input disabled value={popbill.data?.bizItem} />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          POPBILL 담당자 정보
+        </div>
+        <Form.Item
+          name="contactName"
+          label="담당자명"
+          rules={[R.required(), R.length(1, 100)]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="contactEmail"
+          label="담당자 이메일"
+          rules={[R.required(), R.email()]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="contactPhoneNo"
+          label="담당자 연락처"
+          rules={[R.required(), R.phone()]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
     </Popup>
   );
 }

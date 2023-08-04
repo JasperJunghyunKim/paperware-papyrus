@@ -5,7 +5,7 @@ import {
   NotFoundError,
 } from "@/lib/server/error";
 import { handleApi } from "@/lib/server/handler";
-import { PopbillGetContactInfoResponse, PopbillGetCorpInfoResponse } from "@/lib/types/popbill";
+import { PopbillGetContactInfoResponse } from "@/lib/types/popbill";
 import axios from "axios";
 import { z } from "zod";
 
@@ -14,10 +14,11 @@ const paramsSchema = z.object({
 });
 
 const putContactSchema = z.object({
-    contactName: z.string().min(1).max(100),
-    contactEmail: z.string().min(1).max(100).email(),
-    contactPhoneNo: z.string().min(1).max(20),
-})
+  contactName: z.string().min(1).max(100),
+  contactEmail: z.string().min(1).max(100).email(),
+  contactPhoneNo: z.string().min(1).max(20),
+});
+export type PopbillMemberContactUpdateBody = z.infer<typeof putContactSchema>;
 
 export const GET = handleApi<GetPopbillContactInfoReseponse>(
   async (req, context) => {
