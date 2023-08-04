@@ -3992,10 +3992,10 @@ router.post("/QuitMember", async (req, res, next) => {
     const CorpNum = req.body.companyRegistrationNumber;
 
     // 탈퇴 사유
-    var QuitReason = req.body.reason;
+    const QuitReason = req.body.reason;
 
     // 팝빌회원 아이디
-    var UserID = req.body.popbillId;
+    const UserID = req.body.popbillId;
 
     try {
         const result = await new Promise((res, rej) => {
