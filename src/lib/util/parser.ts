@@ -67,3 +67,7 @@ export function dateToIso8601(date: Dayjs | null | undefined) {
 
   return date.toISOString();
 }
+
+export function flatQueries(query: Object) {
+  return Object.entries(query).map((p) => `${p[0]}=${p[1]}`);
+}

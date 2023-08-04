@@ -7,11 +7,12 @@ import {
   GetCompanyListQuery,
 } from "@/app/api/company/route";
 import { UpdateCompanyActivatedBody } from "@/app/api/company/[id]/activated/route";
+import { flatQueries } from "../util/parser";
 
 namespace Template {
   export const useGetListQuery = (name: string, query: Record<string, any>) =>
     useQuery(
-      [name, "list", ...Object.entries(query).map((p) => `${p[0]}=${p[1]}`)],
+      [name, "list", ...flatQueries(query)],
       async () =>
         await axios
           .get(`/api/${name}`, {
