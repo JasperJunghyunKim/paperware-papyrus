@@ -15,3 +15,10 @@ export interface PopbillGetCorpInfoResponse {
     bizType: string;
     bizClass: string;
 }
+
+export interface PopbillGetContactInfoResponse {
+    id: string;
+    personName: string;
+    tel: string;
+    email: string;
+}
