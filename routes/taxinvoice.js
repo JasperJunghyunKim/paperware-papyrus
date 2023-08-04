@@ -3604,51 +3604,51 @@ router.get("/GetCorpInfo", async (req, res, next) => {
  * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
  * - https://developers.popbill.com/reference/taxinvoice/node/api/member#UpdateContact
  */
-// router.get("/UpdateContact", function (req, res, next) {
-//     // 팝빌회원 사업자번호, "-" 제외 10자리
-//     var CorpNum = "1234567890";
+router.put("/UpdateContact", async (req, res, next) => {
+    // 팝빌회원 사업자번호, "-" 제외 10자리
+    const CorpNum = req.body.companyRegistrationNumber;
 
-//     // 팝빌회원 아이디
-//     var UserID = "testkorea";
+    // 팝빌회원 아이디
+    const UserID = req.body.popbillId;
 
-//     // 담당자 정보 항목
-//     var contactInfo = {
-//         // 담당자 아이디
-//         id: UserID,
+    // 담당자 정보 항목
+    const contactInfo = {
+        // 담당자 아이디
+        id: req.body.popbillId,
 
-//         // 담당자명 (최대 100자)
-//         personName: "담당자명0319",
+        // 담당자명 (최대 100자)
+        personName: req.body.contactName,
 
-//         // 연락처 (최대 20자)
-//         tel: "010-1234-1234",
+        // 연락처 (최대 20자)
+        tel: req.body.contactPhoneNo,
 
-//         // 이메일 (최대 100자)
-//         email: "test@email.com",
+        // 이메일 (최대 100자)
+        email:req.body.contactEmail,
 
-//         // 담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
-//         searchRole: 3,
-//     };
+        // 담당자 권한, 1 : 개인권한, 2 : 읽기권한, 3 : 회사권한
+        searchRole: 3,
+    };
 
-//     taxinvoiceService.updateContact(
-//         CorpNum,
-//         UserID,
-//         contactInfo,
-//         function (result) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: result.code,
-//                 message: result.message,
-//             });
-//         },
-//         function (Error) {
-//             res.render("response", {
-//                 path: req.path,
-//                 code: Error.code,
-//                 message: Error.message,
-//             });
-//         },
-//     );
-// });
+    try {
+        const result = await new Promise((res, rej) => {
+            taxinvoiceService.updateContact(
+                CorpNum,
+                UserID,
+                contactInfo,
+                function (result) {
+                    res(result);
+                },
+                function (err) {
+                    console.log(err);
+                    rej(err);
+                },
+            );
+        });
+        res.send(result);
+    } catch(e) {
+        res.status(500).send(e);
+    }
+});
 
 /**
  * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
@@ -4082,5 +4082,30 @@ router.post("/QuitMember", async (req, res, next) => {
 //         },
 //     );
 // });
+
+/** 담당자 한명 조회 */
+router.get("/GetContact", async (req, res, next) => {
+ // 팝빌회원 사업자번호, "-" 제외 10자리
+ const CorpNum = req.query.companyRegistrationNumber;
+
+ try {
+    const result = await new Promise((res, rej) => {
+        taxinvoiceService.listContact(
+            CorpNum,
+            function (result) {
+                res(result);
+            },
+            function (err) {
+                console.log(err)
+                rej(err)
+            },
+        );
+     });
+     if (result.length === 0) throw new Error('담당자 정보가 없습니다.');
+     res.send(result[0]);
+ } catch(e) {
+    res.status(500).send(e);
+ }
+});
 
 module.exports = router;
