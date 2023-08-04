@@ -61,10 +61,7 @@ export const POST = handleApi(async (req, context) => {
     }
 
     const _result = result as PopbillDefaultResponse;
-    console.log(_result)
     if (_result.code === 1) {
-        throw new InternalServerError(_result.message);
-    } else {
         await prisma.company.update({
             where: {
                 id: data.companyId,
@@ -73,5 +70,7 @@ export const POST = handleApi(async (req, context) => {
                 popbillId: data.id,
             }
         });
+    } else {
+        throw new InternalServerError(_result.message);
     }
 });
