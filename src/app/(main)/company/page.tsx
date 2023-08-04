@@ -9,8 +9,20 @@ import { CompanyType } from "@prisma/client";
 import { Form, Input, Radio, Select, Table } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { TbCheck, TbCirclePlus, TbPencil, TbLock, TbLockOff } from "react-icons/tb";
+import {
+  TbCheck,
+  TbCirclePlus,
+  TbPencil,
+  TbLock,
+  TbLockOff,
+  TbCircleCheck,
+  TbQuestionMark,
+} from "react-icons/tb";
 import { match } from "ts-pattern";
+import * as R from "@/lib/util/rules";
+import classNames from "classnames";
+import { Company } from "@/app/api/company/route";
+import { UpdateCompanyBody } from "@/app/api/company/[id]/route";
 
 const toOptions = (items: { id: number; name: string }[]) => {
   return items.map((p) => ({ value: p.id, label: p.name }));
@@ -29,7 +41,9 @@ export default function Component() {
 
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState<number | false>(false);
-  const [openActivate, setOpenActivate] = useState<{ id: number; isActivated: boolean } | false>(false);
+  const [openActivate, setOpenActivate] = useState<
+    { id: number; isActivated: boolean } | false
+  >(false);
   const [openDelete, setOpenDelete] = useState<number | false>(false);
 
   return (
@@ -116,14 +130,24 @@ export default function Component() {
           },
           {
             title: "상호",
-            render: (record) => (<div className="px-2">
-              {record.businessName} 
-              {record.isDeleted && 
-                (<span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                  탈퇴
-                </span>)
-              }
-            </div>),
+            render: (record) => (
+              <div className="px-2 flex gap-x-2">
+                <div
+                  className={classNames("flex-initial", {
+                    "line-through": record.isDeleted,
+                  })}
+                >
+                  {record.businessName}
+                </div>
+                <div className="flex-initial">
+                  {record.isDeleted && (
+                    <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 flex-nowrap whitespace-nowrap">
+                      탈퇴
+                    </span>
+                  )}
+                </div>
+              </div>
+            ),
           },
           {
             title: "사업자등록번호",
@@ -186,33 +210,71 @@ export default function Component() {
             ),
           },
           {
-            title: "Popbill ID",
-            key: "popbillId",
-            dataIndex: "popbillId",
-            render: (value) => <div className="px-2">{value}</div>,
+            title: "관리자 ID",
+            key: "admin.username",
+            render: (record: Company) => (
+              <div className="px-2 d2coding">{record.user.at(0)?.username}</div>
+            ),
           },
           {
-            width: "0px",
-            render: (record) => (
-              <div className="flex justify-center gap-x-2 p-1">
-                <Button text="수정" disabled={record.isDeleted} onClick={() => setOpenUpdate(record.id)} />
+            title: "관리자명",
+            key: "admin.name",
+            render: (record: Company) => (
+              <div className="px-2">{record.user.at(0)?.name}</div>
+            ),
+          },
+          {
+            title: "계정 수",
+            key: "userCount",
+            render: (record: Company) => (
+              <div className="px-2 d2coding text-right">
+                {record._count.user}
               </div>
             ),
           },
           {
-            width: "0px",
-            render: (record) => (
-              <div className="flex justify-center gap-x-2 p-1">
-                  <Button text={record.isActivated ? '비활성화' : '활성화'} disabled={record.isDeleted} onClick={() => setOpenActivate({id: record.id, isActivated: record.isActivated})} />
-                </div>
+            title: "PAPERWARE 활성 여부",
+            key: "isActivated",
+            render: (record: Company) => (
+              <div className="flex justify-center text-2xl">
+                {record.isActivated && !record.isDeleted && (
+                  <TbCircleCheck className="text-green-700" />
+                )}
+              </div>
             ),
+          },
+          {
+            title: "Popbill ID",
+            key: "popbillId",
+            dataIndex: "popbillId",
+            render: (value) => <div className="px-2 d2coding">{value}</div>,
           },
           {
             width: "0px",
             render: (record) => (
-              <div className="flex justify-center gap-x-2 p-1">
-                  <Button text="탈퇴" disabled={record.isDeleted} onClick={() => setOpenDelete(record.id)} />
-                </div>
+              <div className="flex justify-center gap-x-1 p-1">
+                <Button
+                  text="수정"
+                  disabled={record.isDeleted}
+                  onClick={() => setOpenUpdate(record.id)}
+                />
+                <Button
+                  text={record.isActivated ? "비활성화" : "활성화"}
+                  disabled={record.isDeleted}
+                  onClick={() =>
+                    setOpenActivate({
+                      id: record.id,
+                      isActivated: record.isActivated,
+                    })
+                  }
+                />
+                <Button
+                  text="탈퇴"
+                  color="red"
+                  disabled={record.isDeleted}
+                  onClick={() => setOpenDelete(record.id)}
+                />
+              </div>
             ),
           },
         ]}
@@ -268,36 +330,17 @@ function PopupCreate(props: { open: boolean; onClose: (unit: false) => void }) {
         <Form.Item
           name="companyRegistrationNumber"
           label="사업자등록번호"
-          rules={[
-            {
-              required: true,
-              message: "사업자등록번호를 입력해주세요.",
-            },
-          ]}
+          rules={[R.required(), R.lengthExact(10)]}
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="businessName"
-          label="상호"
-          rules={[
-            {
-              required: true,
-              message: "상호를 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name="businessName" label="상호" rules={[R.required()]}>
           <Input />
         </Form.Item>
         <Form.Item
           name="companyType"
           label="고객사 구분"
-          rules={[
-            {
-              required: true,
-              message: "고객사 구분을 선택해주세요.",
-            },
-          ]}
+          rules={[R.required()]}
         >
           <Radio.Group
             optionType="button"
@@ -322,177 +365,76 @@ function PopupCreate(props: { open: boolean; onClose: (unit: false) => void }) {
             ]}
           />
         </Form.Item>
-        <Form.Item name="corporateRegistrationNumber" label="법인등록번호">
+        <Form.Item
+          name="corporateRegistrationNumber"
+          label="법인등록번호"
+          rules={[R.lengthExact(13)]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="representative"
-          label="대표자"
-          rules={[
-            {
-              required: true,
-              message: "대표자를 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name="representative" label="대표자" rules={[R.required()]}>
           <Input />
         </Form.Item>
         <Form.Item
           name="phoneNo"
           label="전화번호"
-          rules={[
-            {
-              required: true,
-              message: "전화번호를 입력해주세요.",
-            },
-          ]}
+          rules={[R.required(), R.phone()]}
         >
           <Input />
         </Form.Item>
         <Form.Item name="faxNo" label="팩스번호">
           <Input />
         </Form.Item>
-        <Form.Item
-          name="address"
-          label="주소"
-          rules={[
-            {
-              required: true,
-              message: "주소를 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name="address" label="주소" rules={[R.required()]}>
           <Control.Address />
         </Form.Item>
-        <Form.Item
-          name="bizType"
-          label="업종"
-          rules={[
-            {
-              required: true,
-              message: "업종을 입력해주세요.",
-            },
-          ]}
-        >
-          <Select
-            options={toOptions([
-              { id: 1, name: "제조업" },
-              { id: 2, name: "도소매업" },
-              { id: 3, name: "서비스업" },
-              { id: 4, name: "기타" },
-            ])}
-          />
+        <Form.Item name="bizType" label="업종" rules={[R.required()]}>
+          <Input />
         </Form.Item>
-        <Form.Item
-          name="bizItem"
-          label="업태"
-          rules={[
-            {
-              required: true,
-              message: "업태를 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name="bizItem" label="업태" rules={[R.required()]}>
           <Input />
         </Form.Item>
         <Form.Item
           name="invoiceCode"
           label="회사코드"
-          rules={[
-            {
-              required: true,
-              message: "회사코드를 입력해주세요.",
-            },
-          ]}
+          rules={[R.required(), R.lengthExact(4)]}
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="startDate"
-          label="설립일자"
-          rules={[
-            {
-              required: true,
-              message: "설립일자를 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name="startDate" label="설립일자" rules={[R.required()]}>
           <Control.DatePicker />
         </Form.Item>
-        <Form.Item name="memo" label="비고">
+        <Form.Item name="memo" label="비고" rules={[R.length(0, 200)]}>
           <Input.TextArea rows={2} />
         </Form.Item>
         <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
           관리자 계정 정보
         </div>
-        <Form.Item
-          name={["user", "name"]}
-          label="이름"
-          rules={[
-            {
-              required: true,
-              message: "이름을 입력해주세요.",
-            },
-          ]}
-        >
+        <Form.Item name={["admin", "name"]} label="이름" rules={[R.required()]}>
           <Input />
         </Form.Item>
         <Form.Item
-          name={["user", "username"]}
+          name={["admin", "username"]}
           label="아이디"
-          rules={[
-            {
-              required: true,
-              message: "아이디를 입력해주세요.",
-            },
-          ]}
+          rules={[R.required()]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          name={["user", "password"]}
+          name={["admin", "password"]}
           label="비밀번호"
-          rules={[
-            {
-              required: true,
-              message: "비밀번호를 입력해주세요.",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name={["user", "checkPassword"]}
-          label="비밀번호 확인"
-          rules={[
-            {
-              required: true,
-              message: "비밀번호 확인을 입력해주세요.",
-            },
-            {
-              validator: async (_, value) => {
-                if (value !== form.getFieldValue(["user", "password"])) {
-                  throw new Error("비밀번호가 일치하지 않습니다.");
-                }
-              },
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name={["user", "phoneNo"]}
-          label="전화번호"
-          rules={[
-            {
-              required: true,
-              message: "전화번호를 입력해주세요.",
-            },
-          ]}
+          rules={[R.required(), R.password()]}
         >
           <Input />
         </Form.Item>
-        <Form.Item name={["user", "email"]} label="이메일">
+        <Form.Item
+          name={["admin", "phoneNo"]}
+          label="전화번호"
+          rules={[R.required(), R.phone()]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item name={["admin", "email"]} label="이메일" rules={[R.email()]}>
           <Input />
         </Form.Item>
       </Form>
@@ -504,7 +446,7 @@ function PopupUpdate(props: {
   open: number | false;
   onClose: (unit: false) => void;
 }) {
-  const [form] = useForm();
+  const [form] = useForm<UpdateCompanyBody>();
 
   const data = Queries.Company.useGetCompanyItem({
     id: props.open ? props.open : undefined,
@@ -521,7 +463,12 @@ function PopupUpdate(props: {
 
   useEffect(() => {
     if (data.data) {
-      form.setFieldsValue(data.data);
+      form.setFieldsValue({
+        ...data.data,
+        admin: {
+          password: undefined,
+        },
+      });
     } else {
       form.resetFields();
     }
@@ -534,7 +481,7 @@ function PopupUpdate(props: {
       icon={<TbPencil />}
       open={props.open !== false}
       width="500px"
-      height="auto"
+      height="calc(100vh - 200px)"
       footer={
         <div className="flex justify-center p-2 gap-x-2">
           <Button
@@ -546,18 +493,110 @@ function PopupUpdate(props: {
         </div>
       }
     >
-      <Form form={form} layout="vertical" rootClassName="p-4">
+      <Form
+        form={form}
+        layout="vertical"
+        rootClassName="w-full h-full p-4 overflow-y-scroll"
+      >
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          고객사 정보
+        </div>
+        <Form.Item label="사업자등록번호">
+          <Input disabled value={data.data?.companyRegistrationNumber} />
+        </Form.Item>
+        <Form.Item name="businessName" label="상호" rules={[R.required()]}>
+          <Input />
+        </Form.Item>
         <Form.Item
-          name="businessName"
-          label="상호"
-          rules={[
-            {
-              required: true,
-              message: "상호를 입력해주세요.",
-            },
-          ]}
+          name="companyType"
+          label="고객사 구분"
+          rules={[R.required()]}
+        >
+          <Radio.Group
+            optionType="button"
+            buttonStyle="solid"
+            options={[
+              {
+                value: "DISTRIBUTOR",
+                label: "유통사",
+              },
+              {
+                value: "MANUFACTURER",
+                label: "제지사",
+              },
+              {
+                value: "PRACTICAL",
+                label: "실수요",
+              },
+              {
+                value: "ETC",
+                label: "기타",
+              },
+            ]}
+          />
+        </Form.Item>
+        <Form.Item
+          name="corporateRegistrationNumber"
+          label="법인등록번호"
+          rules={[R.lengthExact(13)]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item name="representative" label="대표자" rules={[R.required()]}>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="phoneNo"
+          label="전화번호"
+          rules={[R.required(), R.phone()]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item name="faxNo" label="팩스번호">
+          <Input />
+        </Form.Item>
+        <Form.Item name="address" label="주소" rules={[R.required()]}>
+          <Control.Address />
+        </Form.Item>
+        <Form.Item name="bizType" label="업종" rules={[R.required()]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="bizItem" label="업태" rules={[R.required()]}>
+          <Input />
+        </Form.Item>
+        <Form.Item label="회사코드">
+          <Input disabled value={data.data?.invoiceCode} />
+        </Form.Item>
+        <Form.Item name="startDate" label="설립일자" rules={[R.required()]}>
+          <Control.DatePicker />
+        </Form.Item>
+        <Form.Item name="memo" label="비고" rules={[R.length(0, 200)]}>
+          <Input.TextArea rows={2} />
+        </Form.Item>
+        <div className="bg-gray-100 border-l-4 border-black font-bold p-2 mb-4">
+          관리자 계정 정보
+        </div>
+        <Form.Item label="이름">
+          <Input disabled value={data.data?.user.at(0)?.name} />
+        </Form.Item>
+        <Form.Item label="아이디">
+          <Input disabled value={data.data?.user.at(0)?.username} />
+        </Form.Item>
+        <Form.Item
+          name={["admin", "password"]}
+          label="비밀번호 변경"
+          rules={[R.password()]}
+        >
+          <Input placeholder="비밀번호를 변경하려면 입력하세요." />
+        </Form.Item>
+        <Form.Item label="전화번호">
+          <Input
+            disabled
+            value={Formatter.formatPhoneNo(data.data?.user.at(0)?.phoneNo)}
+          />
+        </Form.Item>
+        <Form.Item label="이메일">
+          <Input disabled value={data.data?.user.at(0)?.email} />
         </Form.Item>
       </Form>
     </Popup>
@@ -565,22 +604,26 @@ function PopupUpdate(props: {
 }
 
 function PopupActivate(props: {
-  open: { id: number; isActivated: boolean; } | false;
+  open: { id: number; isActivated: boolean } | false;
   onClose: (unit: false) => void;
 }) {
-  const open = props.open as { id: number; isActivated: boolean; };
+  const open = props.open as { id: number; isActivated: boolean };
 
-  const action = useCallback(async () => {
-    if (!props.open) return;
-    console.log("비활성화")
+  const api = Queries.Company.useSetActivate();
+  const act = useCallback(async () => {
+    if (!open) return;
+    await api.mutateAsync({
+      id: open.id,
+      data: { isActivated: !open.isActivated },
+    });
     props.onClose(false);
   }, [props.onClose, props.open]);
 
   return (
     <Popup
       {...props}
-      title={open.isActivated ? '비활성화 하시겠습니까?' : '활성화 하시겠습니까?'}
-      icon={open.isActivated ? <TbLock /> : <TbLockOff />}
+      title={"확인"}
+      icon={<TbQuestionMark />}
       open={props.open !== false}
       width="500px"
       height="auto"
@@ -591,10 +634,15 @@ function PopupActivate(props: {
             color="white"
             onClick={() => props.onClose(false)}
           />
-          <Button text="확인" icon={<TbCheck />} onClick={action} />
+          <Button text="확인" icon={<TbCheck />} onClick={act} />
         </div>
       }
     >
+      <div className="p-4">
+        {open.isActivated
+          ? "선택한 고객사를 비활성화 하시겠습니까?"
+          : "선택한 고객사를 활성화 하시겠습니까?"}
+      </div>
     </Popup>
   );
 }
@@ -603,17 +651,18 @@ function PopupDelete(props: {
   open: number | false;
   onClose: (unit: false) => void;
 }) {
+  const api = Queries.Company.useDeleteCompany();
   const action = useCallback(async () => {
     if (!props.open) return;
-    console.log("탈퇴처리")
+    await api.mutateAsync({ id: props.open });
     props.onClose(false);
-  }, [props.onClose, props.open]);
+  }, [api, props.onClose, props.open]);
 
   return (
     <Popup
       {...props}
-      title="영구적으로 탈퇴처리됩니다. 정말로 탈퇴처리 하시겠습니까? "
-      icon={<TbPencil />}
+      title="확인"
+      icon={<TbQuestionMark />}
       open={props.open !== false}
       width="500px"
       height="auto"
@@ -628,6 +677,7 @@ function PopupDelete(props: {
         </div>
       }
     >
+      <div className="p-4">영구적으로 탈퇴처리됩니다. 계속하시겠습니까?</div>
     </Popup>
   );
 }

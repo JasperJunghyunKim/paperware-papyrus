@@ -6,6 +6,7 @@ import {
   CreateCompanyBody,
   GetCompanyListQuery,
 } from "@/app/api/company/route";
+import { UpdateCompanyActivatedBody } from "@/app/api/company/[id]/activated/route";
 
 namespace Template {
   export const useGetListQuery = (name: string, query: Record<string, any>) =>
@@ -57,6 +58,20 @@ namespace Template {
       }
     );
   };
+
+  export const useDeleteMutation = (name: string) => {
+    const queryClient = useQueryClient();
+
+    return useMutation(
+      async (params: { id: number }) =>
+        await axios.delete(`/api/${name}/${params.id}`).then((res) => res.data),
+      {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries([name]);
+        },
+      }
+    );
+  };
 }
 
 export const useGetCompanyList = (query: GetCompanyListQuery) =>
@@ -67,3 +82,19 @@ export const useCreateCompany = () =>
   Template.useCreateMutation<CreateCompanyBody>("company");
 export const useUpdateCompany = () =>
   Template.useUpdateMutation<UpdateCompanyBody>("company");
+export const useDeleteCompany = () => Template.useDeleteMutation("company");
+export const useSetActivate = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (params: { id: number; data: UpdateCompanyActivatedBody }) =>
+      await axios
+        .patch(`/api/company/${params.id}/activated`, params.data)
+        .then((res) => res.data),
+    {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(["company"]);
+      },
+    }
+  );
+};

@@ -1,34 +1,13 @@
 import prisma from "@/lib/prisma";
 import { ConflictError, NotFoundError } from "@/lib/server/error";
 import { handleApi } from "@/lib/server/handler";
-import { z } from "zod";
-import { Company } from "../route";
 import { CompanyType } from "@prisma/client";
+import { z } from "zod";
 
 const paramsSchema = z.object({
   id: z.string().transform((v) => parseInt(v)),
 });
-
-const putBodySchema = z.object({
-  companyRegistrationNumber: z.string().length(10),
-  businessName: z.string().min(1).max(20),
-  companyType: z.union([
-    z.literal("DISTRIBUTOR"),
-    z.literal("MANUFACTURER"),
-    z.literal("PRACTICAL"),
-    z.literal("ETC"),
-  ]),
-  representative: z.string().min(1).max(20),
-  phoneNo: z.string().min(1).max(20),
-  faxNo: z.string().min(1).max(20).optional(),
-  address: z.string().min(1).max(500),
-  bizType: z.string().min(1).max(20),
-  bizItem: z.string().min(1).max(20),
-  startDate: z.date().optional(),
-  memo: z.string().max(500).default(""),
-});
-
-export const GET = handleApi(async (req, context) => {
+export const GET = handleApi(async (_req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
   const data = await prisma.company.findUnique({
     select: {
@@ -46,10 +25,17 @@ export const GET = handleApi(async (req, context) => {
       invoiceCode: true,
       startDate: true,
       memo: true,
+      popbillId: true,
+      isActivated: true,
+      isDeleted: true,
       _count: {
         select: {
           user: true,
         },
+      },
+      user: {
+        select: { username: true, name: true },
+        where: { isAdmin: true },
       },
     },
     where: { id: params.id },
@@ -60,6 +46,37 @@ export const GET = handleApi(async (req, context) => {
   return data;
 });
 
+const putBodySchema = z.object({
+  businessName: z.string().min(1).max(20),
+  companyType: z.union([
+    z.literal("DISTRIBUTOR"),
+    z.literal("MANUFACTURER"),
+    z.literal("PRACTICAL"),
+    z.literal("ETC"),
+  ]),
+  corporateRegistrationNumber: z.string().length(13).optional(),
+  representative: z.string().min(1).max(20),
+  phoneNo: z.string().min(1).max(20),
+  faxNo: z
+    .string()
+    .max(20)
+    .transform((x) => (x === "" ? undefined : x))
+    .optional(),
+  address: z.string().min(1).max(500),
+  bizType: z.string().min(1).max(20),
+  bizItem: z.string().min(1).max(20),
+  startDate: z.string().optional(),
+  memo: z.string().max(500).default(""),
+  admin: z.object({
+    password: z
+      .string()
+      .min(10)
+      .regex(/^(?=.*[a-zA-Z])(?=.*[0-9])/)
+      .transform((x) => (x === "" ? undefined : x))
+      .optional(),
+  }),
+});
+export type UpdateCompanyBody = z.infer<typeof putBodySchema>;
 export const PUT = handleApi(async (req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
   const data = await putBodySchema.parseAsync(await req.json());
@@ -69,9 +86,9 @@ export const PUT = handleApi(async (req, context) => {
       id: params.id,
     },
     data: {
-      companyRegistrationNumber: data.companyRegistrationNumber,
       businessName: data.businessName,
       companyType: data.companyType,
+      corporateRegistrationNumber: data.corporateRegistrationNumber,
       representative: data.representative,
       phoneNo: data.phoneNo,
       faxNo: data.faxNo,
@@ -84,19 +101,18 @@ export const PUT = handleApi(async (req, context) => {
   });
 });
 
-  
-export const DELETE = handleApi(async (req, context) => {
+export const DELETE = handleApi(async (_req, context) => {
   const params = await paramsSchema.parseAsync(context.params);
 
   const company = await prisma.company.findFirst({
-      where: {
-          id: params.id,
-          managedById: null,
-      }
+    where: {
+      id: params.id,
+      managedById: null,
+    },
   });
-  if (!company) throw new NotFoundError('존재하지 않는 고객사');
-  if (company.isDeleted) throw new ConflictError('이미 탈퇴 처리된 고객사');
-  if (company.popbillId !== null) throw new ConflictError('팝빌연동 해제 필요');
+  if (!company) throw new NotFoundError("존재하지 않는 고객사");
+  if (company.isDeleted) throw new ConflictError("이미 탈퇴 처리된 고객사");
+  if (company.popbillId !== null) throw new ConflictError("팝빌연동 해제 필요");
 
   return await prisma.company.update({
     where: {
