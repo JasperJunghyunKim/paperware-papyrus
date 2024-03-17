@@ -1,0 +1,48 @@
+{
+  "name": "paperware-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "node_modules/next/dist/bin/next start -p $PORT"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.16.2",
+    "@tanstack/react-table": "^8.9.3",
+    "@types/bcrypt": "^5.0.0",
+    "@types/node": "20.4.1",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "antd": "^5.6.4",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.9",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.9",
+    "lodash": "^4.17.21",
+    "next": "13.4.9",
+    "popbill": "^1.59.4",
+    "postcss": "8.4.25",
+    "query-string": "^8.1.0",
+    "react": "18.2.0",
+    "react-collapsible": "^2.10.0",
+    "react-daum-postcode": "^3.1.3",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "react-modal": "^3.16.1",
+    "react-query": "^3.39.3",
+    "tailwindcss": "3.1.0",
+    "ts-pattern": "^5.0.4",
+    "typescript": "5.1.6",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.16.0",
+    "prisma": "^4.16.2"
+  }
+}
