@@ -1,0 +1,561 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Paper Specs
+
+model PaperDomain {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Product Product[]
+}
+
+model Manufacturer {
+  id      Int       @id @default(autoincrement())
+  name    String
+  product Product[]
+}
+
+model PaperGroup {
+  id      Int       @id @default(autoincrement())
+  name    String
+  product Product[]
+}
+
+model PaperType {
+  id      Int       @id @default(autoincrement())
+  name    String
+  product Product[]
+}
+
+model PaperColorGroup {
+  id            Int                @id @default(autoincrement())
+  name          String
+  Stock         Stock[]
+  officialPrice OfficialPriceMap[]
+  StockGroup    StockGroup[]
+  Invoice       Invoice[]
+}
+
+model PaperColor {
+  id            Int                @id @default(autoincrement())
+  name          String
+  Stock         Stock[]
+  officialPrice OfficialPriceMap[]
+  StockGroup    StockGroup[]
+  Invoice       Invoice[]
+}
+
+model PaperPattern {
+  id            Int                @id @default(autoincrement())
+  name          String
+  Stock         Stock[]
+  officialPrice OfficialPriceMap[]
+  StockGroup    StockGroup[]
+  Invoice       Invoice[]
+}
+
+model PaperCert {
+  id            Int                @id @default(autoincrement())
+  name          String
+  Stock         Stock[]
+  officialPrice OfficialPriceMap[]
+  StockGroup    StockGroup[]
+  Invoice       Invoice[]
+}
+
+enum PackagingType {
+  SKID
+  REAM
+  BOX
+  ROLL
+}
+
+model Packaging {
+  id         Int           @id @default(autoincrement())
+  name       String
+  type       PackagingType
+  packA      Int
+  packB      Int
+  stock      Stock[]
+  StockGroup StockGroup[]
+  Invoice    Invoice[]
+
+  @@unique([type, packA, packB])
+}
+
+model Product {
+  id             Int                @id @default(autoincrement())
+  paperDomainId  Int
+  paperDomain    PaperDomain        @relation(fields: [paperDomainId], references: [id])
+  manufacturerId Int
+  manufacturer   Manufacturer       @relation(fields: [manufacturerId], references: [id])
+  paperGroupId   Int
+  paperGroup     PaperGroup         @relation(fields: [paperGroupId], references: [id])
+  paperTypeId    Int
+  paperType      PaperType          @relation(fields: [paperTypeId], references: [id])
+  stock          Stock[]
+  officialPrice  OfficialPriceMap[]
+  StockGroup     StockGroup[]
+  Invoice        Invoice[]
+
+  @@index([paperDomainId], type: BTree)
+  @@index([manufacturerId], type: BTree)
+  @@index([paperGroupId], type: BTree)
+  @@index([paperTypeId], type: BTree)
+}
+
+// Warehouse
+
+model Warehouse {
+  id         Int          @id @default(autoincrement())
+  name       String
+  code       String?
+  address    String       @default("")
+  companyId  Int
+  company    Company      @relation(fields: [companyId], references: [id])
+  isPublic   Boolean
+  isDeleted  Boolean      @default(false)
+  stock      Stock[]
+  StockGroup StockGroup[]
+
+  @@unique([companyId, code])
+}
+
+// Stock
+
+model Stock {
+  id                      Int              @id @default(autoincrement())
+  serial                  String           @unique
+  companyId               Int
+  company                 Company          @relation(fields: [companyId], references: [id])
+  warehouseId             Int?
+  warehouse               Warehouse?       @relation(fields: [warehouseId], references: [id])
+  productId               Int
+  product                 Product          @relation(fields: [productId], references: [id])
+  packagingId             Int
+  packaging               Packaging        @relation(fields: [packagingId], references: [id])
+  grammage                Int
+  sizeX                   Int
+  sizeY                   Int
+  paperColorGroupId       Int?
+  paperColorGroup         PaperColorGroup? @relation(fields: [paperColorGroupId], references: [id])
+  paperColorId            Int?
+  paperColor              PaperColor?      @relation(fields: [paperColorId], references: [id])
+  paperPatternId          Int?
+  paperPattern            PaperPattern?    @relation(fields: [paperPatternId], references: [id])
+  paperCertId             Int?
+  paperCert               PaperCert?       @relation(fields: [paperCertId], references: [id])
+  stockEvent              StockEvent[]
+  cachedQuantity          Int              @default(0)
+  cachedQuantityAvailable Int              @default(0)
+  isDeleted               Boolean          @default(false)
+  isSyncPrice             Boolean          @default(false)
+  stockPrice              StockPrice[]
+
+  @@index([packagingId], type: BTree)
+  @@index([paperColorGroupId], type: BTree)
+  @@index([paperColorId], type: BTree)
+  @@index([paperPatternId], type: BTree)
+  @@index([paperCertId], type: BTree)
+}
+
+model StockPrice {
+  stockId           Int
+  stock             Stock             @relation(fields: [stockId], references: [id])
+  officialPriceType OfficialPriceType @default(NONE)
+  officialPrice     Float             @default(0)
+  officialPriceUnit PriceUnit
+  discountType      DiscountType      @default(DEFAULT)
+  unitPrice         Float
+  discountPrice     Float             @default(0)
+  unitPriceUnit     PriceUnit
+
+  @@id([stockId])
+}
+
+enum StockEventStatus {
+  NORMAL
+  CANCELLED
+  PENDING
+}
+
+model StockEvent {
+  id         Int              @id @default(autoincrement())
+  stockId    Int
+  stock      Stock            @relation(fields: [stockId], references: [id])
+  change     Int
+  status     StockEventStatus
+  orderStock OrderStock[]
+  planIn     Plan[]           @relation("StockEventInPlan")
+  planOut    Plan[]           @relation("StockEventOutPlan")
+
+  @@unique([id, stockId])
+}
+
+model StockGroup {
+  id                Int               @id @default(autoincrement())
+  productId         Int
+  product           Product           @relation(fields: [productId], references: [id])
+  packagingId       Int
+  packaging         Packaging         @relation(fields: [packagingId], references: [id])
+  grammage          Int
+  sizeX             Int
+  sizeY             Int
+  paperColorGroupId Int?
+  paperColorGroup   PaperColorGroup?  @relation(fields: [paperColorGroupId], references: [id])
+  paperColorId      Int?
+  paperColor        PaperColor?       @relation(fields: [paperColorId], references: [id])
+  paperPatternId    Int?
+  paperPattern      PaperPattern?     @relation(fields: [paperPatternId], references: [id])
+  paperCertId       Int?
+  paperCert         PaperCert?        @relation(fields: [paperCertId], references: [id])
+  warehouseId       Int?
+  warehouse         Warehouse?        @relation(fields: [warehouseId], references: [id])
+  orderStockId      Int?
+  orderStock        OrderStock?       @relation(fields: [orderStockId], references: [id])
+  companyId         Int
+  company           Company           @relation(fields: [companyId], references: [id])
+  StockGroupEvent   StockGroupEvent[]
+
+  @@unique([productId, packagingId, grammage, sizeX, sizeY, paperColorGroupId, paperColorId, paperPatternId, paperCertId, warehouseId, companyId])
+}
+
+model StockGroupEvent {
+  id           Int                   @id @default(autoincrement())
+  change       Int
+  status       StockGroupEventStatus
+  stockGroupId Int
+  stockGroup   StockGroup            @relation(fields: [stockGroupId], references: [id])
+  Plan         Plan?
+  planId       Int?
+}
+
+enum StockGroupEventStatus {
+  NORMAL
+  CANCELLED
+  PENDING
+}
+
+// User
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  email     String?
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId Int?
+}
+
+// Company & Client
+
+model Company {
+  id                             Int                           @id @default(autoincrement())
+  businessName                   String
+  companyRegistrationNumber      String?
+  phoneNo                        String                        @default("")
+  faxNo                          String                        @default("")
+  email                          String                        @default("")
+  representative                 String                        @default("")
+  invoiceCode                    String?
+  address                        String                        @default("")
+  managedById                    Int?
+  managedBy                      Company?                      @relation("CompanyManagedBy", fields: [managedById], references: [id])
+  srcBusinessRelationship        BusinessRelationship[]        @relation("srcBusinessRelationship")
+  dstBusinessRelationship        BusinessRelationship[]        @relation("dstBusinessRelationship")
+  srcOrder                       Order[]                       @relation("srcOrderCompany")
+  dstOrder                       Order[]                       @relation("dstOrderCompany")
+  user                           User[]
+  officialPrice                  OfficialPriceMap[]
+  warehouse                      Warehouse[]
+  location                       Location[]
+  stock                          Stock[]
+  srcBusinessRelationshipRequest BusinessRelationshipRequest[] @relation("srcBusinessRelationshipRequest")
+  dstBusinessRelationshipRequest BusinessRelationshipRequest[] @relation("dstBusinessRelationshipRequest")
+  managingCompany                Company[]                     @relation("CompanyManagedBy")
+  OrderSrockTradePrice           OrderStockTradePrice[]
+  Plan                           Plan[]
+  Shipping                       Shipping[]
+  StockGroup                     StockGroup[]
+  TradePrice                     TradePrice[]
+  OrderStockTradeAltBundle       OrderStockTradeAltBundle[]
+}
+
+model BusinessRelationship {
+  srcCompanyId Int
+  srcCompany   Company @relation("srcBusinessRelationship", fields: [srcCompanyId], references: [id])
+  dstCompanyId Int
+  dstCompany   Company @relation("dstBusinessRelationship", fields: [dstCompanyId], references: [id])
+
+  @@id([srcCompanyId, dstCompanyId])
+}
+
+enum BusinessRelationshipRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model BusinessRelationshipRequest {
+  srcCompanyId Int
+  srcCompany   Company                           @relation("srcBusinessRelationshipRequest", fields: [srcCompanyId], references: [id])
+  dstCompanyId Int
+  dstCompany   Company                           @relation("dstBusinessRelationshipRequest", fields: [dstCompanyId], references: [id])
+  status       BusinessRelationshipRequestStatus
+  memo         String
+
+  @@unique([srcCompanyId, dstCompanyId])
+}
+
+model Location {
+  id         Int          @id @default(autoincrement())
+  name       String
+  code       String?
+  address    String       @default("")
+  companyId  Int
+  company    Company      @relation(fields: [companyId], references: [id])
+  isPublic   Boolean
+  isDeleted  Boolean      @default(false)
+  orderStock OrderStock[]
+
+  @@unique([companyId, code])
+}
+
+// Prices
+
+enum OfficialPriceType {
+  NONE
+  MANUAL_NONE
+  MANUAL_DEFAULT
+  RETAIL
+  WHOLESALE
+}
+
+enum DiscountType {
+  DEFAULT
+  SPECIAL
+}
+
+enum PriceUnit {
+  WON_PER_TON
+  WON_PER_REAM
+  WON_PER_BOX
+}
+
+model OfficialPriceMap {
+  id                Int               @id @default(autoincrement())
+  companyId         Int
+  company           Company           @relation(fields: [companyId], references: [id])
+  officialPriceType OfficialPriceType
+  officialPrice     Float
+  productId         Int
+  product           Product           @relation(fields: [productId], references: [id])
+  paperColorGroupId Int?
+  paperColorGroup   PaperColorGroup?  @relation(fields: [paperColorGroupId], references: [id])
+  paperColorId      Int?
+  paperColor        PaperColor?       @relation(fields: [paperColorId], references: [id])
+  paperPatternId    Int?
+  paperPattern      PaperPattern?     @relation(fields: [paperPatternId], references: [id])
+  paperCertId       Int?
+  paperCert         PaperCert?        @relation(fields: [paperCertId], references: [id])
+}
+
+// Order
+
+enum OrderStatus {
+  ORDER_PREPARING
+  ORDER_CANCELLED
+  ORDER_REQUESTED
+  ORDER_ACCEPTED
+  ORDER_REJECTED
+  STOCK_OFFER_REQUESTED
+  STOCK_OFFER_ACCEPTED
+}
+
+model Order {
+  id                     Int          @id @default(autoincrement())
+  orderNo                String       @unique
+  srcCompanyId           Int
+  srcCompany             Company      @relation("srcOrderCompany", fields: [srcCompanyId], references: [id])
+  dstCompanyId           Int
+  dstCompany             Company      @relation("dstOrderCompany", fields: [dstCompanyId], references: [id])
+  status                 OrderStatus  @default(ORDER_PREPARING)
+  isEntrusted            Boolean      @default(false)
+  memo                   String
+  wantedDate             DateTime?
+  stockAcceptedCompanyId Int?
+  isStockRejected        Boolean      @default(false)
+  orderStock             OrderStock[]
+  TradePrice             TradePrice[]
+}
+
+model OrderStock {
+  id            Int          @id @default(autoincrement())
+  orderId       Int
+  order         Order        @relation(fields: [orderId], references: [id])
+  dstLocationId Int?
+  dstLocation   Location?    @relation(fields: [dstLocationId], references: [id])
+  stockEvent    StockEvent[]
+  planId        Int?         @unique
+  plan          Plan?        @relation(fields: [planId], references: [id])
+  StockGroup    StockGroup[]
+}
+
+model TradePrice {
+  orderId       Int
+  order         Order   @relation(fields: [orderId], references: [id])
+  companyId     Int
+  company       Company @relation(fields: [companyId], references: [id])
+  suppliedPrice Float   @default(0)
+  vatPrice      Float   @default(0)
+  isBookClosed  Boolean @default(false)
+
+  OrderStockTradePrice OrderStockTradePrice[]
+
+  @@id([orderId, companyId])
+}
+
+model OrderStockTradePrice {
+  orderId           Int
+  companyId         Int
+  Company           Company           @relation(fields: [companyId], references: [id])
+  tradePrice        TradePrice        @relation(fields: [orderId, companyId], references: [orderId, companyId])
+  officialPriceType OfficialPriceType @default(NONE)
+  officialPrice     Float             @default(0)
+  officialPriceUnit PriceUnit
+  discountType      DiscountType      @default(DEFAULT)
+  discountUnitPrice Float             @default(0)
+  unitPriceUnit     PriceUnit
+  processPrice      Float             @default(0)
+
+  @@id([orderId, companyId])
+}
+
+model OrderStockTradeAltBundle {
+  orderId     Int
+  companyId   Int
+  Company     Company @relation(fields: [companyId], references: [id])
+  altSizeX    Int
+  altSizeY    Int
+  altQuantity Int
+
+  @@id([orderId, companyId])
+}
+
+enum TaskType {
+  CONVERTING
+  GUILLOTINE
+  QUANTITY
+}
+
+enum PlanStatus {
+  PREPARING
+  PROGRESSING
+  PROGRESSED
+}
+
+model Plan {
+  id                      Int             @id @default(autoincrement())
+  planNo                  String          @unique
+  companyId               Int
+  company                 Company         @relation(fields: [companyId], references: [id])
+  status                  PlanStatus      @default(PREPARING)
+  isDeleted               Boolean         @default(false)
+  memo                    String          @default("")
+  createdAt               DateTime        @default(now())
+  task                    Task[]
+  stockEventIn            StockEvent[]    @relation("StockEventInPlan")
+  stockEventOut           StockEvent[]    @relation("StockEventOutPlan")
+  orderStock              OrderStock?
+  targetStockGroupEventId Int             @unique
+  targetStockGroupEvent   StockGroupEvent @relation(fields: [targetStockGroupEventId], references: [id])
+  invoice                 Invoice[]
+}
+
+enum TaskStatus {
+  PREPARING
+  PROGRESSING
+  PROGRESSED
+}
+
+model Task {
+  id             Int             @id @default(autoincrement())
+  taskNo         String          @unique
+  planId         Int
+  plan           Plan            @relation(fields: [planId], references: [id])
+  type           TaskType
+  isDeleted      Boolean         @default(false)
+  status         TaskStatus
+  taskConverting TaskConverting?
+  taskGuillotine TaskGuillotine?
+  taskQuantity   TaskQuantity?
+  parentTaskId   Int?
+  parentTask     Task?           @relation("TaskRelation", fields: [parentTaskId], references: [id])
+  childTasks     Task[]          @relation("TaskRelation")
+}
+
+model TaskConverting {
+  taskId Int    @id
+  task   Task   @relation(fields: [taskId], references: [id])
+  sizeX  Int
+  sizeY  Int
+  memo   String
+}
+
+model TaskGuillotine {
+  taskId Int    @id
+  task   Task   @relation(fields: [taskId], references: [id])
+  sizeX  Int
+  sizeY  Int
+  memo   String
+}
+
+model TaskQuantity {
+  taskId   Int  @id
+  task     Task @relation(fields: [taskId], references: [id])
+  quantity Int
+}
+
+model Shipping {
+  id         Int       @id @default(autoincrement())
+  shippingNo String    @unique
+  companyId  Int
+  company    Company   @relation(fields: [companyId], references: [id])
+  invoice    Invoice[]
+}
+
+model Invoice {
+  id                Int              @id @default(autoincrement())
+  invoiceNo         String           @unique
+  shippingId        Int?
+  shipping          Shipping?        @relation(fields: [shippingId], references: [id])
+  productId         Int
+  product           Product          @relation(fields: [productId], references: [id])
+  packagingId       Int
+  packaging         Packaging        @relation(fields: [packagingId], references: [id])
+  grammage          Int
+  sizeX             Int
+  sizeY             Int
+  paperColorGroupId Int?
+  paperColorGroup   PaperColorGroup? @relation(fields: [paperColorGroupId], references: [id])
+  paperColorId      Int?
+  paperColor        PaperColor?      @relation(fields: [paperColorId], references: [id])
+  paperPatternId    Int?
+  paperPattern      PaperPattern?    @relation(fields: [paperPatternId], references: [id])
+  paperCertId       Int?
+  paperCert         PaperCert?       @relation(fields: [paperCertId], references: [id])
+  quantity          Int
+  planId            Int
+  plan              Plan             @relation(fields: [planId], references: [id])
+}
