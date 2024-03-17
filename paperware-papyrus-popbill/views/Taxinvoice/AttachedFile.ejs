@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(result, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li>serialNum (첨부파일 일련번호) : <%= result.serialNum %></li>
+                    <li>attachedFile (파일아이디-첨부파일 삭제시 사용) : <%= result.attachedFile %></li>
+                    <li>displayName (첨부파일명) : <%= result.displayName %></li>
+                    <li>regDT (첨부일시) : <%= result.regDT %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(result, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li> state (전송상태 코드) : <%= result.state %></li>
+                    <li> result (전송결과 코드) : <%= result.result %></li>
+                    <li> subject (메시지 제목) : <%= result.subject %></li>
+                    <li> content (메시지 내용) : <%= result.content %></li>
+                    <li> messageType (메시지 유형) : <%= result.type %></li>
+                    <li> sendNum (발신번호) : <%= result.sendNum %></li>
+                    <li> senderName (발신자명) : <%= result.senderName %></li>
+                    <li> receiveNum (수신번호) : <%= result.receiveNum %></li>
+                    <li> receiveName (수신자명) : <%= result.receiveName %></li>
+                    <li> receiptDT (접수일시) : <%= result.receiptDT %></li>
+                    <li> reserveDT (예약일시) : <%= result.reserveDT %></li>
+                    <li> sendDT (전송일시) : <%= result.sendDT %></li>
+                    <li> resultDT (전송결과 수신일시) : <%= result.resultDT %></li>
+                    <li> tranNet (전송 이동통신사명) : <%= result.tranNet %></li>
+                    <li> receiptNum (접수번호) : <%= result.receiptNum %></li>
+                    <li> requestNum (요청번호) : <%= result.requestNum %></li>
+                    <li> interOPRefKey (파트너 지정키) : <%= result.interOPRefKey %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

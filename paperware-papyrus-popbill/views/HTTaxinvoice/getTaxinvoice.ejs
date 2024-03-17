@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>writeDate (작성일자) : <%= result.writeDate %></li>
+            <li>issueDT (발행일시) : <%= result.issueDT %></li>
+            <li>invoiceType (전자세금계산서 종류) : <%= result.invoiceType %></li>
+            <li>taxType (과세형태) : <%= result.taxType %></li>
+            <li>taxTotal (세액 합계) : <%= result.taxTotal %></li>
+            <li>supplyCostTotal (공급가액 합계) : <%= result.supplyCostTotal %></li>
+            <li>totalAmount (합계금액) : <%= result.totalAmount %></li>
+            <li>purposeType (영수/청구) : <%= result.purposeType %></li>
+
+            <li>serialNum (일련번호) : <%= result.serialNum %></li>
+            <li>cash (현금) : <%= result.cash %></li>
+            <li>chkBill (수표) : <%= result.chkBill %></li>
+            <li>credit (작외상 : <%= result.credit %></li>
+            <li>note (어음) : <%= result.note %></li>
+            <li>remark1 (비고1) : <%= result.remark1 %></li>
+            <li>remark2 (비고2) : <%= result.remark2 %></li>
+            <li>remark3 (비고3) : <%= result.remark3 %></li>
+            <li>ntsconfirmNum (국세청승인번호) : <%= result.ntsconfirmNum %></li>
+
+            <li>modifyCode (수정 사유코드) : <%= result.modifyCode %></li>
+            <li>orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : <%= result.orgNTSConfirmNum %></li>
+            <p>============공급자 정보============</p>
+            <li>invoicerCorpNum (공급자 사업자번호) : <%= result.invoicerCorpNum %></li>
+            <li>invoicerMgtKey (공급자 문서번호) : <%= result.invoicerMgtKey %></li>
+            <li>invoicerTaxRegID (공급자 종사업장번호) : <%= result.invoicerTaxRegID %></li>
+            <li>invoicerCorpName (공급자 상호) : <%= result.invoicerCorpName %></li>
+            <li>invoicerCEOName (공급자 대표자 성명) : <%= result.invoicerCEOName %></li>
+            <li>invoicerAddr (공급자 주소) : <%= result.invoicerAddr %></li>
+            <li>invoicerBizType (공급자 업태) : <%= result.invoicerBizType %></li>
+            <li>invoicerBizClass (공급자 종목) : <%= result.invoicerBizClass %></li>
+            <li>invoicerContactName (공급자 담당자 성명) : <%= result.invoicerContactName %></li>
+            <li>invoicerTEL (공급자 담당자 연락처) : <%= result.invoicerTEL %></li>
+            <li>invoicerEmail (공급자 담당자 이메일) : <%= result.invoicerEmail %></li>
+            <p>============공급받는자 정보============</p>
+            <li>invoiceeCorpNum (공급자는자 사업자번호) : <%= result.invoiceeCorpNum %></li>
+            <li>invoiceeType (공급자는자 구분) : <%= result.invoiceeType %></li>
+            <li>invoiceeMgtKey (공급자는자 문서번호) : <%= result.invoiceeMgtKey %></li>
+            <li>invoiceeTaxRegID (공급자는자 종사업장번호) : <%= result.invoiceeTaxRegID %></li>
+            <li>invoiceeCorpName (공급자는자 상호) : <%= result.invoiceeCorpName %></li>
+            <li>invoiceeCEOName (공급자는자 대표자 성명) : <%= result.invoiceeCEOName %></li>
+            <li>invoiceeAddr (공급자는자 주소) : <%= result.invoiceeAddr %></li>
+            <li>invoiceeBizType (공급자는자 업태) : <%= result.invoiceeBizType %></li>
+            <li>invoiceeBizClass (공급자는자 종목) : <%= result.invoiceeBizClass %></li>
+            <li>invoiceeContactName1 (공급자는자 담당자 성명) : <%= result.invoiceeContactName1 %></li>
+            <li>invoiceeTEL1 (공급자는자 담당자 연락처) : <%= result.invoiceeTEL1 %></li>
+            <li>invoiceeEmail1 (공급자는자 담당자 이메일) : <%= result.invoiceeEmail1 %></li>
+            <p>============품목정보============</p>
+            <%
+            result.detailList.forEach(function(info, index){
+            %>
+                <li>serialNum (일련번호) : <%= info.serialNum %></li>
+                <li>purchaseDT (거래일자) : <%= info.purchaseDT %></li>
+                <li>itemName (품명) : <%= info.itemName %></li>
+                <li>spec (규격) : <%= info.spec %></li>
+                <li>qty (수량) : <%= info.qty %></li>
+                <li>unitCost (단가) : <%= info.unitCost %></li>
+                <li>supplyCost (공급가액) : <%= info.supplyCost %></li>
+                <li>tax (세액) : <%= info.tax %></li>
+                <li>remark (비고) : <%= info.remark %></li>
+            <%
+            });
+            %>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>

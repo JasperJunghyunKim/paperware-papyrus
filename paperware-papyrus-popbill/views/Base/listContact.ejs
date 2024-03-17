@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(contactInfo, index){
+        %>
+            <fieldset class="fieldset2">
+                <legend>담당자 정보 [<%= index + 1 %>/<%= result.length %>]</legend>
+                <ul>
+                    <li>id (아이디) : <%= contactInfo.id %></li>
+                    <li>personName (담당자명) : <%= contactInfo.personName %></li>
+                    <li>email (메일) : <%= contactInfo.email %></li>
+                    <li>tel (연락처) : <%= contactInfo.tel %></li>
+                    <li>searchRole (담당자 권한) : <%= contactInfo.searchRole %></li>
+                    <li>mgrYN (관리자여부) : <%= contactInfo.mgrYN %></li>
+                    <li>state (상태) : <%= contactInfo.state %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

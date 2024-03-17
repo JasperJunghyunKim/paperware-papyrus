@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">팝빌 전자명세서 SDK Nodejs - Express Example.</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>전자명세서 발행</legend>
+        <ul>
+            <li>
+                <a href="StatementService/CheckMgtKeyInUse">checkMgtKeyInUse</a>
+                - 문서번호 확인
+            </li>
+            <li>
+                <a href="StatementService/RegistIssue">registIssue</a>
+                - 즉시 발행
+            </li>
+            <li>
+                <a href="StatementService/Register">register</a>
+                - 임시저장
+            </li>
+            <li>
+                <a href="StatementService/Update">update</a>
+                - 수정
+            </li>
+            <li>
+                <a href="StatementService/Issue">issue</a>
+                - 발행
+            </li>
+            <li>
+                <a href="StatementService/CancelIssue">cancelIssue</a>
+                - 발행취소
+            </li>
+            <li>
+                <a href="StatementService/Delete">delete</a>
+                - 삭제
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>전자명세서 정보확인</legend>
+        <ul>
+            <li>
+                <a href="StatementService/GetInfo">getInfo</a>
+                - 상태 확인
+            </li>
+            <li>
+                <a href="StatementService/GetInfos">getInfos</a>
+                - 상태 대량 확인
+            </li>
+            <li>
+                <a href="StatementService/GetDetailInfo">getDetailInfo</a>
+                - 상세정보 확인
+            </li>
+            <li>
+                <a href="StatementService/Search">search</a>
+                - 목록 조회
+            </li>
+            <li>
+                <a href="StatementService/GetLogs">getLogs</a>
+                - 상태 변경이력 확인
+            </li>
+            <li>
+                <a href="StatementService/GetURL">getURL</a>
+                - 전자명세서 문서함 관련 URL
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>전자명세서 보기/인쇄</legend>
+        <ul>
+            <li>
+                <a href="StatementService/GetPopUpURL">getPopUpURL</a>
+                - 전자명세서 보기 URL
+            </li>
+            <li>
+                <a href="StatementService/GetViewURL">getViewURL</a>
+                - 전자명세서 보기 URL (메뉴/버튼 제외)
+            </li>
+            <li>
+                <a href="StatementService/GetPrintURL">getPrintURL</a>
+                - 전자명세서 인쇄 [공급자] URL
+            </li>
+            <li>
+                <a href="StatementService/GetEPrintURL">getEPrintURL</a>
+                - 전자명세서 인쇄 [공급받는자용] URL
+            </li>
+            <li>
+                <a href="StatementService/GetMassPrintURL">getMassPrintURL</a>
+                - 전자명세서 대량 인쇄 URL
+            </li>
+            <li>
+                <a href="StatementService/GetMailURL">getMailURL</a>
+                - 전자명세서 메일링크 URL
+            </li>
+
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>부가기능</legend>
+        <ul>
+            <li>
+                <a href="StatementService/GetAccessURL">getAccessURL</a>
+                - 팝빌 로그인 URL
+            </li>
+            <li>
+                <a href="StatementService/GetSealURL">getSealURL</a>
+                - 인감 및 첨부문서 등록 URL
+            </li>
+            <li>
+                <a href="StatementService/AttachFile">attachFile</a>
+                - 첨부파일 추가
+            </li>
+            <li>
+                <a href="StatementService/DeleteFile">deleteFile</a>
+                - 첨부파일 삭제
+            </li>
+            <li>
+                <a href="StatementService/GetFiles">getFiles</a>
+                - 첨부파일 목록 확인
+            </li>
+            <li>
+                <a href="StatementService/SendEmail">sendEmail</a>
+                - 메일 전송
+            </li>
+            <li>
+                <a href="StatementService/SendSMS">sendSMS</a>
+                - 문자 전송
+            </li>
+            <li>
+                <a href="StatementService/SendFAX">sendFAX</a>
+                - 팩스 전송
+            </li>
+            <li>
+                <a href="StatementService/FAXSend">FAXSend</a>
+                - 선팩스 전송
+            </li>
+            <li>
+                <a href="StatementService/AttachStatement">attachStatement</a>
+                - 전자명세서 첨부
+            </li>
+            <li>
+                <a href="StatementService/DetachStatement">detachStatement</a>
+                - 전자명세서 첨부해제
+            </li>
+            <li>
+                <a href="StatementService/ListEmailConfig">listEmailConfig</a>
+                - 전자명세서 알림메일 전송목록 조회
+            </li>
+            <li>
+                <a href="StatementService/UpdateEmailConfig">updateEmailConfig</a>
+                - 전자명세서 알림메일 전송설정 수정
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>포인트 관리</legend>
+        <ul>
+            <li>
+                <a href="StatementService/GetUnitCost">getUnitCost</a>
+                발행 단가 확인
+            </li>
+            <li>
+                <a href="StatementService/GetChargeInfo">getChargeInfo</a>
+                과금정보 확인
+            </li>
+            <li>
+                <a href="StatementService/GetBalance">getBalance</a>
+                연동회원 잔여포인트 확인
+            </li>
+            <li>
+                <a href="StatementService/GetChargeURL">getChargeURL</a>
+                연동회원 포인트 충전 팝업 URL
+            </li>
+            <li>
+                <a href="StatementService/PaymentRequest">paymentRequest</a>
+                연동회원 무통장 입금신청
+            </li>
+            <li>
+                <a href="StatementService/GetSettleResult">getSettleResult</a>
+                연동회원 무통장 입금신청 정보확인
+            </li>
+            <li>
+                <a href="StatementService/GetPaymentHistory">getPaymentHistory</a>
+                연동회원 포인트 결제내역 확인
+            </li>
+            <li>
+                <a href="StatementService/GetPaymentURL">getPaymentURL</a>
+                연동회원 포인트 결제내역 팝업 URL
+            </li>
+            <li>
+                <a href="StatementService/GetUseHistory">getUseHistory</a>
+                연동회원 포인트 사용내역 확인
+            </li>
+            <li>
+                <a href="StatementService/GetUseHistoryURL">getUseHistoryURL</a>
+                연동회원 포인트 사용내역 팝업 URL
+            </li>
+            <li>
+                <a href="StatementService/Refund">refund</a>
+                연동회원 포인트 환불신청
+            </li>
+            <li>
+                <a href="StatementService/GetRefundHistory">getRefundHistory</a>
+                연동회원 포인트 환불내역 확인
+            </li>
+            <li>
+                <a href="StatementService/GetPartnerBalance">getPartnerBalance</a>
+                파트너 잔여포인트 확인
+            </li>
+            <li>
+                <a href="StatementService/GetPartnerURL">getPartnerURL</a>
+                파트너 포인트충전 팝업 URL
+            </li>
+            <li>
+                <a href="StatementService/GetRefundInfo">getRefundInfo</a>
+                환불 신청 상태 조회
+            </li>
+            <li>
+                <a href="StatementService/GetRefundableBalance">getRefundableBalance</a>
+                환불 가능 포인트 조회
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>회원정보</legend>
+        <ul>
+            <li>
+                <a href="StatementService/CheckIsMember">checkIsMember</a>
+                - 연동회원 가입여부 확인
+            </li>
+            <li>
+                <a href="StatementService/CheckID">checkID</a>
+                - 아이디 중복 확인
+            </li>
+            <li>
+                <a href="StatementService/JoinMember">joinMember</a>
+                - 연동회원 신규가입
+            </li>
+            <li>
+                <a href="StatementService/GetCorpInfo">getCorpInfo</a>
+                - 회사정보 확인
+            </li>
+            <li>
+                <a href="StatementService/UpdateCorpInfo">updateCorpInfo</a>
+                - 회사정보 수정
+            </li>
+            <li>
+                <a href="StatementService/RegistContact">registContact</a>
+                - 담당자 등록
+            </li>
+            <li>
+                <a href="StatementService/GetContactInfo">getContactInfo</a>
+                - 담당자 정보 확인
+            </li>
+            <li>
+                <a href="StatementService/ListContact">listContact</a>
+                - 담당자 목록 확인
+            </li>
+            <li>
+                <a href="StatementService/UpdateContact">updateContact</a>
+                - 담당자 정보 수정
+            </li>
+            <li>
+                <a href="StatementService/QuitMember">quitMember</a>
+                - 팝빌회원 탈퇴
+            </li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>

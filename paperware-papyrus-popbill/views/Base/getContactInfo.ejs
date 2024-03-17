@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>id (아이디) : <%= result.id %></li>
+            <li>personName (담당자명) : <%= result.personName %></li>
+            <li>email (메일) : <%= result.email %></li>
+            <li>tel (연락처) : <%= result.tel %></li>
+            <li>searchRole (담당자 권한) : <%= result.searchRole %></li>
+            <li>mgrYN (관리자여부) : <%= result.mgrYN %></li>
+            <li>state (상태) : <%= result.state %></li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+</html>

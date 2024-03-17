@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>referenceID (사업자번호) : <%= result.referenceID %></li>
+            <li>contractDT (정액제 서비스 시작일시) : <%= result.contractDT %></li>
+            <li>useEndDate (정액제 서비스 종료일) : <%= result.useEndDate %></li>
+            <li>baseDate (자동연장 결제일) : <%= result.baseDate %></li>
+            <li>state (정액제 서비스 상태) : <%= result.state %></li>
+            <li>closeRequestYN (정액제 서비스 해지신청 여부) : <%= result.closeRequestYN %></li>
+            <li>useRestrictYN (정액제 서비스 사용재한 여부) : <%= result.useRestrictYN %></li>
+            <li>closeOnExpired (정액제 서비스 만료 시 해지 여부) : <%= result.closeOnExpired %></li>
+            <li>unPaidYN (미수금 보유 여부) : <%= result.unPaidYN %></li>
+    </fieldset>
+</div>
+</body>
+
+</html>

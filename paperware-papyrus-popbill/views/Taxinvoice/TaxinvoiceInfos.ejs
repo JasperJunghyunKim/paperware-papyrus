@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <%
+        result.forEach(function(result, index){
+        %>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li>itemKey (팝빌번호) : <%= result.itemKey %></li>
+                    <li>taxType (과세형태) : <%= result.taxType %></li>
+                    <li>writeDate (작성일자) : <%= result.writeDate %></li>
+                    <li>regDT (임시저장 일자) : <%= result.regDT %></li>
+                    <li>issueType (발행형태) : <%= result.issueType %></li>
+                    <li>supplyCostTotal (공급가액 합계) : <%= result.supplyCostTotal %></li>
+                    <li>taxTotal (세액 합계) : <%= result.taxTotal %></li>
+                    <li>purposeType (영수/청구) : <%= result.purposeType %></li>
+                    <li>issueDT (발행일시) : <%= result.issueDT %></li>
+                    <li>lateIssueYN (지연발행 여부) : <%= result.lateIssueYN %></li>
+                    <li>openYN (개봉여부) : <%= result.openYN %></li>
+                    <li>openDT (개봉일시): <%= result.openDT %></li>
+                    <li>stateMemo (상태메모) : <%= result.stateMemo %></li>
+                    <li>stateCode (상태코드) : <%= result.stateCode %></li>
+                    <li>stateDT (상태 변경일시) : <%= result.stateDT %></li>
+                    <li>ntsconfirmNum (국세청 승인번호) : <%= result.ntsconfirmNum %></li>
+                    <li>ntsresult (국세청 전송결과) : <%= result.ntsresult %></li>
+                    <li>ntssendDT (국세청 전송일시) : <%= result.ntssendDT %></li>
+                    <li>ntsresultDT (국세청 결과 수신일시) : <%= result.ntsresultDT %></li>
+                    <li>ntssendErrCode (전송실패 사유코드) : <%= result.ntssendErrCode %></li>
+                    <li>modifyCode (수정 사유코드) : <%= result.modifyCode %></li>
+                    <li>interOPYN (연동문서 여부) : <%= result.interOPYN %></li>
+                    <li>invoicerCorpName (공급자 상호) : <%= result.invoicerCorpName %></li>
+                    <li>invoicerCorpNum (공급자 사업자번호) : <%= result.invoicerCorpNum %></li>
+                    <li>invoicerMgtKey (공급자 문서번호) : <%= result.invoicerMgtKey %></li>
+                    <li>invoicerPrintYN (공급자 인쇄여부) : <%= result.invoicerPrintYN %></li>
+                    <li>invoiceeCorpName (공급받는자 상호) : <%= result.invoiceeCorpName %></li>
+                    <li>invoiceeCorpNum (공급받는자 사업자번호) : <%= result.invoiceeCorpNum %></li>
+                    <li>invoiceeMgtKey (공급받는자 문서번호) : <%= result.invoiceeMgtKey %></li>
+                    <li>invoiceePrintYN (공급받는자 인쇄여부) : <%= result.invoiceePrintYN %></li>
+                    <li>closeDownState (공급받는자 휴폐업상태) : <%= result.closeDownState %></li>
+                    <li>closeDownStateDate (공급받는자 휴폐업일자) : <%= result.closeDownStateDate %></li>
+                    <li>trusteeCorpName (수탁자 상호) : <%= result.trusteeCorpName %></li>
+                    <li>trusteeCorpNum (수탁자 사업자번호) : <%= result.trusteeCorpNum %></li>
+                    <li>trusteeMgtKey (수탁자 문서번호) : <%= result.trusteeMgtKey %></li>
+                    <li>trusteePrintYN (수탁자 인쇄여부) : <%= result.trusteePrintYN %></li>
+                </ul>
+            </fieldset>
+        <%
+        });
+        %>
+    </fieldset>
+</div>
+</body>
+
+</html>

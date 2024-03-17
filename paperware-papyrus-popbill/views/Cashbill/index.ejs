@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen"/>
+    <title>팝빌 SDK Nodejs - Express Example.</title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">팝빌 현금영수증 Nodejs SDK - Express Example.</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>현금영수증 발행</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/CheckMgtKeyInUse">checkMgtKeyInUse</a>
+                - 문서번호 확인
+            </li>
+            <li>
+                <a href="CashbillService/RegistIssue">registIssue</a>
+                - 즉시발행
+            </li>
+            <li>
+                <a href="CashbillService/BulkSubmit">bulkSubmit</a>
+                - 초대량 발행
+            </li>
+            <li>
+                <a href="CashbillService/GetBulkResult">getBulkResult</a>
+                - 초대량 접수결과 확인
+            </li>
+            <li>
+                <a href="CashbillService/Delete">delete</a>
+                - 삭제
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>취소현금영수증 발행</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/RevokeRegistIssue">revokeRegistIssue</a>
+                - 즉시발행
+            </li>
+            <li>
+                <a href="CashbillService/RevokeRegistIssue_part">revokeRegistIssue_part</a>
+                - 부분) 즉시발행
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>현금영수증 정보확인</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/GetInfo">getInfo</a>
+                - 상태확인
+            </li>
+            <li>
+                <a href="CashbillService/GetInfos">getInfos</a>
+                - 상태 대량 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetDetailInfo">getDetailInfo</a>
+                - 상세정보 확인
+            </li>
+            <li>
+                <a href="CashbillService/Search">search</a>
+                - 목록 조회
+            </li>
+            <li>
+                <a href="CashbillService/GetLogs">getLogs</a>
+                - 상태 변경이력 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetURL">getURL</a>
+                - 현금영수증 문서함 관련 URL
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>현금영수증 보기/인쇄</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/GetPopUpURL">getPopUpURL</a>
+                - 현금영수증 보기 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetViewURL">getViewURL</a>
+                - 현금영수증 보기 URL [메뉴/버튼 제외]
+            </li>
+            <li>
+                <a href="CashbillService/GetPrintURL">getPrintURL</a>
+                - 현금영수증 인쇄 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetMassPrintURL">getMassPrintURL</a>
+                - 현금영수증 대량 인쇄 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetMailURL">getMailURL</a>
+                - 현금영수증 메일링크 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetPDFURL">getPDFURL</a>
+                - 현금영수증 PDF 다운로드 URL
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>부가기능</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/GetAccessURL">getAccessURL</a>
+                - 팝빌 로그인 URL
+            </li>
+            <li>
+                <a href="CashbillService/SendEmail">sendEmail</a>
+                - 메일 전송
+            </li>
+            <li>
+                <a href="CashbillService/SendSMS">sendSMS</a>
+                - 문자 전송
+            </li>
+            <li>
+                <a href="CashbillService/SendFAX">sendFAX</a>
+                - 팩스 전송
+            </li>
+            <li>
+                <a href="CashbillService/AssignMgtKey">assignMgtKey</a>
+                - 현금영수증 문서번호 할당
+            </li>
+            <li>
+                <a href="CashbillService/ListEmailConfig">listEmailConfig</a>
+                - 현금영수증 알림메일 전송목록 조회
+            </li>
+            <li>
+                <a href="CashbillService/UpdateEmailConfig">updateEmailConfig</a>
+                - 현금영수증 알림메일 전송설정 수정
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>포인트 관리</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/GetUnitCost">getUnitCost</a>
+                발행 단가 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetChargeInfo">getChargeInfo</a>
+                과금정보 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetBalance">getBalance</a>
+                연동회원 잔여포인트 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetChargeURL">getChargeURL</a>
+                연동회원 포인트 충전 팝업 URL
+            </li>
+            <li>
+                <a href="CashbillService/PaymentRequest">paymentRequest</a>
+                연동회원 무통장 입금신청
+            </li>
+            <li>
+                <a href="CashbillService/GetSettleResult">getSettleResult</a>
+                연동회원 무통장 입금신청 정보확인
+            </li>
+            <li>
+                <a href="CashbillService/GetPaymentHistory">getPaymentHistory</a>
+                연동회원 포인트 결제내역 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetPaymentURL">getPaymentURL</a>
+                연동회원 포인트 결제내역 팝업 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetUseHistory">getUseHistory</a>
+                연동회원 포인트 사용내역 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetUseHistoryURL">getUseHistoryURL</a>
+                연동회원 포인트 사용내역 팝업 URL
+            </li>
+            <li>
+                <a href="CashbillService/Refund">refund</a>
+                연동회원 포인트 환불신청
+            </li>
+            <li>
+                <a href="CashbillService/GetRefundHistory">getRefundHistory</a>
+                연동회원 포인트 환불내역 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetPartnerBalance">getPartnerBalance</a>
+                파트너 잔여포인트 확인
+            </li>
+            <li>
+                <a href="CashbillService/GetPartnerURL">getPartnerURL</a>
+                파트너 포인트충전 팝업 URL
+            </li>
+            <li>
+                <a href="CashbillService/GetRefundInfo">getRefundInfo</a>
+                환불 신청 상태 조회
+            </li>
+            <li>
+                <a href="CashbillService/GetRefundableBalance">getRefundableBalance</a>
+                환불 가능 포인트 조회
+            </li>
+        </ul>
+    </fieldset>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>회원정보</legend>
+        <ul>
+            <li>
+                <a href="CashbillService/CheckIsMember">checkIsMember</a>
+                - 연동회원 가입여부 확인
+            </li>
+            <li>
+                <a href="CashbillService/CheckID">checkID</a>
+                - 아이디 중복 확인
+            </li>
+            <li>
+                <a href="CashbillService/JoinMember">joinMember</a>
+                - 연동회원 신규가입
+            </li>
+            <li>
+                <a href="CashbillService/GetCorpInfo">getCorpInfo</a>
+                - 회사정보 확인
+            </li>
+            <li>
+                <a href="CashbillService/UpdateCorpInfo">updateCorpInfo</a>
+                - 회사정보 수정
+            </li>
+            <li>
+                <a href="CashbillService/RegistContact">registContact</a>
+                - 담당자 등록
+            </li>
+            <li>
+                <a href="CashbillService/GetContactInfo">getContactInfo</a>
+                - 담당자 정보 확인
+            </li>
+            <li>
+                <a href="CashbillService/ListContact">listContact</a>
+                - 담당자 목록 확인
+            </li>
+            <li>
+                <a href="CashbillService/UpdateContact">updateContact</a>
+                - 담당자 정보 수정
+            </li>
+            <li>
+                <a href="CashbillService/QuitMember">quitMember</a>
+                - 팝빌회원 탈퇴
+            </li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>

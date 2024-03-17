@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <title>팝빌 SDK Express Example. </title>
+</head>
+
+<body>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend><%= path %></legend>
+        <ul>
+            <li>count (수집 결과 건수) : <%= result.count %></li>
+            <li>supplyCostTotal (공급가액 합계) : <%= result.supplyCostTotal %></li>
+            <li>taxTotal (부가세 합계) : <%= result.taxTotal %></li>
+            <li>serviceFeeTotal (봉사료 합계) : <%= result.serviceFeeTotal %></li>
+            <li>amountTotal (합계 금액) : <%= result.amountTotal %></li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+
+</html>
