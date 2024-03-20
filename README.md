@@ -8,7 +8,7 @@
  
 A total of 7 members participated, and during the operation period, the project achieved 210 million KRW in sales, over 40 billion KRW in cumulative transaction volume through the service, and attracted 600 million KRW in cumulative investments. Approximately 100 corporate clients utilized the service.
 
-### 1. OMS / 주문 관리 시스템
+<!-- ### 1. OMS / 주문 관리 시스템
 
 ### 2. MES / 생산 - 제조 관리 시스템
 
@@ -30,4 +30,4 @@ A total of 7 members participated, and during the operation period, the project 
 
 
 
-
+ -->
